@@ -15,6 +15,7 @@ import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
 import page.ActivityPopup;
+import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
 import page.IntroPage;
@@ -53,6 +54,7 @@ class Main
 		
 		WebManager.inst.openPage( IntroPage );
 		WebManager.inst.openPage( HeaderUI );
+		WebManager.inst.openPage( FooterUI );
 
 		stage.addEventListener( Event.RESIZE, onResize );
 	}

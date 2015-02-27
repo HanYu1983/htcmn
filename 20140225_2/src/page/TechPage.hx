@@ -16,11 +16,11 @@ class TechPage extends WebView
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'mainPage', path:'src/mainPage.swf' };
+		return {name:'TechFront', path:'src/TechFront.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'mainPage', path:'HomePage' };
+		return {name:'TechFront', path:'TechFront' };
 	}
 }
