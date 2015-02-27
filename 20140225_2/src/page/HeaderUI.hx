@@ -1,6 +1,8 @@
 package page ;
 
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
+import flash.events.MouseEvent;
 import helper.IResize;
 import org.vic.utils.BasicUtils;
 import org.vic.web.WebView;
@@ -14,12 +16,21 @@ class HeaderUI extends DefaultPage
 
 	private var _btns:DisplayObject;
 	private var _bar:DisplayObject;
+	private var _btn_extend:DisplayObject;
 	
 	public function new() 
 	{
 		super();
 		
 		layerName = 'ui';
+	}
+	
+	public function extendButtonVisible(v:Bool) {
+		Tweener.addTween(_btn_extend, { alpha: v ? 1 : 0, time: 1 } );
+	}
+	
+	public function animateShowBar(v:Bool) {
+		Tweener.addTween(getRoot(), { y: v ? 0 : -getRoot().height+25, time: 1 } );
 	}
 	
 	override function onOpenEvent(cb:Void->Void):Void 
@@ -30,6 +41,9 @@ class HeaderUI extends DefaultPage
 					_btns = obj;
 				case 'mc_bar':
 					_bar = obj;
+				case 'btn_extend':
+					_btn_extend = obj;
+					_btn_extend.alpha = 0;
 			}
 		});
 		super.onOpenEvent(cb);

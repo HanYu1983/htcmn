@@ -88,8 +88,8 @@ class TechFrame extends DefaultPage
 				return true;
 			}
 		}
-		
-		var btns:List<BasicButton> = Lambda.map(btnNames, getButton);
+		var otherNames = Lambda.filter(btnNames, function(name) { return name != nameBelongPage(pageClz); } );
+		var btns:List<BasicButton> = Lambda.map(otherNames, getButton);
 		Lambda.foreach(btns, enable(true));
 		Lambda.foreach(btns, gotoAndPlay("close"));
 		
@@ -103,6 +103,11 @@ class TechFrame extends DefaultPage
 		super.onOpenEvent(cb);
 	}
 	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		getWebManager().execute("CloseAllTechPage");
+	}
+	
 	override function getSwfInfo():Dynamic 
 	{
 		return {name:'Righter', path:'src/Righter.swf' };
@@ -111,12 +116,6 @@ class TechFrame extends DefaultPage
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Righter', path:'Righter' };
-	}
-	
-	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
-		super.onCloseEvent(cb);
-		getWebManager().execute("CloseAllTechPage");
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {

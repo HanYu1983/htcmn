@@ -28,6 +28,7 @@ class OnResize extends WebCommand
 		function doResize(page:Dynamic) {
 			if ( Std.is(page, IResize)) {
 				var p:IResize = cast(page, IResize);
+				trace(p);
 				p.onResize(0, 0, stageWidth, stageHeight);
 			}
 			return true;

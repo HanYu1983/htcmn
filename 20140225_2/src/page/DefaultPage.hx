@@ -13,6 +13,17 @@ class DefaultPage extends WebView implements IResize
 	override function onOpenEvent(cb:Void->Void):Void 
 	{
 		super.onOpenEvent(cb);
+		
+		var target:Dynamic = Type.getClass(this);
+		if (target == TechPage) {
+			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
+			header.extendButtonVisible(true);
+			header.animateShowBar(false);
+		}else {
+			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
+			header.extendButtonVisible(false);
+			header.animateShowBar(true);
+		}
 		getWebManager().execute("onResize");
 	}
 	

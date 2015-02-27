@@ -14,6 +14,16 @@ class TechPage extends DefaultPage
 		layerName = 'page';
 	}
 	
+	override function onOpenEvent(cb:Void->Void):Void 
+	{
+		super.onOpenEvent(cb);
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		super.onCloseEvent(cb);
+	}
+	
 	override function getSwfInfo():Dynamic 
 	{
 		return {name:'TechFront', path:'src/TechFront.swf' };

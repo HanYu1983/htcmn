@@ -17,6 +17,7 @@ import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
 import helper.Tool;
+import org.vic.flash.loader.LoaderTask;
 import page.ActivityPopup;
 import page.FooterUI;
 import page.HeaderUI;
@@ -58,11 +59,23 @@ class Main
 		WebManager.inst.addCommand( new OpenPopup("OpenPopup") );
 		WebManager.inst.addCommand( new CloseAllTechPage("CloseAllTechPage") );
 		
-		WebManager.inst.openPage( IntroPage );
-		WebManager.inst.openPage( HeaderUI );
-		WebManager.inst.openPage( FooterUI );
-
-		stage.addEventListener( Event.RESIZE, onResize );
+		function openPageSeries(clz:Array<Class<Dynamic>>, cb:Void->Void) {
+			if (clz.length == 0) {
+				return function() {
+					cb();
+				}
+			}else{
+				return function() {
+					WebManager.inst.openPage( clz[0], openPageSeries( clz.slice(1, clz.length), cb) );
+				}
+			}
+		}
+		
+		function finishLoad() {
+			stage.addEventListener( Event.RESIZE, onResize );
+		}
+		
+		openPageSeries([IntroPage, HeaderUI, FooterUI], finishLoad)();
 	}
 	
 	private static function onResize(e: Event) {
