@@ -16,7 +16,6 @@ class TechDouble extends DefaultTechPage
 	public function new() 
 	{
 		super();
-		this.createDebugRoot("double");
 	}
 	
 	override function getSwfInfo():Dynamic 

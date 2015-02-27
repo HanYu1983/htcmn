@@ -25,8 +25,6 @@ class TechFrame extends DefaultPage
 	
 	public function nameBelongPage(pageClz:Dynamic):String {
 		
-		trace(pageClz);
-		
 		switch(pageClz) {
 			case TechDouble:
 				return "btn_onTechFrameBtnClick_Double";

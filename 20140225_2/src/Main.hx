@@ -1,5 +1,6 @@
 package ;
 
+import caurina.transitions.Tweener;
 import cmd.ChangePage;
 import cmd.ChangeTechPage;
 import cmd.CloseAllTechPage;
@@ -18,6 +19,7 @@ import flash.Lib;
 import flash.sampler.NewObjectSample;
 import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
+import org.vic.utils.BasicUtils;
 import page.ActivityPopup;
 import page.FooterUI;
 import page.HeaderUI;
@@ -38,6 +40,8 @@ class Main
 		stage.scaleMode = StageScaleMode.NO_SCALE;
 		//stage.align = StageAlign.TOP_LEFT;
 		// entry point
+		
+		Tweener.autoOverwrite = false;
 		
 		WebManager.inst.init( stage );
 		WebManager.inst.addLayer( 'page' );
@@ -75,7 +79,7 @@ class Main
 			stage.addEventListener( Event.RESIZE, onResize );
 		}
 		
-		openPageSeries([IntroPage, HeaderUI, FooterUI], finishLoad)();
+		openPageSeries([HeaderUI, IntroPage], finishLoad)();
 	}
 	
 	private static function onResize(e: Event) {

@@ -33,7 +33,6 @@ class OnHomeBtnClick extends WebCommand
 		
 		function thenOpen(clz:Class<Dynamic>) {
 			return function() {
-				trace("asdASDFASDF");
 				this.getWebManager().execute("ChangeTechPage", clz);
 			}
 		}

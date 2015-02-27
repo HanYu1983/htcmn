@@ -25,12 +25,22 @@ class HeaderUI extends DefaultPage
 		layerName = 'ui';
 	}
 	
+	private var _extendButtonVisible:Bool = true;
+	
 	public function extendButtonVisible(v:Bool) {
-		Tweener.addTween(_btn_extend, { alpha: v ? 1 : 0, time: 1 } );
+		if ( _extendButtonVisible != v ) {
+			_extendButtonVisible = v;
+			Tweener.addTween(_btn_extend, { alpha: v ? 1 : 0, time: 1 } );
+		}
 	}
 	
+	private var _animateShowBar:Bool = true;
+	
 	public function animateShowBar(v:Bool) {
-		Tweener.addTween(getRoot(), { y: v ? 0 : -getRoot().height+25, time: 1 } );
+		if ( _animateShowBar != v ) {
+			_animateShowBar = v;
+			Tweener.addTween(getRoot(), { y: v ? 0 : -getRoot().height+25, time: 1 } );
+		}
 	}
 	
 	override function onOpenEvent(cb:Void->Void):Void 
@@ -60,7 +70,9 @@ class HeaderUI extends DefaultPage
 	}
 	
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
-		_btns.x = w - _btns.width;
-		_bar.width = w;
+		if(_btns!=null)
+			_btns.x = w - _btns.width;
+		if(_bar != null)
+			_bar.width = w;
 	}
 }

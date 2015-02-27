@@ -5,7 +5,7 @@
     <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\HTC.swf" />
-    <movie fps="30" />
+    <movie fps="24" />
     <movie width="1366" />
     <movie height="768" />
     <movie version="12" />

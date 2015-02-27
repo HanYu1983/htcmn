@@ -3,6 +3,8 @@ package page;
 import helper.IResize;
 import helper.Tool;
 import org.vic.web.WebView;
+import page.tech.DefaultTechPage;
+import page.tech.TechFrame;
 
 /**
  * ...
@@ -15,14 +17,19 @@ class DefaultPage extends WebView implements IResize
 		super.onOpenEvent(cb);
 		
 		var target:Dynamic = Type.getClass(this);
-		if (target == TechPage) {
+		var shouldHideBar:Bool = target == TechPage || target == TechFrame || Std.is(this, DefaultTechPage);
+		if ( shouldHideBar ) {
 			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
-			header.extendButtonVisible(true);
-			header.animateShowBar(false);
+			if (header != null) {
+				header.extendButtonVisible(true);
+				header.animateShowBar(false);
+			}
 		}else {
 			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
-			header.extendButtonVisible(false);
-			header.animateShowBar(true);
+			if (header != null) {
+				header.extendButtonVisible(false);
+				header.animateShowBar(true);
+			}
 		}
 		getWebManager().execute("onResize");
 	}

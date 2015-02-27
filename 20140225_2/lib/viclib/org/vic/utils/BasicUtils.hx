@@ -17,12 +17,35 @@ import flash.Lib;
 import flash.net.URLRequest;
 import flash.system.LoaderContext;
 import haxe.Timer;
+import org.vic.flash.loader.LoaderManager;
+import org.vic.flash.loader.LoaderTask;
+import org.vic.web.WebManager;
 /**
  * ...
  * @author vic
  */
 class BasicUtils 
 {
+	public static function loadSwf(webManager:WebManager, swfinfo:Dynamic, needLoadingEvent:Bool, ?cb:Void->Void ) {
+		function _complete( lt:LoaderTask ):Void {
+			cb();
+		}
+
+		var sn:String = swfinfo.name;
+		var sp:String = swfinfo.path;
+		var config:Dynamic = webManager.getData( 'config' );
+		var version = function() {
+			if ( config == null )	return '';
+			if ( config.version == null )	return '';
+			return config.version;
+		}();
+		sp += '?v=';
+		sp += version;
+		if ( !webManager.getLoaderManager().hasTask( sn )) {
+			webManager.getLoaderManager().addTask( sn, new LoaderTask( sp, _complete, needLoadingEvent ));
+		}else _complete( null );
+	}
+	
 	public static function drawRect( g:Graphics, color:UInt = 0, alpha:Float = 1, width:Float = 10, height:Float = 10 ):Void {
 		g.beginFill( color, alpha );
 		g.drawRect( 0, 0, width, height );
