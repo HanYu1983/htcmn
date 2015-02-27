@@ -1,26 +1,28 @@
-package page;
+package page ;
+
 import org.vic.web.WebView;
 
 /**
  * ...
  * @author vic
  */
-class TechPage extends WebView
+class FooterUI extends WebView
 {
 
 	public function new() 
 	{
 		super();
-		layerName = 'page';
+		
+		layerName = 'ui';
 	}
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'TechFront', path:'src/TechFront.swf' };
+		return {name:'Footer', path:'src/Footer.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechFront', path:'TechFront' };
+		return {name:'Footer', path:'Footer' };
 	}
 }

@@ -9,6 +9,7 @@ import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.Lib;
 import page.ActivityPopup;
+import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
 import page.IntroPage;
@@ -41,7 +42,7 @@ class Main
 		
 		WebManager.inst.openPage( IntroPage );
 		WebManager.inst.openPage( HeaderUI );
-		trace("DD");
+		WebManager.inst.openPage( FooterUI );
 	}
 	
 }
