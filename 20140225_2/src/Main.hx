@@ -2,6 +2,7 @@ package ;
 
 import cmd.ChangePage;
 import cmd.ChangeTechPage;
+import cmd.CloseAllTechPage;
 import cmd.ClosePage;
 import cmd.OnActiveBtnClick;
 import cmd.OnHeaderBtnClick;
@@ -14,6 +15,7 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
+import helper.Tool;
 import page.ActivityPopup;
 import page.FooterUI;
 import page.HeaderUI;
@@ -51,6 +53,7 @@ class Main
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );
 		WebManager.inst.addCommand( new ChangePage("ChangePage") );
 		WebManager.inst.addCommand( new OpenPopup("OpenPopup") );
+		WebManager.inst.addCommand( new CloseAllTechPage("CloseAllTechPage") );
 		
 		WebManager.inst.openPage( IntroPage );
 		WebManager.inst.openPage( HeaderUI );

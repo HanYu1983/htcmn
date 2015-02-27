@@ -8,13 +8,15 @@ import org.vic.web.WebView;
  * ...
  * @author ...
  */
-class TechFrame extends DefaultPage implements IResize
+
+class TechFrame extends DefaultPage
 {
+	public static var TECH_DOUBLE:Int = 1;
 
 	public function new() 
 	{
 		super();
-		layerName = 'page';
+		layerName = 'ui';
 		
 		this.createDebugRoot("TechFrame", 100, 600);
 		
@@ -34,7 +36,13 @@ class TechFrame extends DefaultPage implements IResize
 		super.onOpenEvent(cb);
 	}
 	
-	public function onResize(x:Int, y: Int, w:Int, h:Int) {
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		super.onCloseEvent(cb);
+		getWebManager().execute("CloseAllTechPage");
+	}
+	
+	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		getRoot().x = w - getRoot().width;
 		Tool.centerY(this, y, h);
 	}

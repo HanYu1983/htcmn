@@ -1,6 +1,7 @@
 package page ;
 
 import flash.display.DisplayObject;
+import helper.IResize;
 import org.vic.utils.BasicUtils;
 import org.vic.web.WebView;
 
@@ -8,7 +9,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class FooterUI extends WebView
+class FooterUI extends DefaultPage
 {
 	private var _back:DisplayObject;
 
@@ -21,15 +22,13 @@ class FooterUI extends WebView
 	
 	override function onOpenEvent(cb:Void->Void):Void 
 	{
-		super.onOpenEvent(cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_footback':
 					_back = obj;
 			}
 		});
-		
+		super.onOpenEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
@@ -40,5 +39,10 @@ class FooterUI extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Footer', path:'Footer' };
+	}
+	
+	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
+		_back.width = w;
+		getRoot().y = h - _back.height;
 	}
 }

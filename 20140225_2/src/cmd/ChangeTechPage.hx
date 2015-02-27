@@ -13,13 +13,7 @@ class ChangeTechPage extends WebCommand
 {	
 	override public function execute(?args:Dynamic):Void 
 	{
-		var pages:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera];
-		function closePage(page:Dynamic) {
-			getWebManager().closePage(page);
-			return true;
-		}
-		Lambda.foreach( pages, closePage );
-		
+		getWebManager().execute("CloseAllTechPage");
 		var targetPage = args;
 		getWebManager().openPage(targetPage, null);
 	}

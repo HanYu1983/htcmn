@@ -5,7 +5,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class TechPage extends WebView
+class TechPage extends DefaultPage
 {
 
 	public function new() 

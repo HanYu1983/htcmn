@@ -1,8 +1,16 @@
 package cmd;
 
 import org.vic.web.WebCommand;
+import page.tech.TechBlink;
+import page.tech.TechBoom;
+import page.tech.TechCamera;
 import page.tech.TechDouble;
+import page.tech.TechDuby;
 import page.tech.TechFrame;
+import page.tech.TechPerson;
+import page.tech.TechPhoto;
+import page.tech.TechSitu;
+import page.tech.TechUltra;
 
 /**
  * ...
@@ -25,30 +33,39 @@ class OnHomeBtnClick extends WebCommand
 		var goto:Dynamic = {
 			btn_onHomeBtnClick_Double: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechDouble);
 			},
 			btn_onHomeBtnClick_Duby: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechDuby);
 			},
 			btn_onHomeBtnClick_Ultra: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechUltra);
 			},
 			btn_onHomeBtnClick_Camera: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechCamera);
 			},
 			btn_onHomeBtnClick_person: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechPerson);
 			},
 			btn_onHomeBtnClick_situ: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechSitu);
 			},
 			btn_onHomeBtnClick_blink: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechBlink);
 			},
 			btn_onHomeBtnClick_photo: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechPhoto);
 			},
 			btn_onHomeBtnClick_boom: function() {
 				this.getWebManager().execute("ChangePage", TechFrame);
+				this.getWebManager().execute("ChangeTechPage", TechBoom);
 			}
 		}
 		var targetPage:String = args[1].name;

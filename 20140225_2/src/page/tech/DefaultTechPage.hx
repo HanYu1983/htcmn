@@ -6,7 +6,7 @@ import helper.Tool;
  * ...
  * @author han
  */
-class DefaultTechPage extends DefaultPage implements IResize
+class DefaultTechPage extends DefaultPage
 {
 
 	public function new() 
@@ -15,7 +15,7 @@ class DefaultTechPage extends DefaultPage implements IResize
 		layerName = 'techpage';
 	}
 	
-	public function onResize(x:Int, y: Int, w:Int, h:Int) {
+	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		Tool.center(this, x, y, w, h);
 	}
 }

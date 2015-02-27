@@ -1,12 +1,13 @@
 package page;
 
+import helper.IResize;
 import org.vic.web.WebView;
 
 /**
  * ...
  * @author vic
  */
-class IntroPage extends WebView
+class IntroPage extends DefaultPage
 {
 
 	public function new() 

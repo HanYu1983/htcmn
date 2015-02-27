@@ -36,5 +36,5 @@ class OnResize extends WebCommand
 		var pages = getWebManager().getPages();
 		Lambda.foreach(pages, doResize);
 	}
-
+	
 }
