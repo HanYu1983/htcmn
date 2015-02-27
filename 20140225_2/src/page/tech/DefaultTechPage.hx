@@ -26,6 +26,6 @@ class DefaultTechPage extends DefaultPage
 		super.onOpenEvent(cb);
 		var frame = cast(getWebManager().getPage(TechFrame), TechFrame);
 		var clz = Type.getClass(this);
-		//frame.animateButtonByTechPage(  );
+		frame.animateButtonByTechPage(clz);
 	}
 }

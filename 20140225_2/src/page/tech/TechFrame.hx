@@ -23,7 +23,10 @@ class TechFrame extends DefaultPage
 		layerName = 'techui';
 	}
 	
-	public function nameBelongPage(pageClz:Class<IWebView>):String {
+	public function nameBelongPage(pageClz:Dynamic):String {
+		
+		trace(pageClz);
+		
 		switch(pageClz) {
 			case TechDouble:
 				return "btn_onTechFrameBtnClick_Double";
@@ -48,10 +51,18 @@ class TechFrame extends DefaultPage
 		}
 	}
 	
-	public function animateButtonByTechPage( pageClz:Class<IWebView> ) {
+	public function animateButtonByTechPage( pageClz:Dynamic ) {
+		
 		var btnNames:Array<String> = [
 			"btn_onTechFrameBtnClick_Double",
-			"btn_onTechFrameBtnClick_Duby"
+			"btn_onTechFrameBtnClick_Duby",
+			"btn_onTechFrameBtnClick_Ultra",
+			"btn_onTechFrameBtnClick_Camera",
+			"btn_onTechFrameBtnClick_blink",
+			"btn_onTechFrameBtnClick_boom",
+			"btn_onTechFrameBtnClick_person",
+			"btn_onTechFrameBtnClick_photo",
+			"btn_onTechFrameBtnClick_situ"
 		];
 		
 		function getButton(name:String):BasicButton {
@@ -61,20 +72,28 @@ class TechFrame extends DefaultPage
 		function enable(v:Bool):Dynamic{
 			return function(btn:BasicButton) {
 				btn.enable(v);
+				return true;
 			}
 		}
 		
 		function gotoAndPlay(label:String):Dynamic {
 			return function(btn:BasicButton) {
-				btn.getShape().gotoAndPlay(label);
+				var isAnimateClose = label == "close";
+				var isOpenNow = btn.getShape().currentLabel == "open";
+				if ( isAnimateClose ){
+					if (isOpenNow)
+						btn.getShape().gotoAndPlay(label);
+				}else
+					btn.getShape().gotoAndPlay(label);
+				return true;
 			}
 		}
 		
 		var btns:List<BasicButton> = Lambda.map(btnNames, getButton);
-		Lambda.foreach(btns, enable(false));
+		Lambda.foreach(btns, enable(true));
 		Lambda.foreach(btns, gotoAndPlay("close"));
 		
-		var thisBtn = getButton(this.nameBelongPage(pageClz));
+		var thisBtn = getButton(nameBelongPage(pageClz));
 		enable(false)(thisBtn);
 		gotoAndPlay("open")(thisBtn);
 	}
@@ -101,7 +120,7 @@ class TechFrame extends DefaultPage
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
-		getRoot().x = w - getRoot().width;
+		getRoot().x = (w - 254);
 		Tool.centerY(this, y, h);
 	}
 }
