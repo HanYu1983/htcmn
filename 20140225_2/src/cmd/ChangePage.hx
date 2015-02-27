@@ -24,8 +24,14 @@ class ChangePage extends WebCommand
 		}
 		Lambda.foreach( Tool.allPage, closePage );
 		
-		var targetPage = args;
-		getWebManager().openPage(targetPage, null);
+		if ( !Std.is(args, Array) ) {
+			var targetPage = args;
+			getWebManager().openPage(targetPage, null);
+		}else {
+			var targetPage = args[0];
+			var callback = args[1];
+			getWebManager().openPage(targetPage, callback);
+		}
 	}
 	
 }
