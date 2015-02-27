@@ -7,6 +7,7 @@ import cmd.ClosePage;
 import cmd.OnActiveBtnClick;
 import cmd.OnHeaderBtnClick;
 import cmd.OnHomeBtnClick;
+import cmd.OnIntroBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -40,14 +41,16 @@ class Main
 		WebManager.inst.init( stage );
 		WebManager.inst.addLayer( 'page' );
 		WebManager.inst.addLayer( 'techpage' );
-		WebManager.inst.addLayer( 'popup' );
+		WebManager.inst.addLayer( 'techui' );
 		WebManager.inst.addLayer( 'ui' );
+		WebManager.inst.addLayer( 'popup' );
 
 		WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 		WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 		WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
 		WebManager.inst.addCommand( new OnTechFrameBtnClick("onTechFrameBtnClick") );
 		WebManager.inst.addCommand( new OnResize("onResize") );
+		WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 		
 		WebManager.inst.addCommand( new ChangeTechPage("ChangeTechPage") );
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );

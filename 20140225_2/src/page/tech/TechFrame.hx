@@ -16,7 +16,7 @@ class TechFrame extends DefaultPage
 	public function new() 
 	{
 		super();
-		layerName = 'ui';
+		layerName = 'techui';
 	}
 	
 	override function onOpenEvent(cb:Void->Void):Void 
