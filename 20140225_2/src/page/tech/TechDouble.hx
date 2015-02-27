@@ -19,4 +19,13 @@ class TechDouble extends DefaultTechPage
 		this.createDebugRoot("double");
 	}
 	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'TechDouble', path:'src/TechDouble.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'TechDouble', path:'TechDouble' };
+	}
 }
