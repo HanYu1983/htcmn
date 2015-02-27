@@ -1,0 +1,5 @@
+<project name="TweenerHX" url="http://www.ralcr.com/ports/tweenerhx" license="GPL">
+    <user name="cristi.baluta"/>
+    <description>Tweener is a powerful tweening Class for Flash ActionScript by Zeh Fernando. You can tween almost any numeric value of an object via code. Thanks to conditional compiling, Tweener for haXe is available for AS2, AS3 and JS in a single package.</description>
+    <version name="1.33.74">Tweener.autoOverwrite property added (default to true). If set to false, will skip the overwrite checking and will make everything faster for a large number of objects. Tweener.defaultTransition is set to easeOutCubic and when a new one is set, a checking for its availability is performed.</version>
+</project>
