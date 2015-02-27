@@ -17,23 +17,21 @@ class TechFrame extends DefaultPage
 	{
 		super();
 		layerName = 'ui';
-		
-		this.createDebugRoot("TechFrame", 100, 600);
-		
-		this.createDebugButton("btn_onTechFrameBtnClick_Double", 0, 0);
-		this.createDebugButton("btn_onTechFrameBtnClick_Duby", 0, 20);
-		this.createDebugButton("btn_onTechFrameBtnClick_Ultra", 0, 40);
-		this.createDebugButton("btn_onTechFrameBtnClick_Camera", 0, 60);
-		this.createDebugButton("btn_onTechFrameBtnClick_person", 0, 80);
-		this.createDebugButton("btn_onTechFrameBtnClick_situ", 0, 100);
-		this.createDebugButton("btn_onTechFrameBtnClick_blink", 0, 120);
-		this.createDebugButton("btn_onTechFrameBtnClick_photo", 0, 140);
-		this.createDebugButton("btn_onTechFrameBtnClick_boom", 0, 160);
 	}
 	
 	override function onOpenEvent(cb:Void->Void):Void 
 	{
 		super.onOpenEvent(cb);
+	}
+	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'Righter', path:'src/Righter.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'Righter', path:'Righter' };
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
