@@ -34,6 +34,10 @@ class WebManager
 		getLoaderManager().addEventListener( LoaderManager.STOP_LOADING, onStopLoading );
 	}
 	
+	public function getPages():Map<String, IWebView> {
+		return _ary_page;
+	}
+	
 	private function onStartLoading( e ) {
 		openLoading();
 	}
@@ -111,8 +115,8 @@ class WebManager
 		var p:IWebView = Type.createInstance( c, [] );
 		var ln = p.layerName;
 		if ( !_ary_layer.exists( ln ))	throw 'does not have the layer';
-		p.open( cb );
 		_ary_page.set( n, p );
+		p.open( cb );
 		var l:DisplayObjectContainer = getLayer( ln );
 		l.addChild( cast( p, DisplayObject ));
 	}
