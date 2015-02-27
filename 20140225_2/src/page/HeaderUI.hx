@@ -13,6 +13,7 @@ class HeaderUI extends DefaultPage
 {
 
 	private var _btns:DisplayObject;
+	private var _bar:DisplayObject;
 	
 	public function new() 
 	{
@@ -27,6 +28,8 @@ class HeaderUI extends DefaultPage
 			switch( obj.name ) {
 				case 'mc_btns':
 					_btns = obj;
+				case 'mc_bar':
+					_bar = obj;
 			}
 		});
 		super.onOpenEvent(cb);
@@ -44,5 +47,6 @@ class HeaderUI extends DefaultPage
 	
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
 		_btns.x = w - _btns.width;
+		_bar.width = w;
 	}
 }

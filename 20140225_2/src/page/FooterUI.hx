@@ -42,7 +42,9 @@ class FooterUI extends DefaultPage
 	}
 	
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
-		_back.width = w;
-		getRoot().y = h - _back.height;
+		if( _back != null ){
+			_back.width = w;
+			getRoot().y = h - _back.height;
+		}
 	}
 }
