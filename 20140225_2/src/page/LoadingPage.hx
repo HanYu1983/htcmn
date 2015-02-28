@@ -4,6 +4,7 @@ import flash.display.DisplayObject;
 import flash.display.Stage;
 import flash.text.TextField;
 import helper.IResize;
+import helper.Tool;
 import org.vic.event.VicEvent;
 import org.vic.flash.loader.LoaderManager;
 import org.vic.utils.BasicUtils;
@@ -35,9 +36,6 @@ class LoadingPage extends WebView implements IResize
 					_txt_per = cast( obj, TextField );
 			}
 		});
-		
-		var stage: Stage = getWebManager().getLayer("page").stage;
-		onResize( 0, 0, stage.stageWidth, stage.stageHeight );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -51,10 +49,8 @@ class LoadingPage extends WebView implements IResize
 	}
 	
 	public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
-		trace( w, h );
-		trace( getRoot().width, getRoot().height );
-		getRoot().width = w;
-		getRoot().height = h;
+		getRoot().x = w / 2;
+		getRoot().y = h / 2;
 	}
 	
 	override function getRootInfo():Dynamic 

@@ -31,7 +31,7 @@ class WebManager
 		_stage.addChild( _rootLayer );
 		
 		getLoaderManager().addEventListener( LoaderManager.START_LOADING, onStartLoading );
-		//getLoaderManager().addEventListener( LoaderManager.STOP_LOADING, onStopLoading );
+		getLoaderManager().addEventListener( LoaderManager.STOP_LOADING, onStopLoading );
 	}
 	
 	public function getPages():Map<String, IWebView> {
