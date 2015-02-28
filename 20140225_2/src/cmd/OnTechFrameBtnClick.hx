@@ -1,5 +1,6 @@
 package cmd;
 import org.vic.web.WebCommand;
+import page.LuckyDrawPage;
 import page.tech.TechBlink;
 import page.tech.TechBoom;
 import page.tech.TechCamera;
@@ -26,8 +27,6 @@ class OnTechFrameBtnClick extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		super.execute(args);
-		trace(args[1].name);
-		
 		var goto:Dynamic = {
 			btn_onTechFrameBtnClick_Double: function() {
 				this.getWebManager().execute("ChangeTechPage", TechDouble);
@@ -57,7 +56,7 @@ class OnTechFrameBtnClick extends WebCommand
 				this.getWebManager().execute("ChangeTechPage", TechSitu);
 			},
 			btn_onTechFrameBtnClick_share: function() {
-				//share
+				this.getWebManager().execute("ChangePage", LuckyDrawPage);
 			}
 		}
 		var targetPage:String = args[1].name;

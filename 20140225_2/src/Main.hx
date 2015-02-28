@@ -1,14 +1,19 @@
 package ;
 
 import caurina.transitions.Tweener;
+import cmd.CallETMAPI;
+import cmd.CallFBLogin;
+import cmd.CallFBShare;
 import cmd.ChangePage;
 import cmd.ChangeTechPage;
 import cmd.CloseAllTechPage;
 import cmd.ClosePage;
+import cmd.IsFBLogin;
 import cmd.OnActiveBtnClick;
 import cmd.OnHeaderBtnClick;
 import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
+import cmd.OnLuckyDrawBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -61,6 +66,7 @@ class Main
 		WebManager.inst.addCommand( new OnTechFrameBtnClick("onTechFrameBtnClick") );
 		WebManager.inst.addCommand( new OnResize("onResize") );
 		WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
+		WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 		
 		WebManager.inst.addCommand( new ChangeTechPage("ChangeTechPage") );
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );
@@ -68,6 +74,10 @@ class Main
 		WebManager.inst.addCommand( new OpenPopup("OpenPopup") );
 		WebManager.inst.addCommand( new CloseAllTechPage("CloseAllTechPage") );
 		
+		WebManager.inst.addCommand( new CallFBLogin("CallFBLogin") );
+		WebManager.inst.addCommand( new IsFBLogin("IsFBLogin") );
+		WebManager.inst.addCommand( new CallFBShare("CallFBShare") );
+		WebManager.inst.addCommand( new CallETMAPI("CallETMAPI") );
 		
 		function openPageSeries(clz:Array<Class<Dynamic>>, cb:Void->Void) {
 			if (clz.length == 0) {
@@ -83,7 +93,6 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
-			WebManager.inst.execute("ChangePage", LuckyDrawPage);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){

@@ -12,8 +12,8 @@ class LuckyDrawPage extends DefaultPage
 		super();
 		layerName = 'page';
 		createDebugButton("btn_onLuckyDrawBtnClick_fb", 0, 0);
-		createDebugButton("btn_onDataBtnClick_fb", 0, 20);
-		createDebugButton("btn_onDataBtnClick_cancel", 0, 40);
+		createDebugButton("btn_onLuckyDrawBtnClick_data", 0, 20);
+		createDebugButton("btn_onLuckyDrawBtnClick_cancel", 0, 40);
 	}
 	
 }
