@@ -1,8 +1,5 @@
 # Build and Release Folders
-bin/
-bin-debug/
-bin-release/
-20140225_2/bin/src/*.swf
+20140225_2/bin/src/
 
 # Other files and folders
 .settings/
