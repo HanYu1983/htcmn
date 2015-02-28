@@ -6,7 +6,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class ExpInfoPage extends WebView
+class ExpInfoPage extends DefaultPage
 {
 
 	public function new() 
@@ -23,5 +23,10 @@ class ExpInfoPage extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'ExpInfo', path:'ExpInfo' };
+	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
 	}
 }

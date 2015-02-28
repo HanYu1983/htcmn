@@ -33,4 +33,9 @@ class TechPage extends DefaultPage
 	{
 		return {name:'TechFront', path:'TechFront' };
 	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return true;
+	}
 }

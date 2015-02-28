@@ -5,7 +5,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class ProductPage extends WebView
+class ProductPage extends DefaultPage
 {
 
 	public function new() 
@@ -21,5 +21,10 @@ class ProductPage extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Product', path:'Product' };
+	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
 	}
 }

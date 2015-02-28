@@ -16,22 +16,21 @@ class DefaultPage extends WebView implements IResize
 	{
 		super.onOpenEvent(cb);
 		
-		var target:Dynamic = Type.getClass(this);
-		var shouldHideBar:Bool = target == TechPage || target == TechFrame || Std.is(this, DefaultTechPage);
-		if ( shouldHideBar ) {
-			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
-			if (header != null) {
-				header.extendButtonVisible(true);
-				header.animateShowBar(false);
-			}
-		}else {
-			var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
-			if (header != null) {
-				header.extendButtonVisible(false);
-				header.animateShowBar(true);
+		var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
+		if (header != null) {
+			var hasSuggestion = suggestionEnableAutoBarWhenOpen();
+			if ( hasSuggestion == null ) {
+				// nothing to do
+			}else {
+				header.autoBarEnable( hasSuggestion );
 			}
 		}
+		
 		getWebManager().execute("onResize");
+	}
+	
+	function suggestionEnableAutoBarWhenOpen():Null<Bool> {
+		return null;
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

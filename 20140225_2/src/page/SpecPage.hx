@@ -5,7 +5,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class SpecPage extends WebView
+class SpecPage extends DefaultPage
 {
 
 	public function new() 
@@ -21,5 +21,10 @@ class SpecPage extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'spec', path:'Spec' };
+	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
 	}
 }

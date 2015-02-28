@@ -5,7 +5,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class RelativePage extends WebView
+class RelativePage extends DefaultPage
 {
 
 	public function new() 
@@ -21,5 +21,10 @@ class RelativePage extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Relative', path:'Relative' };
+	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
 	}
 }

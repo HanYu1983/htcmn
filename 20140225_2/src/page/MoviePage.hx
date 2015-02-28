@@ -6,7 +6,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class MoviePage extends WebView
+class MoviePage extends DefaultPage
 {
 
 	public function new() 
@@ -23,5 +23,10 @@ class MoviePage extends WebView
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'movie', path:'Movie' };
+	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
 	}
 }
