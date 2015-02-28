@@ -72,7 +72,7 @@ class HeaderUI extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'header', path:'src/header.swf' };
+		return {name:'header', path:'src/Header.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
