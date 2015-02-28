@@ -103,11 +103,27 @@ class Main
 			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
 		});
 		
+		/*
+		WebManager.inst.addWebListener( 'router', function( val ) {
+			WebManager.inst.callWeb( 'console.log', { fromJs:val } );
+			switch( val ) {
+				case 'index':
+					BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
+						openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
+					});
+				case 'tech':
+					BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
+						openPageSeries([HeaderUI, TechPage, FooterUI], finishLoad)();
+					});
+			}
+		});
 		
 		WebManager.inst.addWebListener( 'jsCallFlash', function( val ) {
 			WebManager.inst.callWeb( 'console.log', {fromJs:val } );
 		});
+		WebManager.inst.callWeb( 'flashReady', {} );
 		WebManager.inst.callWeb( 'flashCallJs', {abc:'abc' } );
+		*/
 	}
 	
 	private static function onResize(e: Event) {

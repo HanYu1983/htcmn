@@ -13,4 +13,13 @@ class TechUltra extends DefaultTechPage
 		this.createDebugRoot("ultra");
 	}
 	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'TechUltra', path:'src/TechUltra.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'TechUltra', path:'TechUltra' };
+	}
 }

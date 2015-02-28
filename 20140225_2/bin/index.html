@@ -4,7 +4,9 @@
 	<meta charset="utf-8"/>
 	<title>HTC</title>
 	<meta name="description" content="" />
-	
+	<script src="js/lib/jquery/jquery-1.9.min.js"></script>
+	<script src="js/lib/underscore/underscore.js"></script>
+	<script src="js/lib/backbone/backbone.js"></script>
 	<script src="js/swfobject.js"></script>
 	<script>
 		var flashvars = {
@@ -37,6 +39,27 @@
 		<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
 	</div>
 	<script>
+	var Router = Backbone.Router.extend({
+		routes:{
+			index:'index',
+			tech:'tech'
+		},
+		index:function(){
+			callFlashMethod( 'router', 'index' );
+			console.log( 'index' );
+		},
+		tech:function(){
+			callFlashMethod( 'router', 'tech' );
+			console.log( 'tech' );
+		}
+	})
+	
+	var router = new Router();
+	function flashReady(){
+		console.log( 'flashReady' );
+		Backbone.history.start();
+	}
+	
 	function thisMovie(movieName) 
 	{
 		if (navigator.appName.indexOf("Microsoft") != -1) 
@@ -49,9 +72,12 @@
 		}
 	}
 	
-	function callFlashMethod()
+	function callFlashMethod( methodName, val )
 	{
-		thisMovie("HTC").jsCallFlash( 'jshaha' );
+		//thisMovie("HTC").jsCallFlash( 'jshaha' );
+		console.log( thisMovie("HTC") );
+		console.log( thisMovie("HTC")[ methodName ] );
+		thisMovie("HTC")[ methodName ]( val );
 	}
 	
 	function flashCallJs( val ){
