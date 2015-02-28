@@ -4,6 +4,7 @@ import org.vic.web.IWebView;
 import page.ActivityPopup;
 import page.ExpInfoPage;
 import page.IntroPage;
+import page.LuckyDrawPage;
 import page.MoviePage;
 import page.ProductPage;
 import page.RelativePage;
@@ -26,7 +27,7 @@ import page.tech.TechUltra;
  */
 class Tool
 {
-	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, SellPage, SpecPage, TechPage, TechFrame];
+	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, SellPage, SpecPage, TechPage, TechFrame, LuckyDrawPage];
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	
 	public static function center(obj:DisplayObject, sx:Int, sy:Int, sw: Int, sh: Int) {

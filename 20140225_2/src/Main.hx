@@ -26,6 +26,7 @@ import page.HeaderUI;
 import org.vic.web.WebManager;
 import page.IntroPage;
 import page.LoadingPage;
+import page.LuckyDrawPage;
 import page.TechPage;
 /**
  * ...
@@ -82,6 +83,7 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
+			WebManager.inst.execute("ChangePage", LuckyDrawPage);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
