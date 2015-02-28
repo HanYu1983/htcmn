@@ -25,6 +25,7 @@ import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
 import page.IntroPage;
+import page.LoadingPage;
 import page.TechPage;
 /**
  * ...
@@ -43,13 +44,16 @@ class Main
 		
 		Tweener.autoOverwrite = false;
 		
+		WebManager.inst.setData( 'loadingClass', LoadingPage );
+		
 		WebManager.inst.init( stage );
 		WebManager.inst.addLayer( 'page' );
 		WebManager.inst.addLayer( 'techpage' );
 		WebManager.inst.addLayer( 'techui' );
 		WebManager.inst.addLayer( 'ui' );
 		WebManager.inst.addLayer( 'popup' );
-
+		WebManager.inst.addLayer( 'loading' );
+		
 		WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 		WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 		WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
@@ -62,6 +66,7 @@ class Main
 		WebManager.inst.addCommand( new ChangePage("ChangePage") );
 		WebManager.inst.addCommand( new OpenPopup("OpenPopup") );
 		WebManager.inst.addCommand( new CloseAllTechPage("CloseAllTechPage") );
+		
 		
 		function openPageSeries(clz:Array<Class<Dynamic>>, cb:Void->Void) {
 			if (clz.length == 0) {
@@ -79,7 +84,10 @@ class Main
 			stage.addEventListener( Event.RESIZE, onResize );
 		}
 		
-		openPageSeries([HeaderUI, IntroPage], finishLoad)();
+		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
+			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
+		});
+		
 	}
 	
 	private static function onResize(e: Event) {

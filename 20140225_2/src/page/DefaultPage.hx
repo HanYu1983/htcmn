@@ -12,6 +12,11 @@ import page.tech.TechFrame;
  */
 class DefaultPage extends WebView implements IResize
 {
+	public function new() {
+		super();
+		needLoading = true;
+	}
+	
 	override function onOpenEvent(cb:Void->Void):Void 
 	{
 		super.onOpenEvent(cb);
