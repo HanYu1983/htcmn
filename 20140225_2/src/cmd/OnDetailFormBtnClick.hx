@@ -1,7 +1,9 @@
 package cmd;
 
+import flash.errors.Error;
 import org.vic.web.WebCommand;
 import page.fb.DetailFromPopup;
+import page.MessagePopup;
 
 /**
  * ...
@@ -13,7 +15,6 @@ class OnDetailFormBtnClick extends WebCommand
 	public function new(name:String=null) 
 	{
 		super(name);
-		
 	}
 	
 	override public function execute(?args:Dynamic):Void 
@@ -25,10 +26,13 @@ class OnDetailFormBtnClick extends WebCommand
 				getWebManager().closePage(DetailFromPopup);
 			},
 			btn_onDetailFormBtnClick_cancel: function() {
-			
+				getWebManager().closePage(DetailFromPopup);
 			},
 			btn_onDetailFormBtnClick_confirm: function() {
-			
+				function handleETM(err:Error, param:Dynamic) {
+					getWebManager().execute("OpenPopup", [MessagePopup, {msg:"Success"}, null]);
+				}
+				getWebManager().execute("CallETMAPI", [{}, handleETM]);
 			},
 			btn_onDetailFormBtnClick_boy: function() {
 			

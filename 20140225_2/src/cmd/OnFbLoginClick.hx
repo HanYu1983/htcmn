@@ -21,9 +21,10 @@ class OnFbLoginClick extends WebCommand
 		
 		function callETMAndThen(then:Void->Void) {
 			return function() {
-				getWebManager().execute("CallETMAPI", function(err:Error, info:Dynamic) {
+				function handleETM(err:Error, info:Dynamic) {
 					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
-				});
+				}
+				getWebManager().execute("CallETMAPI", [{}, handleETM] );
 			}
 		}
 		
