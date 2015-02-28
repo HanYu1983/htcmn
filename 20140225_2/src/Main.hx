@@ -15,7 +15,7 @@ import cmd.OnHeaderBtnClick;
 import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
 import cmd.OnLuckyDrawBtnClick;
-import cmd.OnPersonDataBtnClick;
+import cmd.OnDetailFormBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -70,7 +70,7 @@ class Main
 		WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 		WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 		WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
-		WebManager.inst.addCommand( new OnPersonDataBtnClick("onPersonDataBtnClick") );
+		WebManager.inst.addCommand( new OnDetailFormBtnClick("onDetailFormBtnClick") );
 		
 		WebManager.inst.addCommand( new ChangeTechPage("ChangeTechPage") );
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );

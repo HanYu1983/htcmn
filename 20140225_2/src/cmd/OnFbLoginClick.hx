@@ -2,7 +2,7 @@ package cmd;
 
 import flash.errors.Error;
 import org.vic.web.WebCommand;
-import page.fb.PersonDataPopup;
+import page.fb.DetailFromPopup;
 
 /**
  * ...
@@ -22,7 +22,7 @@ class OnFbLoginClick extends WebCommand
 		function callETMAndThen(then:Void->Void) {
 			return function() {
 				getWebManager().execute("CallETMAPI", function(err:Error, info:Dynamic) {
-					getWebManager().execute("OpenPopup", [PersonDataPopup, info, null]);
+					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
 				});
 			}
 		}
