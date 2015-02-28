@@ -55,6 +55,9 @@ class OnTechFrameBtnClick extends WebCommand
 			},
 			btn_onTechFrameBtnClick_situ: function() {
 				this.getWebManager().execute("ChangeTechPage", TechSitu);
+			},
+			btn_onTechFrameBtnClick_share: function() {
+				//share
 			}
 		}
 		var targetPage:String = args[1].name;
