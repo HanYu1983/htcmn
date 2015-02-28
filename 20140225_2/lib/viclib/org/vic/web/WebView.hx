@@ -33,12 +33,12 @@ class WebView extends Sprite implements IWebView
 		super();
 	}
 	
-	public function open(cb:Void->Void):Void 
+	public function open(param:Dynamic, cb:Void->Void):Void 
 	{
 		function _complete( lt:LoaderTask ):Void {
 			generateRoot();
 			parserRoot();
-			onOpenEvent( cb );
+			onOpenEvent( param, cb );
 			focus();
 		}
 		
@@ -190,7 +190,7 @@ class WebView extends Sprite implements IWebView
 		
 	}
 	
-	function onOpenEvent( cb:Void -> Void ):Void {
+	function onOpenEvent( param:Dynamic, cb:Void -> Void ):Void {
 		if ( cb != null )	cb();
 	}
 	

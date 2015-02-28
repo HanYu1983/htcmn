@@ -13,6 +13,8 @@ class FBLoginPopup extends DefaultPage
 	{
 		super();
 		layerName = "popup";
+		createDebugRoot("FBLoginPopup");
+		createDebugButton("btn_onFbLoginClick_login", 0, 0 );
 	}
 	
 }

@@ -25,9 +25,9 @@ class LoadingPage extends WebView implements IResize
 		layerName = 'loading';
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 		getLoaderManager().addEventListener( LoaderManager.PROGRESS, onProgressLoading );
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {

@@ -10,10 +10,12 @@ import cmd.CloseAllTechPage;
 import cmd.ClosePage;
 import cmd.IsFBLogin;
 import cmd.OnActiveBtnClick;
+import cmd.OnFbLoginClick;
 import cmd.OnHeaderBtnClick;
 import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
 import cmd.OnLuckyDrawBtnClick;
+import cmd.OnPersonDataBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -67,6 +69,8 @@ class Main
 		WebManager.inst.addCommand( new OnResize("onResize") );
 		WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 		WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
+		WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
+		WebManager.inst.addCommand( new OnPersonDataBtnClick("onPersonDataBtnClick") );
 		
 		WebManager.inst.addCommand( new ChangeTechPage("ChangeTechPage") );
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );
@@ -86,7 +90,7 @@ class Main
 				}
 			}else{
 				return function() {
-					WebManager.inst.openPage( clz[0], openPageSeries( clz.slice(1, clz.length), cb) );
+					WebManager.inst.openPage( clz[0], null, openPageSeries( clz.slice(1, clz.length), cb) );
 				}
 			}
 		}

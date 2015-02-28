@@ -11,6 +11,8 @@ class PersonDataPopup extends DefaultPage
 	{
 		super();
 		layerName = "popup";
+		createDebugRoot("PersonDataPopup");
+		createDebugButton("btn_onPersonDataBtnClick_submit", 0, 0);
 	}
 	
 }

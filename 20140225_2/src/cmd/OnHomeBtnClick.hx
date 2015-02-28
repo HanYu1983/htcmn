@@ -39,31 +39,31 @@ class OnHomeBtnClick extends WebCommand
 		
 		var goto:Dynamic = {
 			btn_onHomeBtnClick_Double: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechDouble)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechDouble)]);
 			},
 			btn_onHomeBtnClick_Duby: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechDuby)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechDuby)]);
 			},
 			btn_onHomeBtnClick_Ultra: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechUltra)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechUltra)]);
 			},
 			btn_onHomeBtnClick_Camera: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechCamera)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechCamera)]);
 			},
 			btn_onHomeBtnClick_person: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechPerson)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechPerson)]);
 			},
 			btn_onHomeBtnClick_situ: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechSitu)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechSitu)]);
 			},
 			btn_onHomeBtnClick_blink: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechBlink)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechBlink)]);
 			},
 			btn_onHomeBtnClick_photo: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechPhoto)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechPhoto)]);
 			},
 			btn_onHomeBtnClick_boom: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, thenOpen(TechBoom)]);
+				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechBoom)]);
 			}
 		}
 		var targetPage:String = args[1].name;

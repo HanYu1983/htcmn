@@ -96,9 +96,9 @@ class TechFrame extends DefaultPage
 		gotoAndPlay("open")(thisBtn);
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

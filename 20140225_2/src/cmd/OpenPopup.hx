@@ -17,7 +17,14 @@ class OpenPopup extends WebCommand
 	
 	override public function execute(?args:Dynamic):Void 
 	{
-		var targetPage = args;
-		getWebManager().openPage(targetPage, null);
+		if ( !Std.is(args, Array) ) {
+			var targetPage = args;
+			getWebManager().openPage(targetPage, null);
+		}else {
+			var targetPage = args[0];
+			var param = args[1];
+			var callback = args[2];
+			getWebManager().openPage(targetPage, param, callback);
+		}
 	}
 }

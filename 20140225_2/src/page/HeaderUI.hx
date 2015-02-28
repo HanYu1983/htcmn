@@ -46,7 +46,7 @@ class HeaderUI extends DefaultPage
 		}
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
@@ -61,7 +61,7 @@ class HeaderUI extends DefaultPage
 		});
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

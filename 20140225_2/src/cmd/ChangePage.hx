@@ -29,8 +29,9 @@ class ChangePage extends WebCommand
 			getWebManager().openPage(targetPage, null);
 		}else {
 			var targetPage = args[0];
-			var callback = args[1];
-			getWebManager().openPage(targetPage, callback);
+			var param = args[1];
+			var callback = args[2];
+			getWebManager().openPage(targetPage, param, callback);
 		}
 	}
 	

@@ -17,9 +17,9 @@ class DefaultPage extends WebView implements IResize
 		needLoading = true;
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 		
 		var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
 		if (header != null) {

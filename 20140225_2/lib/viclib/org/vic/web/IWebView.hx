@@ -8,7 +8,7 @@ interface IWebView
 {
 	var needLoading:Bool;
 	var layerName:String;
-	function open( cb:Void->Void ):Void;
+	function open( param:Dynamic, cb:Void->Void ):Void;
 	function close( cb:Void->Void ):Void;
 	function focus():Void;
 	function release():Void;

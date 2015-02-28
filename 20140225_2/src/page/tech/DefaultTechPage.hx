@@ -21,9 +21,9 @@ class DefaultTechPage extends DefaultPage
 		Tool.center(this, x, y, w, h);
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 		var frame = cast(getWebManager().getPage(TechFrame), TechFrame);
 		var clz = Type.getClass(this);
 		frame.animateButtonByTechPage(clz);

@@ -7,5 +7,9 @@ import org.vic.web.WebCommand;
  */
 class CallETMAPI extends WebCommand
 {
-
+	override public function execute(?args:Dynamic):Void 
+	{
+		var cb: Dynamic = args;
+		cb(null, {});
+	}
 }

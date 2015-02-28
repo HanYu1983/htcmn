@@ -2,21 +2,20 @@ package cmd;
 
 import flash.errors.Error;
 import org.vic.web.WebCommand;
-import page.fb.FBLoginPopup;
 import page.fb.PersonDataPopup;
 
 /**
  * ...
  * @author han
  */
-class OnLuckyDrawBtnClick extends WebCommand
+class OnFbLoginClick extends WebCommand
 {
 
 	public function new(name:String=null) 
 	{
 		super(name);
+		
 	}
-	
 	override public function execute(?args:Dynamic):Void 
 	{
 		
@@ -30,7 +29,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		function callFBShareAndThen(then:Void->Void) {
 			return function() {
-				getWebManager().execute("CallFBShare", function(success:Bool) {
+				getWebManager().execute("CallFBShare", function(err:Error, success:Bool) {
 					if (success) {
 						then();
 					}
@@ -38,29 +37,26 @@ class OnLuckyDrawBtnClick extends WebCommand
 			}
 		}
 		
-		function checkFBLoginAndThen(then:Void->Void) {
-			getWebManager().execute("IsFBLogin", function(err:Error, success:Bool) {
-				if (success) {
-					then();
-				}else {
-					getWebManager().execute("OpenPopup", FBLoginPopup);
-				}
-			});
-		}
-		
-		var func:Dynamic = {
-			btn_onLuckyDrawBtnClick_fb: function() {
-				checkFBLoginAndThen( callFBShareAndThen( callETMAndThen( null ) ) );
-			},
-			btn_onLuckyDrawBtnClick_data: function() {
-				
-			},
-			btn_onLuckyDrawBtnClick_cancel: function() {
-				
+		function callFBLoginAndThen(then:Void->Void) {
+			return function() {
+				getWebManager().execute("CallFBLogin", function(err:Error, success:Bool) {
+					if (success) {
+						then();
+					}
+				});
 			}
 		}
+		
+		var doNothing = null;
+		
+		var func:Dynamic = {
+			btn_onFbLoginClick_login: function() {
+				var handle = callFBLoginAndThen( callFBShareAndThen( callETMAndThen( doNothing ) ));
+				handle();
+			}
+		}
+		
 		var targetPage:String = args[1].name;
 		Reflect.field(func, targetPage)();
 	}
-	
 }

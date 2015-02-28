@@ -20,7 +20,7 @@ class FooterUI extends DefaultPage
 		layerName = 'ui';
 	}
 	
-	override function onOpenEvent(cb:Void->Void):Void 
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
@@ -28,7 +28,7 @@ class FooterUI extends DefaultPage
 					_back = obj;
 			}
 		});
-		super.onOpenEvent(cb);
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function getSwfInfo():Dynamic 

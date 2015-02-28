@@ -109,14 +109,14 @@ class WebManager
 		return LoaderManager.inst;
 	}
 	
-	public function openPage( c:Class<Dynamic>, ?cb:Void->Void ):Void {
+	public function openPage( c:Class<Dynamic>, param:Dynamic, ?cb:Void->Void ):Void {
 		var n:String = Type.getClassName( c );
 		if ( _ary_page.exists( n ))	return;
 		var p:IWebView = Type.createInstance( c, [] );
 		var ln = p.layerName;
 		if ( !_ary_layer.exists( ln ))	throw 'does not have the layer';
 		_ary_page.set( n, p );
-		p.open( cb );
+		p.open( param, cb );
 		var l:DisplayObjectContainer = getLayer( ln );
 		l.addChild( cast( p, DisplayObject ));
 	}
