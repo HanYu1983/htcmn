@@ -3,6 +3,7 @@ package cmd;
 import flash.errors.Error;
 import org.vic.web.WebCommand;
 import page.fb.DetailFromPopup;
+import page.fb.FBLoginPopup;
 
 /**
  * ...
@@ -21,9 +22,10 @@ class OnFbLoginClick extends WebCommand
 		
 		function callETMAndThen(then:Void->Void) {
 			return function() {
-				getWebManager().execute("CallETMAPI", function(err:Error, info:Dynamic) {
+				function handleETM(err:Error, info:Dynamic) {
 					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
-				});
+				}
+				getWebManager().execute("CallETMAPI", [{}, handleETM] );
 			}
 		}
 		
@@ -49,10 +51,15 @@ class OnFbLoginClick extends WebCommand
 		
 		var doNothing = null;
 		
+		function closeLoginPopup() {
+			getWebManager().closePage(FBLoginPopup);
+		}
+		
 		var func:Dynamic = {
 			btn_onFbLoginClick_login: function() {
 				var handle = callFBLoginAndThen( callFBShareAndThen( callETMAndThen( doNothing ) ));
 				handle();
+				closeLoginPopup();
 			}
 		}
 		

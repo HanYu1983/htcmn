@@ -56,7 +56,7 @@ class OnTechFrameBtnClick extends WebCommand
 				this.getWebManager().execute("ChangeTechPage", TechSitu);
 			},
 			btn_onTechFrameBtnClick_share: function() {
-				this.getWebManager().execute("ChangePage", LuckyDrawPage);
+				this.getWebManager().execute("OpenPopup", LuckyDrawPage);
 			}
 		}
 		var targetPage:String = args[1].name;

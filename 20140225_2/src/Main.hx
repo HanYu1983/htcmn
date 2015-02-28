@@ -16,6 +16,7 @@ import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
 import cmd.OnLuckyDrawBtnClick;
 import cmd.OnDetailFormBtnClick;
+import cmd.OnMessageBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -28,6 +29,7 @@ import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import page.ActivityPopup;
+import page.fb.DetailFromPopup;
 import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
@@ -62,6 +64,7 @@ class Main
 		WebManager.inst.addLayer( 'popup' );
 		WebManager.inst.addLayer( 'loading' );
 		
+		WebManager.inst.addCommand( new OnMessageBtnClick("onMessageBtnClick") );
 		WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 		WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 		WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
@@ -97,6 +100,7 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
+			WebManager.inst.execute("OpenPopup", DetailFromPopup);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){

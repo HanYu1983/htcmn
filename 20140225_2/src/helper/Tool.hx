@@ -3,6 +3,8 @@ import flash.display.DisplayObject;
 import org.vic.web.IWebView;
 import page.ActivityPopup;
 import page.ExpInfoPage;
+import page.fb.DetailFromPopup;
+import page.fb.FBLoginPopup;
 import page.IntroPage;
 import page.LuckyDrawPage;
 import page.MoviePage;
@@ -29,6 +31,7 @@ class Tool
 {
 	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, SellPage, SpecPage, TechPage, TechFrame, LuckyDrawPage];
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
+	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
 	public static function center(obj:DisplayObject, sx:Int, sy:Int, sw: Int, sh: Int) {
 		centerX(obj, sx, sw);
