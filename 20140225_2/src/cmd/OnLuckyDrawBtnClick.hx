@@ -4,6 +4,8 @@ import flash.errors.Error;
 import org.vic.web.WebCommand;
 import page.fb.FBLoginPopup;
 import page.fb.DetailFromPopup;
+import page.LuckyDrawPage;
+import page.MessagePopup;
 
 /**
  * ...
@@ -48,15 +50,19 @@ class OnLuckyDrawBtnClick extends WebCommand
 			});
 		}
 		
+		function closePopop() {
+			getWebManager().closePage(LuckyDrawPage);
+		}
+		
 		var func:Dynamic = {
 			btn_onLuckyDrawBtnClick_fb: function() {
 				checkFBLoginAndThen( callFBShareAndThen( callETMAndThen( null ) ) );
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
-				
+				getWebManager().execute("OpenPopup", [MessagePopup, {msg:""}, null]);
 			},
 			btn_onLuckyDrawBtnClick_cancel: function() {
-				
+				closePopop();
 			}
 		}
 		var targetPage:String = args[1].name;

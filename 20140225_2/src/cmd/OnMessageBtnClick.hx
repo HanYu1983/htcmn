@@ -1,6 +1,8 @@
 package cmd;
 
 import org.vic.web.WebCommand;
+import page.fb.DetailFromPopup;
+import page.MessagePopup;
 
 /**
  * ...
@@ -15,4 +17,25 @@ class OnMessageBtnClick extends WebCommand
 		
 	}
 	
+	override public function execute(?args:Dynamic):Void 
+	{
+		super.execute(args);
+		
+		function closeMessagePopop() {
+			getWebManager().closePage(MessagePopup);
+		}
+		
+		var func:Dynamic = {
+			btn_onMessageBtnClick_confirm: function() {
+				getWebManager().execute("OpenPopup", [DetailFromPopup, {}, null]);
+				closeMessagePopop();
+			},
+			btn_onMessageBtnClick_cancel: function() {
+				closeMessagePopop();
+			}
+		}
+		
+		var targetPage:String = args[1].name;
+		Reflect.field(func, targetPage)();
+	}
 }

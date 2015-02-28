@@ -16,6 +16,7 @@ import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
 import cmd.OnLuckyDrawBtnClick;
 import cmd.OnDetailFormBtnClick;
+import cmd.OnMessageBtnClick;
 import cmd.OnResize;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
@@ -62,6 +63,7 @@ class Main
 		WebManager.inst.addLayer( 'popup' );
 		WebManager.inst.addLayer( 'loading' );
 		
+		WebManager.inst.addCommand( new OnMessageBtnClick("onMessageBtnClick") );
 		WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 		WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 		WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );

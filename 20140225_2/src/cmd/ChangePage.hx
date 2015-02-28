@@ -23,6 +23,7 @@ class ChangePage extends WebCommand
 			return true;
 		}
 		Lambda.foreach( Tool.allPage, closePage );
+		Lambda.foreach( Tool.allFBPage, closePage );
 		
 		if ( !Std.is(args, Array) ) {
 			var targetPage = args;

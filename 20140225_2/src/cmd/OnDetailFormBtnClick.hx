@@ -21,16 +21,21 @@ class OnDetailFormBtnClick extends WebCommand
 	{
 		super.execute(args);
 		
+		function closeDetailPopop() {
+			getWebManager().closePage(DetailFromPopup);
+		}
+		
 		var func:Dynamic = {
 			btn_onDetailFormBtnClick_defalutCancel: function() {
-				getWebManager().closePage(DetailFromPopup);
+				closeDetailPopop();
 			},
 			btn_onDetailFormBtnClick_cancel: function() {
-				getWebManager().closePage(DetailFromPopup);
+				closeDetailPopop();
 			},
 			btn_onDetailFormBtnClick_confirm: function() {
 				function handleETM(err:Error, param:Dynamic) {
-					getWebManager().execute("OpenPopup", [MessagePopup, {msg:"Success"}, null]);
+					//getWebManager().execute("OpenPopup", [MessagePopup, { msg:"Success" }, null]);
+					closeDetailPopop();
 				}
 				getWebManager().execute("CallETMAPI", [{}, handleETM]);
 			},
