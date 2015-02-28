@@ -99,6 +99,11 @@ class Main
 			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
 		});
 		
+		
+		WebManager.inst.addWebListener( 'jsCallFlash', function( val ) {
+			WebManager.inst.callWeb( 'console.log', {fromJs:val } );
+		});
+		WebManager.inst.callWeb( 'flashCallJs', {abc:'abc' } );
 	}
 	
 	private static function onResize(e: Event) {
