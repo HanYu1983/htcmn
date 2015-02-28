@@ -1,5 +1,6 @@
 package cmd;
 
+import flash.display.DisplayObject;
 import flash.errors.Error;
 import org.vic.web.WebCommand;
 import page.fb.DetailFromPopup;
@@ -25,6 +26,12 @@ class OnDetailFormBtnClick extends WebCommand
 			getWebManager().closePage(DetailFromPopup);
 		}
 		
+		var target:DisplayObject = args[1];
+		var targetPage:String = args[1].name;
+		trace(targetPage);
+		
+		trace(target.x +"," +target.y );
+		
 		var func:Dynamic = {
 			btn_onDetailFormBtnClick_defalutCancel: function() {
 				closeDetailPopop();
@@ -40,24 +47,28 @@ class OnDetailFormBtnClick extends WebCommand
 				getWebManager().execute("CallETMAPI", [{}, handleETM]);
 			},
 			btn_onDetailFormBtnClick_boy: function() {
-			
+				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.changeCirclePosition( target.x, target.y );
 			},
 			btn_onDetailFormBtnClick_girl: function() {
-			
+				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.changeCirclePosition( target.x, target.y );
 			},
 			btn_onDetailFormBtnClick_okA: function() {
-			
+				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.markTermInPosition(target.x, target.y);
 			},
 			btn_onDetailFormBtnClick_okB: function() {
-			
+				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.markTermInPosition(target.x, target.y);
 			},
 			btn_onDetailFormBtnClick_okC: function() {
-			
+				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.markTermInPosition(target.x, target.y);
 			}
 		}
 		
-		var targetPage:String = args[1].name;
-		trace(targetPage);
+		
 		Reflect.field(func, targetPage)();
 	}
 }

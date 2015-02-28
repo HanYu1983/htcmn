@@ -29,6 +29,7 @@ import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import page.ActivityPopup;
+import page.fb.DetailFromPopup;
 import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
@@ -99,6 +100,7 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
+			WebManager.inst.execute("OpenPopup", DetailFromPopup);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
