@@ -24,7 +24,7 @@ class OnTechContentClick extends WebCommand
 			}
 		}
 		var targetPage:String = args[1].name;
-		trace(targetPage);
+		//trace(targetPage);
 		//Reflect.field(goto, targetPage)();
 	}
 }

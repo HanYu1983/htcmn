@@ -21,7 +21,7 @@ class IsFBLogin extends WebCommand
 		//cb( null, false );
 		
 		JSInterfaceHelper.callJs( getWebManager(), 'isFBLogin', [], function(info:Dynamic) {
-			trace(info);
+			//trace(info);
 			var err = Reflect.field(info, "0");
 			var success = Reflect.field(info, "1");
 			cb( err, success );

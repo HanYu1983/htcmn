@@ -28,7 +28,7 @@ class OnHomeBtnClick extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		super.execute(args);
-		trace(args[1].name);
+		//trace(args[1].name);
 		
 		
 		function thenOpen(clz:Class<Dynamic>) {

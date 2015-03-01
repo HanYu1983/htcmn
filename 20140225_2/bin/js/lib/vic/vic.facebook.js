@@ -66,7 +66,7 @@ vic.facebook = vic.facebook || {};
 	
 	function getLoginStatus( callback ){
 		FB.getLoginStatus( function( res ){
-			callback( res.status, res.authResponse, res );
+			callback( res );
 		});
 	}
 	

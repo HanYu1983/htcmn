@@ -10,9 +10,9 @@ class JSInterfaceHelper
 	static var callbackPool:Map<String, Dynamic->Void> = new Map<String, Dynamic->Void>();
 	
 	static function onCallFromHtml( info ) {
-		trace('onCallFromHtml');
+		//trace('onCallFromHtml');
 		var cb = callbackPool.get( info.id );
-		trace(cb);
+		//trace(cb);
 		cb( info.params );
 		callbackPool.remove( info.id );
 	}

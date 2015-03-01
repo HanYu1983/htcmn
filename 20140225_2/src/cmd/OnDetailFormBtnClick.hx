@@ -28,9 +28,9 @@ class OnDetailFormBtnClick extends WebCommand
 		
 		var target:DisplayObject = args[1];
 		var targetPage:String = args[1].name;
-		trace(targetPage);
+		//trace(targetPage);
 		
-		trace(target.x +"," +target.y );
+		//trace(target.x +"," +target.y );
 		
 		var func:Dynamic = {
 			btn_onDetailFormBtnClick_defalutCancel: function() {

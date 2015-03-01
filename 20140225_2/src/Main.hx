@@ -103,7 +103,7 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
-			WebManager.inst.execute("OpenPopup", LuckyDrawPage);
+			//WebManager.inst.execute("OpenPopup", LuckyDrawPage);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
@@ -112,6 +112,8 @@ class Main
 		
 		JSInterfaceHelper.install( WebManager.inst );
 		
+		//test fb
+		/*
 		JSInterfaceHelper.callJs( WebManager.inst, 'isFBLogin', [], function(info:Dynamic) {
 			trace(info);
 			var err = info[0];
@@ -127,6 +129,9 @@ class Main
 			var err = info[0];
 			var success = info[1];
 		});
+		*/
+		
+		
 		/*
 		WebManager.inst.addWebListener('callFromHtml', function( params ) {
 			trace("callFromHtmlcallFromHtml***");
@@ -135,6 +140,7 @@ class Main
 		
 		WebManager.inst.callWeb('callFromFlash', { id:32413, method: 'loginFB', params:[] } );
 		*/
+		//test router
 		/*
 		WebManager.inst.addWebListener( 'router', function( val ) {
 			WebManager.inst.callWeb( 'console.log', { fromJs:val } );

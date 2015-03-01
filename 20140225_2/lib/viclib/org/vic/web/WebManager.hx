@@ -51,17 +51,17 @@ class WebManager
 	}
 	
 	public function setData( k:String, v:Dynamic ):Void {
-		trace( 'set extra data, key: ' + k + ', value: ' + v );
+		//trace( 'set extra data, key: ' + k + ', value: ' + v );
 		_extra.set( k, v );
 	}
 	
 	public function getData( k:String ):Dynamic {
-		trace( 'get extra data, key: ' + k + ', value: ' + _extra.get( k ) );
+		//trace( 'get extra data, key: ' + k + ', value: ' + _extra.get( k ) );
 		return _extra.get( k );
 	}
 	
 	public function removeData( k:String ):Void {
-		trace( 'remove extra data, key: ' + k );
+		//trace( 'remove extra data, key: ' + k );
 		_extra.remove( k );
 	}
 	
@@ -141,19 +141,19 @@ class WebManager
 	public function execute( cn:String, ?org:Dynamic ):Void {
 		if ( _ary_command.exists( cn )) {
 			_ary_command.get( cn ).execute( org );
-		}else trace( 'does not have the name of command, name: ', cn );
+		}else { /*trace( 'does not have the name of command, name: ', cn );*/ }
 	}
 	
 	public function callWeb( fn:String, ?org:Dynamic ):Dynamic {
 		try {
-			trace( 'call web: ' + fn );
+			//trace( 'call web: ' + fn );
 			return ExternalInterface.call( fn, org );
 		}catch ( e:Error ) { return null; }
 	}
 	
 	public function addWebListener( fn:String, func:Dynamic->Void ):Void {
 		try {
-			trace( 'addListener: ' + fn );
+			//trace( 'addListener: ' + fn );
 			ExternalInterface.addCallback( fn, func );
 		}catch ( e:Error ) { }
 	}
