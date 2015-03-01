@@ -10,7 +10,15 @@ class TechCamera extends DefaultTechPage
 	public function new() 
 	{
 		super();
-		this.createDebugRoot("camera");
 	}
 	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'TechCamera', path:'src/TechCamera.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'TechCamera', path:'TechCamera' };
+	}
 }
