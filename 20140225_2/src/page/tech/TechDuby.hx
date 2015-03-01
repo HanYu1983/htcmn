@@ -16,4 +16,14 @@ class TechDuby extends DefaultTechPage
 		super();
 		this.createDebugRoot("duby");
 	}
+	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'TechDolby', path:'src/TechDolby.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'TechDolby', path:'TechDolby' };
+	}
 }
