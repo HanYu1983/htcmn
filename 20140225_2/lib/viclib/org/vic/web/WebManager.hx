@@ -66,13 +66,13 @@ class WebManager
 	}
 	
 	public function openLoading( ?cb:Void->Void):Void {
-		if ( _extra.get( 'loadingClass' ) == null )	throw 'does not set the data to the extra data, using loadingClassPath as key and path of class as value';
+		if ( _extra.get( 'loadingClass' ) == null )	return;
 		if ( !_ary_layer.exists( 'loading' ) )	throw 'does not have layer for loading, please add it!';
 		openPage( _extra.get( 'loadingClass' ), cb );
 	}
 	
 	public function closeLoading():Void {
-		if ( _extra.get( 'loadingClass' ) == null )	throw 'does not set the class path of loading';
+		if ( _extra.get( 'loadingClass' ) == null )	return;
 		closePage( _extra.get( 'loadingClass' ) );
 	}
 	
