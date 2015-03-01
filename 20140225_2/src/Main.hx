@@ -18,6 +18,7 @@ import cmd.OnLuckyDrawBtnClick;
 import cmd.OnDetailFormBtnClick;
 import cmd.OnMessageBtnClick;
 import cmd.OnResize;
+import cmd.OnTechContentClick;
 import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
 import flash.display.StageAlign;
@@ -64,6 +65,7 @@ class Main
 		WebManager.inst.addLayer( 'popup' );
 		WebManager.inst.addLayer( 'loading' );
 		
+		WebManager.inst.addCommand( new OnTechContentClick("onTechContentClick") );
 		WebManager.inst.addCommand( new OnMessageBtnClick("onMessageBtnClick") );
 		WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 		WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
@@ -100,7 +102,7 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
-			WebManager.inst.execute("OpenPopup", DetailFromPopup);
+			//WebManager.inst.execute("OpenPopup", DetailFromPopup);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
