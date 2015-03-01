@@ -16,7 +16,7 @@ class FooterUI extends DefaultPage
 	public function new() 
 	{
 		super();
-		
+		needLoading = false;
 		layerName = 'ui';
 	}
 	

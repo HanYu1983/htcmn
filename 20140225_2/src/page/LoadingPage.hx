@@ -27,7 +27,11 @@ class LoadingPage extends WebView implements IResize
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
+		var stage: Stage = getWebManager().getLayer("page").stage;
+		var stageHeight:Int = stage.stageHeight;
+		var stageWidth:Int = stage.stageWidth;
+		onResize( 0, 0, stageWidth, stageHeight );
+		
 		getLoaderManager().addEventListener( LoaderManager.PROGRESS, onProgressLoading );
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
@@ -36,6 +40,8 @@ class LoadingPage extends WebView implements IResize
 					_txt_per = cast( obj, TextField );
 			}
 		});
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -45,7 +51,7 @@ class LoadingPage extends WebView implements IResize
 	}
 	
 	private function onProgressLoading( e:VicEvent ) {
-		_txt_per.text = e.data + '%';
+		_txt_per.text = Math.floor( e.data ) + '%';
 	}
 	
 	public function onResize(x: Int, y:Int, w:Int, h:Int):Void {

@@ -13,7 +13,7 @@ class IntroPage extends DefaultPage
 	public function new() 
 	{
 		super();
-		
+		needLoading = true;
 		layerName = 'page';
 	}
 	

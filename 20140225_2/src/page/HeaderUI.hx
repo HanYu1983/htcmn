@@ -24,7 +24,7 @@ class HeaderUI extends DefaultPage
 	public function new() 
 	{
 		super();
-		
+		needLoading = false;
 		layerName = 'ui';
 	}
 	
@@ -97,7 +97,7 @@ class HeaderUI extends DefaultPage
 		if ( !_enableAutoBar )
 			return;
 			
-		var isEnterBarRegin = stage.mouseY < barHeight && stage.mouseX > 200;
+		var isEnterBarRegin = stage.mouseY < barHeight;
 		if ( isEnterBarRegin ) {
 			extendButtonVisible(false);
 			animateShowBar(true);

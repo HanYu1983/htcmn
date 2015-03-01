@@ -39,6 +39,7 @@ class WebView extends Sprite implements IWebView
 			generateRoot();
 			parserRoot();
 			onOpenEvent( param, cb );
+			addChild( _root );
 			focus();
 		}
 		
@@ -339,7 +340,6 @@ class WebView extends Sprite implements IWebView
 	private function parserRoot():Void {
 		if ( _root != null ) {
 			SwfParser.movieClipParser( this, _root, getButtons(), getSliders() );
-			addChild( _root );
 		}
 	}
 	
