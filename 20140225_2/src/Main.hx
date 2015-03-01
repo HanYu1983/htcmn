@@ -26,6 +26,7 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
+import helper.JSInterfaceHelper;
 import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
@@ -102,13 +103,38 @@ class Main
 		
 		function finishLoad() {
 			stage.addEventListener( Event.RESIZE, onResize );
-			//WebManager.inst.execute("OpenPopup", DetailFromPopup);
+			WebManager.inst.execute("OpenPopup", LuckyDrawPage);
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
 			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
 		});
 		
+		JSInterfaceHelper.install( WebManager.inst );
+		
+		JSInterfaceHelper.callJs( WebManager.inst, 'isFBLogin', [], function(info:Dynamic) {
+			trace(info);
+			var err = info[0];
+			var success = info[1];
+		});
+		JSInterfaceHelper.callJs( WebManager.inst, 'loginFB', [], function(info:Dynamic) {
+			trace(info);
+			var err = info[0];
+			var success = info[1];
+		});
+		JSInterfaceHelper.callJs( WebManager.inst, 'shareFB', [], function(info:Dynamic) {
+			trace(info);
+			var err = info[0];
+			var success = info[1];
+		});
+		/*
+		WebManager.inst.addWebListener('callFromHtml', function( params ) {
+			trace("callFromHtmlcallFromHtml***");
+			trace(params);
+		});
+		
+		WebManager.inst.callWeb('callFromFlash', { id:32413, method: 'loginFB', params:[] } );
+		*/
 		/*
 		WebManager.inst.addWebListener( 'router', function( val ) {
 			WebManager.inst.callWeb( 'console.log', { fromJs:val } );

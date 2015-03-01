@@ -24,15 +24,19 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		function callETMAndThen(then:Void->Void) {
 			return function() {
-				getWebManager().execute("CallETMAPI", function(err:Error, info:Dynamic) {
+				var params = { };
+				
+				function handle(err:String, info:Dynamic) {
 					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
-				});
+				}
+				
+				getWebManager().execute("CallETMAPI", [params, handle] );
 			}
 		}
 		
 		function callFBShareAndThen(then:Void->Void) {
 			return function() {
-				getWebManager().execute("CallFBShare", function(success:Bool) {
+				getWebManager().execute("CallFBShare", function(err:String, success:Bool) {
 					if (success) {
 						then();
 					}
@@ -41,7 +45,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 		}
 		
 		function checkFBLoginAndThen(then:Void->Void) {
-			getWebManager().execute("IsFBLogin", function(err:Error, success:Bool) {
+			getWebManager().execute("IsFBLogin", function(err:String, success:Bool) {
 				if (success) {
 					then();
 				}else {
