@@ -97,7 +97,7 @@ class HeaderUI extends DefaultPage
 		if ( !_enableAutoBar )
 			return;
 			
-		var isEnterBarRegin = stage.mouseY < barHeight;
+		var isEnterBarRegin = stage.mouseY < barHeight && stage.mouseX > 200;
 		if ( isEnterBarRegin ) {
 			extendButtonVisible(false);
 			animateShowBar(true);

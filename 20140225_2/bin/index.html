@@ -85,5 +85,47 @@
 		callFlashMethod();
 	}
 	</script>
+	
+	<!-- bridge -->
+	
+	<script>
+	var externalObject = {}
+	
+	externalObject.loginFB = function( cb ){
+		console.log('loginFB');
+		cb(null, true);
+	}
+	
+	externalObject.shareFB = function( cb ){
+		console.log('shareFB');
+		cb(null, true);
+	}
+	
+	externalObject.isFBLogin = function( cb ){
+		console.log('isFBLogin');
+		cb(null, true);
+	}
+	
+	</script>
+	
+	<!-- basic -->
+	<script>
+	
+	function genCallback( id ){
+		return function(){
+			thisMovie("HTC")[ 'callFromHtml' ]( {id: id, params:arguments } );
+		}
+	}
+	
+	function callFromFlash( val ){
+		var id = val.id
+		var method = val.method
+		var params = val.params
+		var callback = genCallback( id )
+		params.push(callback)
+		externalObject[method].apply( null, params );
+	}
+	
+	</script>
 </body>
 </html>

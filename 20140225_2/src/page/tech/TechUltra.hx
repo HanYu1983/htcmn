@@ -2,6 +2,8 @@ package page.tech;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.events.Event;
+import flash.geom.Point;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -10,14 +12,38 @@ import org.vic.utils.BasicUtils;
  */
 class TechUltra extends DefaultTechPage
 {
-	private var _mc_controller:MovieClip;
-	private var _mc_slider:DisplayObject;
-	private var _mc_mask:DisplayObject;
+	var _mc_controller:MovieClip;
+	var _mc_slider:DisplayObject;
+	var _mc_mask:DisplayObject;
 
 	public function new() 
 	{
 		super();
 		this.createDebugRoot("ultra");
+	}
+	
+	var _targetX:Float = 0;
+	
+	function onEnterFrame(e: Event) {
+		if (_mc_controller == null)
+			return;
+		var isEndAnimation = getRoot().currentFrameLabel == 'forScript';
+		if ( isEndAnimation ) {
+			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
+			_targetX = local.x;
+			moveMask( _targetX );
+		}
+	}
+	
+	function moveMask(targetX:Float) {
+		var min = 539.0;
+		var max = 940.0;
+		if (targetX < min)
+			targetX = min;
+		if (targetX > max)
+			targetX = max;
+		_mc_controller.mc_slider.x += ((targetX - 20) - _mc_controller.mc_slider.x) * .2;
+		_mc_controller.mc_mask.x += (targetX - _mc_controller.mc_mask.x) * .2;
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -31,12 +57,13 @@ class TechUltra extends DefaultTechPage
 			}
 		});
 		
-		//x 539~889
-		_mc_controller.gotoAndStop( 50 );
-		//_mc_slider = _mc_controller.getChildByName( 'mc_slider' );
-		//_mc_mask = _mc_controller.getChildByName( 'mc_mask' );
-		//_mc_slider.x = _mc_mask.x = 100;
-		//trace( _mc_slider.x );
+		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		getRoot().removeEventListener( Event.ENTER_FRAME, onEnterFrame );
+		super.onCloseEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
