@@ -20,9 +20,10 @@ class CallFBLogin extends WebCommand
 	{
 		var cb: Dynamic = args;
 		JSInterfaceHelper.callJs( getWebManager(), 'loginFB', [], function(info:Dynamic) {
+			trace( info );
 			var err = Reflect.field(info, "0");
-			var success = Reflect.field(info, "1");
-			cb(err, success);
+			var res = Reflect.field(info, "1");
+			cb(err, true);
 		});
 	}
 }

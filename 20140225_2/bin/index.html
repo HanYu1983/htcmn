@@ -107,15 +107,23 @@
 	var externalObject = {}
 	
 	externalObject.getMe = function( cb ){
-		vic.facebook.getMyData( function( res ){
-		
-		});
+		console.log('getMe');
+		vic.facebook.getMyData(
+			function( res ){
+				console.log(res);
+				cb( null, res );
+			},
+			function( err ){
+				cb( err, null );
+			}
+		);
 	}
 	
 	externalObject.loginFB = function( cb ){
 		console.log('loginFB');
 		vic.facebook.login( function( res ){
-			cb(null, true );
+			console.log(res)
+			cb(null, res );
 		}, function( error ){
 			cb(error, false );
 		});

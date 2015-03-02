@@ -16,8 +16,8 @@ class CallETMAPI extends WebCommand
 		switch(cmd) {
 			case "isEnterInfo":
 				{
-					var fbid = Reflect.field(param, "fbid");
-					var fbemail = Reflect.field(param, "fbemail");
+					var fbid = getWebManager().getData('fbid');
+					var fbemail = getWebManager().getData('fbemail');
 					ETMAPI.isEnterInfo(fbid, fbemail, function(err:String, data:Dynamic) {
 						if ( err != null ) {
 							cb( err, null );

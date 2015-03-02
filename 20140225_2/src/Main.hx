@@ -23,6 +23,7 @@ import cmd.OnTechFrameBtnClick;
 import cmd.OpenPopup;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
+import flash.errors.Error;
 import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
@@ -50,6 +51,8 @@ class Main
 	
 	static function main() 
 	{
+		trace('run main2');
+		
 		var stage = Lib.current.stage;
 		stage.scaleMode = StageScaleMode.NO_SCALE;
 		//stage.align = StageAlign.TOP_LEFT;
@@ -113,12 +116,6 @@ class Main
 		
 		JSInterfaceHelper.install( WebManager.inst );
 		
-		ETMAPI.isEnterInfo("", "", function(err:String, data:Dynamic) {
-			trace(err);
-			trace(data);
-			var isOK = Reflect.field( data, "status" );
-		});
-		
 		//test fb
 		/*
 		JSInterfaceHelper.callJs( WebManager.inst, 'isFBLogin', [], function(info:Dynamic) {
@@ -169,10 +166,55 @@ class Main
 		WebManager.inst.callWeb( 'flashReady', {} );
 		WebManager.inst.callWeb( 'flashCallJs', {abc:'abc' } );
 		*/
+		
+		
+		test();
 	}
 	
 	private static function onResize(e: Event) {
 		WebManager.inst.execute("onResize");
 	}
 	
+	
+	static function test() {
+		
+		trace('run test');
+		
+		function assertIfError(err:Dynamic) {
+			if ( err != null ) {
+				throw new Error(err);
+			}
+		}
+		
+		function assert(b:Bool) {
+			if ( !b ) {
+				throw new Error();
+			}
+		}
+		
+		function it(msg:String, fn:Void->Void) {
+			try {
+				trace("test > " + msg);
+				fn();
+			}catch (err:Error) {
+				trace(msg);
+				trace(err.message);
+			}
+		}
+		
+		it("test isFBLogin", function() {
+			WebManager.inst.execute("IsFBLogin", function(err:String, success:Bool) {
+				assertIfError( err );
+				assert( success == false );
+			});
+		});
+		
+		it("test fb login", function() {
+			WebManager.inst.execute("CallFBLogin", function(err:Error, success:Bool) {
+				assertIfError( err );
+				assert( success );
+			});
+		});
+		
+	}
 }
