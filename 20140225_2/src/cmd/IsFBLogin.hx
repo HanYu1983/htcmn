@@ -18,13 +18,17 @@ class IsFBLogin extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		var cb: Dynamic = args;
-		//cb( null, false );
-		
 		JSInterfaceHelper.callJs( getWebManager(), 'isFBLogin', [], function(info:Dynamic) {
-			//trace(info);
-			var err = Reflect.field(info, "0");
-			var success = Reflect.field(info, "1");
-			cb( err, success );
+			var status = Reflect.field(info, 'status');
+			var isLogin = status == 'connected';
+			if ( isLogin ) {
+				var authResponse = Reflect.field(info, 'authResponse');
+				var accessToken = Reflect.field(authResponse, 'accessToken');
+				var fbid = Reflect.field(authResponse, 'userID');
+				getWebManager().setData('fbid', fbid);
+				getWebManager().setData('accessToken', accessToken);
+			}
+			cb( null, isLogin );
 		});
 	}
 	

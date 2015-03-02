@@ -8,6 +8,7 @@ import haxe.Http;
 class ETMAPI
 {
 	public static function isEnterInfo( fbid:String, fbemail:String, cb: Dynamic ) {
+		trace("isEnterInfo*****");
 		var http = new Http("http://rsclient.etmgup.com/htc_hima/isEnterInfo.php");
 		http.setParameter("fb_id", fbid);
 		http.setParameter("fb_email", fbemail);

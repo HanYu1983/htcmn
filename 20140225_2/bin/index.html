@@ -11,8 +11,11 @@
 	<script src="js/swfobject.js"></script>
 	<script>
 	(function(d, s, id) {
-		var appid = '1059025554112783'
-		//var appid = '772221816202407'
+		//local test
+		//var appid = '1059025554112783'
+		
+		//real test
+		var appid = '772221816202407'
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
@@ -103,6 +106,12 @@
 	<script>
 	var externalObject = {}
 	
+	externalObject.getMe = function( cb ){
+		vic.facebook.getMyData( function( res ){
+		
+		});
+	}
+	
 	externalObject.loginFB = function( cb ){
 		console.log('loginFB');
 		vic.facebook.login( function( res ){
@@ -134,7 +143,7 @@
 		console.log('isFBLogin');
 		vic.facebook.getLoginStatus( function( val ){
 			console.log( val );
-			cb(null, val.authResponse == undefined ? false : true );
+			cb(null, val);
 		});
 	}
 	

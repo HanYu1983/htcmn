@@ -24,6 +24,7 @@ class CallETMAPI extends WebCommand
 							return;
 						}
 						var isOK = Reflect.field( data, "status" ) == 1;
+						trace(data);
 						cb( null, isOK );
 					});
 				}

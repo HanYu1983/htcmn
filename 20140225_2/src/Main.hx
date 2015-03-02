@@ -117,7 +117,6 @@ class Main
 			trace(err);
 			trace(data);
 			var isOK = Reflect.field( data, "status" );
-			
 		});
 		
 		//test fb

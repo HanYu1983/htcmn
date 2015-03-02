@@ -24,7 +24,11 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		function callETMAndThen(then:Void->Void) {
 			return function() {
-				var params = { };
+				var params = {
+					cmd: 'isEnterInfo',
+					fbid: getWebManager().getData('fbid'),
+					fbemail: getWebManager().getData('fbemail')
+				};
 				
 				function handle(err:String, info:Dynamic) {
 					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
