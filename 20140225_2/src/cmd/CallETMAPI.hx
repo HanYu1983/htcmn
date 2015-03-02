@@ -1,4 +1,5 @@
 package cmd;
+import helper.ETMAPI;
 import org.vic.web.WebCommand;
 
 /**
@@ -11,6 +12,23 @@ class CallETMAPI extends WebCommand
 	{
 		var param: Dynamic = args[0];
 		var cb: Dynamic = args[1];
-		cb(null, {});
+		var cmd = Reflect.field(param, "cmd");
+		switch(cmd) {
+			case "isEnterInfo":
+				{
+					var fbid = Reflect.field(param, "fbid");
+					var fbemail = Reflect.field(param, "fbemail");
+					ETMAPI.isEnterInfo(fbid, fbemail, function(err:String, data:Dynamic) {
+						if ( err != null ) {
+							cb( err, null );
+							return;
+						}
+						var isOK = Reflect.field( data, "status" ) == 1;
+						cb( null, isOK );
+					});
+				}
+			default:
+				cb("error", null);
+		}
 	}
 }

@@ -26,6 +26,7 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.Lib;
 import flash.sampler.NewObjectSample;
+import helper.ETMAPI;
 import helper.JSInterfaceHelper;
 import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
@@ -111,6 +112,13 @@ class Main
 		});
 		
 		JSInterfaceHelper.install( WebManager.inst );
+		
+		ETMAPI.isEnterInfo("", "", function(err:String, data:Dynamic) {
+			trace(err);
+			trace(data);
+			var isOK = Reflect.field( data, "status" );
+			
+		});
 		
 		//test fb
 		/*
