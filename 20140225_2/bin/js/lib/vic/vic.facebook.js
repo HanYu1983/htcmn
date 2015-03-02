@@ -54,14 +54,16 @@ vic.facebook = vic.facebook || {};
 		}, error);
 	}
 	
-	function login( callback, error ){
+	function login( callback, error, scope ){
+		scope = scope || {}
+		console.log( scope )
 		FB.login( function( res ){
 			if (res.authResponse) {
 				callback( res.authResponse );
 			}else{
 				if( error != undefined )	error( res );
 			}
-		});
+		}, scope);
 	}
 	
 	function getLoginStatus( callback ){

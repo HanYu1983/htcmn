@@ -12,10 +12,10 @@
 	<script>
 	(function(d, s, id) {
 		//local test
-		//var appid = '1059025554112783'
+		var appid = '1059025554112783'
 		
 		//real test
-		var appid = '772221816202407'
+		//var appid = '772221816202407'
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
@@ -126,7 +126,7 @@
 			cb(null, res );
 		}, function( error ){
 			cb(error, false );
-		});
+		}, {scope: 'email'});
 		
 	}
 	

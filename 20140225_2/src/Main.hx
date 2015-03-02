@@ -3,6 +3,7 @@ package ;
 import caurina.transitions.Tweener;
 import cmd.CallETMAPI;
 import cmd.CallFBLogin;
+import cmd.CallFBMe;
 import cmd.CallFBShare;
 import cmd.ChangePage;
 import cmd.ChangeTechPage;
@@ -92,6 +93,7 @@ class Main
 		WebManager.inst.addCommand( new IsFBLogin("IsFBLogin") );
 		WebManager.inst.addCommand( new CallFBShare("CallFBShare") );
 		WebManager.inst.addCommand( new CallETMAPI("CallETMAPI") );
+		WebManager.inst.addCommand( new CallFBMe("CallFBMe") );
 		
 		function openPageSeries(clz:Array<Class<Dynamic>>, cb:Void->Void) {
 			if (clz.length == 0) {
@@ -182,13 +184,14 @@ class Main
 		
 		function assertIfError(err:Dynamic) {
 			if ( err != null ) {
-				throw new Error(err);
+				trace("TEST ERROR!!!");
+				trace(err.message);
 			}
 		}
 		
 		function assert(b:Bool) {
 			if ( !b ) {
-				throw new Error();
+				trace("TEST ERROR!!!");
 			}
 		}
 		
@@ -197,22 +200,85 @@ class Main
 				trace("test > " + msg);
 				fn();
 			}catch (err:Error) {
+				trace("TEST ERROR!!!");
 				trace(msg);
 				trace(err.message);
 			}
 		}
 		
-		it("test isFBLogin", function() {
-			WebManager.inst.execute("IsFBLogin", function(err:String, success:Bool) {
-				assertIfError( err );
-				assert( success == false );
-			});
-		});
-		
-		it("test fb login", function() {
+		it("fb login", function() {
 			WebManager.inst.execute("CallFBLogin", function(err:Error, success:Bool) {
 				assertIfError( err );
-				assert( success );
+				if ( success ) {
+					assert( WebManager.inst.getData('fbid') != null );
+					assert( WebManager.inst.getData('accessToken') != null );
+					
+					it("fb is login", function() {
+						WebManager.inst.execute("IsFBLogin", function(err:String, success:Bool) {
+							assertIfError( err );
+							assert( success );
+						});
+					});
+					
+					
+					it("can get me", function() {
+						WebManager.inst.execute("CallFBMe", function(err:String, success:Bool) {
+							assertIfError( err );
+							assert( success );
+							assert( WebManager.inst.getData('fbemail') != null );
+							
+							it ("call etm api is submitted", function() {
+								var params = {
+									cmd: 'isEnterInfo'
+								};
+								
+								function handle(err:String, success:Bool) {
+									assertIfError(err);
+									
+									if ( success ) {
+										
+									} else {
+										
+										WebManager.inst.setData("name", "");
+										WebManager.inst.setData("mobile", "");
+										WebManager.inst.setData("gender", "");
+										WebManager.inst.setData("is_read_policy", "Y");
+										WebManager.inst.setData("is_agree_personal_info", "Y");
+										WebManager.inst.setData("is_accept_notice", "Y");
+										
+										it ("call submit etm api", function() {
+											var params = {
+												cmd: 'enterInfo'
+											};
+											
+											function handle(err:String, success:Bool) {
+												assertIfError(err);
+												assert(success);
+											}
+											
+											WebManager.inst.execute("CallETMAPI", [params, handle] );
+										});
+										
+										
+									}
+								}
+								
+								WebManager.inst.execute("CallETMAPI", [params, handle] );
+							});
+							
+						});
+					});
+					
+				} else {
+					assert( err == null );
+					
+					it("fb is not login", function() {
+						WebManager.inst.execute("IsFBLogin", function(err:String, success:Bool) {
+							assertIfError( err );
+							assert( success == false );
+						});
+					});
+				}
 			});
 		});
 		
