@@ -282,8 +282,8 @@ class WebView extends Sprite implements IWebView
 	}
 	
 	function onTxtFocusIn( e:FocusEvent ):Void {
-		var t:TextField = cast( e.currentTarget, TextField );
-		t.text = '';
+		//var t:TextField = cast( e.currentTarget, TextField );
+		//t.text = '';
 	}
 	
 	function onTxtFocusOut( e:FocusEvent ):Void {

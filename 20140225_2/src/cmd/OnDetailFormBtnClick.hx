@@ -39,6 +39,9 @@ class OnDetailFormBtnClick extends WebCommand
 			btn_onDetailFormBtnClick_cancel: function() {
 				closeDetailPopop();
 			},
+			btn_onDetailFormBtnClick_cancel2:function() {
+				closeDetailPopop();
+			},
 			btn_onDetailFormBtnClick_confirm: function() {
 				function handleETM(err:Error, param:Dynamic) {
 					//getWebManager().execute("OpenPopup", [MessagePopup, { msg:"Success" }, null]);

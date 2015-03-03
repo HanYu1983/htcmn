@@ -35,6 +35,7 @@ import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import page.ActivityPopup;
 import page.fb.DetailFromPopup;
+import page.fb.FBLoginPopup;
 import page.FooterUI;
 import page.HeaderUI;
 import org.vic.web.WebManager;
@@ -113,7 +114,7 @@ class Main
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
-			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
+			openPageSeries([HeaderUI, IntroPage, FooterUI, DetailFromPopup], finishLoad)();
 		});
 		
 		JSInterfaceHelper.install( WebManager.inst );

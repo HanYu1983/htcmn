@@ -60,6 +60,12 @@ class OnFbLoginClick extends WebCommand
 				var handle = callFBLoginAndThen( callFBShareAndThen( callETMAndThen( doNothing ) ));
 				handle();
 				closeLoginPopup();
+			},
+			btn_onFbLoginClick_no: function(){
+				getWebManager().closePage( FBLoginPopup );
+			},
+			btn_onFbLoginClick_cancel: function(){
+				getWebManager().closePage( FBLoginPopup );
 			}
 		}
 		

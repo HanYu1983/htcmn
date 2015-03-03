@@ -13,8 +13,16 @@ class FBLoginPopup extends DefaultPage
 	{
 		super();
 		layerName = "popup";
-		createDebugRoot("FBLoginPopup");
-		createDebugButton("btn_onFbLoginClick_login", 0, 0 );
+		
 	}
 	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'LoginPopup', path:'src/LoginPopup.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'LoginPopup', path:'LoginPopup' };
+	}
 }
