@@ -33,12 +33,23 @@ class Tool
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
+	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int) {
+		centerForceX( obj, tw, sx, sw );
+		centerForceY( obj, th, sy, sh );
+	}
+	public static function centerForceX(obj:DisplayObject, tw:Int, sx:Int, sw: Int) {
+		obj.x = sx+ (sw - tw) / 2;
+	}
+	public static function centerForceY(obj:DisplayObject, th:Int, sy:Int, sh: Int) {
+		obj.y = sy+ (sh - th) / 2;
+	}
+	
 	public static function center(obj:DisplayObject, sx:Int, sy:Int, sw: Int, sh: Int) {
 		centerX(obj, sx, sw);
 		centerY(obj, sy, sh);
 	}
 	public static function centerX(obj:DisplayObject, sx:Int, sw: Int) {
-		obj.x = sx+ (sw - obj.width) / 2;
+		obj.x = sx + (sw - obj.width) / 2;
 	}
 	public static function centerY(obj:DisplayObject, sx:Int, sw: Int) {
 		obj.y = sx+ (sw - obj.height) / 2;
