@@ -114,7 +114,7 @@ class Main
 		}
 		
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
-			openPageSeries([HeaderUI, IntroPage, FooterUI, DetailFromPopup], finishLoad)();
+			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
 		});
 		
 		JSInterfaceHelper.install( WebManager.inst );
