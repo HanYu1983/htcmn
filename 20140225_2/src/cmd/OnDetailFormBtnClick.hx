@@ -43,11 +43,24 @@ class OnDetailFormBtnClick extends WebCommand
 				closeDetailPopop();
 			},
 			btn_onDetailFormBtnClick_confirm: function() {
-				function handleETM(err:Error, param:Dynamic) {
-					//getWebManager().execute("OpenPopup", [MessagePopup, { msg:"Success" }, null]);
-					closeDetailPopop();
+				
+				var form:DetailFromPopup = cast(getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+				form.applyData();
+				
+				var params = {
+					cmd: 'enterInfo'
+				};
+				function handle(err:String, success:Bool) {
+					if ( err != null ) {
+						return;
+					}
+					if ( success ) {
+						getWebManager().closePage(DetailFromPopup);
+					} else {
+						
+					}
 				}
-				getWebManager().execute("CallETMAPI", [{}, handleETM]);
+				getWebManager().execute("CallETMAPI", [params, handle] );
 			},
 			btn_onDetailFormBtnClick_boy: function() {
 				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);

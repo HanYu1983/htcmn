@@ -226,7 +226,7 @@ class Main
 						WebManager.inst.execute("CallFBMe", function(err:String, success:Bool) {
 							assertIfError( err );
 							assert( success );
-							assert( WebManager.inst.getData('fbemail') != null );
+							assert( WebManager.inst.getData('email') != null );
 							
 							it ("call etm api is submitted", function() {
 								var params = {

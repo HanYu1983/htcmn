@@ -17,7 +17,7 @@ class CallETMAPI extends WebCommand
 			case "isEnterInfo":
 				{
 					var fbid = getWebManager().getData('fbid');
-					var fbemail = getWebManager().getData('fbemail');
+					var fbemail = getWebManager().getData('email');
 					
 					trace("fbid:", fbid);
 					ETMAPI.isEnterInfo(fbid, fbemail, function(err:String, data:Dynamic) {
@@ -40,7 +40,7 @@ class CallETMAPI extends WebCommand
 					var info = {
 						token : getWebManager().getData("etmToken"),
 						name : getWebManager().getData("name"),
-						email : getWebManager().getData("fbemail"),
+						email : getWebManager().getData("email"),
 						gender : getWebManager().getData("gender"),
 						mobile : getWebManager().getData("mobile"),
 						is_read_policy : getWebManager().getData("is_read_policy"),

@@ -22,23 +22,53 @@ class OnLuckyDrawBtnClick extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		
+		function callOpenDetailForm() {
+			return function() {
+				getWebManager().execute("OpenPopup", [DetailFromPopup, null, null]);
+			}
+		}
+		
 		function callETMAndThen(then:Void->Void) {
 			return function() {
 				var params = {
 					cmd: 'isEnterInfo'
 				};
 				
-				function handle(err:String, info:Dynamic) {
-					getWebManager().execute("OpenPopup", [DetailFromPopup, info, null]);
+				function handle(err:String, isWritten:Bool) {
+					if ( err != null ) {
+						return;
+					} else {
+						if ( isWritten ) {
+							trace('isWritten');
+						} else {
+							then();
+						}
+					}
 				}
 				
 				getWebManager().execute("CallETMAPI", [params, handle] );
 			}
 		}
 		
+		function callGetMeAndThen(then:Void->Void) {
+			return function() {
+				getWebManager().execute("CallFBMe", function(err:Error, success:Bool) {
+					if ( err != null ) {
+						return;
+					}
+					if ( success ) {
+						then();
+					}
+				});
+			}
+		}
+		
 		function callFBShareAndThen(then:Void->Void) {
 			return function() {
 				getWebManager().execute("CallFBShare", function(err:String, success:Bool) {
+					if ( err != null ) {
+						return;
+					}
 					if (success) {
 						then();
 					}
@@ -48,6 +78,9 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		function checkFBLoginAndThen(then:Void->Void) {
 			getWebManager().execute("IsFBLogin", function(err:String, success:Bool) {
+				if ( err != null ) {
+					return;
+				}
 				if (success) {
 					then();
 				}else {
@@ -62,7 +95,10 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		var func:Dynamic = {
 			btn_onLuckyDrawBtnClick_fb: function() {
-				checkFBLoginAndThen( callFBShareAndThen( callETMAndThen( null ) ) );
+				checkFBLoginAndThen( 
+					callFBShareAndThen(
+						callGetMeAndThen(
+							callETMAndThen( callOpenDetailForm() ) ) ) );
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
 				getWebManager().execute("OpenPopup", [MessagePopup, {msg:""}, null]);
