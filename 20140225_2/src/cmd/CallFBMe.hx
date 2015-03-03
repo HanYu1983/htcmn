@@ -32,8 +32,12 @@ verified: true
 			if ( err != null ) {
 				cb( err, false );
 			}else {
+				var name = Reflect.field( res, "name" );
 				var email = Reflect.field( res, "email" );
-				getWebManager().setData('fbemail', email);
+				var gender = Reflect.field( res, "gender" );
+				getWebManager().setData('name', name);
+				getWebManager().setData('email', email);
+				getWebManager().setData('gender', gender);
 				cb(err, true);
 			}
 		});
