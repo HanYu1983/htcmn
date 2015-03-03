@@ -1,6 +1,6 @@
 # Build and Release Folders
 20140225_2/bin/src/
-*.swf
+20140225_2/bin/*.swf
 
 # Other files and folders
 .settings/
