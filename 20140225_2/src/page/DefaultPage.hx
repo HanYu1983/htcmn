@@ -1,6 +1,7 @@
 package page;
 
 import helper.IResize;
+import helper.SimpleController;
 import helper.Tool;
 import org.vic.web.WebView;
 import page.tech.DefaultTechPage;
@@ -21,20 +22,12 @@ class DefaultPage extends WebView implements IResize
 	{
 		super.onOpenEvent(param, cb);
 		
-		var header = cast(getWebManager().getPage(HeaderUI), HeaderUI);
-		if (header != null) {
-			var hasSuggestion = suggestionEnableAutoBarWhenOpen();
-			if ( hasSuggestion == null ) {
-				// nothing to do
-			}else {
-				header.autoBarEnable( hasSuggestion );
-			}
-		}
+		SimpleController.onPageOpen( getWebManager(), this );
 		
 		getWebManager().execute("onResize");
 	}
 	
-	function suggestionEnableAutoBarWhenOpen():Null<Bool> {
+	public function suggestionEnableAutoBarWhenOpen():Null<Bool> {
 		return null;
 	}
 	

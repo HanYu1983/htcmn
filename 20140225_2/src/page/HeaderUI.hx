@@ -94,6 +94,7 @@ class HeaderUI extends DefaultPage
 	}
 	
 	var _enableAutoBar :Bool = false;
+	var _duration_outside : Int = 0;
 	public function autoBarEnable(b:Bool) {
 		_enableAutoBar = b;
 	}
@@ -101,14 +102,21 @@ class HeaderUI extends DefaultPage
 	function onEnterFrame(e: Event) {
 		if ( !_enableAutoBar )
 			return;
-			
+		
+		var delayFrame = 30;
 		var isEnterBarRegin = stage.mouseY < barHeight;
+		
 		if ( isEnterBarRegin ) {
 			extendButtonVisible(false);
 			animateShowBar(true);
+			_duration_outside = 0;
 		}else {
-			extendButtonVisible(true);
-			animateShowBar(false);
+			var shouldAnimateClose = _duration_outside > delayFrame;
+			if ( shouldAnimateClose ) {
+				extendButtonVisible(true);
+				animateShowBar(false);
+			}
+			++_duration_outside;
 		}
 	}
 	

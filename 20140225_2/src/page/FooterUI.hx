@@ -1,5 +1,7 @@
 package page ;
 
+import caurina.transitions.JSTweener.JSObject;
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -26,6 +28,16 @@ class FooterUI extends DefaultPage
 	
 	public function switchMusic() {
 		_music.gotoAndStop( _music.currentFrame == 1 ? 2 : 1 );
+	}
+	
+	private var _animateShowBar:Bool = true;
+	
+	public function animateShowBar(v:Bool) {
+		var barHeight:Int = 45;
+		if ( _animateShowBar != v ) {
+			_animateShowBar = v;
+			Tweener.addTween(_back, { y: v ? 0 : barHeight, time: 1 } );
+		}
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -62,4 +74,5 @@ class FooterUI extends DefaultPage
 			_righter.x = w - _righter.width;
 		}
 	}
+
 }
