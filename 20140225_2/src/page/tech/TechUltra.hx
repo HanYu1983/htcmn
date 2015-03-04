@@ -15,7 +15,8 @@ class TechUltra extends DefaultTechPage
 	var _mc_controller:MovieClip;
 	var _mc_slider:DisplayObject;
 	var _mc_mask:DisplayObject;
-
+	var _mc_htc:DisplayObject;
+	
 	public function new() 
 	{
 		super();
@@ -30,17 +31,16 @@ class TechUltra extends DefaultTechPage
 		var isEndAnimation = getRoot().currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
-			var isHitRegion = _mc_controller.hitTestPoint( local.x, local.y );
+			var hitRect = _mc_htc.getRect( _mc_controller );
+			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom );
 			if ( isHitRegion ) {
 				_targetX = local.x;
 			}
-			moveMask( _targetX );
+			moveMask( hitRect.left, hitRect.right, _targetX );
 		}
 	}
 	
-	function moveMask(targetX:Float) {
-		var min = 539.0;
-		var max = 940.0;
+	function moveMask(min:Float, max:Float, targetX:Float) {
 		if (targetX < min)
 			targetX = min;
 		if (targetX > max)
@@ -57,6 +57,8 @@ class TechUltra extends DefaultTechPage
 			switch( obj.name ) {
 				case 'mc_controller':
 					_mc_controller = cast( obj, MovieClip );
+				case 'mc_htc':
+					_mc_htc = obj;
 			}
 		});
 		
