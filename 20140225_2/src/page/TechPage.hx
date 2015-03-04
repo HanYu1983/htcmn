@@ -1,4 +1,5 @@
 package page;
+import flash.display.DisplayObjectContainer;
 import flash.geom.Point;
 import helper.Tool;
 import org.vic.web.BasicButton;
@@ -143,6 +144,14 @@ class TechPage extends DefaultPage
 			}
 		}
 		
-		Lambda.foreach( disableBtnNames.map( getButton ), enable( false ) );
+		function alpha(v:Float):Dynamic {
+			return function(btn:BasicButton) {
+				btn.getShape().alpha = v;
+				return true;
+			}
+		}
+		var btns = disableBtnNames.map( getButton );
+		Lambda.foreach( btns, enable( false ) );
+		Lambda.foreach( btns, alpha( 0.8 ) );
 	}
 }

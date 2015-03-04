@@ -35,26 +35,29 @@ is_accept_notice:<input id="is_accept_notice" name="is_accept_notice" type="text
 	 * @param	info
 	 * @param	cb
 	 */
-	public static function enterInfo( info:Dynamic, cb: Dynamic ) {
-		var token = Reflect.field(info, "token");
-		var name = Reflect.field(info, "name");
-		var email = Reflect.field(info, "email");
-		var gender = Reflect.field(info, "gender");
-		var mobile = Reflect.field(info, "mobile");
-		var is_read_policy = Reflect.field(info, "is_read_policy");
-		var is_agree_personal_info = Reflect.field(info, "is_agree_personal_info");	//Y/N
-		var is_accept_notice = Reflect.field(info, "is_accept_notice");	//Y/N
-		
+	public static function enterInfo( 
+		params: {
+			token : String,
+			name : String,
+			email : String,
+			gender : String,
+			mobile : String,
+			is_read_policy : String,
+			is_agree_personal_info : String,
+			is_accept_notice : String
+		}, 
+		cb: Dynamic )
+	{
 		var http = new Http("enterInfo.php");
 		
-		http.setParameter("token", token);
-		http.setParameter("name", name);
-		http.setParameter("email", email);
-		http.setParameter("gender", gender);
-		http.setParameter("mobile", mobile);
-		http.setParameter("is_read_policy", is_read_policy);
-		http.setParameter("is_agree_personal_info", is_agree_personal_info);
-		http.setParameter("is_accept_notice", is_accept_notice);
+		http.setParameter("token", params.token);
+		http.setParameter("name", params.name);
+		http.setParameter("email", params.email);
+		http.setParameter("gender", params.gender);
+		http.setParameter("mobile", params.mobile);
+		http.setParameter("is_read_policy", params.is_read_policy);
+		http.setParameter("is_agree_personal_info", params.is_agree_personal_info);
+		http.setParameter("is_accept_notice", params.is_accept_notice);
 		
 		http.onData = function(data:String) {
 			cb( null, Json.parse(data) );
