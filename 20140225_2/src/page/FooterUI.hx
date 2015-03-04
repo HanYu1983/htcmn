@@ -38,6 +38,7 @@ class FooterUI extends DefaultPage
 		if ( _animateShowBar != v ) {
 			_animateShowBar = v;
 			Tweener.addTween(_back, { y: v ? 0 : barHeight, time: 1 } );
+			Tweener.addTween(_mc_btns, { y: v ? 0 : barHeight, time: 1 } );
 		}
 	}
 	
