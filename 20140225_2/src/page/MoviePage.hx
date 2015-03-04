@@ -17,12 +17,12 @@ class MoviePage extends DefaultPage
 	}
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'movie', path:'src/movie.swf' };
+		return {name:'MoviePage', path:'src/MoviePage.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'movie', path:'Movie' };
+		return {name:'MoviePage', path:'MoviePage' };
 	}
 	
 	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
