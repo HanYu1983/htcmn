@@ -33,6 +33,7 @@ import helper.JSInterfaceHelper;
 import helper.Tool;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
+import org.vic.web.IWebCommand2;
 import page.ActivityPopup;
 import page.fb.DetailFromPopup;
 import page.fb.FBLoginPopup;
@@ -54,7 +55,6 @@ class Main
 	static function main() 
 	{
 		trace('run main2');
-		
 		var stage = Lib.current.stage;
 		stage.scaleMode = StageScaleMode.NO_SCALE;
 		//stage.align = StageAlign.TOP_LEFT;
