@@ -29,7 +29,10 @@ import flash.errors.Error;
 import flash.events.Event;
 import flash.Lib;
 import flash.media.SoundMixer;
+import flash.net.URLLoader;
 import flash.sampler.NewObjectSample;
+import haxe.Http;
+import haxe.Json;
 import helper.ETMAPI;
 import helper.JSInterfaceHelper;
 import helper.Tool;
@@ -116,11 +119,30 @@ class Main
 			//WebManager.inst.execute("OpenPopup", LuckyDrawPage);
 		}
 		
+		function loadConfigAndThen( cb ) {
+			var http = new Http("config.json");
+			http.onData = function(data:String) {
+				WebManager.inst.setData( 'config', Json.parse(data) );
+				cb();
+			}
+			http.request();
+		}
+		
+		function loadSwf():Void {
+			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:'src/Preload.swf' }, false, function() {
+				openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
+			});
+		}
+		
+		loadConfigAndThen( loadSwf );
+		
+		JSInterfaceHelper.install( WebManager.inst );
+		
+		/*
 		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
 			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
 		});
-		
-		JSInterfaceHelper.install( WebManager.inst );
+		*/
 		
 		//test fb
 		/*

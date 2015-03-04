@@ -123,7 +123,6 @@ class HeaderUI extends DefaultPage
 	function moveOverLine( e ):Void {
 		Tweener.addTween( _mc_overline, { 	x:Reflect.field( _btns, 'overX' ),
 											alpha:1,
-											//transition:'easeOutBack',
 											width:Reflect.field( _btns, 'overWidth' ),
 											time:.5 } );							
 		
