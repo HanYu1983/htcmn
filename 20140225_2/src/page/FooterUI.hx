@@ -3,6 +3,8 @@ package page ;
 import caurina.transitions.JSTweener.JSObject;
 import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import flash.display.MovieClip;
 import helper.IResize;
 import org.vic.utils.BasicUtils;
 import org.vic.web.WebView;
@@ -13,13 +15,19 @@ import org.vic.web.WebView;
  */
 class FooterUI extends DefaultPage
 {
-	private var _back:DisplayObject;
+	var _back:DisplayObject;
+	var _righter:DisplayObject;
+	var _music:MovieClip;
 
 	public function new() 
 	{
 		super();
 		needLoading = false;
 		layerName = 'ui';
+	}
+	
+	public function switchMusic() {
+		_music.gotoAndStop( _music.currentFrame == 1 ? 2 : 1 );
 	}
 	
 	private var _animateShowBar:Bool = true;
@@ -38,6 +46,10 @@ class FooterUI extends DefaultPage
 			switch( obj.name ) {
 				case 'mc_footback':
 					_back = obj;
+				case 'mc_righter':
+					_righter = obj;
+				case 'mc_music':
+					_music = cast( obj, MovieClip );
 			}
 		});
 		super.onOpenEvent(param, cb);
@@ -57,6 +69,9 @@ class FooterUI extends DefaultPage
 		if( _back != null ){
 			_back.width = w;
 			getRoot().y = h - _back.height;
+		}
+		if ( _righter != null ) {
+			_righter.x = w - _righter.width;
 		}
 	}
 

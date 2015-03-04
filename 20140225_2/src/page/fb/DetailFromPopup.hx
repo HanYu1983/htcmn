@@ -109,7 +109,7 @@ class DetailFromPopup extends DefaultPage
 	}
 	
 	function cloneOkMark():DisplayObject {
-		return getLoaderManager().getTask( 'Detail' ).getObject( 'Ok', [] );
+		return getLoaderManager().getTask( 'Preload' ).getObject( 'Ok', [] );
 	}
 	
 	var mark:Map<String, DisplayObject> = new Map<String, DisplayObject>();
@@ -147,14 +147,14 @@ class DetailFromPopup extends DefaultPage
 		_mc_circle.x = x;
 		_mc_circle.y = y;
 	}
-	
+	/*
 	override function getSwfInfo():Dynamic 
 	{
 		return {name:'Detail', path:'src/Detail.swf' };
 	}
-	
+	*/
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'Detail', path:'Detail' };
+		return {name:'Preload', path:'Detail' };
 	}
 }
