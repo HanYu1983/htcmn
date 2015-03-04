@@ -1,5 +1,7 @@
 package page ;
 
+import caurina.transitions.JSTweener.JSObject;
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import helper.IResize;
 import org.vic.utils.BasicUtils;
@@ -18,6 +20,16 @@ class FooterUI extends DefaultPage
 		super();
 		needLoading = false;
 		layerName = 'ui';
+	}
+	
+	private var _animateShowBar:Bool = true;
+	
+	public function animateShowBar(v:Bool) {
+		var barHeight:Int = 45;
+		if ( _animateShowBar != v ) {
+			_animateShowBar = v;
+			Tweener.addTween(_back, { y: v ? 0 : barHeight, time: 1 } );
+		}
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -47,4 +59,5 @@ class FooterUI extends DefaultPage
 			getRoot().y = h - _back.height;
 		}
 	}
+
 }

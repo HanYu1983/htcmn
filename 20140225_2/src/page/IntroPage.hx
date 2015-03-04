@@ -26,4 +26,9 @@ class IntroPage extends DefaultPage
 	{
 		return {name:'Intro', path:'Intro' };
 	}
+	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return false;
+	}
 }

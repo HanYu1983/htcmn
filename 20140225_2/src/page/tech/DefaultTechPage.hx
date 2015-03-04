@@ -25,8 +25,7 @@ class DefaultTechPage extends DefaultPage
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
-		//Tool.center(this, x, y, w, h);
-		
+
 		if( _mc_item != null ){
 			Tool.center( _mc_item, x, y, w, h );
 		}
@@ -39,9 +38,6 @@ class DefaultTechPage extends DefaultPage
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		super.onOpenEvent(param, cb);
-		var frame = cast(getWebManager().getPage(TechFrame), TechFrame);
-		var clz = Type.getClass(this);
-		frame.animateButtonByTechPage(clz);
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {

@@ -51,6 +51,14 @@ class TechFrame extends DefaultPage
 	
 	public function animateButtonByTechPage( pageClz:Dynamic ) {
 		
+		var disableBtnNames:Array<String> = [
+			"btn_onTechFrameBtnClick_blink",
+			"btn_onTechFrameBtnClick_boom",
+			"btn_onTechFrameBtnClick_person",
+			"btn_onTechFrameBtnClick_photo",
+			"btn_onTechFrameBtnClick_situ"
+		];
+		
 		var btnNames:Array<String> = [
 			"btn_onTechFrameBtnClick_Double",
 			"btn_onTechFrameBtnClick_Duby",
@@ -86,14 +94,19 @@ class TechFrame extends DefaultPage
 				return true;
 			}
 		}
+		// 播放收回動畫並使按鈕可作用
 		var otherNames = Lambda.filter(btnNames, function(name) { return name != nameBelongPage(pageClz); } );
 		var btns:List<BasicButton> = Lambda.map(otherNames, getButton);
 		Lambda.foreach(btns, enable(true));
 		Lambda.foreach(btns, gotoAndPlay("close"));
 		
+		// 將這頁所代表的鈕按播放打開動畫並使按鈕無作用
 		var thisBtn = getButton(nameBelongPage(pageClz));
 		enable(false)(thisBtn);
 		gotoAndPlay("open")(thisBtn);
+		
+		// 關閉還沒開放的按鈕
+		Lambda.foreach( disableBtnNames.map( getButton ), enable( false ) );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
