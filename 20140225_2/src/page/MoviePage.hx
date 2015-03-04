@@ -52,6 +52,7 @@ class MoviePage extends DefaultPage
 	{
 		super.onCloseEvent(cb);
 		_youtubePlayer.removeEventListener( Event.INIT, onYoutubeReady );
+		_youtubePlayer.clear();
 	}
 	
 	override function getSwfInfo():Dynamic 

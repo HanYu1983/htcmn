@@ -198,7 +198,7 @@ class Main
 		
 		
 		//test();
-		test2();
+		//test2();
 	}
 	
 	private static function onResize(e: Event) {
