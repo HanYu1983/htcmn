@@ -47,7 +47,8 @@ class TechPage extends DefaultPage
 	
 	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
 	{
-		Tool.center( getRoot(), x, y, w, h, 0.5, 0.1);
+		super.onResize(x, y, w, h );
+		//Tool.center( getRoot(), x, y, w, h, 0.5, 0.1);
 		//centerButton( x, y, w, h );
 	}
 	
