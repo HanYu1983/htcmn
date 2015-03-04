@@ -1,4 +1,4 @@
-package han;
+package org.han;
 import caurina.transitions.properties.DisplayShortcuts;
 import flash.errors.Error;
 
@@ -9,10 +9,9 @@ import flash.errors.Error;
 class Async {
 	public static function parallel(list:Array<Dynamic>, complete:Dynamic) {
 		var count = 0;
-		var result:Array = new Array();
-		result.length = list.length;
+		var result:Array<Dynamic> = new Array<Dynamic>();
 		
-		for ( var i:Int = 0; i < result.length; ++i ) {
+		for ( i in 0...result.length ) {
 			function closure(id:Int) {
 				return function(err:Error, data:Dynamic) {
 					if (err != null) {
@@ -25,12 +24,13 @@ class Async {
 					}
 				}
 			}
+			var fn = list[i];
 			fn( closure(i) );
 		}
 		
 	}
 	
-	public static function waterfall( list:Array<Dynamic>, complete:Dynamic ) {
+	public static function waterfall( list:Array<Dynamic>, complete:Dynamic, ?first:Dynamic ) {
 		function doOneByOne( list:Array<Dynamic>, result:Dynamic ) {
 			if ( list.length == 0 ) {
 				complete( null, result );
@@ -38,14 +38,14 @@ class Async {
 				var fn = list.shift();
 				fn(result)(function(err:Error, data:Dynamic) {
 					if ( err != null ) {
-						complete(err);
+						complete(err, null);
 					}else {
 						doOneByOne( list, data );
 					}
 				});
 			}
 		}
-		doOneByOne( list, null );
+		doOneByOne( list, first );
 	}
 	
 }

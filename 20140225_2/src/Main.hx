@@ -1,6 +1,7 @@
 package ;
 
 import caurina.transitions.Tweener;
+import cmd.AsyncLogic;
 import cmd.CallETMAPI;
 import cmd.CallFBLogin;
 import cmd.CallFBMe;
@@ -33,6 +34,7 @@ import flash.sampler.NewObjectSample;
 import helper.ETMAPI;
 import helper.JSInterfaceHelper;
 import helper.Tool;
+import org.han.Async;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
@@ -61,7 +63,6 @@ class Main
 		stage.scaleMode = StageScaleMode.NO_SCALE;
 		//stage.align = StageAlign.TOP_LEFT;
 		// entry point
-		
 		Tweener.autoOverwrite = false;
 		
 		WebManager.inst.setData( 'loadingClass', LoadingPage );
@@ -175,12 +176,19 @@ class Main
 		
 		
 		//test();
+		test2();
 	}
 	
 	private static function onResize(e: Event) {
 		WebManager.inst.execute("onResize");
 	}
-	
+	static function test2() {
+
+		AsyncLogic.flow1( { mgr:WebManager.inst } )(function(err:Error, result:Dynamic) {
+			trace(err);
+		});
+		
+	}
 	
 	static function test() {
 		

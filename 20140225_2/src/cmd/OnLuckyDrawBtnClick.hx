@@ -21,7 +21,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 	
 	override public function execute(?args:Dynamic):Void 
 	{
-		
+		/*
 		function callOpenDetailForm() {
 			return function() {
 				getWebManager().execute("OpenPopup", [DetailFromPopup, null, null]);
@@ -88,6 +88,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 				}
 			});
 		}
+		*/
 		
 		function closePopop() {
 			getWebManager().closePage(LuckyDrawPage);
@@ -95,10 +96,17 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		var func:Dynamic = {
 			btn_onLuckyDrawBtnClick_fb: function() {
+				/*
 				checkFBLoginAndThen( 
 					callFBShareAndThen(
 						callGetMeAndThen(
 							callETMAndThen( callOpenDetailForm() ) ) ) );
+							*/
+				AsyncLogic.flow1( { mgr:getWebManager() } )(function(err:Error, result:Dynamic) {
+					if ( err != null ) {
+						trace(err);
+					}
+				});
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
 				getWebManager().execute("OpenPopup", [MessagePopup, {msg:""}, null]);

@@ -82,6 +82,13 @@ class TechFrame extends DefaultPage
 			}
 		}
 		
+		function alpha(v:Float):Dynamic {
+			return function(btn:BasicButton) {
+				btn.getShape().alpha = v;
+				return true;
+			}
+		}
+		
 		function gotoAndPlay(label:String):Dynamic {
 			return function(btn:BasicButton) {
 				var isAnimateClose = label == "close";
@@ -106,7 +113,9 @@ class TechFrame extends DefaultPage
 		gotoAndPlay("open")(thisBtn);
 		
 		// 關閉還沒開放的按鈕
-		Lambda.foreach( disableBtnNames.map( getButton ), enable( false ) );
+		btns =  Lambda.map( disableBtnNames, getButton );
+		Lambda.foreach( btns, enable( false ) );
+		Lambda.foreach( btns, alpha(0.3) );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 

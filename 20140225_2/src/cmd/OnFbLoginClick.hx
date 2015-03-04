@@ -19,7 +19,7 @@ class OnFbLoginClick extends WebCommand
 	}
 	override public function execute(?args:Dynamic):Void 
 	{
-		
+		/*
 		function callETMAndThen(then:Void->Void) {
 			return function() {
 				function handleETM(err:Error, info:Dynamic) {
@@ -50,15 +50,22 @@ class OnFbLoginClick extends WebCommand
 		}
 		
 		var doNothing = null;
-		
+		*/
 		function closeLoginPopup() {
 			getWebManager().closePage(FBLoginPopup);
 		}
 		
 		var func:Dynamic = {
 			btn_onFbLoginClick_login: function() {
+				/*
 				var handle = callFBLoginAndThen( callFBShareAndThen( callETMAndThen( doNothing ) ));
 				handle();
+				*/
+				AsyncLogic.flow2( { mgr:getWebManager() } )(function(err:Error, result:Dynamic) {
+					if ( err != null ) {
+						trace(err);
+					}
+				});
 				closeLoginPopup();
 			},
 			btn_onFbLoginClick_no: function(){

@@ -9,11 +9,14 @@ import org.vic.web.WebManager;
  */
 class WebManagerFieldProvider implements IFieldProvider
 {
-	public function set(key:String, value:Dynamic):IWebCommand2 {
+	public function new() {
+		
+	}
+	public function set(key:String, value:Dynamic):IFieldProvider {
 		WebManager.inst.setData(key, value);
 		return this;
 	}
 	public function get(key:String):Dynamic {
-		WebManager.inst.getData(key);
+		return WebManager.inst.getData(key);
 	}
 }

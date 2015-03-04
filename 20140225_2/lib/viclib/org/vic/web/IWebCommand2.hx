@@ -14,5 +14,6 @@ interface IWebCommand2
 	function field():IFieldProvider;
 	function set(key:String, value:Dynamic):IWebCommand2;
 	function get(key:String):Dynamic;
-	function invoke( cb: IWebCommand2->Void ):Void;
+	function getOr(key:String, obj: Dynamic):Dynamic;
+	function invoke( cb: Dynamic ):Void;
 }
