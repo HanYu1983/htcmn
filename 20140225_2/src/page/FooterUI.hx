@@ -18,6 +18,7 @@ class FooterUI extends DefaultPage
 	var _back:DisplayObject;
 	var _righter:DisplayObject;
 	var _music:MovieClip;
+	var _mc_btns:DisplayObject;
 
 	public function new() 
 	{
@@ -50,8 +51,12 @@ class FooterUI extends DefaultPage
 					_righter = obj;
 				case 'mc_music':
 					_music = cast( obj, MovieClip );
+				case 'mc_btns':
+					_mc_btns = obj;
+					
 			}
 		});
+		_music.visible = false;
 		super.onOpenEvent(param, cb);
 	}
 	
