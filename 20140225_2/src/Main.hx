@@ -12,6 +12,7 @@ import cmd.ClosePage;
 import cmd.IsFBLogin;
 import cmd.OnActiveBtnClick;
 import cmd.OnFbLoginClick;
+import cmd.OnFooterBtnClick;
 import cmd.OnHeaderBtnClick;
 import cmd.OnHomeBtnClick;
 import cmd.OnIntroBtnClick;
@@ -27,6 +28,7 @@ import flash.display.StageScaleMode;
 import flash.errors.Error;
 import flash.events.Event;
 import flash.Lib;
+import flash.media.SoundMixer;
 import flash.sampler.NewObjectSample;
 import helper.ETMAPI;
 import helper.JSInterfaceHelper;
@@ -83,6 +85,7 @@ class Main
 		WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 		WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
 		WebManager.inst.addCommand( new OnDetailFormBtnClick("onDetailFormBtnClick") );
+		WebManager.inst.addCommand( new OnFooterBtnClick("onFooterBtnClick") );
 		
 		WebManager.inst.addCommand( new ChangeTechPage("ChangeTechPage") );
 		WebManager.inst.addCommand( new ClosePage("ClosePage") );
@@ -171,7 +174,7 @@ class Main
 		*/
 		
 		
-		test();
+		//test();
 	}
 	
 	private static function onResize(e: Event) {

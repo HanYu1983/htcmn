@@ -30,7 +30,10 @@ class TechUltra extends DefaultTechPage
 		var isEndAnimation = getRoot().currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
-			_targetX = local.x;
+			var isHitRegion = _mc_controller.hitTestPoint( local.x, local.y );
+			if ( isHitRegion ) {
+				_targetX = local.x;
+			}
 			moveMask( _targetX );
 		}
 	}

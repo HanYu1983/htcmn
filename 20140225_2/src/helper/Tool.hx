@@ -1,5 +1,6 @@
 package helper;
 import flash.display.DisplayObject;
+import flash.geom.Point;
 import org.vic.web.IWebView;
 import page.ActivityPopup;
 import page.ExpInfoPage;
@@ -33,14 +34,38 @@ class Tool
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
-	public static function center(obj:DisplayObject, sx:Int, sy:Int, sw: Int, sh: Int) {
-		centerX(obj, sx, sw);
-		centerY(obj, sy, sh);
+	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int) {
+		centerForceX( obj, tw, sx, sw );
+		centerForceY( obj, th, sy, sh );
 	}
-	public static function centerX(obj:DisplayObject, sx:Int, sw: Int) {
-		obj.x = sx+ (sw - obj.width) / 2;
+	
+	public static function centerForceX(obj:DisplayObject, tw:Int, sx:Int, sw: Int) {
+		obj.x = sx+ (sw - tw) / 2;
 	}
-	public static function centerY(obj:DisplayObject, sx:Int, sw: Int) {
-		obj.y = sx+ (sw - obj.height) / 2;
+	
+	public static function centerForceY(obj:DisplayObject, th:Int, sy:Int, sh: Int) {
+		obj.y = sy+ (sh - th) / 2;
+	}
+	
+	public static function center(obj:DisplayObject, sx:Float, sy:Float, sw: Float, sh: Float, wf:Float = 0.5, hf:Float = 0.5) {
+		centerX(obj, sx, sw, wf);
+		centerY(obj, sy, sh, hf);
+	}
+	
+	public static function centerX(obj:DisplayObject, sx:Float, sw: Float, f: Float = 0.5) {
+		obj.x = sx + (sw - obj.width) * f;
+	}
+	
+	public static function centerY(obj:DisplayObject, sx:Float, sw: Float, f: Float = 0.5) {
+		obj.y = sx+ (sw - obj.height) * f;
+	}
+	
+	public static function interplot( p1:Float, p2:Float, f:Float ):Float {
+		return p1 + (p2 - p1) * f;
+	}
+	
+	public static function interplotPosition( obj:DisplayObject, target:Point, f:Float ) {
+		obj.x = interplot( obj.x, target.x, f );
+		obj.y = interplot( obj.y, target.y, f );
 	}
 }

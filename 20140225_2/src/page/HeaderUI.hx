@@ -19,6 +19,7 @@ class HeaderUI extends DefaultPage
 	var _btns:DisplayObject;
 	var _bar:DisplayObject;
 	var _btn_extend:DisplayObject;
+	var _mc_overline:DisplayObject;
 	var barHeight:Int = 45;
 	
 	public function new() 
@@ -57,16 +58,20 @@ class HeaderUI extends DefaultPage
 				case 'mc_extend':
 					_btn_extend = obj;
 					_btn_extend.alpha = 0;
+				case 'mc_overline':
+					_mc_overline = obj;
 			}
 		});
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+		_btns.addEventListener( 'overline', moveOverLine );
 		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
 		getRoot().removeEventListener( Event.ENTER_FRAME, onEnterFrame );
+		_btns.removeEventListener( 'overline', moveOverLine );
 		super.onCloseEvent(cb);
 	}
 	
@@ -89,6 +94,7 @@ class HeaderUI extends DefaultPage
 	}
 	
 	var _enableAutoBar :Bool = false;
+	var _duration_outside : Int = 0;
 	public function autoBarEnable(b:Bool) {
 		_enableAutoBar = b;
 	}
@@ -96,14 +102,31 @@ class HeaderUI extends DefaultPage
 	function onEnterFrame(e: Event) {
 		if ( !_enableAutoBar )
 			return;
-			
+		
+		var delayFrame = 30;
 		var isEnterBarRegin = stage.mouseY < barHeight;
+		
 		if ( isEnterBarRegin ) {
 			extendButtonVisible(false);
 			animateShowBar(true);
+			_duration_outside = 0;
 		}else {
-			extendButtonVisible(true);
-			animateShowBar(false);
+			var shouldAnimateClose = _duration_outside > delayFrame;
+			if ( shouldAnimateClose ) {
+				extendButtonVisible(true);
+				animateShowBar(false);
+			}
+			++_duration_outside;
 		}
+	}
+	
+	function moveOverLine( e ):Void {
+		Tweener.addTween( _mc_overline, { 	x:Reflect.field( _btns, 'overX' ),
+											alpha:1,
+											//transition:'easeOutBack',
+											width:Reflect.field( _btns, 'overWidth' ),
+											time:.5 } );							
+		
+		Tweener.addTween( _mc_overline, { 	alpha:0, delay:.5, time:.5 } );
 	}
 }
