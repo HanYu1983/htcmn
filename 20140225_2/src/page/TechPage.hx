@@ -48,9 +48,14 @@ class TechPage extends DefaultPage
 	
 	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
 	{
-		super.onResize(x, y, w, h );
-		//Tool.center( getRoot(), x, y, w, h, 0.5, 0.1);
-		//centerButton( x, y, w, h );
+		if( _mc_item != null ){
+			Tool.centerForce( _mc_item, 1366, 768, x, y, w, h, .5, .7 );
+		}
+		
+		if ( _mc_back != null ) {
+			_mc_back.width = w;
+			_mc_back.height = h;
+		}
 	}
 	
 	function getBtnF():Map<BasicButton, Point> {

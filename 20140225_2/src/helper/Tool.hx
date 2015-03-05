@@ -34,17 +34,17 @@ class Tool
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
-	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int) {
-		centerForceX( obj, tw, sx, sw );
-		centerForceY( obj, th, sy, sh );
+	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int, wf:Float = 0.5, hf:Float = 0.5) {
+		centerForceX( obj, tw, sx, sw, wf );
+		centerForceY( obj, th, sy, sh, hf );
 	}
 	
-	public static function centerForceX(obj:DisplayObject, tw:Int, sx:Int, sw: Int) {
-		obj.x = sx+ (sw - tw) / 2;
+	public static function centerForceX(obj:DisplayObject, tw:Int, sx:Int, sw: Int, f: Float = 0.5) {
+		obj.x = sx+ (sw - tw) * f;
 	}
 	
-	public static function centerForceY(obj:DisplayObject, th:Int, sy:Int, sh: Int) {
-		obj.y = sy+ (sh - th) / 2;
+	public static function centerForceY(obj:DisplayObject, th:Int, sy:Int, sh: Int, f: Float = 0.5) {
+		obj.y = sy+ (sh - th) * f;
 	}
 	
 	public static function center(obj:DisplayObject, sx:Float, sy:Float, sw: Float, sh: Float, wf:Float = 0.5, hf:Float = 0.5) {

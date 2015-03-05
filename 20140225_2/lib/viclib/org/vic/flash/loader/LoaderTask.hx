@@ -64,7 +64,7 @@ class LoaderTask
 	}
 	
 	public function getObject( name:String, ?orgs:Array<Dynamic> ):Dynamic {
-		return cast( Type.createInstance( getApplicationDomain().getDefinition( name ), orgs ));
+		return cast( Type.createInstance( getApplicationDomain().getDefinition( name ), orgs == null ? [] : orgs ));
 	}
 	
 }
