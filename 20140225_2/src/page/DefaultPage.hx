@@ -37,8 +37,7 @@ class DefaultPage extends WebView implements IResize
 		});
 		
 		SimpleController.onPageOpen( getWebManager(), this );
-		
-		getWebManager().execute("onResize");
+		SimpleController.onResize( getWebManager() );
 	}
 	
 	public function suggestionEnableAutoBarWhenOpen():Null<Bool> {

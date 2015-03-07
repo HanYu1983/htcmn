@@ -1,4 +1,5 @@
 package helper;
+import flash.display.Stage;
 import flash.sampler.NewObjectSample;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
@@ -19,6 +20,22 @@ class SimpleController
 		trace( msg );
 	}
 	
+	public static function onResize( mgr:WebManager ) {
+		var stage: Stage = mgr.getLayer("page").stage;
+		var stageHeight:Int = stage.stageHeight;
+		var stageWidth:Int = stage.stageWidth;
+		
+		function doResize(page:Dynamic) {
+			if ( Std.is(page, IResize)) {
+				var p:IResize = cast(page, IResize);
+				p.onResize(0, 0, stageWidth, stageHeight);
+			}
+			return true;
+		}
+		
+		var pages = mgr.getPages();
+		Lambda.foreach(pages, doResize);
+	}
 	
 	public static function onPageClose( mgr:WebManager, page: DefaultPage ) {
 		
@@ -28,6 +45,8 @@ class SimpleController
 		
 		when( thePageIs(page, TechFrame), closeAllTechPage );
 	}
+	
+	
 	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {
 		
@@ -55,6 +74,7 @@ class SimpleController
 		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
+		
 	}
 	
 	static function thePageIs( page:DefaultPage, type:Class<IWebView>):Void->Bool {

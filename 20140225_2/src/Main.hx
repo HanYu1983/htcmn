@@ -11,7 +11,6 @@ import cmd.OnIntroBtnClick;
 import cmd.OnLuckyDrawBtnClick;
 import cmd.OnDetailFormBtnClick;
 import cmd.OnMessageBtnClick;
-import cmd.OnResize;
 import cmd.OnTechContentClick;
 import cmd.OnTechFrameBtnClick;
 import flash.accessibility.ISimpleTextSelection;
@@ -90,7 +89,6 @@ class Main
 			WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 			WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
 			WebManager.inst.addCommand( new OnTechFrameBtnClick("onTechFrameBtnClick") );
-			WebManager.inst.addCommand( new OnResize("onResize") );
 			WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 			WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 			WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
@@ -202,7 +200,7 @@ class Main
 	}
 	
 	static function onResize(e: Event) {
-		WebManager.inst.execute("onResize");
+		SimpleController.onResize( WebManager.inst );
 	}
 	static function test2() {
 

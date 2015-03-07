@@ -31,10 +31,6 @@ class DefaultTechPage extends DefaultPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		var frame = cast(getWebManager().getPage(TechFrame), TechFrame);
-		var clz = Type.getClass(this);
-		frame.animateButtonByTechPage(clz);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
