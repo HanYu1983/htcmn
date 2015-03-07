@@ -16,6 +16,7 @@ import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.errors.Error;
 import flash.events.Event;
+import flash.external.ExternalInterface;
 import flash.Lib;
 import flash.media.SoundMixer;
 import flash.net.URLLoader;
@@ -31,6 +32,7 @@ import org.han.Async;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
+import org.vic.web.IWebView;
 import view.ActivityPopup;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
@@ -41,6 +43,16 @@ import view.IntroPage;
 import view.LoadingPage;
 import view.LuckyDrawPage;
 import view.TechPage;
+import view.tech.TechBlink;
+import view.tech.TechBoom;
+import view.tech.TechCamera;
+import view.tech.TechDouble;
+import view.tech.TechDuby;
+import view.tech.TechFrame;
+import view.tech.TechPerson;
+import view.tech.TechPhoto;
+import view.tech.TechSitu;
+import view.tech.TechUltra;
 /**
  * ...
  * @author vic
@@ -57,15 +69,25 @@ class Main
 		}
 		
 		function setupEnvironment( cb:Dynamic ) {
-			JSInterfaceHelper.install();
+			try {
+				try{
+					JSInterfaceHelper.install();
+				}catch (e:Error) {
+					// ignore
+				}
+				var stage = Lib.current.stage;
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+				//stage.align = StageAlign.TOP_LEFT;
+				// 沒有這行Tweener會出現例外
+				Tweener.autoOverwrite = false;
+				WebManager.inst.init( stage );
+				cb( null, null );
+				
+			}catch (err:Error) {
+				cb( err, null );
+				
+			}
 			
-			var stage = Lib.current.stage;
-			stage.scaleMode = StageScaleMode.NO_SCALE;
-			//stage.align = StageAlign.TOP_LEFT;
-			// 沒有這行Tweener會出現例外
-			Tweener.autoOverwrite = false;
-			WebManager.inst.init( stage );
-			cb( null, null );
 		}
 		
 		function setupWebManager( cb:Dynamic ) {
@@ -115,96 +137,81 @@ class Main
 		
 			
 		function startApp( err:Error, result:Dynamic ) {
-			WebManager.inst.log("startApp");
-			WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
+			if ( err != null ) {
+				WebManager.inst.log( err.message );
+				
+			} else {
+				WebManager.inst.log("startApp");
+				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
+			}
 		}
 		
-		Async.series(
-			[
-				setupEnvironment,
-				setupWebManager,
-				loadConfig,
-				loadSwf,
-				AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
-				AppAPI.openPage( { mgr:WebManager.inst, page:IntroPage, params: null } ),
-				AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } )
-			]
-			, startApp );
-		
-		
-		
-		
-		/*
-		BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
-			openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
-		});
-		*/
-		
-		//test fb
-		/*
-		JSInterfaceHelper.callJs( WebManager.inst, 'isFBLogin', [], function(info:Dynamic) {
-			trace(info);
-			var err = info[0];
-			var success = info[1];
-		});
-		JSInterfaceHelper.callJs( WebManager.inst, 'loginFB', [], function(info:Dynamic) {
-			trace(info);
-			var err = info[0];
-			var success = info[1];
-		});
-		JSInterfaceHelper.callJs( WebManager.inst, 'shareFB', [], function(info:Dynamic) {
-			trace(info);
-			var err = info[0];
-			var success = info[1];
-		});
-		*/
-		
-		
-		/*
-		WebManager.inst.addWebListener('callFromHtml', function( params ) {
-			trace("callFromHtmlcallFromHtml***");
-			trace(params);
-		});
-		
-		WebManager.inst.callWeb('callFromFlash', { id:32413, method: 'loginFB', params:[] } );
-		*/
-		//test router
-		/*
-		WebManager.inst.addWebListener( 'router', function( val ) {
-			WebManager.inst.callWeb( 'console.log', { fromJs:val } );
-			switch( val ) {
-				case 'index':
-					BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
-						openPageSeries([HeaderUI, IntroPage, FooterUI], finishLoad)();
-					});
-				case 'tech':
-					BasicUtils.loadSwf( WebManager.inst, {name:'Preload', path:'src/Preload.swf' }, false, function(){
-						openPageSeries([HeaderUI, TechPage, FooterUI], finishLoad)();
-					});
+		function startWith( p:Class<IWebView> ) {
+			
+			function PreloadTechFrameIfNeeded() {
+				return switch( p ) {
+						case 
+							TechBlink |
+							TechBoom |
+							TechCamera |
+							TechDouble |
+							TechDuby |
+							TechFrame |
+							TechPerson |
+							TechPhoto |
+							TechSitu |
+							TechUltra:
+							AppAPI.openPage( { mgr:WebManager.inst, page:TechFrame, params: null } );
+							
+						case _:
+							function( cb:Dynamic ) {
+								cb( null, null );
+							};
+				}
 			}
-		});
+			
+			Async.series(
+				[
+					setupEnvironment,
+					setupWebManager,
+					loadConfig,
+					loadSwf,
+					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
+					PreloadTechFrameIfNeeded(),
+					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } ),
+					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } )
+				]
+				, startApp );
+		}
 		
-		WebManager.inst.addWebListener( 'jsCallFlash', function( val ) {
-			WebManager.inst.callWeb( 'console.log', {fromJs:val } );
-		});
-		WebManager.inst.callWeb( 'flashReady', {} );
-		WebManager.inst.callWeb( 'flashCallJs', {abc:'abc' } );
-		*/
-		
-		
-		//test();
-		//test2();
+		try {
+			ExternalInterface.addCallback( 'router', function(val) {
+				var page : Class<IWebView> = switch( val ) {
+					case 'TechPage': TechPage;
+					case 'TechBlink': TechBlink;
+					case 'TechBoom': TechBoom;
+					case 'TechCamera': TechCamera;
+					case 'TechDouble': TechDouble;
+					case 'TechDuby': TechDuby;
+					case 'TechFrame': TechFrame;
+					case 'TechPerson': TechPerson;
+					case 'TechPhoto': TechPhoto;
+					case 'TechSitu': TechSitu;
+					case 'TechUltra': TechUltra;
+					case _: IntroPage;
+				}
+				startWith( page );
+			});
+			
+			ExternalInterface.call( 'flashReady', null );
+			
+		}catch ( e:Error ) { 
+			// means not in web
+			startWith( IntroPage );
+		}
 	}
 	
 	static function onResize(e: Event) {
 		SimpleController.onResize( WebManager.inst );
 	}
-	static function test2() {
-
-		AppAPI.flow1( { mgr:WebManager.inst } )(function(err:Error, result:Dynamic) {
-			trace(err);
-		});
-		
-	}
-	
 }
