@@ -141,9 +141,11 @@ class WebManager
 	public function execute( cn:String, ?org:Dynamic ):Void {
 		if ( _ary_command.exists( cn )) {
 			_ary_command.get( cn ).execute( org );
-		}else { /*trace( 'does not have the name of command, name: ', cn );*/ }
+		}else { 
+			log( 'does not have the name of command, name: '+cn );
+		}
 	}
-	
+	/*
 	public function callWeb( fn:String, ?org:Dynamic ):Dynamic {
 		try {
 			//trace( 'call web: ' + fn );
@@ -156,5 +158,9 @@ class WebManager
 			//trace( 'addListener: ' + fn );
 			ExternalInterface.addCallback( fn, func );
 		}catch ( e:Error ) { }
+	}
+	*/
+	public dynamic function log( msg:Dynamic ) {
+		trace( msg );
 	}
 }
