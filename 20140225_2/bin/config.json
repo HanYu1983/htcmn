@@ -2,14 +2,36 @@
 	"version":"xxxxx",
 	"moviePage":{
 		"list":[
-			"29odTRdULfI",
-			"05-c-iy-WnY",
-			"29odTRdULfI",
-			"05-c-iy-WnY",
-			"29odTRdULfI",
-			"05-c-iy-WnY",
-			"29odTRdULfI",
-			"05-c-iy-WnY"
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片1",
+				"img":"images/movie/003.jpg"
+			},
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片2",
+				"img":"images/movie/004.jpg"
+			},
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片3",
+				"img":"images/movie/005.jpg"
+			},
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片1",
+				"img":"images/movie/006.jpg"
+			},
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片2",
+				"img":"images/movie/007.jpg"
+			},
+			{
+				"id":"29odTRdULfI",
+				"name":"測試影片3",
+				"img":"images/movie/003.jpg"
+			}
 		]
 	}
 }

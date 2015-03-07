@@ -10,6 +10,7 @@ import control.OnIntroBtnClick;
 import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
+import control.OnMovieBtnClick;
 import control.OnTechFrameBtnClick;
 import flash.accessibility.ISimpleTextSelection;
 import flash.display.StageAlign;
@@ -114,6 +115,7 @@ class Main
 			WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
 			WebManager.inst.addCommand( new OnDetailFormBtnClick("onDetailFormBtnClick") );
 			WebManager.inst.addCommand( new OnFooterBtnClick("onFooterBtnClick") );
+			WebManager.inst.addCommand( new OnMovieBtnClick("onMovieBtnClick") );
 			
 			cb( null, null );
 		}
@@ -144,6 +146,8 @@ class Main
 			} else {
 				WebManager.inst.log("startApp");
 				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
+				
+				//AppAPI.openPage( { mgr:WebManager.inst, page:LuckyDrawPage, params: null } ) (null);
 			}
 		}
 		
