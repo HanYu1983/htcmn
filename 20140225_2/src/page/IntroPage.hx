@@ -1,5 +1,6 @@
 package page;
 
+import flash.media.SoundMixer;
 import helper.IResize;
 import org.vic.web.WebView;
 
@@ -15,6 +16,13 @@ class IntroPage extends DefaultPage
 		super();
 		needLoading = true;
 		layerName = 'page';
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		super.onCloseEvent(cb);
+		
+		SoundMixer.stopAll();
 	}
 	
 	override function getSwfInfo():Dynamic 
