@@ -66,12 +66,14 @@ class Async {
 	public static function series( list:Array<Dynamic>, complete:Dynamic ) {
 		function doOneByOne( list:Array<Dynamic> ) {
 			if ( list.length == 0 ) {
-				complete( null, null );
+				if( complete != null )
+					complete( null, null );
 			} else {
 				var fn = list.shift();
 				fn(function(err:Error, data:Dynamic) {
 					if ( err != null ) {
-						complete(err, null);
+						if( complete != null )
+							complete(err, null);
 					}else {
 						doOneByOne( list );
 					}
@@ -84,12 +86,14 @@ class Async {
 	public static function waterfall( list:Array<Dynamic>, complete:Dynamic, ?first:Dynamic ) {
 		function doOneByOne( list:Array<Dynamic>, result:Dynamic ) {
 			if ( list.length == 0 ) {
-				complete( null, result );
+				if( complete != null )
+					complete( null, result );
 			} else {
 				var fn = list.shift();
 				fn(result)(function(err:Error, data:Dynamic) {
 					if ( err != null ) {
-						complete(err, null);
+						if( complete != null )
+							complete(err, null);
 					}else {
 						doOneByOne( list, data );
 					}
