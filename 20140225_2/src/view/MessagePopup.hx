@@ -10,14 +10,10 @@ class MessagePopup extends DefaultPage
 	{
 		super();
 		layerName = "popup";
-		createDebugButton("btn_onMessageBtnClick_confirm", 0, 0 );
-		createDebugButton("btn_onMessageBtnClick_cancel", 0, 20 );
 	}
 	
-	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
+	override function getRootInfo():Dynamic 
 	{
-		super.onOpenEvent(param, cb);
-		var msg:String = Reflect.field(param, "msg");
+		return {name:'Preload', path:'ThanksPopup' };
 	}
-	
 }

@@ -1,5 +1,6 @@
 package view.fb;
 import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
 import flash.text.TextField;
 import org.vic.utils.BasicUtils;
 import view.DefaultPage;
@@ -124,13 +125,13 @@ class DetailFromPopup extends DefaultPage
 		var id = Math.floor(x) + "_" +  Math.floor(y);
 		if ( mark.exists(id) ) {
 			var obj = mark.get(id);
-			getRoot().removeChild(obj);
+			cast( _mc_popup, DisplayObjectContainer ).removeChild(obj);
 			mark.remove(id);
 		}else {
 			var obj = cloneOkMark();
 			obj.x = x;
 			obj.y = y;
-			getRoot().addChild(obj);
+			cast( _mc_popup, DisplayObjectContainer ).addChild(obj);
 			mark.set(id, obj);
 		}
 		var count:Int = 0;
@@ -148,12 +149,7 @@ class DetailFromPopup extends DefaultPage
 		_mc_circle.x = x;
 		_mc_circle.y = y;
 	}
-	/*
-	override function getSwfInfo():Dynamic 
-	{
-		return {name:'Detail', path:'src/Detail.swf' };
-	}
-	*/
+	
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Preload', path:'Detail' };

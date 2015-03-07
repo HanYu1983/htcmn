@@ -15,12 +15,12 @@ class ProductPage extends DefaultPage
 	}
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'Product', path:'src/Product.swf' };
+		return {name:'ProductPage', path:'src/ProductPage.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'Product', path:'Product' };
+		return {name:'ProductPage', path:'ProductPage' };
 	}
 	
 	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 

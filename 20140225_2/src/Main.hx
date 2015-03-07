@@ -40,6 +40,7 @@ import org.vic.web.WebManager;
 import view.IntroPage;
 import view.LoadingPage;
 import view.LuckyDrawPage;
+import view.MessagePopup;
 import view.TechPage;
 /**
  * ...
@@ -127,10 +128,10 @@ class Main
 				loadSwf,
 				AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 				AppAPI.openPage( { mgr:WebManager.inst, page:IntroPage, params: null } ),
-				AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } )
+				AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
+				AppAPI.openPage( { mgr:WebManager.inst, page:LuckyDrawPage, params: null } )
 			]
 			, startApp );
-		
 		
 		
 		

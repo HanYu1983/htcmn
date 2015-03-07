@@ -37,9 +37,11 @@ class OnLuckyDrawBtnClick extends WebCommand
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
 				AppAPI.openPage( { mgr:getWebManager(), page: MessagePopup, params: null } ) (null);
-		
 			},
 			btn_onLuckyDrawBtnClick_cancel: function() {
+				closePopop();
+			},
+			btn_onLuckyDrawBtnClick_no: function() {
 				closePopop();
 			}
 		}

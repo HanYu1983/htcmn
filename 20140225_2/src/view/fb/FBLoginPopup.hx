@@ -15,12 +15,7 @@ class FBLoginPopup extends DefaultPage
 		layerName = "popup";
 		
 	}
-	/*
-	override function getSwfInfo():Dynamic 
-	{
-		return {name:'LoginPopup', path:'src/LoginPopup.swf' };
-	}
-	*/
+	
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Preload', path:'LoginPopup' };
