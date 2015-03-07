@@ -153,7 +153,7 @@ class Main
 		
 		function startWith( p:Class<IWebView> ) {
 			
-			function PreloadTechFrameIfNeeded() {
+			function OpenTechFrameIfNeeded() {
 				return switch( p ) {
 						case 
 							TechBlink |
@@ -182,7 +182,7 @@ class Main
 					loadConfig,
 					loadSwf,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
-					PreloadTechFrameIfNeeded(),
+					OpenTechFrameIfNeeded(),
 					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } )
 				]
