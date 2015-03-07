@@ -20,7 +20,7 @@ class MapFieldProvider implements IFieldProvider {
  
 class WebCommand2 implements IWebCommand2
 {
-	var _field:IFieldProvider;
+	var _field:IFieldProvider = new MapFieldProvider();
 	
 	public function setField(field:IFieldProvider):Void {
 		_field = field;

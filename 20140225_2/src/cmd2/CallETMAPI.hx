@@ -3,6 +3,7 @@ package cmd2;
 import helper.ETMAPI;
 import helper.WebManagerFieldProvider;
 import org.vic.web.WebCommand2;
+import org.vic.web.WebManager;
 
 /**
  * ...
@@ -10,17 +11,15 @@ import org.vic.web.WebCommand2;
  */
 class CallETMAPI extends WebCommand2
 {
-
-	public function new() 
-	{
-		setField( new WebManagerFieldProvider() );
-	}
 	
 	override function executeImpl(cb:Dynamic):Void 
 	{
-		require(["cmd"]);
+		require(["mgr", "cmd"]);
 		
-		switch(get("cmd")) {
+		var mgr:WebManager = get("mgr");
+		var cmd:String = get("cmd") ;
+		
+		switch(cmd) {
 			case "isEnterInfo":
 				{
 					require(["fbid", "email"]);
@@ -37,7 +36,7 @@ class CallETMAPI extends WebCommand2
 							var isWritten = Reflect.field( data, "status" ) == 1;
 							var token = Reflect.field( data, "token" );
 							
-							set("etmToken", token);
+							mgr.setData("etmToken", token);
 							cb( null, isWritten );
 						}
 					});
