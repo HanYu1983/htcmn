@@ -2,6 +2,9 @@ package cmd;
 
 import flash.display.DisplayObject;
 import flash.errors.Error;
+import helper.AppAPI;
+import helper.ETMAPI;
+import org.han.Async;
 import org.vic.web.WebCommand;
 import page.fb.DetailFromPopup;
 import page.MessagePopup;
@@ -22,45 +25,45 @@ class OnDetailFormBtnClick extends WebCommand
 	{
 		super.execute(args);
 		
-		function closeDetailPopop() {
-			getWebManager().closePage(DetailFromPopup);
-		}
+		var closeDetailPopop = AppAPI.closePage( { mgr: getWebManager(), page: DetailFromPopup } );
 		
 		var target:DisplayObject = args[1];
 		var targetPage:String = args[1].name;
-		//trace(targetPage);
-		
-		//trace(target.x +"," +target.y );
-		
+
 		var func:Dynamic = {
 			btn_onDetailFormBtnClick_defalutCancel: function() {
-				closeDetailPopop();
+				closeDetailPopop (null);
 			},
 			btn_onDetailFormBtnClick_cancel: function() {
-				closeDetailPopop();
+				closeDetailPopop (null);
 			},
 			btn_onDetailFormBtnClick_cancel2:function() {
-				closeDetailPopop();
+				closeDetailPopop (null);
 			},
 			btn_onDetailFormBtnClick_confirm: function() {
-				
-				var form:DetailFromPopup = cast(getWebManager().getPage(DetailFromPopup), DetailFromPopup);
-				form.applyData();
-				
-				var params = {
-					cmd: 'enterInfo'
-				};
-				function handle(err:String, success:Bool) {
-					if ( err != null ) {
-						return;
-					}
-					if ( success ) {
-						getWebManager().closePage(DetailFromPopup);
-					} else {
-						
-					}
+
+				function applyData( cb:Dynamic ) {
+					var form:DetailFromPopup = cast(getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+					form.applyData();
+					cb( null, null );
 				}
-				getWebManager().execute("CallETMAPI", [params, handle] );
+				
+				Async.series([
+					applyData,
+					ETMAPI.enterInfo(
+						{
+							token : getWebManager().getData("etmToken"),
+							name : getWebManager().getData("name"),
+							email : getWebManager().getData("email"),
+							gender : getWebManager().getData("gender"),
+							mobile : getWebManager().getData("mobile"),
+							is_read_policy : getWebManager().getData("is_read_policy"),
+							is_agree_personal_info : getWebManager().getData("is_agree_personal_info"),
+							is_accept_notice : getWebManager().getData("is_accept_notice")
+						}
+					),
+					closeDetailPopop
+				], null );
 			},
 			btn_onDetailFormBtnClick_boy: function() {
 				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);

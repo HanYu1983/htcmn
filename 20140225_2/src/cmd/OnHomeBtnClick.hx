@@ -1,5 +1,9 @@
 package cmd;
 
+import flash.errors.Error;
+import flash.sampler.NewObjectSample;
+import helper.AppAPI;
+import org.vic.web.IWebView;
 import org.vic.web.WebCommand;
 import page.tech.TechBlink;
 import page.tech.TechBoom;
@@ -28,42 +32,98 @@ class OnHomeBtnClick extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		super.execute(args);
-		//trace(args[1].name);
-		
-		
-		function thenOpen(clz:Class<Dynamic>) {
-			return function() {
-				this.getWebManager().execute("ChangeTechPage", clz);
+
+		function thenOpen(clz:Class<IWebView>) {
+			return function(err:Error, result:Dynamic) {
+				if ( err != null ) {
+					getWebManager().log(err.message);
+				} else {
+					AppAPI.changeTechPage( { mgr:getWebManager(), page: clz, params: null } ) (null);
+				}
 			}
 		}
 		
 		var goto:Dynamic = {
 			btn_onHomeBtnClick_Double: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechDouble)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechDouble));
 			},
 			btn_onHomeBtnClick_Duby: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechDuby)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechDuby));
 			},
 			btn_onHomeBtnClick_Ultra: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechUltra)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechUltra));
 			},
 			btn_onHomeBtnClick_Camera: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechCamera)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechCamera));
 			},
 			btn_onHomeBtnClick_person: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechPerson)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechPerson));
 			},
 			btn_onHomeBtnClick_situ: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechSitu)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechSitu));
 			},
 			btn_onHomeBtnClick_blink: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechBlink)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechBlink));
 			},
 			btn_onHomeBtnClick_photo: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechPhoto)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechPhoto));
 			},
 			btn_onHomeBtnClick_boom: function() {
-				this.getWebManager().execute("ChangePage", [TechFrame, null, thenOpen(TechBoom)]);
+				AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechBoom));
 			}
 		}
 		var targetPage:String = args[1].name;

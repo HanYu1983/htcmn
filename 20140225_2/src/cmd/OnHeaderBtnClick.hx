@@ -1,4 +1,5 @@
 package cmd;
+import helper.AppAPI;
 import org.vic.web.WebCommand;
 import page.ActivityPopup;
 import page.ExpInfoPage;
@@ -29,31 +30,31 @@ class OnHeaderBtnClick extends WebCommand
 		
 		var goto:Dynamic = {
 			btn_onHeaderBtnClick_home: function() {
-				this.getWebManager().execute("ChangePage", IntroPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: IntroPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_tech: function(){
-				this.getWebManager().execute("ChangePage", TechPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: TechPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_movie: function(){
-				this.getWebManager().execute("ChangePage", MoviePage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: MoviePage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_active: function(){
-				this.getWebManager().execute("OpenPopup", ActivityPopup);
+				AppAPI.openPage( { mgr:this.getWebManager(), page: ActivityPopup, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Spec: function(){
-				this.getWebManager().execute("ChangePage", SpecPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: SpecPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Relative: function(){
-				this.getWebManager().execute("ChangePage", RelativePage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_ExpInfo: function(){
-				this.getWebManager().execute("ChangePage", ExpInfoPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: ExpInfoPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Sell: function(){
-				this.getWebManager().execute("ChangePage", SellPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: SellPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Product: function(){
-				this.getWebManager().execute("ChangePage", ProductPage);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

@@ -15,6 +15,20 @@ import page.tech.TechFrame;
  */
 class SimpleController
 {
+	public static function onLog(msg:Dynamic) {
+		trace( msg );
+	}
+	
+	
+	public static function onPageClose( mgr:WebManager, page: DefaultPage ) {
+		
+		function closeAllTechPage() {
+			AppAPI.closeAllTechPage( { mgr:mgr } ) (null);
+		}
+		
+		when( thePageIs(page, TechFrame), closeAllTechPage );
+	}
+	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {
 		
 		function handleHeaderAndFooterAnimation() {
@@ -39,17 +53,19 @@ class SimpleController
 			frame.animateButtonByTechPage(clz);
 		}
 		
-		function isTechPage():Bool {
-			return Std.is(page, DefaultTechPage);
-		}
-		
-		function when( fn:Void->Bool, fn2: Void->Void ) {
-			if ( fn() ) {
-				fn2();
-			}
-		}
-		
 		handleHeaderAndFooterAnimation();
-		when( isTechPage, handleRighterAnimation );
+		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
+	}
+	
+	static function thePageIs( page:DefaultPage, type:Class<IWebView>):Void->Bool {
+		return function() {
+			return Std.is(page, type);
+		}
+	}
+	
+	static function when( fn:Void->Bool, fn2: Void->Void ) {
+		if ( fn() ) {
+			fn2();
+		}
 	}
 }

@@ -47,6 +47,7 @@ class DefaultPage extends WebView implements IResize
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
+		SimpleController.onPageClose( getWebManager(), this );
 		super.onCloseEvent(cb);
 	}
 	

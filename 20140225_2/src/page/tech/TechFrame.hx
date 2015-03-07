@@ -1,6 +1,7 @@
 package page.tech;
 
 import flash.errors.Error;
+import helper.AppAPI;
 import helper.IResize;
 import helper.TechFramePage;
 import helper.Tool;
@@ -116,16 +117,6 @@ class TechFrame extends DefaultPage
 		btns =  Lambda.map( disableBtnNames, getButton );
 		Lambda.foreach( btns, enable( false ) );
 		Lambda.foreach( btns, alpha(0.3) );
-	}
-	
-	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
-	{
-		super.onOpenEvent(param, cb);
-	}
-	
-	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
-		getWebManager().execute("CloseAllTechPage");
 	}
 	
 	override function getSwfInfo():Dynamic 

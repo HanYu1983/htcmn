@@ -1,5 +1,6 @@
 package cmd;
 
+import helper.AppAPI;
 import org.vic.web.WebCommand;
 import page.ActivityPopup;
 
@@ -18,6 +19,10 @@ class OnActiveBtnClick extends WebCommand
 	override public function execute(?args:Dynamic):Void 
 	{
 		super.execute(args);
-		getWebManager().execute("ClosePage", ActivityPopup );
+		AppAPI.closePage( {
+			mgr:getWebManager(),
+			page: ActivityPopup,
+		
+		}) (null);
 	}
 }

@@ -1,5 +1,6 @@
 package cmd;
 
+import helper.AppAPI;
 import org.vic.web.WebCommand;
 import page.fb.DetailFromPopup;
 import page.MessagePopup;
@@ -27,8 +28,15 @@ class OnMessageBtnClick extends WebCommand
 		
 		var func:Dynamic = {
 			btn_onMessageBtnClick_confirm: function() {
-				getWebManager().execute("OpenPopup", [DetailFromPopup, {}, null]);
+				AppAPI.openPage( {
+					mgr:getWebManager(),
+					page: DetailFromPopup,
+					params: null
+					
+				} ) (null);
+				
 				closeMessagePopop();
+				
 			},
 			btn_onMessageBtnClick_cancel: function() {
 				closeMessagePopop();

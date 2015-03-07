@@ -1,4 +1,5 @@
 package cmd;
+import helper.AppAPI;
 import org.vic.web.WebCommand;
 import page.TechPage;
 
@@ -11,7 +12,13 @@ class OnIntroBtnClick extends WebCommand
 
 	override public function execute(?args:Dynamic):Void 
 	{
-		getWebManager().execute("ChangePage", TechPage);
+		AppAPI.changePage( 
+					{ 
+						mgr:this.getWebManager(), 
+						page: TechPage, 
+						params: { } 
+						
+					}) (null);
 	}
 	
 }

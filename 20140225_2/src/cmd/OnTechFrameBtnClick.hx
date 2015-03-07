@@ -1,4 +1,5 @@
 package cmd;
+import helper.AppAPI;
 import org.vic.web.WebCommand;
 import page.LuckyDrawPage;
 import page.tech.TechBlink;
@@ -29,34 +30,39 @@ class OnTechFrameBtnClick extends WebCommand
 		super.execute(args);
 		var goto:Dynamic = {
 			btn_onTechFrameBtnClick_Double: function() {
-				this.getWebManager().execute("ChangeTechPage", TechDouble);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechDouble, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_Duby: function() {
-				this.getWebManager().execute("ChangeTechPage", TechDuby);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechDuby, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_Ultra: function() {
-				this.getWebManager().execute("ChangeTechPage", TechUltra);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechUltra, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_Camera: function() {
-				this.getWebManager().execute("ChangeTechPage", TechCamera);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechCamera, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_blink: function() {
-				this.getWebManager().execute("ChangeTechPage", TechBlink);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechBlink, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_boom: function() {
-				this.getWebManager().execute("ChangeTechPage", TechBoom);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechBoom, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_person: function() {
-				this.getWebManager().execute("ChangeTechPage", TechPerson);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechPerson, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_photo: function() {
-				this.getWebManager().execute("ChangeTechPage", TechPhoto);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechPhoto, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_situ: function() {
-				this.getWebManager().execute("ChangeTechPage", TechSitu);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechSitu, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_share: function() {
-				this.getWebManager().execute("OpenPopup", LuckyDrawPage);
+				AppAPI.openPage( {
+					mgr: getWebManager(),
+					page: LuckyDrawPage,
+					params: null
+					
+				}) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

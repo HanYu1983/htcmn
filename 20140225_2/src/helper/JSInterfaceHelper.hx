@@ -1,4 +1,6 @@
 package helper;
+import flash.errors.Error;
+import flash.external.ExternalInterface;
 import org.vic.web.WebManager;
 
 /**
@@ -19,13 +21,22 @@ class JSInterfaceHelper
 	
 	static var cbid: UInt = 0;
 	
-	public static function install(mgr:WebManager) {
-		mgr.addWebListener('callFromHtml', onCallFromHtml);
+	public static function install() {
+		try {
+			ExternalInterface.addCallback( 'callFromHtml', onCallFromHtml );
+		}catch ( e:Error ) {
+			trace(e.message);
+		}
 	}
 	
-	public static function callJs(mgr:WebManager, method:String, params:Array<Dynamic>, cb:Dynamic->Void) {
+	public static function callJs(method:String, params:Array<Dynamic>, cb:Dynamic->Void) {
 		var randomId = cbid ++;
 		callbackPool.set( randomId+"", cb );
-		mgr.callWeb('callFromFlash', { id:randomId, method: method, params:params } );
+		try {
+			return ExternalInterface.call( 'callFromFlash', { id:randomId, method: method, params:params } );
+		}catch ( e:Error ) {
+			trace(e.message);
+			return;
+		}
 	}
 }

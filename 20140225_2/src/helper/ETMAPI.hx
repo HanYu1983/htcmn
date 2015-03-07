@@ -1,4 +1,5 @@
 package helper;
+import flash.errors.Error;
 import haxe.Http;
 import haxe.Json;
 
@@ -8,20 +9,27 @@ import haxe.Json;
  */
 class ETMAPI
 {
-	public static function isEnterInfo( fbid:String, fbemail:String, cb: Dynamic ) {
-		var http = new Http("isEnterInfo.php");
-		http.setParameter("fb_id", fbid);
-		http.setParameter("fb_email", fbemail);
-		http.onData = function(data:String) {
-			cb( null, Json.parse(data) );
+	
+	/**
+	 * 
+	 * callback: Error, Json Object
+	 */
+	public static function isEnterInfo( params: { fbid:String, email:String } ):Dynamic {
+		return function(cb:Dynamic) {
+			var fbid = params.fbid;
+			var fbemail = params.email;		
+			var http = new Http("isEnterInfo.php");
+			http.setParameter("fb_id", fbid);
+			http.setParameter("fb_email", fbemail);
+			http.onData = function(data:String) {
+				cb( null, Json.parse(data) );
+			}
+			http.onError = function( err:String ) {
+				cb( new Error(err), null );
+			}
+			http.request();
 		}
-		http.onError = function( err:String ) {
-			cb( err, null );
-		}
-		http.request();
 	}
-	
-	
 	/**
 	 * token:<input id="token" name="token" type="text" size="100">由 isEnterInfo.php 取得的 token 值<br>
 name:<input id="name" name="name" type="text">姓名<br>
@@ -35,7 +43,9 @@ is_accept_notice:<input id="is_accept_notice" name="is_accept_notice" type="text
 	 * @param	info
 	 * @param	cb
 	 */
-	public static function enterInfo( 
+
+	 
+	 public static function enterInfo(
 		params: {
 			token : String,
 			name : String,
@@ -45,27 +55,28 @@ is_accept_notice:<input id="is_accept_notice" name="is_accept_notice" type="text
 			is_read_policy : String,
 			is_agree_personal_info : String,
 			is_accept_notice : String
-		}, 
-		cb: Dynamic )
+		}):Dynamic
 	{
-		var http = new Http("enterInfo.php");
+		return function(cb:Dynamic) {
+			var http = new Http("enterInfo.php");
 		
-		http.setParameter("token", params.token);
-		http.setParameter("name", params.name);
-		http.setParameter("email", params.email);
-		http.setParameter("gender", params.gender);
-		http.setParameter("mobile", params.mobile);
-		http.setParameter("is_read_policy", params.is_read_policy);
-		http.setParameter("is_agree_personal_info", params.is_agree_personal_info);
-		http.setParameter("is_accept_notice", params.is_accept_notice);
-		
-		http.onData = function(data:String) {
-			cb( null, Json.parse(data) );
+			http.setParameter("token", params.token);
+			http.setParameter("name", params.name);
+			http.setParameter("email", params.email);
+			http.setParameter("gender", params.gender);
+			http.setParameter("mobile", params.mobile);
+			http.setParameter("is_read_policy", params.is_read_policy);
+			http.setParameter("is_agree_personal_info", params.is_agree_personal_info);
+			http.setParameter("is_accept_notice", params.is_accept_notice);
+			
+			http.onData = function(data:String) {
+				cb( null, Json.parse(data) );
+			}
+			http.onError = function( err:String ) {
+				cb( new Error(err), null );
+			}
+			http.request();
 		}
-		http.onError = function( err:String ) {
-			cb( err, null );
-		}
-		http.request();
 	}
 	
 }
