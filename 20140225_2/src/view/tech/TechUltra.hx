@@ -28,6 +28,8 @@ class TechUltra extends DefaultTechPage
 	function onEnterFrame(e: Event) {
 		if (_mc_controller == null)
 			return;
+		if ( _mc_htc == null )
+			return;
 		var isEndAnimation = getRoot().currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );

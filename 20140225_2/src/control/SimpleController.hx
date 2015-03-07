@@ -1,5 +1,7 @@
 package control;
 import flash.display.Stage;
+import flash.errors.Error;
+import flash.external.ExternalInterface;
 import flash.sampler.NewObjectSample;
 import helper.IResize;
 import model.AppAPI;
@@ -19,7 +21,13 @@ import view.tech.TechFrame;
 class SimpleController
 {
 	public static function onLog(msg:Dynamic) {
+		#if debug
 		trace( msg );
+		try {
+			ExternalInterface.call( 'console.log', msg );
+		} catch (e:Error) {
+		}
+		#end
 	}
 	
 	public static function onResize( mgr:WebManager ) {
@@ -70,6 +78,9 @@ class SimpleController
 		
 		function handleRighterAnimation() {
 			var frame = cast(mgr.getPage(TechFrame), TechFrame);
+			if ( frame == null ) {
+				return;
+			}
 			var clz = Type.getClass(page);
 			frame.animateButtonByTechPage(clz);
 		}

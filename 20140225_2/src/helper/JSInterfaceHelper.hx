@@ -20,21 +20,17 @@ class JSInterfaceHelper
 	static var cbid: UInt = 0;
 	
 	public static function install() {
-		try {
-			ExternalInterface.addCallback( 'callFromHtml', onCallFromHtml );
-		}catch ( e:Error ) {
-			trace(e.message);
-		}
+		ExternalInterface.addCallback( 'callFromHtml', onCallFromHtml );
 	}
 	
-	public static function callJs(method:String, params:Array<Dynamic>, cb:Dynamic->Void) {
+	public static function callJs(method:String, params:Array<Dynamic>, cb:Dynamic->Void):Bool {
 		var randomId = cbid ++;
 		callbackPool.set( randomId+"", cb );
 		try {
-			return ExternalInterface.call( 'callFromFlash', { id:randomId, method: method, params:params } );
+			ExternalInterface.call( 'callFromFlash', { id:randomId, method: method, params:params } );
+			return true;
 		}catch ( e:Error ) {
-			trace(e.message);
-			return;
+			return false;
 		}
 	}
 }

@@ -12,7 +12,7 @@ class FBAPI
 
 	public static function isFBLogin( params:{} ):Dynamic {
 		return function( cb:Dynamic ) {
-			JSInterfaceHelper.callJs( 'isFBLogin', [], function(info:Dynamic) {
+			var isWeb = JSInterfaceHelper.callJs( 'isFBLogin', [], function(info:Dynamic) {
 				var err = Reflect.field(info, "0");
 				var res = Reflect.field(info, "1");
 				if ( err != null ) {
@@ -32,13 +32,17 @@ class FBAPI
 					
 				}
 			});
+			
+			if ( isWeb == false ) {
+				cb( null,  { isLogin: true, fbid: 'testfbid', accessToken: 'testtoken' } );
+			}
 		}
 	}
 	
 	
 	public static function callFBLogin( params:{} ) {
 		return function( cb:Dynamic ) {
-			JSInterfaceHelper.callJs( 'loginFB', [], function(info:Dynamic) {
+			var isWeb = JSInterfaceHelper.callJs( 'loginFB', [], function(info:Dynamic) {
 				trace( info );
 				/*
 				accessToken: "CAAKZBVOcK5KcBAEC3jzCIcWZAIniXp8pZCjfPTs2M4FzWYrF7yKcLajxPbEPT6a5EcCmHvG19pEa9csDY21cHYF5x54xLfChM1Wh7xQ8tVuiTrycYHmumNZBaIU91U3KbNxbNNvAtLWIIrJJdmB30J2tKnUN7hJaXXWpERDfcfKMvZCQT6dqHNOFHcUqSsDPWSALizuNASvHnRLpXgorhBuyytTLCP6gZD"
@@ -59,13 +63,17 @@ class FBAPI
 					cb(null, {accessToken: accessToken, fbid: fbid });
 				}
 			});
+			
+			if ( isWeb == false ) {
+				cb( null,  { fbid: 'testfbid', accessToken: 'testtoken' } );
+			}
 		}
 	}
 	
 	
 	public static function callFBShare( params:{} ) {
 		return function( cb:Dynamic ) {
-			JSInterfaceHelper.callJs( 'shareFB', [], function(info:Dynamic) {
+			var isWeb = JSInterfaceHelper.callJs( 'shareFB', [], function(info:Dynamic) {
 				var err = Reflect.field(info, "0");
 				var success = Reflect.field(info, "1");
 				if ( err != null ) {
@@ -74,12 +82,16 @@ class FBAPI
 					cb( null, {} );
 				}
 			});
+			
+			if ( isWeb == false ) {
+				cb( null, {} );
+			}
 		}
 	}
 	
 	public static function callFBMe( params: { } ) {
 		return function( cb:Dynamic ) {
-			JSInterfaceHelper.callJs( 'getMe', [], function(info:Dynamic) {
+			var isWeb = JSInterfaceHelper.callJs( 'getMe', [], function(info:Dynamic) {
 				trace(info);
 				/*
 	email: "finalfantasy388@yahoo.com.tw"
@@ -107,6 +119,10 @@ class FBAPI
 					cb(null, { name: name, email: email, gender: gender});
 				}
 			});
+			
+			if ( isWeb == false ) {
+				cb( null, { name: 'testname', email: 'test@email.com', gender: 'testgender'} );
+			}
 		}
 	}
 	

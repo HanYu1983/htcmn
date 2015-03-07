@@ -159,17 +159,8 @@ class AppAPI
 			
 			function done( err:Error, result:Dynamic ) {
 				if ( err != null ) {
-					if ( err.message == 'not login' ) {
-						AppAPI.openPage({ 
-							mgr: params.mgr, 
-							page: FBLoginPopup, 
-							params: null }
-							
-							) (cb);
-							
-					} else {
-						cb( err, null );
-					}
+					cb( err, null );
+					
 				} else {
 					AppAPI.openPage({ 
 							mgr: params.mgr, 
