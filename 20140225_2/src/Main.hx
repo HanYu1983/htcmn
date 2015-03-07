@@ -1,18 +1,16 @@
 package ;
 
 import caurina.transitions.Tweener;
-import cmd.AsyncLogic;
-import cmd.OnActiveBtnClick;
-import cmd.OnFbLoginClick;
-import cmd.OnFooterBtnClick;
-import cmd.OnHeaderBtnClick;
-import cmd.OnHomeBtnClick;
-import cmd.OnIntroBtnClick;
-import cmd.OnLuckyDrawBtnClick;
-import cmd.OnDetailFormBtnClick;
-import cmd.OnMessageBtnClick;
-import cmd.OnTechContentClick;
-import cmd.OnTechFrameBtnClick;
+import control.OnActiveBtnClick;
+import control.OnFbLoginClick;
+import control.OnFooterBtnClick;
+import control.OnHeaderBtnClick;
+import control.OnHomeBtnClick;
+import control.OnIntroBtnClick;
+import control.OnLuckyDrawBtnClick;
+import control.OnDetailFormBtnClick;
+import control.OnMessageBtnClick;
+import control.OnTechFrameBtnClick;
 import flash.accessibility.ISimpleTextSelection;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -24,25 +22,25 @@ import flash.net.URLLoader;
 import flash.sampler.NewObjectSample;
 import haxe.Http;
 import haxe.Json;
-import helper.AppAPI;
-import helper.ETMAPI;
+import model.AppAPI;
+import model.ETMAPI;
 import helper.JSInterfaceHelper;
-import helper.SimpleController;
+import control.SimpleController;
 import helper.Tool;
 import org.han.Async;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
-import page.ActivityPopup;
-import page.fb.DetailFromPopup;
-import page.fb.FBLoginPopup;
-import page.FooterUI;
-import page.HeaderUI;
+import view.ActivityPopup;
+import view.fb.DetailFromPopup;
+import view.fb.FBLoginPopup;
+import view.FooterUI;
+import view.HeaderUI;
 import org.vic.web.WebManager;
-import page.IntroPage;
-import page.LoadingPage;
-import page.LuckyDrawPage;
-import page.TechPage;
+import view.IntroPage;
+import view.LoadingPage;
+import view.LuckyDrawPage;
+import view.TechPage;
 /**
  * ...
  * @author vic
@@ -83,7 +81,6 @@ class Main
 			WebManager.inst.addLayer( 'popup' );
 			WebManager.inst.addLayer( 'loading' );
 			
-			WebManager.inst.addCommand( new OnTechContentClick("onTechContentClick") );
 			WebManager.inst.addCommand( new OnMessageBtnClick("onMessageBtnClick") );
 			WebManager.inst.addCommand( new OnHeaderBtnClick("onHeaderBtnClick") );
 			WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
@@ -204,7 +201,7 @@ class Main
 	}
 	static function test2() {
 
-		AsyncLogic.flow1( { mgr:WebManager.inst } )(function(err:Error, result:Dynamic) {
+		AppAPI.flow1( { mgr:WebManager.inst } )(function(err:Error, result:Dynamic) {
 			trace(err);
 		});
 		
