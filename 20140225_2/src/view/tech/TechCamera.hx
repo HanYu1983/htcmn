@@ -55,7 +55,8 @@ class TechCamera extends DefaultTechPage
 			}
 		});
 		_originDotX = _mc_dot.x;
-		animateForSmartPhone('other');
+		animateForSmartPhone('htc');
+		scalePhoto(0);
 	}
 	
 	var _originDotX:Float;
