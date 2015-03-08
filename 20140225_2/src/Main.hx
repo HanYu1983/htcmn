@@ -11,6 +11,7 @@ import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
+import control.OnTechDoubleBtnClick;
 import control.OnTechCameraClick;
 import control.OnTechFrameBtnClick;
 import control.OnTechUltraBtnClick;
@@ -112,6 +113,7 @@ class Main
 			WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 			WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
 			WebManager.inst.addCommand( new OnTechFrameBtnClick("onTechFrameBtnClick") );
+			WebManager.inst.addCommand( new OnTechDoubleBtnClick("onTechDoubleClick") );
 			WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 			WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 			WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
@@ -214,7 +216,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( TechCamera );
+			startWith( TechDouble );
 		}
 	}
 	
