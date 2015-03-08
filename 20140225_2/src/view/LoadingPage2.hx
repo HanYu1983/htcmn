@@ -1,0 +1,66 @@
+package view;
+import flash.display.DisplayObject;
+import flash.display.Stage;
+import flash.text.TextField;
+import org.vic.event.VicEvent;
+import org.vic.flash.loader.LoaderManager;
+import org.vic.utils.BasicUtils;
+import org.vic.web.WebView;
+
+/**
+ * ...
+ * @author han
+ */
+class LoadingPage2 extends WebView
+{
+
+	public function new() 
+	{
+		super();
+		layerName = 'loading';
+	}
+	
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
+	{
+		super.onOpenEvent(param, cb);
+		var stage: Stage = getWebManager().getLayer("page").stage;
+		var stageHeight:Int = stage.stageHeight;
+		var stageWidth:Int = stage.stageWidth;
+		onResize( 0, 0, stageWidth, stageHeight );
+		
+		getLoaderManager().addEventListener( LoaderManager.PROGRESS, onProgressLoading );
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ){
+				case 'txt_per':
+					_txt_per = cast( obj, TextField );
+			}
+		});
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		super.onCloseEvent(cb);
+		getLoaderManager().removeEventListener( LoaderManager.PROGRESS, onProgressLoading );
+	}
+	
+	private var _txt_per:TextField;
+	
+	function onProgressLoading( e:VicEvent ) {
+		_txt_per.text = Math.floor( e.data ) + '%';
+	}
+	
+	override function getSwfInfo():Dynamic 
+	{
+		return {name:'loading', path:'src/loading.swf' };
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'loading', path:'Loading' };
+	}
+	
+	public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
+		getRoot().x = w / 2;
+		getRoot().y = h / 2;
+	}
+}

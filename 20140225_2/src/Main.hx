@@ -43,8 +43,10 @@ import view.fb.FBLoginPopup;
 import view.FooterUI;
 import view.HeaderUI;
 import org.vic.web.WebManager;
+import view.HttpLoadingPage;
 import view.IntroPage;
 import view.LoadingPage;
+import view.LoadingPage2;
 import view.LuckyDrawPage;
 import view.MessagePopup;
 import view.TechPage;
@@ -98,8 +100,7 @@ class Main
 		function setupWebManager( cb:Dynamic ) {
 			
 			WebManager.inst.log = log;
-			
-			WebManager.inst.setData( 'loadingClass', LoadingPage );
+			WebManager.inst.setData( 'loadingClass', LoadingPage2 );
 			
 			WebManager.inst.addLayer( 'page' );
 			WebManager.inst.addLayer( 'techpage' );
@@ -201,7 +202,7 @@ class Main
 					case 'TechBoom': TechBoom;
 					case 'TechCamera': TechCamera;
 					case 'TechDouble': TechDouble;
-					case 'TechDuby': TechDolby;
+					case 'TechDolby': TechDolby;
 					case 'TechFrame': TechFrame;
 					case 'TechPerson': TechPerson;
 					case 'TechPhoto': TechPhoto;
@@ -216,7 +217,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( TechCamera );
+			startWith( IntroPage );
 		}
 	}
 	

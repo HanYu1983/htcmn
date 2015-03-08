@@ -5,6 +5,7 @@ import flash.external.ExternalInterface;
 import flash.media.SoundMixer;
 import flash.sampler.NewObjectSample;
 import helper.IResize;
+import helper.JSInterfaceHelper;
 import model.AppAPI;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
@@ -14,8 +15,19 @@ import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
 import view.LoadingPage;
+import view.LoadingPage2;
 import view.tech.DefaultTechPage;
+import view.tech.TechBlink;
+import view.tech.TechBoom;
+import view.tech.TechCamera;
+import view.tech.TechDolby;
+import view.tech.TechDouble;
 import view.tech.TechFrame;
+import view.tech.TechPerson;
+import view.tech.TechPhoto;
+import view.tech.TechSitu;
+import view.tech.TechUltra;
+import view.TechPage;
 
 /**
  * ...
@@ -35,7 +47,9 @@ class SimpleController
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
-			changeLoadingClass(LoadingPage) );
+			changeLoadingClass(LoadingPage2) );
+			
+
 	}
 	
 	public static function onHttpLoadingStart() {
@@ -58,11 +72,13 @@ class SimpleController
 	public static function onLog(msg:Dynamic) {
 		#if debug
 		trace( msg );
-		#else
 		try {
 			ExternalInterface.call( 'console.log', msg );
 		} catch (e:Error) {
+		
 		}
+		#else
+		
 		#end
 	}
 	
@@ -119,9 +135,38 @@ class SimpleController
 			frame.animateButtonByTechPage(clz);
 		}
 		
+		function handleChangeHash() {
+			var hash =
+				if (Std.is(page, TechPage)) {
+					"TechPage";
+				} else if (Std.is(page, TechBlink)) {
+					"TechBlink";
+				} else if (Std.is(page, TechBoom)) {
+					"TechBoom";
+				} else if (Std.is(page, TechCamera)) {
+					"TechCamera";
+				} else if (Std.is(page, TechDouble)) {
+					"TechDouble";
+				} else if (Std.is(page, TechDolby)) {
+					"TechDolby";
+				} else if (Std.is(page, TechPerson)) {
+					"TechPerson";
+				} else if (Std.is(page, TechPhoto)) {
+					"TechPhoto";
+				} else if (Std.is(page, TechSitu)) {
+					"TechSitu";
+				} else if (Std.is(page, TechUltra)) {
+					"TechUltra";
+				} else {
+					null;
+				}
+			if( hash != null )
+				JSInterfaceHelper.callJs( 'changeHash', [hash], function(info:Dynamic) {});
+		}
+		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
-		
+		handleChangeHash();
 	}
 	
 	
