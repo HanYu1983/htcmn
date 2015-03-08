@@ -25,6 +25,11 @@ class TechFrame extends DefaultPage
 		needLoading = false;
 	}
 	
+	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
+	{
+		return true;
+	}
+	
 	public function nameBelongPage(pageClz:Dynamic):String {
 		
 		switch(pageClz) {
