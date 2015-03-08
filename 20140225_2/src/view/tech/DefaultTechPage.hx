@@ -41,6 +41,9 @@ class DefaultTechPage extends DefaultPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		
+		super.onOpenEvent(param, cb);
+		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
@@ -49,8 +52,6 @@ class DefaultTechPage extends DefaultPage
 					_mc_controller = cast( obj, MovieClip );
 			}
 		});
-		
-		super.onOpenEvent(param, cb);
 		
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		_mc_item.addEventListener( 'forScript', forScript );

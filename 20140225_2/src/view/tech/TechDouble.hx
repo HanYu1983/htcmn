@@ -170,7 +170,7 @@ class TechDouble extends DefaultTechPage
 					_mc_circleMask = obj;
 				case 'mc_circleMaskBorder':
 					_mc_circleMaskBorder = obj;
-				case 'btn_onTechDoubleBtnClick_skip':
+				case 'btn_onTechDoubleClick_skip':
 					_btn_onTechDoubleBtnClick_skip = obj;
 			}
 		});
