@@ -25,7 +25,7 @@ class TechUltra extends DefaultTechPage
 	
 	override public function skipAnimation() 
 	{
-		getRoot().gotoAndPlay('forScript');
+		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
 	
 	var _targetX:Float = 0;
