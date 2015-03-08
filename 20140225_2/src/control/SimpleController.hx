@@ -13,6 +13,7 @@ import view.DefaultPage;
 import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
+import view.LoadingPage;
 import view.tech.DefaultTechPage;
 import view.tech.TechFrame;
 
@@ -22,6 +23,20 @@ import view.tech.TechFrame;
  */
 class SimpleController
 {
+	
+	public static function onPageNew( page:DefaultPage ) {
+		function changeLoadingClass( clz:Class<IWebView> ) {
+			return function() {
+				page.getWebManager().setData('loadingClass', clz);
+			}
+		}
+		
+		when( thePageIs( page, DefaultTechPage ), 
+			changeLoadingClass(LoadingPage) )
+			
+		.otherwise( 
+			changeLoadingClass(LoadingPage) );
+	}
 	
 	public static function onHttpLoadingStart() {
 		WebManager.inst.openPage( HttpLoadingPage, null );
@@ -109,6 +124,7 @@ class SimpleController
 		
 	}
 	
+	
 	static function thePageIs( page:DefaultPage, type:Class<IWebView>):Void->Bool {
 		return function() {
 			return Std.is(page, type);
@@ -118,6 +134,19 @@ class SimpleController
 	static function when( fn:Void->Bool, fn2: Void->Void ) {
 		if ( fn() ) {
 			fn2();
+			return {
+				otherwise: function( fn: Void->Void ) {
+					
+				}
+			}
+		
+		} else {
+			return {
+				otherwise: function( fn: Void->Void ) {
+					fn();
+				}
+			}
 		}
+		
 	}
 }

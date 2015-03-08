@@ -20,6 +20,7 @@ class DefaultTechPage extends DefaultPage
 	{
 		super();
 		layerName = 'techpage';
+		
 	}
 	
 	public function skipAnimation() {

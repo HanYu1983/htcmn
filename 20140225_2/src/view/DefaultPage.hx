@@ -5,6 +5,7 @@ import helper.IResize;
 import control.SimpleController;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
+import org.vic.web.IWebView;
 import org.vic.web.WebView;
 import view.tech.DefaultTechPage;
 import view.tech.TechFrame;
@@ -21,6 +22,7 @@ class DefaultPage extends WebView implements IResize
 	
 	public function new() {
 		super();
+		SimpleController.onPageNew( this );
 		needLoading = true;
 	}
 	

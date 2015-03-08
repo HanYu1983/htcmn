@@ -3,6 +3,7 @@ import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.geom.Point;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -53,10 +54,17 @@ class TechCamera extends DefaultTechPage
 					
 			}
 		});
-		
-		scalePhoto( 0.5 );
+		_originDotX = _mc_dot.x;
 		animateForSmartPhone('other');
 	}
+	
+	var _originDotX:Float;
+	
+	public function setDotPosition( v:Float ) {
+		var tx = (v-1) * _mc_bar.width +_originDotX;
+		Tweener.addTween( _mc_dot, { x: tx, time:.3 } );
+	}
+	
 	
 	var _scale = 1.0;
 	
@@ -69,6 +77,9 @@ class TechCamera extends DefaultTechPage
 		Tweener.addTween( _mc_htcPhoto, { scaleY: _scale, time:.3 } );
 		Tweener.addTween( _mc_ohterPhoto, { scaleX: _scale, time:.3 } );
 		Tweener.addTween( _mc_ohterPhoto, { scaleY: _scale, time:.3 } );
+		
+		
+		setDotPosition( _scale );
 	}
 	
 	function setHTCPhoneVisible( v:Bool ) {

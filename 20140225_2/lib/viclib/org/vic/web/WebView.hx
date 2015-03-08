@@ -294,7 +294,7 @@ class WebView extends Sprite implements IWebView
 		
 	}
 	
-	function getWebManager():WebManager {
+	public function getWebManager():WebManager {
 		return WebManager.inst;
 	}
 	
