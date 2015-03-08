@@ -51,12 +51,12 @@ class WebManager
 	}
 	
 	public function setData( k:String, v:Dynamic ):Void {
-		trace( 'set extra data, key: ' + k + ', value: ' + v );
+		log( 'set extra data, key: ' + k + ', value: ' + v );
 		_extra.set( k, v );
 	}
 	
 	public function getData( k:String ):Dynamic {
-		trace( 'get extra data, key: ' + k + ', value: ' + _extra.get( k ) );
+		log( 'get extra data, key: ' + k + ', value: ' + _extra.get( k ) );
 		return _extra.get( k );
 	}
 	
