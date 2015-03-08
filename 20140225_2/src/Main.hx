@@ -188,8 +188,9 @@ class Main
 					loadSwf,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					OpenTechFrameIfNeeded(),
-					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } ),
-					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } )
+					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
+					// 只有這頁needLoading=true, 必須要放在最後一個. 因為會動態切換loadingClass, 會導致不會關閉打開的loadingPage
+					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } )
 				]
 				, startApp );
 		}
@@ -217,7 +218,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( IntroPage );
+			startWith( TechCamera );
 		}
 	}
 	
