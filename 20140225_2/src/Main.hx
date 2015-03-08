@@ -216,7 +216,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( TechDolby );
+			startWith( TechCamera );
 		}
 	}
 	

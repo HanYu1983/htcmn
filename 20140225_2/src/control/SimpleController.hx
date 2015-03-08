@@ -2,6 +2,7 @@ package control;
 import flash.display.Stage;
 import flash.errors.Error;
 import flash.external.ExternalInterface;
+import flash.media.SoundMixer;
 import flash.sampler.NewObjectSample;
 import helper.IResize;
 import model.AppAPI;
@@ -72,7 +73,7 @@ class SimpleController
 		function closeAllTechPage() {
 			AppAPI.closeAllTechPage( { mgr:mgr } ) (null);
 		}
-		
+		SoundMixer.stopAll();
 		when( thePageIs(page, TechFrame), closeAllTechPage );
 	}
 	

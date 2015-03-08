@@ -131,6 +131,6 @@ class TechFrame extends DefaultPage
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		getRoot().x = (w - 254);
-		Tool.centerY(this, y, h);
+		Tool.centerForceY(this, 590, y, h );
 	}
 }
