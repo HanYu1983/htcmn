@@ -28,11 +28,35 @@ class OnLuckyDrawBtnClick extends WebCommand
 		
 		var func:Dynamic = {
 			btn_onLuckyDrawBtnClick_fb: function() {
-				AppAPI.flow1( { mgr:getWebManager() } )(function(err:Error, result:Dynamic) {
+				
+				SimpleController.onHttpLoadingStart();
+				
+				function openNextPage( err:Error, result:Dynamic ) {
+					SimpleController.onHttpLoadindEnd();
+					
 					if ( err != null ) {
-						getWebManager().log( err );
+						if ( err.message == 'not login' ) {
+							AppAPI.openPage({ 
+								mgr: getWebManager(), 
+								page: FBLoginPopup, 
+								params: null 
+								}) (null);
+							
+						} else {
+							SimpleController.onError(err.message);
+							
+						}
+						
+					} else {
+						AppAPI.openPage({ 
+								mgr: getWebManager(), 
+								page: DetailFromPopup, 
+								params: null
+								}) (null);
 					}
-				});
+				}
+				
+				AppAPI.flow1( { mgr:getWebManager() } )(openNextPage);
 				
 			},
 			btn_onLuckyDrawBtnClick_data: function() {

@@ -26,14 +26,22 @@ class OnFbLoginClick extends WebCommand
 		var func:Dynamic = {
 			btn_onFbLoginClick_login: function() {
 				
-				Async.parallel([
-					AppAPI.flow2( { mgr:getWebManager() } ),
-					closeLoginPopup
-				], function(err:Error, result:Dynamic) {
+				function openNextPage( err:Error, result:Dynamic ) {
+					closeLoginPopup( null );
+					
 					if ( err != null ) {
-						getWebManager().log( err.message );
+						SimpleController.onError(err.message);
+						
+					} else {
+						AppAPI.openPage({ 
+								mgr: getWebManager(), 
+								page: DetailFromPopup, 
+								params: null }
+								) (null);
 					}
-				});
+				}
+				
+				AppAPI.flow2( { mgr:getWebManager() } ) (openNextPage);
 				
 			},
 			btn_onFbLoginClick_no: function(){

@@ -42,40 +42,53 @@ class OnDetailFormBtnClick extends WebCommand
 			},
 			btn_onDetailFormBtnClick_confirm: function() {
 
-				function applyData( cb:Dynamic ) {
-					var form:DetailFromPopup = cast(getWebManager().getPage(DetailFromPopup), DetailFromPopup);
-					form.applyData();
-					cb( null, null );
+				function applyData (args:Dynamic) {
+					return function( cb:Dynamic ) {
+						var form:DetailFromPopup = cast(getWebManager().getPage(DetailFromPopup), DetailFromPopup);
+						form.applyData();
+						cb( null, null );
+					}
 				}
 				
-				Async.series([
+				SimpleController.onHttpLoadingStart();
+				
+				Async.waterfall([
 					applyData,
-					ETMAPI.enterInfo(
-						{
-							token : getWebManager().getData("etmToken"),
-							name : getWebManager().getData("name"),
-							email : getWebManager().getData("email"),
-							gender : getWebManager().getData("gender"),
-							mobile : getWebManager().getData("mobile"),
-							is_read_policy : getWebManager().getData("is_read_policy"),
-							is_agree_personal_info : getWebManager().getData("is_agree_personal_info"),
-							is_accept_notice : getWebManager().getData("is_accept_notice")
-						}
-					)
 					
-				], function( err:Error, ret:{ success: Bool, msg:String } ) {
+					function getData( args:Dynamic ) {
+						return function( cb:Dynamic ) {
+							cb( null, 
+								{
+									token : getWebManager().getData("etmToken"),
+									name : getWebManager().getData("name"),
+									email : getWebManager().getData("email"),
+									gender : getWebManager().getData("gender"),
+									mobile : getWebManager().getData("mobile"),
+									is_read_policy : getWebManager().getData("is_read_policy"),
+									is_agree_personal_info : getWebManager().getData("is_agree_personal_info"),
+									is_accept_notice : getWebManager().getData("is_accept_notice")
+								});
+						}
+					},
+					
+					ETMAPI.enterInfo
+					
+				], function handleClosePage( err:Error, ret: { success: Bool, msg:String } ) {
+					
+					SimpleController.onHttpLoadindEnd();
+					
 					if ( err != null ) {
-						getWebManager().log( err.message );
+						SimpleController.onError( err.message );
 						
 					} else {
 						if ( ret.success ) {
 							closeDetailPopop( null );
 						} else {
-							getWebManager().log( ret.msg );
+							SimpleController.onError( ret.msg );
 						}
 						
 					}
-				});
+				}, null);
 			},
 			btn_onDetailFormBtnClick_boy: function() {
 				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);

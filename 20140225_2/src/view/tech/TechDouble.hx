@@ -162,9 +162,6 @@ class TechDouble extends DefaultTechPage
 			}
 		});
 		
-		trace( _mc_circleMask );
-		trace( _mc_circleMaskBorder );
-		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
 		_mc_currentBigPhone = _mc_phoneABig;

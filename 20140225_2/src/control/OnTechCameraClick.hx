@@ -14,11 +14,11 @@ class OnTechCameraClick extends WebCommand
 		var goto:Dynamic = {
 			btn_onTechCameraClick_plus: function() {
 				var page = cast(getWebManager().getPage(TechCamera), TechCamera);
-				page.scalePhoto( 0.1 );
+				page.scalePhoto( 0.2 );
 			},
 			btn_onTechCameraClick_sub: function() {
 				var page = cast(getWebManager().getPage(TechCamera), TechCamera);
-				page.scalePhoto( -0.1 );
+				page.scalePhoto( -0.2 );
 			},
 			btn_onTechCameraClick_switch: function() {
 				var page = cast(getWebManager().getPage(TechCamera), TechCamera);
