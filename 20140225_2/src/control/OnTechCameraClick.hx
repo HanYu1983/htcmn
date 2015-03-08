@@ -23,6 +23,10 @@ class OnTechCameraClick extends WebCommand
 			btn_onTechCameraClick_switch: function() {
 				var page = cast(getWebManager().getPage(TechCamera), TechCamera);
 				page.animateForSmartPhone( page.taggleCircleButton() );
+			},
+			btn_onTechCameraClick_skip:function() {
+				var page = cast( getWebManager().getPage(TechCamera), TechCamera);
+				page.skipAnimation();
 			}
 		}
 		var targetPage:String = args[1].name;
