@@ -24,12 +24,7 @@ class TechUltra extends DefaultTechPage
 	{
 		super();
 	}
-	/*
-	override public function skipAnimation() 
-	{
-		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
-	}
-	*/
+	
 	override public function hideSkipButton() {
 		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
 	}

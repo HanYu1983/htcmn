@@ -47,7 +47,7 @@ class SimpleController
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
-			changeLoadingClass(LoadingPage) );
+			changeLoadingClass(LoadingPage2) );
 			
 	}
 	

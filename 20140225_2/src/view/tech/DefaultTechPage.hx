@@ -35,15 +35,12 @@ class DefaultTechPage extends DefaultPage
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
-			Tool.centerForceY( _mc_person, 768, y, h );
+			Tool.centerForceY( _mc_person, 768, y, h, .6 );
 		}
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		
-		super.onOpenEvent(param, cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
@@ -52,6 +49,10 @@ class DefaultTechPage extends DefaultPage
 					_mc_controller = cast( obj, MovieClip );
 			}
 		});
+		
+		super.onOpenEvent(param, cb);
+		
+		
 		
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		_mc_item.addEventListener( 'forScript', forScript );
