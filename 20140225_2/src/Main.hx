@@ -152,7 +152,6 @@ class Main
 			} else {
 				WebManager.inst.log("startApp");
 				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
-				AppAPI.openPage( { mgr:WebManager.inst, page:TechDouble, params: null } ) (null);
 			}
 		}
 		
@@ -217,7 +216,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( TechCamera );
+			startWith( TechDouble );
 		}
 	}
 	

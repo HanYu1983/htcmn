@@ -44,21 +44,27 @@ class TechDouble extends DefaultTechPage
 				gotoSideA( _mc_phoneA );
 				gotoSideA( _mc_phoneB );
 				gotoSideA( _mc_phoneC );
-				_mc_currentBigPhone.gotoAndStop( 1 );
+				_mc_phoneABig.gotoAndStop( 1 );
+				_mc_phoneBBig.gotoAndStop( 1 );
+				_mc_phoneCBig.gotoAndStop( 1 );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[0] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[0] - _mc_dot.width / 2 - 380, time:.5 } );
 			case 'b':
 				gotoSideB( _mc_phoneA );
 				gotoSideB( _mc_phoneB );
 				gotoSideB( _mc_phoneC );
-				_mc_currentBigPhone.gotoAndStop( 2 );
+				_mc_phoneABig.gotoAndStop( 2 );
+				_mc_phoneBBig.gotoAndStop( 2 );
+				_mc_phoneCBig.gotoAndStop( 2 );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[1] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[1] - _mc_dot.width / 2 - 380, time:.5 } );
 			case 'c':
 				gotoSideC( _mc_phoneA );
 				gotoSideC( _mc_phoneB );
 				gotoSideC( _mc_phoneC );
-				_mc_currentBigPhone.gotoAndStop( 3 );
+				_mc_phoneABig.gotoAndStop( 3 );
+				_mc_phoneBBig.gotoAndStop( 3 );
+				_mc_phoneCBig.gotoAndStop( 3 );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[2] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[2] - _mc_dot.width / 2 - 380, time:.5 } );
 		}
