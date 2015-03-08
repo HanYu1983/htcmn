@@ -62,7 +62,7 @@
 			TechBoom:'TechBoom',
 			TechCamera: 'TechCamera',
 			TechDouble: 'TechDouble',
-			TechDuby: 'TechDuby',
+			TechDolby: 'TechDolby',
 			TechFrame: 'TechFrame',
 			TechPerson: 'TechPerson',
 			TechPhoto: 'TechPhoto',
@@ -87,8 +87,8 @@
 		TechDouble: function(){
 			callFlashMethod( 'router', 'TechDouble' );
 		},
-		TechDuby: function(){
-			callFlashMethod( 'router', 'TechDuby' );
+		TechDolby: function(){
+			callFlashMethod( 'router', 'TechDolby' );
 		},
 		TechFrame: function(){
 			callFlashMethod( 'router', 'TechFrame' );
@@ -147,7 +147,7 @@
 	var externalObject = {}
 	
 	externalObject.changeHash = function( hash, cb ){
-		window.__router.navigator( hash, { trigger: false } )
+		window.__router.navigate( hash, { trigger: false } )
 		cb( null, null );
 	}
 	

@@ -201,7 +201,7 @@ class Main
 					case 'TechBoom': TechBoom;
 					case 'TechCamera': TechCamera;
 					case 'TechDouble': TechDouble;
-					case 'TechDuby': TechDolby;
+					case 'TechDolby': TechDolby;
 					case 'TechFrame': TechFrame;
 					case 'TechPerson': TechPerson;
 					case 'TechPhoto': TechPhoto;

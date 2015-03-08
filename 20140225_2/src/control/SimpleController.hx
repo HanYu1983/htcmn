@@ -16,8 +16,17 @@ import view.HeaderUI;
 import view.HttpLoadingPage;
 import view.LoadingPage;
 import view.tech.DefaultTechPage;
+import view.tech.TechBlink;
+import view.tech.TechBoom;
+import view.tech.TechCamera;
+import view.tech.TechDolby;
 import view.tech.TechDouble;
 import view.tech.TechFrame;
+import view.tech.TechPerson;
+import view.tech.TechPhoto;
+import view.tech.TechSitu;
+import view.tech.TechUltra;
+import view.TechPage;
 
 /**
  * ...
@@ -60,11 +69,13 @@ class SimpleController
 	public static function onLog(msg:Dynamic) {
 		#if debug
 		trace( msg );
-		#else
 		try {
 			ExternalInterface.call( 'console.log', msg );
 		} catch (e:Error) {
+		
 		}
+		#else
+		
 		#end
 	}
 	
@@ -121,19 +132,38 @@ class SimpleController
 			frame.animateButtonByTechPage(clz);
 		}
 		
-		function changeHash() {
+		function handleChangeHash() {
 			var hash =
-				if (Std.is(page, TechDouble)) {
+				if (Std.is(page, TechPage)) {
+					"TechPage";
+				} else if (Std.is(page, TechBlink)) {
+					"TechBlink";
+				} else if (Std.is(page, TechBoom)) {
+					"TechBoom";
+				} else if (Std.is(page, TechCamera)) {
+					"TechCamera";
+				} else if (Std.is(page, TechDouble)) {
 					"TechDouble";
+				} else if (Std.is(page, TechDolby)) {
+					"TechDolby";
+				} else if (Std.is(page, TechPerson)) {
+					"TechPerson";
+				} else if (Std.is(page, TechPhoto)) {
+					"TechPhoto";
+				} else if (Std.is(page, TechSitu)) {
+					"TechSitu";
+				} else if (Std.is(page, TechUltra)) {
+					"TechUltra";
 				} else {
-					"IntroPage";
+					null;
 				}
-			JSInterfaceHelper.callJs( 'changeHash', [hash], function(info:Dynamic) {});
+			if( hash != null )
+				JSInterfaceHelper.callJs( 'changeHash', [hash], function(info:Dynamic) {});
 		}
 		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
-		changeHash();
+		handleChangeHash();
 	}
 	
 	
