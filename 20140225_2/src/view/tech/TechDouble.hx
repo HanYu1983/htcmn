@@ -20,6 +20,8 @@ class TechDouble extends DefaultTechPage
 	var _mc_mask:DisplayObject;
 	var _mc_dot:DisplayObject;
 	var _mc_line:DisplayObject;
+	var _mc_circleMask:DisplayObject;
+	var _mc_circleMaskBorder:DisplayObject;
 	var _mc_phoneA:MovieClip;
 	var _mc_phoneB:MovieClip;
 	var _mc_phoneC:MovieClip;
@@ -145,8 +147,15 @@ class TechDouble extends DefaultTechPage
 					_mc_phoneBBig = cast( obj, MovieClip );
 				case 'mc_phoneCBig':
 					_mc_phoneCBig = cast( obj, MovieClip );
+				case 'mc_circleMask':
+					_mc_circleMask = obj;
+				case 'mc_circleMaskBorder':
+					_mc_circleMaskBorder = obj;
 			}
 		});
+		
+		trace( _mc_circleMask );
+		trace( _mc_circleMaskBorder );
 		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
