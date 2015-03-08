@@ -108,6 +108,8 @@
 	})
 	
 	var router = new Router();
+	window.__router = router;
+	
 	function flashReady(){
 		console.log( 'flashReady' );
 		Backbone.history.start();
@@ -143,6 +145,11 @@
 	
 	<script>
 	var externalObject = {}
+	
+	externalObject.changeHash = function( hash, cb ){
+		window.__router.navigator( hash, { trigger: false } )
+		cb( null, null );
+	}
 	
 	externalObject.getMe = function( cb ){
 		console.log('getMe');

@@ -4,6 +4,7 @@ import flash.errors.Error;
 import flash.external.ExternalInterface;
 import flash.sampler.NewObjectSample;
 import helper.IResize;
+import helper.JSInterfaceHelper;
 import model.AppAPI;
 import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
@@ -14,6 +15,7 @@ import view.HeaderUI;
 import view.HttpLoadingPage;
 import view.LoadingPage;
 import view.tech.DefaultTechPage;
+import view.tech.TechDouble;
 import view.tech.TechFrame;
 
 /**
@@ -118,9 +120,19 @@ class SimpleController
 			frame.animateButtonByTechPage(clz);
 		}
 		
+		function changeHash() {
+			var hash =
+				if (Std.is(page, TechDouble)) {
+					"TechDouble";
+				} else {
+					"IntroPage";
+				}
+			JSInterfaceHelper.callJs( 'changeHash', [hash], function(info:Dynamic) {});
+		}
+		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
-		
+		changeHash();
 	}
 	
 	
