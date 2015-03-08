@@ -28,6 +28,10 @@ class DefaultTechPage extends DefaultPage
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
 	
+	public function hideSkipButton() {
+		//over
+	}
+	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
@@ -48,11 +52,12 @@ class DefaultTechPage extends DefaultPage
 		
 		super.onOpenEvent(param, cb);
 		
-		_mc_controller.visible = false;
+		if( _mc_controller != null ) _mc_controller.visible = false;
 		_mc_item.addEventListener( 'forScript', forScript );
 	}
 	
 	function forScript( e ) {
-		_mc_controller.visible = true;
+		if ( _mc_controller != null ) _mc_controller.visible = true;
+		hideSkipButton();
 	}
 }

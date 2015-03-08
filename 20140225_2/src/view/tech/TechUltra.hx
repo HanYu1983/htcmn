@@ -19,6 +19,7 @@ class TechUltra extends DefaultTechPage
 	var _mc_htc:DisplayObject;
 	var _btn_onTechUltraBtnClick_skip:DisplayObject;
 	
+	
 	public function new() 
 	{
 		super();
@@ -30,7 +31,7 @@ class TechUltra extends DefaultTechPage
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
 	
-	public function hideSkipButton() {
+	override public function hideSkipButton() {
 		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
 	}
 	

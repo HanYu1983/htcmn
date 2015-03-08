@@ -33,10 +33,15 @@ class TechDouble extends DefaultTechPage
 	var _mc_currentPhone:MovieClip;
 	var _mc_currentBigPhone:MovieClip;
 	var _ary_dotPos:Array<Float>;
+	var _btn_onTechDoubleBtnClick_skip:DisplayObject;
 	
 	public function new() 
 	{
 		super();
+	}
+	
+	override public function hideSkipButton() {
+		Tweener.addTween( _btn_onTechDoubleBtnClick_skip, { alpha: 0, time: 1 } );
 	}
 	
 	public function changeSide( which ) {
@@ -165,6 +170,8 @@ class TechDouble extends DefaultTechPage
 					_mc_circleMask = obj;
 				case 'mc_circleMaskBorder':
 					_mc_circleMaskBorder = obj;
+				case 'btn_onTechDoubleBtnClick_skip':
+					_btn_onTechDoubleBtnClick_skip = obj;
 			}
 		});
 		
