@@ -1,5 +1,7 @@
 package org.vic.web;
 import caurina.transitions.Tweener;
+import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
 import flash.display.FrameLabel;
 import flash.display.MovieClip;
 import flash.display.Sprite;
@@ -350,5 +352,9 @@ class WebView extends Sprite implements IWebView
 	private function getRoot():MovieClip {
 		if ( _root == null )	createDebugRoot();
 		return _root;
+	}
+	
+	private function setRoot( shape: MovieClip ):Void {
+		_root = shape;
 	}
 }

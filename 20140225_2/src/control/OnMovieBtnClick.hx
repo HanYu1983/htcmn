@@ -2,6 +2,7 @@ package control;
 
 import flash.display.MovieClip;
 import org.vic.web.WebCommand;
+import view.LuckyDrawPage;
 import view.MoviePage;
 
 /**
@@ -32,7 +33,7 @@ class OnMovieBtnClick extends WebCommand
 				page.moveUp();
 			},
 			btn_onMovieBtnClick_share: function() {
-				
+				getWebManager().openPage( LuckyDrawPage, null );
 			}
 		}
 		var targetPage:String = args[1].name;

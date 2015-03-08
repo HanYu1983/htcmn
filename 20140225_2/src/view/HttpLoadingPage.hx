@@ -1,5 +1,7 @@
 package view;
 
+import flash.display.MovieClip;
+import flash.display.Shape;
 import org.vic.web.WebView;
 
 /**
@@ -8,11 +10,18 @@ import org.vic.web.WebView;
  */
 class HttpLoadingPage extends WebView
 {
+	
 
 	public function new() 
 	{
 		super();
 		layerName = 'loading';
-		createDebugRoot("loading page");
+
+		var shape = new MovieClip();
+		shape.graphics.beginFill(0, .5 );
+		shape.graphics.drawRect(0, 0, 1920, 1080 );
+		shape.graphics.endFill();
+		
+		setRoot( shape );
 	}
 }
