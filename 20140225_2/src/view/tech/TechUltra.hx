@@ -23,14 +23,13 @@ class TechUltra extends DefaultTechPage
 	public function new() 
 	{
 		super();
-		this.createDebugRoot("ultra");
 	}
-	
+	/*
 	override public function skipAnimation() 
 	{
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
-	
+	*/
 	override public function hideSkipButton() {
 		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
 	}
@@ -44,7 +43,7 @@ class TechUltra extends DefaultTechPage
 			return;
 		var isEndAnimation = cast( _mc_item, MovieClip ).currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
-			hideSkipButton();
+			//hideSkipButton();
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
 			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom );
