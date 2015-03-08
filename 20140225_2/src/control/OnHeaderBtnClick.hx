@@ -55,6 +55,9 @@ class OnHeaderBtnClick extends WebCommand
 			},
 			btn_onHeaderBtnClick_Product: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
+			},
+			btn_onHeaderBtnClick_skip:function() {
+				
 			}
 		}
 		var targetPage:String = args[1].name;
