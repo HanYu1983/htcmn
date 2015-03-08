@@ -52,7 +52,7 @@ import view.tech.TechBlink;
 import view.tech.TechBoom;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
-import view.tech.TechDuby;
+import view.tech.TechDolby;
 import view.tech.TechFrame;
 import view.tech.TechPerson;
 import view.tech.TechPhoto;
@@ -164,7 +164,7 @@ class Main
 							TechBoom |
 							TechCamera |
 							TechDouble |
-							TechDuby |
+							TechDolby |
 							TechFrame |
 							TechPerson |
 							TechPhoto |
@@ -201,7 +201,7 @@ class Main
 					case 'TechBoom': TechBoom;
 					case 'TechCamera': TechCamera;
 					case 'TechDouble': TechDouble;
-					case 'TechDuby': TechDuby;
+					case 'TechDuby': TechDolby;
 					case 'TechFrame': TechFrame;
 					case 'TechPerson': TechPerson;
 					case 'TechPhoto': TechPhoto;
@@ -216,7 +216,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( IntroPage );
+			startWith( TechCamera );
 		}
 	}
 	

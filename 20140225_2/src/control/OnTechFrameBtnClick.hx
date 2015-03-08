@@ -6,7 +6,7 @@ import view.tech.TechBlink;
 import view.tech.TechBoom;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
-import view.tech.TechDuby;
+import view.tech.TechDolby;
 import view.tech.TechPerson;
 import view.tech.TechPhoto;
 import view.tech.TechSitu;
@@ -33,7 +33,7 @@ class OnTechFrameBtnClick extends WebCommand
 				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechDouble, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_Duby: function() {
-				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechDuby, params: null } ) (null);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechDolby, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_Ultra: function() {
 				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechUltra, params: null } ) (null);

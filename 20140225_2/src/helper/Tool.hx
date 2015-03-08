@@ -22,7 +22,7 @@ import view.tech.TechSitu;
 import view.TechPage;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
-import view.tech.TechDuby;
+import view.tech.TechDolby;
 import view.tech.TechUltra;
 /**
  * ...
@@ -31,7 +31,7 @@ import view.tech.TechUltra;
 class Tool
 {
 	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, SellPage, SpecPage, TechPage, TechFrame, LuckyDrawPage];
-	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDuby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
+	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
 	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int, wf:Float = 0.5, hf:Float = 0.5) {

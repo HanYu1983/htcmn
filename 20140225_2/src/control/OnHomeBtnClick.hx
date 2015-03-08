@@ -9,7 +9,7 @@ import view.tech.TechBlink;
 import view.tech.TechBoom;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
-import view.tech.TechDuby;
+import view.tech.TechDolby;
 import view.tech.TechFrame;
 import view.tech.TechPerson;
 import view.tech.TechPhoto;
@@ -61,7 +61,7 @@ class OnHomeBtnClick extends WebCommand
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechDuby));
+					}) (thenOpen(TechDolby));
 			},
 			btn_onHomeBtnClick_Ultra: function() {
 				AppAPI.changePage( 

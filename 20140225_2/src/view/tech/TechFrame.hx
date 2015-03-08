@@ -29,7 +29,7 @@ class TechFrame extends DefaultPage
 		switch(pageClz) {
 			case TechDouble:
 				return "btn_onTechFrameBtnClick_Double";
-			case TechDuby:
+			case TechDolby:
 				return "btn_onTechFrameBtnClick_Duby";
 			case TechUltra:
 				return "btn_onTechFrameBtnClick_Ultra";
@@ -131,6 +131,6 @@ class TechFrame extends DefaultPage
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		getRoot().x = (w - 254);
-		Tool.centerY(this, y, h);
+		Tool.centerForceY(this, 590, y, h );
 	}
 }
