@@ -12,7 +12,9 @@ import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
 import control.OnTechDoubleBtnClick;
+import control.OnTechCameraClick;
 import control.OnTechFrameBtnClick;
+import control.OnTechUltraBtnClick;
 import flash.accessibility.ISimpleTextSelection;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -118,6 +120,8 @@ class Main
 			WebManager.inst.addCommand( new OnDetailFormBtnClick("onDetailFormBtnClick") );
 			WebManager.inst.addCommand( new OnFooterBtnClick("onFooterBtnClick") );
 			WebManager.inst.addCommand( new OnMovieBtnClick("onMovieBtnClick") );
+			WebManager.inst.addCommand( new OnTechUltraBtnClick("onTechUltraBtnClick") );
+			WebManager.inst.addCommand( new OnTechCameraClick("onTechCameraClick") );
 			
 			cb( null, null );
 		}
@@ -148,7 +152,6 @@ class Main
 			} else {
 				WebManager.inst.log("startApp");
 				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
-				
 				AppAPI.openPage( { mgr:WebManager.inst, page:TechDouble, params: null } ) (null);
 			}
 		}
@@ -214,7 +217,7 @@ class Main
 			
 		}catch ( e:Error ) { 
 			// means not in web
-			startWith( IntroPage );
+			startWith( TechCamera );
 		}
 	}
 	

@@ -30,6 +30,9 @@ class OnMovieBtnClick extends WebCommand
 			btn_onMovieBtnClick_down: function(){
 				var page:MoviePage = cast( getWebManager().getPage( MoviePage ), MoviePage);
 				page.moveUp();
+			},
+			btn_onMovieBtnClick_share: function() {
+				
 			}
 		}
 		var targetPage:String = args[1].name;

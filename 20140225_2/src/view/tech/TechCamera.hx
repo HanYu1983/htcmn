@@ -1,4 +1,5 @@
 package view.tech;
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -52,13 +53,54 @@ class TechCamera extends DefaultTechPage
 					
 			}
 		});
+		
+		scalePhoto( 0.5 );
+		animateForSmartPhone('other');
+	}
 	
-	//	_mc_circleButton.gotoAndPlay( 'htc' );
-	//	_mc_circleButton.gotoAndPlay( 'other' );
+	var _scale = 1.0;
 	
-		//btn_onTechCameraClick_sub
-		//btn_onTechCameraClick_plus
-		//btn_onTechCameraClick_switch
+	public function scalePhoto( v: Float ) {
+		_scale += v;
+		if ( _scale < 1 )
+			_scale = 1;
+		Tweener.addTween( _mc_htcPhoto, { scaleX: _scale, time:.3 } );
+		Tweener.addTween( _mc_htcPhoto, { scaleY: _scale, time:.3 } );
+		Tweener.addTween( _mc_ohterPhoto, { scaleX: _scale, time:.3 } );
+		Tweener.addTween( _mc_ohterPhoto, { scaleY: _scale, time:.3 } );
+	}
+	
+	function setHTCPhoneVisible( v:Bool ) {
+		Tweener.addTween( _mc_htc, { alpha:v ? 1: 0, time:.3 } );
+		Tweener.addTween( _mc_htcPhoto, { alpha: v? 1 : 0, time:.3 } );
+	}
+	
+	function setOtherPhoneVisible( v:Bool ) {
+		Tweener.addTween( _mc_other, { alpha:v ? 1: 0, time:.3 } );
+		Tweener.addTween( _mc_ohterPhoto, { alpha: v? 1 : 0, time:.3 } );
+	}
+	
+	public function animateForSmartPhone( phone:String ) {
+		switch( phone ) {
+			case 'htc':
+				setHTCPhoneVisible( true );
+				setOtherPhoneVisible( false );
+			case 'other':
+				setHTCPhoneVisible( false );
+				setOtherPhoneVisible( true );
+		}
+	}
+	
+	public function taggleCircleButton(): String {
+		var curr = _mc_circleButton.currentLabel;
+		getWebManager().log(curr);
+		var target = switch( curr ) {
+			case 'htc': 'other';
+			case 'other': 'htc';
+			case _ : 'htc';
+		}
+		_mc_circleButton.gotoAndPlay( target );
+		return target;
 	}
 	
 	override function getSwfInfo():Dynamic 

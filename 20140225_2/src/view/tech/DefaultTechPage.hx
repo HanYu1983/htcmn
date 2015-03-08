@@ -22,6 +22,10 @@ class DefaultTechPage extends DefaultPage
 		layerName = 'techpage';
 	}
 	
+	public function skipAnimation() {
+		
+	}
+	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
