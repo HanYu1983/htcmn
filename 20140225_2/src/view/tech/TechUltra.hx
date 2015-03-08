@@ -23,6 +23,11 @@ class TechUltra extends DefaultTechPage
 		this.createDebugRoot("ultra");
 	}
 	
+	override public function skipAnimation() 
+	{
+		getRoot().gotoAndPlay('forScript');
+	}
+	
 	var _targetX:Float = 0;
 	
 	function onEnterFrame(e: Event) {
