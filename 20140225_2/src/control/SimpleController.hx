@@ -49,7 +49,6 @@ class SimpleController
 		.otherwise( 
 			changeLoadingClass(LoadingPage) );
 			
-
 	}
 	
 	public static function onHttpLoadingStart() {
