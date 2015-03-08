@@ -15,5 +15,4 @@ class HttpLoadingPage extends WebView
 		layerName = 'loading';
 		createDebugRoot("loading page");
 	}
-	
 }

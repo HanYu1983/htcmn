@@ -22,6 +22,7 @@ class TechFrame extends DefaultPage
 	{
 		super();
 		layerName = 'techui';
+		needLoading = false;
 	}
 	
 	public function nameBelongPage(pageClz:Dynamic):String {

@@ -15,6 +15,7 @@ import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
 import view.LoadingPage;
+import view.LoadingPage2;
 import view.tech.DefaultTechPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
@@ -46,7 +47,9 @@ class SimpleController
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
-			changeLoadingClass(LoadingPage) );
+			changeLoadingClass(LoadingPage2) );
+			
+
 	}
 	
 	public static function onHttpLoadingStart() {
