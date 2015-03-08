@@ -61,9 +61,21 @@ class OnDetailFormBtnClick extends WebCommand
 							is_agree_personal_info : getWebManager().getData("is_agree_personal_info"),
 							is_accept_notice : getWebManager().getData("is_accept_notice")
 						}
-					),
-					closeDetailPopop
-				], null );
+					)
+					
+				], function( err:Error, ret:{ success: Bool, msg:String } ) {
+					if ( err != null ) {
+						getWebManager().log( err.message );
+						
+					} else {
+						if ( ret.success ) {
+							closeDetailPopop( null );
+						} else {
+							getWebManager().log( ret.msg );
+						}
+						
+					}
+				});
 			},
 			btn_onDetailFormBtnClick_boy: function() {
 				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);

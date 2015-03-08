@@ -78,29 +78,30 @@ class AppAPI
 			
 			function done( err:Error, result:Dynamic ) {
 				if ( err != null ) {
+					params.mgr.log( err.message );
+					
 					if ( err.message == 'not login' ) {
 						AppAPI.openPage({ 
 							mgr: params.mgr, 
 							page: FBLoginPopup, 
-							params: null }
-							
-							) (cb);
+							params: null 
+							}) (cb);
 						
 					} else {
 						cb( err, null );
 						
 					}
+					
+					
 				} else {
 					AppAPI.openPage({ 
 							mgr: params.mgr, 
 							page: DetailFromPopup, 
-							params: null }
-							
-							) (cb);
-					
-					
+							params: null
+							}) (cb);
 				}
 			}
+			
 			Async.waterfall([
 				FBAPI.isFBLogin,
 				
@@ -116,11 +117,7 @@ class AppAPI
 					}
 				},
 				
-				function callFBMe( args: {} ):Dynamic {
-					return function( cb:Dynamic ) {
-						FBAPI.callFBMe( { } ) (cb);
-					}
-				},
+				FBAPI.callFBMe,
 				
 				function checkIsEnterInfo( args: { name: String, email: String, gender: String} ):Dynamic {
 					return function( cb:Dynamic ) {
@@ -182,11 +179,7 @@ class AppAPI
 					}
 				},
 				
-				function callFBMe( args: {} ):Dynamic {
-					return function( cb:Dynamic ) {
-						FBAPI.callFBMe( {} ) (cb);
-					}
-				},
+				FBAPI.callFBMe,
 				
 				function checkIsEnterInfo( args: { name: String, email: String, gender: String} ):Dynamic {
 					return function( cb:Dynamic ) {

@@ -23,6 +23,7 @@ class SimpleController
 	public static function onLog(msg:Dynamic) {
 		#if debug
 		trace( msg );
+		#else
 		try {
 			ExternalInterface.call( 'console.log', msg );
 		} catch (e:Error) {

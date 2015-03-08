@@ -1,4 +1,5 @@
 package model;
+import control.SimpleController;
 import flash.errors.Error;
 import haxe.Http;
 import haxe.Json;
@@ -22,7 +23,14 @@ class ETMAPI
 			http.setParameter("fb_id", fbid);
 			http.setParameter("fb_email", fbemail);
 			http.onData = function(data:String) {
-				cb( null, Json.parse(data) );
+				SimpleController.onLog(data);
+				
+				var json = Json.parse( data );
+				var ret = {
+					isWritten: Reflect.field(json, 'status') == 1,
+					token: Reflect.field(json, 'token')
+				};
+				cb( null, ret );
 			}
 			http.onError = function( err:String ) {
 				cb( new Error(err), null );
@@ -70,6 +78,52 @@ is_accept_notice:<input id="is_accept_notice" name="is_accept_notice" type="text
 			http.setParameter("is_accept_notice", params.is_accept_notice);
 			
 			http.onData = function(data:String) {
+				SimpleController.onLog(data);
+				
+				var json = Json.parse( data );
+				var ret = {
+					success: Reflect.field(json, 'status') == 1,
+					msg: Reflect.field(json, "msg")
+				};
+				cb( null, ret );
+			}
+			http.onError = function( err:String ) {
+				cb( new Error(err), null );
+			}
+			http.request();
+		}
+	}
+	
+	/**
+	 * 
+<form name="form1" method="get" action="shareLog.php" target="result_frame">
+<fieldset><legend>輸入個人資訊 shareLog.php</legend> 
+token:<input id="token" name="token" type="text" size="100">由 isEnterInfo.php 取得的 token 值<br>
+share_type:<input id="share_type" name="share_type" type="text" value="WEB">分享類別(WEB|VIDEO)<br>
+share_page:<input id="share_page" name="share_page" type="text">分享頁面、代碼<br>
+<input type="submit" name="button" id="button" value="Submit">
+</fieldset>
+</form><br />
+	 * 
+	 * 
+	 */
+
+	public static function shareLog( 
+		args: {
+			token: String,
+			type: String,
+			page: String
+		}
+	):Dynamic {
+		return function( cb:Dynamic ) {
+			var http = new Http("shareLog.php");
+			http.setParameter("token", args.token);
+			http.setParameter("share_type", args.type);
+			http.setParameter("share_page", args.page);
+			
+			http.onData = function(data:String) {
+				SimpleController.onLog(data);
+				
 				cb( null, Json.parse(data) );
 			}
 			http.onError = function( err:String ) {

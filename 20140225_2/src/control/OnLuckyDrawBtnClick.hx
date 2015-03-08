@@ -30,7 +30,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 			btn_onLuckyDrawBtnClick_fb: function() {
 				AppAPI.flow1( { mgr:getWebManager() } )(function(err:Error, result:Dynamic) {
 					if ( err != null ) {
-						trace(err);
+						getWebManager().log( err );
 					}
 				});
 				

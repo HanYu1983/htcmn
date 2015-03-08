@@ -1,4 +1,5 @@
 package model;
+import control.SimpleController;
 import flash.errors.Error;
 import helper.JSInterfaceHelper;
 import org.vic.web.WebManager;
@@ -13,6 +14,8 @@ class FBAPI
 	public static function isFBLogin( params:{} ):Dynamic {
 		return function( cb:Dynamic ) {
 			var isWeb = JSInterfaceHelper.callJs( 'isFBLogin', [], function(info:Dynamic) {
+				SimpleController.onLog(info);
+				
 				var err = Reflect.field(info, "0");
 				var res = Reflect.field(info, "1");
 				if ( err != null ) {
@@ -43,7 +46,7 @@ class FBAPI
 	public static function callFBLogin( params:{} ) {
 		return function( cb:Dynamic ) {
 			var isWeb = JSInterfaceHelper.callJs( 'loginFB', [], function(info:Dynamic) {
-				trace( info );
+				SimpleController.onLog(info);
 				/*
 				accessToken: "CAAKZBVOcK5KcBAEC3jzCIcWZAIniXp8pZCjfPTs2M4FzWYrF7yKcLajxPbEPT6a5EcCmHvG19pEa9csDY21cHYF5x54xLfChM1Wh7xQ8tVuiTrycYHmumNZBaIU91U3KbNxbNNvAtLWIIrJJdmB30J2tKnUN7hJaXXWpERDfcfKMvZCQT6dqHNOFHcUqSsDPWSALizuNASvHnRLpXgorhBuyytTLCP6gZD"
 				expiresIn: 5087
@@ -74,6 +77,8 @@ class FBAPI
 	public static function callFBShare( params:{} ) {
 		return function( cb:Dynamic ) {
 			var isWeb = JSInterfaceHelper.callJs( 'shareFB', [], function(info:Dynamic) {
+				SimpleController.onLog(info);
+				
 				var err = Reflect.field(info, "0");
 				var success = Reflect.field(info, "1");
 				if ( err != null ) {
@@ -92,7 +97,7 @@ class FBAPI
 	public static function callFBMe( params: { } ) {
 		return function( cb:Dynamic ) {
 			var isWeb = JSInterfaceHelper.callJs( 'getMe', [], function(info:Dynamic) {
-				trace(info);
+				SimpleController.onLog(info);
 				/*
 	email: "finalfantasy388@yahoo.com.tw"
 	first_name: "Vic"
