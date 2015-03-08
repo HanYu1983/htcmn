@@ -18,7 +18,6 @@ import view.DefaultPage;
  */
 class TechDouble extends DefaultTechPage
 {
-	//var _mc_controller:MovieClip;
 	var _mc_mask:DisplayObject;
 	var _mc_dot:DisplayObject;
 	var _mc_line:DisplayObject;
