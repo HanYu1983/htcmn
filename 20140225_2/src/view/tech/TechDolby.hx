@@ -8,7 +8,7 @@ import view.DefaultPage;
  * ...
  * @author han
  */
-class TechDuby extends DefaultTechPage
+class TechDolby extends DefaultTechPage
 {
 
 	public function new() 

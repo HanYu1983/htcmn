@@ -29,7 +29,7 @@ class TechFrame extends DefaultPage
 		switch(pageClz) {
 			case TechDouble:
 				return "btn_onTechFrameBtnClick_Double";
-			case TechDuby:
+			case TechDolby:
 				return "btn_onTechFrameBtnClick_Duby";
 			case TechUltra:
 				return "btn_onTechFrameBtnClick_Ultra";

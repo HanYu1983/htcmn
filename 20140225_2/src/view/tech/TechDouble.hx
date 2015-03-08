@@ -125,9 +125,14 @@ class TechDouble extends DefaultTechPage
 	}
 	
 	function forScript( e ) {
-		_mc_controller.mouseEnabled = true;
-		_mc_controller.mouseChildren = true;
+		_mc_controller.visible = true;
 	}
+	
+	override public function skipAnimation() 
+	{
+		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
+	}
+	
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
@@ -162,15 +167,11 @@ class TechDouble extends DefaultTechPage
 			}
 		});
 		
-		trace( _mc_circleMask );
-		trace( _mc_circleMaskBorder );
-		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
 		_mc_currentBigPhone = _mc_phoneABig;
 		_mc_currentPhone = _mc_phoneA;
-	//	_mc_controller.mouseEnabled = false;
-	//	_mc_controller.mouseChildren = false;
+		_mc_controller.visible = false;
 		_mc_item.addEventListener( 'forScript', forScript );
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
