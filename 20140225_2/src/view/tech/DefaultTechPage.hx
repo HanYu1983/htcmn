@@ -15,7 +15,8 @@ import view.DefaultPage;
 class DefaultTechPage extends DefaultPage
 {
 	var _mc_person:DisplayObject;
-
+	var _mc_controller:MovieClip;
+	
 	public function new() 
 	{
 		super();
@@ -24,7 +25,7 @@ class DefaultTechPage extends DefaultPage
 	}
 	
 	public function skipAnimation() {
-		
+		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
@@ -40,9 +41,18 @@ class DefaultTechPage extends DefaultPage
 			switch( obj.name ) {
 				case 'mc_person':
 					_mc_person = obj;
+				case 'mc_controller':
+					_mc_controller = cast( obj, MovieClip );
 			}
 		});
 		
 		super.onOpenEvent(param, cb);
+		
+		_mc_controller.visible = false;
+		_mc_item.addEventListener( 'forScript', forScript );
+	}
+	
+	function forScript( e ) {
+		_mc_controller.visible = true;
 	}
 }

@@ -13,7 +13,7 @@ import org.vic.utils.BasicUtils;
  */
 class TechUltra extends DefaultTechPage
 {
-	var _mc_controller:MovieClip;
+	//var _mc_controller:MovieClip;
 	var _mc_slider:DisplayObject;
 	var _mc_mask:DisplayObject;
 	var _mc_htc:DisplayObject;

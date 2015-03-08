@@ -12,7 +12,7 @@ import org.vic.utils.BasicUtils;
  */
 class TechCamera extends DefaultTechPage
 {
-	var _mc_controller:MovieClip;
+	//var _mc_controller:MovieClip;
 	var _mc_circleButton:MovieClip;
 	var _mc_dot:DisplayObject;
 	var _mc_bar:DisplayObject;
@@ -54,8 +54,10 @@ class TechCamera extends DefaultTechPage
 					
 			}
 		});
+		
 		_originDotX = _mc_dot.x;
 		animateForSmartPhone('other');
+		scalePhoto( 0 );
 	}
 	
 	var _originDotX:Float;
@@ -72,12 +74,8 @@ class TechCamera extends DefaultTechPage
 		_scale += v;
 		_scale = Math.min( _scale, 2 );
 		_scale = Math.max( 1, _scale );
-		
-		Tweener.addTween( _mc_htcPhoto, { scaleX: _scale, time:.3 } );
-		Tweener.addTween( _mc_htcPhoto, { scaleY: _scale, time:.3 } );
-		Tweener.addTween( _mc_ohterPhoto, { scaleX: _scale, time:.3 } );
-		Tweener.addTween( _mc_ohterPhoto, { scaleY: _scale, time:.3 } );
-		
+		var news = ( _scale - 1 ) * ( 1 - .5 ) + .5;
+		Tweener.addTween( _mc_photo, { scaleX: news, scaleY: news, time:.3 } );
 		
 		setDotPosition( _scale );
 	}
