@@ -182,7 +182,19 @@ class TechDouble extends DefaultTechPage
 		//_mc_controller.visible = false;
 		//_mc_item.addEventListener( 'forScript', forScript );
 		
+		setCircleMaskVisible( false );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+	}
+	
+	override function forScript(e) 
+	{
+		super.forScript(e);
+		setCircleMaskVisible( true );
+	}
+	
+	function setCircleMaskVisible( v:Bool ) {
+		Tweener.addTween( _mc_circleMask, { alpha: v? 1: 0, time: 1 } );
+		Tweener.addTween( _mc_circleMaskBorder, { alpha: v? 1: 0, time: 1 } );
 	}
 	
 	var _targetPoint: Point = new Point();
