@@ -3,6 +3,8 @@ package view.tech;
 import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.MovieClip;
+import flash.events.Event;
+import flash.geom.Point;
 import helper.IResize;
 import helper.Tool;
 import org.vic.flash.display.FakeMovieClip;
@@ -170,13 +172,33 @@ class TechDouble extends DefaultTechPage
 	//	_mc_controller.mouseEnabled = false;
 	//	_mc_controller.mouseChildren = false;
 		_mc_item.addEventListener( 'forScript', forScript );
+		
+		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+	}
+	
+	var _targetPoint: Point = new Point();
+	
+	function circleMove() {
+		_mc_circleMask.x += (_targetPoint.x - _mc_circleMask.x)* .2;
+		_mc_circleMask.y += (_targetPoint.y - _mc_circleMask.y)* .2;
+		
+		_mc_circleMaskBorder.x += (_targetPoint.x - _mc_circleMaskBorder.x)* .2;
+		_mc_circleMaskBorder.y += (_targetPoint.y - _mc_circleMaskBorder.y)* .2;
+	}
+	
+	function onEnterFrame(e: Event) {
+		if (_mc_circleMask == null)
+			return;
+		
+		_targetPoint = _mc_item.globalToLocal( new Point( stage.mouseX, stage.mouseY ) );
+		circleMove();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
-		super.onCloseEvent(cb);
-		
+		getRoot().removeEventListener( Event.ENTER_FRAME, onEnterFrame );
 		_mc_item.removeEventListener( 'forScript', forScript );
+		super.onCloseEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
