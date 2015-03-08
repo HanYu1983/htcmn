@@ -30,7 +30,7 @@ class TechUltra extends DefaultTechPage
 			return;
 		if ( _mc_htc == null )
 			return;
-		var isEndAnimation = getRoot().currentFrameLabel == 'forScript';
+		var isEndAnimation = cast( _mc_item, MovieClip ).currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );

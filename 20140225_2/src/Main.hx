@@ -147,7 +147,7 @@ class Main
 				WebManager.inst.log("startApp");
 				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
 				
-				//AppAPI.openPage( { mgr:WebManager.inst, page:LuckyDrawPage, params: null } ) (null);
+				AppAPI.openPage( { mgr:WebManager.inst, page:TechCamera, params: null } ) (null);
 			}
 		}
 		
