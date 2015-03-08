@@ -62,8 +62,9 @@ class TechCamera extends DefaultTechPage
 	
 	public function scalePhoto( v: Float ) {
 		_scale += v;
-		if ( _scale < 1 )
-			_scale = 1;
+		_scale = Math.min( _scale, 2 );
+		_scale = Math.max( 1, _scale );
+		
 		Tweener.addTween( _mc_htcPhoto, { scaleX: _scale, time:.3 } );
 		Tweener.addTween( _mc_htcPhoto, { scaleY: _scale, time:.3 } );
 		Tweener.addTween( _mc_ohterPhoto, { scaleX: _scale, time:.3 } );

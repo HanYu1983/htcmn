@@ -76,32 +76,6 @@ class AppAPI
 		
 		return function( cb:Dynamic ) {
 			
-			function done( err:Error, result:Dynamic ) {
-				if ( err != null ) {
-					params.mgr.log( err.message );
-					
-					if ( err.message == 'not login' ) {
-						AppAPI.openPage({ 
-							mgr: params.mgr, 
-							page: FBLoginPopup, 
-							params: null 
-							}) (cb);
-						
-					} else {
-						cb( err, null );
-						
-					}
-					
-					
-				} else {
-					AppAPI.openPage({ 
-							mgr: params.mgr, 
-							page: DetailFromPopup, 
-							params: null
-							}) (cb);
-				}
-			}
-			
 			Async.waterfall([
 				FBAPI.isFBLogin,
 				
@@ -143,7 +117,7 @@ class AppAPI
 						}
 					}
 				}
-			], done, params );
+			], cb, params );
 		}
 		
 	}
@@ -153,20 +127,6 @@ class AppAPI
 	public static function flow2( params: { mgr:WebManager } ) {
 		
 		return function( cb:Dynamic ) {
-			
-			function done( err:Error, result:Dynamic ) {
-				if ( err != null ) {
-					cb( err, null );
-					
-				} else {
-					AppAPI.openPage({ 
-							mgr: params.mgr, 
-							page: DetailFromPopup, 
-							params: null }
-							
-							) (cb);
-				}
-			}
 			
 			Async.waterfall([
 				FBAPI.callFBLogin,
@@ -204,7 +164,7 @@ class AppAPI
 						}
 					}
 				}
-			], done, params );
+			], cb, params );
 		}
 		
 	}

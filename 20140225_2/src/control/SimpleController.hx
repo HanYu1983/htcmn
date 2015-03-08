@@ -11,6 +11,7 @@ import org.vic.web.WebManager;
 import view.DefaultPage;
 import view.FooterUI;
 import view.HeaderUI;
+import view.HttpLoadingPage;
 import view.tech.DefaultTechPage;
 import view.tech.TechFrame;
 
@@ -20,6 +21,24 @@ import view.tech.TechFrame;
  */
 class SimpleController
 {
+	
+	public static function onHttpLoadingStart() {
+		WebManager.inst.openPage( HttpLoadingPage, null );
+	}
+	
+	public static function onHttpLoadindEnd() {
+		WebManager.inst.closePage( HttpLoadingPage );
+	}
+	
+	public static function onError(msg:Dynamic) {
+		try {
+			ExternalInterface.call( 'alert', msg );
+			ExternalInterface.call( 'console.log', msg );
+		} catch (e:Error) {
+			onLog(msg);
+		}
+	}
+	
 	public static function onLog(msg:Dynamic) {
 		#if debug
 		trace( msg );
@@ -56,8 +75,6 @@ class SimpleController
 		
 		when( thePageIs(page, TechFrame), closeAllTechPage );
 	}
-	
-	
 	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {
 		

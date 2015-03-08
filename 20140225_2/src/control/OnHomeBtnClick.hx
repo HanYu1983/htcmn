@@ -36,7 +36,8 @@ class OnHomeBtnClick extends WebCommand
 		function thenOpen(clz:Class<IWebView>) {
 			return function(err:Error, result:Dynamic) {
 				if ( err != null ) {
-					getWebManager().log(err.message);
+					SimpleController.onError( err.message );
+					
 				} else {
 					AppAPI.changeTechPage( { mgr:getWebManager(), page: clz, params: null } ) (null);
 				}

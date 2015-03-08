@@ -1,4 +1,5 @@
 package view.tech;
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -16,6 +17,7 @@ class TechUltra extends DefaultTechPage
 	var _mc_slider:DisplayObject;
 	var _mc_mask:DisplayObject;
 	var _mc_htc:DisplayObject;
+	var _btn_onTechUltraBtnClick_skip:DisplayObject;
 	
 	public function new() 
 	{
@@ -28,6 +30,10 @@ class TechUltra extends DefaultTechPage
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 	}
 	
+	public function hideSkipButton() {
+		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
+	}
+	
 	var _targetX:Float = 0;
 	
 	function onEnterFrame(e: Event) {
@@ -37,6 +43,7 @@ class TechUltra extends DefaultTechPage
 			return;
 		var isEndAnimation = cast( _mc_item, MovieClip ).currentFrameLabel == 'forScript';
 		if ( isEndAnimation ) {
+			hideSkipButton();
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
 			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom );
@@ -66,6 +73,8 @@ class TechUltra extends DefaultTechPage
 					_mc_controller = cast( obj, MovieClip );
 				case 'mc_htc':
 					_mc_htc = obj;
+				case 'btn_onTechUltraBtnClick_skip':
+					_btn_onTechUltraBtnClick_skip = obj;
 			}
 		});
 		
