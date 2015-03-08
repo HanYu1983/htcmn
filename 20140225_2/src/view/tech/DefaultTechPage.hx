@@ -35,7 +35,7 @@ class DefaultTechPage extends DefaultPage
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
-			Tool.centerForceY( _mc_person, 768, y, h, 1 );
+			Tool.centerForceY( _mc_person, 768, y, h, .6 );
 		}
 	}
 	

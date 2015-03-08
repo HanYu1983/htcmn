@@ -18,12 +18,6 @@ class IntroPage extends DefaultPage
 		layerName = 'page';
 	}
 	
-	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
-		super.onCloseEvent(cb);
-		
-		SoundMixer.stopAll();
-	}
 	
 	override function getSwfInfo():Dynamic 
 	{

@@ -1,6 +1,8 @@
 package view;
 
 import flash.display.DisplayObject;
+import flash.display.MovieClip;
+import flash.media.SoundMixer;
 import helper.IResize;
 import control.SimpleController;
 import helper.Tool;
@@ -53,6 +55,10 @@ class DefaultPage extends WebView implements IResize
 	{
 		SimpleController.onPageClose( getWebManager(), this );
 		super.onCloseEvent(cb);
+		
+		cast( _mc_item, MovieClip ).stop();
+		SoundMixer.stopAll();
+		
 	}
 	
 	public function onResize(x:Int, y: Int, w:Int, h:Int) {
