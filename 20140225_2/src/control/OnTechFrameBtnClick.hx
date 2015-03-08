@@ -67,7 +67,6 @@ class OnTechFrameBtnClick extends WebCommand
 		}
 		var targetPage:String = args[1].name;
 		Reflect.field(goto, targetPage)();
-		trace(targetPage);
 	}
 	
 }

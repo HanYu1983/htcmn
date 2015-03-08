@@ -11,6 +11,7 @@ import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
+import control.OnTechDoubleBtnClick;
 import control.OnTechFrameBtnClick;
 import flash.accessibility.ISimpleTextSelection;
 import flash.display.StageAlign;
@@ -110,6 +111,7 @@ class Main
 			WebManager.inst.addCommand( new OnActiveBtnClick("onActiveBtnClick") );
 			WebManager.inst.addCommand( new OnHomeBtnClick("onHomeBtnClick") );
 			WebManager.inst.addCommand( new OnTechFrameBtnClick("onTechFrameBtnClick") );
+			WebManager.inst.addCommand( new OnTechDoubleBtnClick("onTechDoubleClick") );
 			WebManager.inst.addCommand( new OnIntroBtnClick("onIntroBtnClick") );
 			WebManager.inst.addCommand( new OnLuckyDrawBtnClick("onLuckyDrawBtnClick") );
 			WebManager.inst.addCommand( new OnFbLoginClick("onFbLoginClick") );
@@ -147,7 +149,7 @@ class Main
 				WebManager.inst.log("startApp");
 				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
 				
-				AppAPI.openPage( { mgr:WebManager.inst, page:TechCamera, params: null } ) (null);
+				AppAPI.openPage( { mgr:WebManager.inst, page:TechDouble, params: null } ) (null);
 			}
 		}
 		
