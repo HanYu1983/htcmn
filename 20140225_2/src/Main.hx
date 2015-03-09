@@ -38,6 +38,7 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
 import org.vic.web.IWebView;
 import view.ActivityPopup;
+import view.ExpInfoPage;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
 import view.FooterUI;
@@ -49,6 +50,9 @@ import view.LoadingPage;
 import view.LoadingPage2;
 import view.LuckyDrawPage;
 import view.MessagePopup;
+import view.MoviePage;
+import view.ProductPage;
+import view.RelativePage;
 import view.TechPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
@@ -209,6 +213,12 @@ class Main
 					case 'TechPhoto': TechPhoto;
 					case 'TechSitu': TechSitu;
 					case 'TechUltra': TechUltra;
+					
+					case 'MoviePage': MoviePage;
+					case 'RelativePage': RelativePage;
+					case 'ProductPage': ProductPage;
+					case 'ExpInfoPage': ExpInfoPage;
+			
 					case _: IntroPage;
 				}
 				startWith( page );

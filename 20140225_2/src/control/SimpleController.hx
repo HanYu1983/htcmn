@@ -11,11 +11,15 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
 import org.vic.web.WebManager;
 import view.DefaultPage;
+import view.ExpInfoPage;
 import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
 import view.LoadingPage;
 import view.LoadingPage2;
+import view.MoviePage;
+import view.ProductPage;
+import view.RelativePage;
 import view.tech.DefaultTechPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
@@ -187,6 +191,16 @@ class SimpleController
 					"TechSitu";
 				} else if (Std.is(page, TechUltra)) {
 					"TechUltra";
+					
+				} else if (Std.is(page, MoviePage)) {
+					"MoviePage";
+				} else if (Std.is(page, RelativePage)) {
+					"RelativePage";
+				} else if (Std.is(page, ProductPage)) {
+					"ProductPage";
+				} else if (Std.is(page, ExpInfoPage)) {
+					"ExpInfoPage";
+					
 				} else {
 					null;
 				}
