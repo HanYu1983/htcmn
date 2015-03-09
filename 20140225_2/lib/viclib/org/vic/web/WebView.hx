@@ -11,6 +11,7 @@ import flash.events.FocusEvent;
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import org.vic.flash.display.FakeMovieClip;
+import org.vic.flash.loader.FakeLoaderTask;
 import org.vic.flash.loader.LoaderManager;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.web.parser.SwfParser;
@@ -22,6 +23,7 @@ import org.vic.web.parser.SwfParser;
 class WebView extends Sprite implements IWebView
 {
 	public var needLoading:Bool = false;
+	public var useFakeLoading:Bool = false;
 	public var layerName:String = 'default';
 	
 	var _root:MovieClip;
@@ -59,8 +61,20 @@ class WebView extends Sprite implements IWebView
 			sp += version;
 			if ( !LoaderManager.inst.hasTask( sn )) {
 				LoaderManager.inst.addTask( sn, new LoaderTask( sp, _complete, needLoading ));
-			}else _complete( null );
-		}else _complete( null );
+			}else {
+				if ( useFakeLoading ) {
+					var fake = new FakeLoaderTask( 'fake', _complete, needLoading );
+					fake.mediator = LoaderManager.inst;
+					fake.load();
+					
+				} else {
+					_complete( null );
+					
+				}
+			}
+		}else {
+			_complete( null );
+		}
 	}
 	
 	public function close(cb:Void->Void):Void 

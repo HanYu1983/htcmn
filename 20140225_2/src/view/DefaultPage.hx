@@ -26,6 +26,7 @@ class DefaultPage extends WebView implements IResize
 		super();
 		SimpleController.onPageNew( this );
 		needLoading = true;
+		useFakeLoading = true;
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
