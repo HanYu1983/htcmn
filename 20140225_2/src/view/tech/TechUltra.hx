@@ -56,7 +56,7 @@ class TechUltra extends DefaultTechPage
 	function changeSide( side:String ) {
 		if ( _side != side ) {
 			_side = side;
-			showPhoneMark( side == 'left' ? 'other' : 'htc' );
+			showPhoneMark( side == 'left' ? 'htc' : 'other' );
 		}
 	}
 	

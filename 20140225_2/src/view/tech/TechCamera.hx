@@ -35,8 +35,6 @@ class TechCamera extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -66,6 +64,8 @@ class TechCamera extends DefaultTechPage
 		_originDotX = _mc_dot.x;
 		animateForSmartPhone(taggleCircleButton());
 		scalePhoto( 0 );
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	var _originDotX:Float;
