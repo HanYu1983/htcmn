@@ -54,6 +54,8 @@ class SimpleController
 			if ( Std.is(page, DefaultTechPage) ) {
 				var p = cast(page, DefaultTechPage);
 				p.skipAnimation();
+				
+				SoundMixer.stopAll();
 			}
 		}
 	}
