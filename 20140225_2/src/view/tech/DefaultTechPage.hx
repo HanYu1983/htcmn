@@ -22,7 +22,7 @@ class DefaultTechPage extends DefaultPage
 	{
 		super();
 		layerName = 'techpage';
-		
+		useFakeLoading = true;
 	}
 	
 	public function skipAnimation() {
