@@ -11,11 +11,16 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
 import org.vic.web.WebManager;
 import view.DefaultPage;
+import view.ExpInfoPage;
 import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
+import view.IntroPage;
 import view.LoadingPage;
 import view.LoadingPage2;
+import view.MoviePage;
+import view.ProductPage;
+import view.RelativePage;
 import view.tech.DefaultTechPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
@@ -28,6 +33,7 @@ import view.tech.TechPhoto;
 import view.tech.TechSitu;
 import view.tech.TechUltra;
 import view.TechPage;
+using Lambda;
 
 /**
  * ...
@@ -59,7 +65,10 @@ class SimpleController
 			}
 		}
 	}
-	
+	/**
+	 * 將新頁將被開啟時觸發. 用來處理動態切換讀取頁的效果
+	 * @param	page 將被開啟的那頁
+	 */
 	public static function onPageNew( page:DefaultPage ) {
 		function changeLoadingClass( clz:Class<IWebView> ) {
 			return function() {
@@ -67,10 +76,13 @@ class SimpleController
 			}
 		}
 		
-		when( thePageIs( page, DefaultTechPage ), 
+		// 科技相關頁面都是艙門
+		when( or( [thePageIs( page, TechPage ), thePageIs( page, DefaultTechPage ) ] ), 
+			// 艙門讀取頁
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
+			// 圓圏讀取頁
 			changeLoadingClass(LoadingPage2) );
 			
 	}
@@ -160,7 +172,9 @@ class SimpleController
 		
 		function handleChangeHash() {
 			var hash =
-				if (Std.is(page, TechPage)) {
+				if (Std.is(page, IntroPage)) {
+					"index";
+				} else if (Std.is(page, TechPage)) {
 					"TechPage";
 				} else if (Std.is(page, TechBlink)) {
 					"TechBlink";
@@ -180,6 +194,16 @@ class SimpleController
 					"TechSitu";
 				} else if (Std.is(page, TechUltra)) {
 					"TechUltra";
+					
+				} else if (Std.is(page, MoviePage)) {
+					"MoviePage";
+				} else if (Std.is(page, RelativePage)) {
+					"RelativePage";
+				} else if (Std.is(page, ProductPage)) {
+					"ProductPage";
+				} else if (Std.is(page, ExpInfoPage)) {
+					"ExpInfoPage";
+					
 				} else {
 					null;
 				}
@@ -214,6 +238,18 @@ class SimpleController
 		handleSkipButtonVisible();
 	}
 	
+	
+	static function and( fns:Array<Dynamic> ) {
+		return function():Bool {
+			return [for (fn in fns) fn()].exists( function(item:Bool) { return item == false; } ) == false;
+		}
+	}
+	
+	static function or( fns:Array<Dynamic> ) {
+		return function():Bool {
+			return [for (fn in fns) fn()].exists( function(item:Bool) { return item == true; } );
+		}
+	}
 	
 	static function thePageIs( page:DefaultPage, type:Class<IWebView>):Void->Bool {
 		return function() {

@@ -17,6 +17,7 @@ class TechPage extends DefaultPage
 	{
 		super();
 		layerName = 'page';
+		useFakeLoading = true;
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 

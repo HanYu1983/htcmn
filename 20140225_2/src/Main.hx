@@ -38,6 +38,7 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
 import org.vic.web.IWebView;
 import view.ActivityPopup;
+import view.ExpInfoPage;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
 import view.FooterUI;
@@ -49,6 +50,9 @@ import view.LoadingPage;
 import view.LoadingPage2;
 import view.LuckyDrawPage;
 import view.MessagePopup;
+import view.MoviePage;
+import view.ProductPage;
+import view.RelativePage;
 import view.TechPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
@@ -187,8 +191,9 @@ class Main
 					loadConfig,
 					loadSwf,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
-					OpenTechFrameIfNeeded(),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
+					// 這頁要放在HeaderUI, FooterUI後面, 因為會操控它們上升或下沉
+					OpenTechFrameIfNeeded(),
 					// 只有這頁needLoading=true, 必須要放在最後一個. 因為會動態切換loadingClass, 會導致不會關閉打開的loadingPage
 					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } )
 				]
@@ -209,6 +214,12 @@ class Main
 					case 'TechPhoto': TechPhoto;
 					case 'TechSitu': TechSitu;
 					case 'TechUltra': TechUltra;
+					
+					case 'MoviePage': MoviePage;
+					case 'RelativePage': RelativePage;
+					case 'ProductPage': ProductPage;
+					case 'ExpInfoPage': ExpInfoPage;
+			
 					case _: IntroPage;
 				}
 				startWith( page );

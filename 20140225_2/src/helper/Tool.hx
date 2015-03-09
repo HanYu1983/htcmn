@@ -1,6 +1,8 @@
 package helper;
 import flash.display.DisplayObject;
 import flash.geom.Point;
+import flash.Lib;
+import flash.net.URLRequest;
 import org.vic.web.IWebView;
 import view.ActivityPopup;
 import view.ExpInfoPage;
@@ -11,8 +13,6 @@ import view.LuckyDrawPage;
 import view.MoviePage;
 import view.ProductPage;
 import view.RelativePage;
-import view.SellPage;
-import view.SpecPage;
 import view.tech.TechBlink;
 import view.tech.TechBoom;
 import view.tech.TechFrame;
@@ -30,9 +30,13 @@ import view.tech.TechUltra;
  */
 class Tool
 {
-	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, SellPage, SpecPage, TechPage, TechFrame, LuckyDrawPage];
+	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage];
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
+	
+	public static function getURL(url:String, target:String = "_blank") {
+		Lib.getURL(new URLRequest(url), target);
+	}
 	
 	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int, wf:Float = 0.5, hf:Float = 0.5) {
 		centerForceX( obj, tw, sx, sw, wf );

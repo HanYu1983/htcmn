@@ -1,4 +1,7 @@
 package control;
+import flash.Lib;
+import flash.net.URLRequest;
+import helper.Tool;
 import org.vic.web.WebCommand;
 import view.ActivityPopup;
 import view.ExpInfoPage;
@@ -7,8 +10,6 @@ import view.IntroPage;
 import view.MoviePage;
 import view.ProductPage;
 import view.RelativePage;
-import view.SellPage;
-import view.SpecPage;
 import view.TechPage;
 
 /**
@@ -30,16 +31,16 @@ class OnFooterBtnClick extends WebCommand
 		
 		var goto:Dynamic = {
 			btn_onFooterBtnClick_use: function() {
-				
+				Tool.getURL("http://www.htc.com/tw/terms/terms-of-use/");
 			},
 			btn_onFooterBtnClick_private: function(){
-				
+				Tool.getURL("http://www.htc.com/tw/terms/privacy/");
 			},
 			btn_onFooterBtnClick_htc: function(){
-				
+				Tool.getURL("http://www.htc.com/tw/");
 			},
-			btn_onFooterBtnClick_fance: function(){
-				
+			btn_onFooterBtnClick_fance: function() {
+				Tool.getURL("https://www.facebook.com/HTCTaiwan");
 			},
 			btn_onFooterBtnClick_music: function(){
 				var page:FooterUI = cast( getWebManager().getPage( FooterUI ), FooterUI );
