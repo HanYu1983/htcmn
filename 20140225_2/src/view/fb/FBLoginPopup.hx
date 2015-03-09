@@ -3,6 +3,7 @@ package view.fb;
 import view.DefaultPage;
 
 /**
+ * @deprecated
  * ...
  * @author han
  */

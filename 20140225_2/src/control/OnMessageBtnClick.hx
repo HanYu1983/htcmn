@@ -9,6 +9,7 @@ import view.fb.DetailFromPopup;
 import view.MessagePopup;
 
 /**
+ * @deprecated
  * ...
  * @author han
  */

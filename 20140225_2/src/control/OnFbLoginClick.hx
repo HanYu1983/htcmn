@@ -8,6 +8,7 @@ import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
 
 /**
+ * @deprecated
  * ...
  * @author han
  */
@@ -26,7 +27,10 @@ class OnFbLoginClick extends WebCommand
 		var func:Dynamic = {
 			btn_onFbLoginClick_login: function() {
 				
+				SimpleController.onHttpLoadingStart();
+				
 				function openNextPage( err:Error, result:Dynamic ) {
+					SimpleController.onHttpLoadindEnd();
 					closeLoginPopup( null );
 					
 					if ( err != null ) {

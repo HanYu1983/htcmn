@@ -1,6 +1,7 @@
 package view;
 
 /**
+ * @deprecated
  * ...
  * @author han
  */
