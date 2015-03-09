@@ -48,8 +48,11 @@ class TechPage extends DefaultPage
 	
 	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
 	{
-		if( _mc_item != null ){
-			Tool.centerForce( _mc_item, 1366, 768, x, y, w, h, .5, 0 );
+		if ( _mc_item != null ) {
+			Tool.centerForce( _mc_item, 1366, 768, x, y, w, h, .5, .6 );
+			if ( h < 768 ) {
+				_mc_item.y = 10;
+			}
 		}
 		
 		if ( _mc_back != null ) {
