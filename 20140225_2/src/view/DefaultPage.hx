@@ -30,8 +30,6 @@ class DefaultPage extends WebView implements IResize
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_back':
@@ -42,7 +40,7 @@ class DefaultPage extends WebView implements IResize
 					_mc_popup = obj;
 			}
 		});
-		
+		super.onOpenEvent(param, cb);
 		SimpleController.onPageOpen( getWebManager(), this );
 		SimpleController.onResize( getWebManager() );
 	}
