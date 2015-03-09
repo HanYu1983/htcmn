@@ -8,8 +8,6 @@ import view.IntroPage;
 import view.MoviePage;
 import view.ProductPage;
 import view.RelativePage;
-import view.SellPage;
-import view.SpecPage;
 import view.TechPage;
 
 /**
@@ -45,7 +43,6 @@ class OnHeaderBtnClick extends WebCommand
 			// 詳細規格
 			btn_onHeaderBtnClick_Spec: function() {
 				Tool.getURL("http://www.htc.com/tw/smartphones/htc-one-m9/");
-				//AppAPI.changePage( { mgr:this.getWebManager(), page: SpecPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Relative: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
@@ -56,7 +53,6 @@ class OnHeaderBtnClick extends WebCommand
 			// 銷售通路
 			btn_onHeaderBtnClick_Sell: function() {
 				Tool.getURL("http://www.htc.com/tw/go/buy/");
-				//AppAPI.changePage( { mgr:this.getWebManager(), page: SellPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Product: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);

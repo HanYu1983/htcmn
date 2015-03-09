@@ -10,8 +10,6 @@ import view.IntroPage;
 import view.MoviePage;
 import view.ProductPage;
 import view.RelativePage;
-import view.SellPage;
-import view.SpecPage;
 import view.TechPage;
 
 /**
