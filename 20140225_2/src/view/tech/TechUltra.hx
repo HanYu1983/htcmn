@@ -29,6 +29,12 @@ class TechUltra extends DefaultTechPage
 		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
 	}
 	
+	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
+	{
+		//super.onResize(x, y, w, h);
+		//_btn_onTechUltraBtnClick_skip.y = 200;
+	}
+	
 	var _targetX:Float = 0;
 	
 	function onEnterFrame(e: Event) {
@@ -60,7 +66,7 @@ class TechUltra extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
+		
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
@@ -74,6 +80,8 @@ class TechUltra extends DefaultTechPage
 		});
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

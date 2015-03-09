@@ -56,9 +56,11 @@ class DefaultPage extends WebView implements IResize
 		SimpleController.onPageClose( getWebManager(), this );
 		super.onCloseEvent(cb);
 		
-		cast( _mc_item, MovieClip ).stop();
-		SoundMixer.stopAll();
+		if ( _mc_item != null ) {
+			cast( _mc_item, MovieClip ).stop();
+		}
 		
+		SoundMixer.stopAll();
 	}
 	
 	public function onResize(x:Int, y: Int, w:Int, h:Int) {

@@ -1,4 +1,5 @@
 package view.tech;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -59,6 +60,7 @@ class DefaultTechPage extends DefaultPage
 	
 	function forScript( e ) {
 		if ( _mc_controller != null ) _mc_controller.visible = true;
-		hideSkipButton();
+		//hideSkipButton();
+		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 }
