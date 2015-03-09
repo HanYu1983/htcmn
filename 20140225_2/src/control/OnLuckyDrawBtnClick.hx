@@ -73,8 +73,6 @@ class OnLuckyDrawBtnClick extends WebCommand
 						SimpleController.onError(err.message);
 						
 					} else {
-						closePopop();
-						
 						AppAPI.openPage({ 
 								mgr: getWebManager(), 
 								page: DetailFromPopup, 
@@ -100,7 +98,6 @@ class OnLuckyDrawBtnClick extends WebCommand
 						
 					}
 					SimpleController.onHttpLoadindEnd();
-					closePopop();
 				}
 				
 				Async.waterfall([

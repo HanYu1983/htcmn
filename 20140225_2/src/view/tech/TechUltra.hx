@@ -45,23 +45,42 @@ class TechUltra extends DefaultTechPage
 			if ( isHitRegion ) {
 				_targetX = local.x;
 			}
-			moveMask( hitRect.left, hitRect.right, _targetX );
+			var currX = moveMask( hitRect.left, hitRect.right, _targetX );
+			var side = currX - hitRect.left < hitRect.width / 2 ? 'left' : 'right';
+			changeSide( side );
 		}
 	}
 	
-	function moveMask(min:Float, max:Float, targetX:Float) {
-		if (targetX < min)
-			targetX = min;
-		if (targetX > max)
-			targetX = max;
+	var _side:String = 'left';
+	
+	function changeSide( side:String ) {
+		if ( _side != side ) {
+			_side = side;
+			showPhoneMark( side == 'left' ? 'other' : 'htc' );
+		}
+	}
+	
+	function showPhoneMark( type: String ) {
+		switch(type) {
+			case 'htc':
+				Tweener.addTween( mc_txt_htc, { alpha: 1, time: .5 } );
+				Tweener.addTween( mc_txt_other, { alpha: 0, time: .5 } );
+			case _:
+				Tweener.addTween( mc_txt_htc, { alpha: 0, time: .5 } );
+				Tweener.addTween( mc_txt_other, { alpha: 1, time: .5 } );
+		}
+	}
+	
+	function moveMask(min:Float, max:Float, targetX:Float): Float {
+		targetX = Math.min( targetX, max );
+		targetX = Math.max( targetX, min );
 		_mc_controller.mc_slider.x += ((targetX - 20) - _mc_controller.mc_slider.x) * .2;
 		_mc_controller.mc_mask.x += (targetX - _mc_controller.mc_mask.x) * .2;
+		return _mc_controller.mc_mask.x;
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -77,11 +96,7 @@ class TechUltra extends DefaultTechPage
 			}
 		});
 		
-		//mc_txt_htc.alpha = 1;
-		//mc_txt_other.alpha = 1;
-		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
-		
 		super.onOpenEvent(param, cb);
 	}
 	
