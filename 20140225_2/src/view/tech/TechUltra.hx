@@ -13,10 +13,11 @@ import org.vic.utils.BasicUtils;
  */
 class TechUltra extends DefaultTechPage
 {
-	//var _mc_controller:MovieClip;
 	var _mc_slider:DisplayObject;
 	var _mc_mask:DisplayObject;
 	var _mc_htc:DisplayObject;
+	var mc_txt_htc:DisplayObject;
+	var mc_txt_other:DisplayObject;
 	var _btn_onTechUltraBtnClick_skip:DisplayObject;
 	
 	
@@ -69,8 +70,15 @@ class TechUltra extends DefaultTechPage
 					_mc_htc = obj;
 				case 'btn_onTechUltraBtnClick_skip':
 					_btn_onTechUltraBtnClick_skip = obj;
+				case 'mc_txt_htc':
+					mc_txt_htc = obj;
+				case 'mc_txt_other':
+					mc_txt_other = obj;
 			}
 		});
+		
+		//mc_txt_htc.alpha = 1;
+		//mc_txt_other.alpha = 1;
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		
