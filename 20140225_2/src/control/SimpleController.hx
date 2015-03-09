@@ -28,6 +28,7 @@ import view.tech.TechPhoto;
 import view.tech.TechSitu;
 import view.tech.TechUltra;
 import view.TechPage;
+using Lambda;
 
 /**
  * ...
@@ -59,7 +60,10 @@ class SimpleController
 			}
 		}
 	}
-	
+	/**
+	 * 將新頁將被開啟時觸發. 用來處理動態切換讀取頁的效果
+	 * @param	page 將被開啟的那頁
+	 */
 	public static function onPageNew( page:DefaultPage ) {
 		function changeLoadingClass( clz:Class<IWebView> ) {
 			return function() {
@@ -67,7 +71,7 @@ class SimpleController
 			}
 		}
 		
-		when( thePageIs( page, DefaultTechPage ), 
+		when( or( [thePageIs( page, TechPage ), thePageIs( page, DefaultTechPage ) ] ), 
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
@@ -214,6 +218,18 @@ class SimpleController
 		handleSkipButtonVisible();
 	}
 	
+	
+	static function and( fns:Array<Dynamic> ) {
+		return function():Bool {
+			return [for (fn in fns) fn()].exists( function(item:Bool) { return item == false; } ) == false;
+		}
+	}
+	
+	static function or( fns:Array<Dynamic> ) {
+		return function():Bool {
+			return [for (fn in fns) fn()].exists( function(item:Bool) { return item == true; } );
+		}
+	}
 	
 	static function thePageIs( page:DefaultPage, type:Class<IWebView>):Void->Bool {
 		return function() {
