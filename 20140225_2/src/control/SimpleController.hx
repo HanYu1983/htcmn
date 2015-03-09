@@ -36,6 +36,28 @@ import view.TechPage;
 class SimpleController
 {
 	
+	public static function onDefaultTechPageAnimationEnded( p:DefaultTechPage ) {
+		function setSkipButtonVisible( b:Bool ) {
+			return function() {
+				var header = cast(p.getWebManager().getPage(HeaderUI), HeaderUI);
+				if (header != null) {
+					header.setSkipButtonVisible( b );
+				}
+			}
+		}
+		
+		setSkipButtonVisible( false )();
+	}
+	
+	public static function onHeaderSkipButtonClick() {
+		for ( page in WebManager.inst.getPages() ) {
+			if ( Std.is(page, DefaultTechPage) ) {
+				var p = cast(page, DefaultTechPage);
+				p.skipAnimation();
+			}
+		}
+	}
+	
 	public static function onPageNew( page:DefaultPage ) {
 		function changeLoadingClass( clz:Class<IWebView> ) {
 			return function() {
@@ -163,9 +185,31 @@ class SimpleController
 				JSInterfaceHelper.callJs( 'changeHash', [hash], function(info:Dynamic) {});
 		}
 		
+		function handleSkipButtonVisible() {
+			
+			function setSkipButtonVisible( b:Bool ) {
+				return function() {
+					var header = cast(mgr.getPage(HeaderUI), HeaderUI);
+					if (header != null) {
+						header.setSkipButtonVisible( b );
+					}
+				}
+			}
+			
+			// 必須略過TechFrame, 不然它又呼叫setSkipButtonVisible( false ). 因為有時候TechFrame的open會在DefaultTechPage的open之後(!?)
+			if ( Std.is( page, TechFrame ) ) {
+				// nothing
+			} else if ( Std.is( page, DefaultTechPage ) ) {
+				setSkipButtonVisible( true ) ();
+			} else {
+				setSkipButtonVisible( false ) ();
+			}
+		}
+		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
 		handleChangeHash();
+		handleSkipButtonVisible();
 	}
 	
 	

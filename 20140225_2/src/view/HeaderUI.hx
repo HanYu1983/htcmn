@@ -21,12 +21,17 @@ class HeaderUI extends DefaultPage
 	var _btn_extend:DisplayObject;
 	var _mc_overline:DisplayObject;
 	var barHeight:Int = 45;
+	var _btn_onHeaderBtnClick_skip: DisplayObject;
 	
 	public function new() 
 	{
 		super();
 		needLoading = false;
 		layerName = 'ui';
+	}
+	
+	public function setSkipButtonVisible(b:Bool) {
+		Tweener.addTween( _btn_onHeaderBtnClick_skip, { alpha: b? 1: 0, time: 1 } );
 	}
 	
 	private var _extendButtonVisible:Bool = true;
@@ -60,11 +65,14 @@ class HeaderUI extends DefaultPage
 					_btn_extend.alpha = 0;
 				case 'mc_overline':
 					_mc_overline = obj;
+				case 'btn_onHeaderBtnClick_skip':
+					_btn_onHeaderBtnClick_skip = obj;
 			}
 		});
 		
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		_btns.addEventListener( 'overline', moveOverLine );
+		_btn_onHeaderBtnClick_skip.alpha = 0;
 		super.onOpenEvent(param, cb);
 	}
 	
@@ -104,7 +112,7 @@ class HeaderUI extends DefaultPage
 			return;
 		
 		var delayFrame = 30;
-		var isEnterBarRegin = stage.mouseY < barHeight;
+		var isEnterBarRegin = stage.mouseY < barHeight && stage.mouseX > 500;
 		
 		if ( isEnterBarRegin ) {
 			extendButtonVisible(false);
