@@ -37,8 +37,6 @@ class TechFrame extends DefaultPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_righterBottom':
@@ -47,6 +45,8 @@ class TechFrame extends DefaultPage
 					mc_righter = obj;
 			}
 		});
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	public function nameBelongPage(pageClz:Dynamic):String {
@@ -162,7 +162,7 @@ class TechFrame extends DefaultPage
 		
 		if ( mc_righterBottom != null ) {
 			mc_righterBottom.x =  w - mc_righterBottom.width - 30;
-			mc_righterBottom.y = h - 80;
+			mc_righterBottom.y = h - 30;
 		}
 	}
 }

@@ -158,7 +158,7 @@ class MoviePage extends DefaultPage
 	
 	function onYoutubeReady( e ) {
 		_mc_container.addChild( _youtubePlayer.getPlayer() );
-		_youtubePlayer.setSize( _mc_container.width, _mc_container.height - 15 );
+		_youtubePlayer.setSize( 512, 286 );
 		loadVideo( 0, false );
 	}
 }
