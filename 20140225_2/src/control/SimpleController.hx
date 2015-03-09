@@ -15,6 +15,7 @@ import view.ExpInfoPage;
 import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
+import view.IntroPage;
 import view.LoadingPage;
 import view.LoadingPage2;
 import view.MoviePage;
@@ -171,7 +172,9 @@ class SimpleController
 		
 		function handleChangeHash() {
 			var hash =
-				if (Std.is(page, TechPage)) {
+				if (Std.is(page, IntroPage)) {
+					"index";
+				} else if (Std.is(page, TechPage)) {
 					"TechPage";
 				} else if (Std.is(page, TechBlink)) {
 					"TechBlink";
