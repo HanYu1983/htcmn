@@ -27,6 +27,7 @@ class DefaultTechPage extends DefaultPage
 	
 	public function skipAnimation() {
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
+		cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
 	}
 	
 	public function hideSkipButton() {
@@ -52,8 +53,6 @@ class DefaultTechPage extends DefaultPage
 		});
 		
 		super.onOpenEvent(param, cb);
-		
-		
 		
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		_mc_item.addEventListener( 'forScript', forScript );

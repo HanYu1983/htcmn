@@ -1,5 +1,6 @@
 package model;
 import flash.errors.Error;
+import haxe.Json;
 import helper.Tool;
 import org.han.Async;
 import org.vic.web.IWebView;
