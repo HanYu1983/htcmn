@@ -71,10 +71,13 @@ class SimpleController
 			}
 		}
 		
+		// 科技相關頁面都是艙門
 		when( or( [thePageIs( page, TechPage ), thePageIs( page, DefaultTechPage ) ] ), 
+			// 艙門讀取頁
 			changeLoadingClass(LoadingPage) )
 			
 		.otherwise( 
+			// 圓圏讀取頁
 			changeLoadingClass(LoadingPage2) );
 			
 	}
