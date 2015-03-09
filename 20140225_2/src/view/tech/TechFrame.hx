@@ -1,9 +1,11 @@
 package view.tech;
 
+import flash.display.DisplayObject;
 import flash.errors.Error;
 import model.AppAPI;
 import helper.IResize;
 import helper.Tool;
+import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 import org.vic.web.IWebView;
 import org.vic.web.WebView;
@@ -17,6 +19,9 @@ import view.DefaultPage;
 class TechFrame extends DefaultPage
 {
 	public static var TECH_DOUBLE:Int = 1;
+	
+	var mc_righterBottom:DisplayObject;
+	var mc_righter:DisplayObject;
 
 	public function new() 
 	{
@@ -28,6 +33,20 @@ class TechFrame extends DefaultPage
 	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 
 	{
 		return true;
+	}
+	
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
+	{
+		super.onOpenEvent(param, cb);
+		
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_righterBottom':
+					mc_righterBottom = obj;
+				case 'mc_righter':
+					mc_righter = obj;
+			}
+		});
 	}
 	
 	public function nameBelongPage(pageClz:Dynamic):String {
@@ -136,7 +155,14 @@ class TechFrame extends DefaultPage
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
-		getRoot().x = (w - 254);
-		Tool.centerForceY(this, 590, y, h, 0.7 );
+		if( mc_righter != null ){
+			mc_righter.x = (w - 254);
+			Tool.centerForceY(mc_righter, 590, y, h, 0.7 );
+		}
+		
+		if ( mc_righterBottom != null ) {
+			mc_righterBottom.x =  w - mc_righterBottom.width - 30;
+			mc_righterBottom.y = h - 80;
+		}
 	}
 }
