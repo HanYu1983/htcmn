@@ -128,7 +128,7 @@ class Main
 		}
 		
 		function loadConfig( cb:Dynamic ) {
-			var http = new Http("config.json");
+			var http = new Http("config.json?v=" + Math.random());
 			http.onData = function(data:String) {
 				WebManager.inst.setData( 'config', Json.parse(data) );
 				cb( null, null );
