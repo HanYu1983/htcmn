@@ -1,4 +1,5 @@
 package control;
+import helper.Tool;
 import model.AppAPI;
 import org.vic.web.WebCommand;
 import view.ActivityPopup;
@@ -41,8 +42,10 @@ class OnHeaderBtnClick extends WebCommand
 			btn_onHeaderBtnClick_active: function(){
 				AppAPI.openPage( { mgr:this.getWebManager(), page: ActivityPopup, params:{} } ) (null);
 			},
-			btn_onHeaderBtnClick_Spec: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: SpecPage, params:{} } ) (null);
+			// 詳細規格
+			btn_onHeaderBtnClick_Spec: function() {
+				Tool.getURL("http://www.htc.com/tw/smartphones/htc-one-m9/");
+				//AppAPI.changePage( { mgr:this.getWebManager(), page: SpecPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Relative: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
@@ -50,8 +53,10 @@ class OnHeaderBtnClick extends WebCommand
 			btn_onHeaderBtnClick_ExpInfo: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: ExpInfoPage, params:{} } ) (null);
 			},
-			btn_onHeaderBtnClick_Sell: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: SellPage, params:{} } ) (null);
+			// 銷售通路
+			btn_onHeaderBtnClick_Sell: function() {
+				Tool.getURL("http://www.htc.com/tw/go/buy/");
+				//AppAPI.changePage( { mgr:this.getWebManager(), page: SellPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_Product: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
