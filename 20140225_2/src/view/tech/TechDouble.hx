@@ -36,6 +36,7 @@ class TechDouble extends DefaultTechPage
 	var _btn_onTechDoubleBtnClick_skip:DisplayObject;
 	
 	var mc_phoneController:DisplayObject;
+	var mc_phoneBorder:DisplayObject;
 	
 	public function new() 
 	{
@@ -165,8 +166,12 @@ class TechDouble extends DefaultTechPage
 					_btn_onTechDoubleBtnClick_skip = obj;
 				case 'mc_phoneController':
 					mc_phoneController = obj;
+				case 'mc_phoneBorder':
+					mc_phoneBorder = obj;
 			}
 		});
+		
+		trace( mc_phoneBorder );
 		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
