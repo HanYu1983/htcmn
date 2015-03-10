@@ -219,7 +219,7 @@ class Main
 					case 'RelativePage': RelativePage;
 					case 'ProductPage': ProductPage;
 					case 'ExpInfoPage': ExpInfoPage;
-			
+					
 					case _: IntroPage;
 				}
 				startWith( page );
@@ -230,7 +230,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechUltra );
+			startWith( TechDouble );
 			#else
 			startWith( IntroPage );
 			#end

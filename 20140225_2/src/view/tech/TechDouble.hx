@@ -2,6 +2,7 @@ package view.tech;
 
 import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.geom.Point;
@@ -33,6 +34,8 @@ class TechDouble extends DefaultTechPage
 	var _mc_currentBigPhone:MovieClip;
 	var _ary_dotPos:Array<Float>;
 	var _btn_onTechDoubleBtnClick_skip:DisplayObject;
+	
+	var mc_phoneController:DisplayObject;
 	
 	public function new() 
 	{
@@ -160,6 +163,8 @@ class TechDouble extends DefaultTechPage
 					_mc_circleMaskBorder = obj;
 				case 'btn_onTechDoubleClick_skip':
 					_btn_onTechDoubleBtnClick_skip = obj;
+				case 'mc_phoneController':
+					mc_phoneController = obj;
 			}
 		});
 		
