@@ -14,7 +14,7 @@ class FakeLoaderTask extends LoaderTask
 	{
 		if ( _needLoading ) {
 			mediator.dispatchEvent( new VicEvent( LoaderManager.START_LOADING ));
-			mediator.dispatchEvent( new VicEvent( LoaderManager.PROGRESS, 100 ));
+			mediator.dispatchEvent( new VicEvent( LoaderManager.PROGRESS, -1 ));
 		}
 		Timer.delay( function() {
 			if ( _needLoading )	

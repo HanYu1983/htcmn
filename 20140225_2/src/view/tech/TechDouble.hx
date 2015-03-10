@@ -133,8 +133,6 @@ class TechDouble extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -180,6 +178,8 @@ class TechDouble extends DefaultTechPage
 		
 		setCircleMaskVisible( false );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function forScript(e) 
@@ -196,11 +196,27 @@ class TechDouble extends DefaultTechPage
 	var _targetPoint: Point = new Point();
 	
 	function circleMove() {
+		/*
 		_mc_circleMask.x += (_targetPoint.x - _mc_circleMask.x)* .2;
 		_mc_circleMask.y += (_targetPoint.y - _mc_circleMask.y)* .2;
 		
 		_mc_circleMaskBorder.x += (_targetPoint.x - _mc_circleMaskBorder.x)* .2;
-		_mc_circleMaskBorder.y += (_targetPoint.y - _mc_circleMaskBorder.y)* .2;
+		_mc_circleMaskBorder.y += (_targetPoint.y - _mc_circleMaskBorder.y) * .2;
+		*/
+		mc_phoneController.x += (_targetPoint.x - mc_phoneController.x) * .2;
+		mc_phoneController.y += (_targetPoint.y - mc_phoneController.y)* .2;
+	}
+	
+	function syncBackPhonePosition() {
+
+		var offsetX = mc_phoneController.x - 500;
+		var offsetY = mc_phoneController.y - 300;
+		
+		var scaleX = _mc_phoneABig.width / _mc_phoneA.width;
+		var scaleY = _mc_phoneABig.height / _mc_phoneA.height;
+		
+		_mc_phoneABig.x = -offsetX* scaleX;
+		_mc_phoneABig.y = -offsetY* scaleY;
 	}
 	
 	function onEnterFrame(e: Event) {
@@ -209,6 +225,7 @@ class TechDouble extends DefaultTechPage
 		
 		_targetPoint = _mc_item.globalToLocal( new Point( stage.mouseX, stage.mouseY ) );
 		circleMove();
+		syncBackPhonePosition();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

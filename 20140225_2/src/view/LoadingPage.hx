@@ -51,7 +51,12 @@ class LoadingPage extends WebView implements IResize
 	}
 	
 	private function onProgressLoading( e:VicEvent ) {
-		_txt_per.text = Math.floor( e.data ) + '%';
+		var per = e.data;
+		if ( per < 0 ) {
+			_txt_per.text = '';
+		} else {
+			_txt_per.text = Math.floor( per ) + '%';
+		}
 	}
 	
 	public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
