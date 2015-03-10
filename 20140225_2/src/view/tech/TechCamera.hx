@@ -108,7 +108,8 @@ class TechCamera extends DefaultTechPage
 	
 	function moveDot() {
 		var currPoint = new Point( stage.mouseX, stage.mouseY );
-		var per = (stage.mouseX - _mc_bar.x) / _mc_bar.width;
+		var local = _mc_item.globalToLocal( currPoint );
+		var per = (local.x - _mc_bar.x) / _mc_bar.width;
 		var currScale = per + 1;
 		var offsetScale = currScale - _scale;
 		scalePhoto( offsetScale );
