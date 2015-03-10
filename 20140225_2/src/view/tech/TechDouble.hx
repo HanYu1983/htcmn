@@ -169,7 +169,7 @@ class TechDouble extends DefaultTechPage
 			}
 		});
 		
-		trace( mc_phoneBorder );
+		//trace( mc_phoneBorder );
 		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
@@ -181,6 +181,7 @@ class TechDouble extends DefaultTechPage
 		_mc_phoneBBig.alpha = 0;
 		_mc_phoneCBig.alpha = 0;
 		
+		setCircleVisible( false );
 		setCircleMaskVisible( false );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		
@@ -201,36 +202,47 @@ class TechDouble extends DefaultTechPage
 	var _targetPoint: Point = new Point();
 	
 	function circleMove() {
-		/*
-		_mc_circleMask.x += (_targetPoint.x - _mc_circleMask.x)* .2;
-		_mc_circleMask.y += (_targetPoint.y - _mc_circleMask.y)* .2;
-		
-		_mc_circleMaskBorder.x += (_targetPoint.x - _mc_circleMaskBorder.x)* .2;
-		_mc_circleMaskBorder.y += (_targetPoint.y - _mc_circleMaskBorder.y) * .2;
-		*/
-		mc_phoneController.x += (_targetPoint.x - mc_phoneController.x) * .2;
-		mc_phoneController.y += (_targetPoint.y - mc_phoneController.y)* .2;
+		mc_phoneController.x += (_targetPoint.x - mc_phoneController.x) * .5;
+		mc_phoneController.y += (_targetPoint.y - mc_phoneController.y)* .5;
 	}
 	
+	var _originSize: Point = null;
+	
 	function syncBackPhonePosition() {
-
-		var offsetX = mc_phoneController.x - 500;
-		var offsetY = mc_phoneController.y - 300;
+		if ( _originSize == null ) {
+			_originSize = new Point( _mc_phoneABig.width, _mc_phoneABig.height );
+		}
 		
-		var scaleX = _mc_phoneABig.width / _mc_phoneA.width;
-		var scaleY = _mc_phoneABig.height / _mc_phoneA.height;
+		var offsetX = mc_phoneController.x - mc_phoneBorder.x;
+		var offsetY = mc_phoneController.y - mc_phoneBorder.y;
 		
-		_mc_phoneABig.x = -offsetX* scaleX;
-		_mc_phoneABig.y = -offsetY* scaleY;
+		var scaleX = _originSize.x / mc_phoneBorder.width;
+		var scaleY = _originSize.y / mc_phoneBorder.height;
+		
+		_mc_phoneABig.x = _mc_phoneBBig.x = _mc_phoneCBig.x = -offsetX* scaleX;
+		_mc_phoneABig.y = _mc_phoneBBig.y = _mc_phoneCBig.y = -offsetY* scaleY;
 	}
 	
 	function onEnterFrame(e: Event) {
 		if (_mc_circleMask == null)
 			return;
-		
-		_targetPoint = _mc_item.globalToLocal( new Point( stage.mouseX, stage.mouseY ) );
+		var isEnterRegion = mc_phoneBorder.hitTestPoint( stage.mouseX, stage.mouseY );
+		if ( isEnterRegion ) {
+			_targetPoint = _mc_item.globalToLocal( new Point( stage.mouseX, stage.mouseY ) );	
+		}
+		setCircleVisible( isEnterRegion );
 		circleMove();
 		syncBackPhonePosition();
+	}
+	
+	
+	var _circleVisible = true;
+	
+	function setCircleVisible( b:Bool ) {
+		if ( _circleVisible != b ) {
+			_circleVisible = b;
+			Tweener.addTween( mc_phoneController, { alpha: b? 1: 0, time: 0.5 } );
+		}
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
