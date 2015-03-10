@@ -22,6 +22,9 @@ class TechCamera extends DefaultTechPage
 	var _mc_other:DisplayObject;	
 	var _mc_photo:DisplayObjectContainer;
 	var _btn_onTechCameraClick_skip:DisplayObject;
+	var mc_photoScale:DisplayObject;
+	var mc_photoOffset:DisplayObject;
+	var mc_photoMask:DisplayObject;
 	
 	public function new() 
 	{
@@ -57,9 +60,17 @@ class TechCamera extends DefaultTechPage
 					_mc_photo = cast( obj, DisplayObjectContainer );
 				case 'btn_onTechCameraClick_skip':
 					_btn_onTechCameraClick_skip = obj;
-					
+				case 'mc_photoScale':
+					mc_photoScale = obj;
+				case 'mc_photoOffset':
+					mc_photoOffset = obj;
+				case 'mc_photoMask':
+					mc_photoMask = obj;
 			}
 		});
+		
+		//trace( mc_photoMask );
+		//mc_photoOffset.x = 100; 
 		
 		_originDotX = _mc_dot.x;
 		animateForSmartPhone(taggleCircleButton());
@@ -82,8 +93,8 @@ class TechCamera extends DefaultTechPage
 		_scale += v;
 		_scale = Math.min( _scale, 2 );
 		_scale = Math.max( 1, _scale );
-		var news = ( _scale - 1 ) * ( 1 - .5 ) + .5;
-		Tweener.addTween( _mc_photo, { scaleX: news, scaleY: news, time:.3 } );
+		//var news = ( _scale - 1 ) * ( 1 - .5 ) + .5;
+		Tweener.addTween( mc_photoScale, { scaleX: _scale, scaleY: _scale, time:.3 } );
 		
 		setDotPosition( _scale );
 	}
