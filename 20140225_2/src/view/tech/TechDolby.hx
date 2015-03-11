@@ -1,8 +1,10 @@
 package view.tech;
 
+import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.errors.Error;
 import flash.events.MouseEvent;
 import flash.media.SoundMixer;
 import helper.IResize;
@@ -26,6 +28,7 @@ class TechDolby extends DefaultTechPage
 	var flv_container:DisplayObjectContainer;
 	var mc_dot:MovieClip;
 	var isNormal:Bool = true;
+	var currVideo:MovieClip;
 
 	public function new() 
 	{
@@ -51,12 +54,6 @@ class TechDolby extends DefaultTechPage
 					mc_txtB = obj;
 				case 'mc_phone':
 					mc_phone = cast( obj, MovieClip );
-					
-				case 'flv_videoA':
-					//flv_videoA = cast( obj, MovieClip );
-				case 'flv_videoB':
-					//flv_videoB = cast( obj, MovieClip );
-					
 				case 'flv_container':
 					flv_container = cast( obj, DisplayObjectContainer );
 				case 'mc_dot':
@@ -67,41 +64,64 @@ class TechDolby extends DefaultTechPage
 		btn_Switch.buttonMode = true;
 		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		
-		/* 產生a影片
-		flv_videoA = cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
-		flv_container.addChild( flv_videoA );
+		showVideo( 'dolby' );
+	}
+	
+	function showVideo( type: String ) {
+		if ( currVideo != null ) {
+			SoundMixer.stopAll();
+			flv_container.removeChild( currVideo );
+			currVideo = null;
+		}
+		var video = switch( type ) {
+			case 'dolby':
+				cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
+			case _:
+				cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
+		}
+		video.gotoAndPlay( 'play' );
 		
-		產生b影片
-		flv_videoA = cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoB' ), MovieClip );
-		flv_container.addChild( flv_videoA );
-		
-		產生的影片要乎叫這個才會有聲音
-		flv_videoA.gotoAndPlay( 'play' );
-		*/
+		flv_container.addChild( video );
+		currVideo = video;
+	}
+	
+	var currSwitchLabel = 'normal';
+	
+	function toggleSwitch():String {
+		var target = currSwitchLabel == 'dolby' ? 'normal' : 'dolby';
+		mc_dot.gotoAndPlay( target );
+		currSwitchLabel = target;
+		return currSwitchLabel;
+	}
+	
+	function showPhoneWithType( type:String ) {
+		mc_phone.gotoAndPlay( type );
+	}
+	
+	function showTextWithType( type:String ) {
+		switch( type ) {
+			case 'dolby':
+				Tweener.addTween( mc_txtB, { alpha: 1, time: .5 } );
+				Tweener.addTween( mc_txtA, { alpha: 0, time: .5 } );
+			case _:
+				Tweener.addTween( mc_txtA, { alpha: 1, time: .5 } );
+				Tweener.addTween( mc_txtB, { alpha: 0, time: .5 } );
+		}
 	}
 	
 	function onBtnSwitchClick( e ) {
-		//選項
-		//mc_phone.gotoAndPlay( 'dolby' );//normal, dolby
-		//mc_dot.gotoAndPlay( 'dolby' );//normal, dolby
-		
-		//移除影片
-		//SoundMixer.stopAll();
-		//flv_container.removeChild( flv_videoA );
-		//flv_container.removeChild( flv_videoB );
-		
-		//trace( mc_dot );
-		//mc_txtA.visible = false;
-		//mc_txtB.visible = false;
+		var target = toggleSwitch();
+		showVideo( target );
+		showPhoneWithType( target );
+		showTextWithType( target );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
-		super.onCloseEvent(cb);
-		
 		if ( btn_Switch != null ) {
 			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		}
+		super.onCloseEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
