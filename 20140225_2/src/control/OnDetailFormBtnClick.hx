@@ -3,10 +3,12 @@ package control;
 import flash.display.DisplayObject;
 import flash.errors.Error;
 import model.AppAPI;
+import model.Const;
 import model.ETMAPI;
 import org.han.Async;
 import org.vic.web.WebCommand;
 import view.fb.DetailFromPopup;
+import view.LuckyDrawPage;
 import view.MessagePopup;
 
 /**
@@ -82,7 +84,10 @@ class OnDetailFormBtnClick extends WebCommand
 						
 					} else {
 						if ( ret.success ) {
+							SimpleController.onAlert( Const.MSG_SUBMIT_DATA );
 							closeDetailPopop( null );
+							getWebManager().closePage(LuckyDrawPage);
+							
 						} else {
 							SimpleController.onError( ret.msg );
 						}

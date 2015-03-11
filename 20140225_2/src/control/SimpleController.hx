@@ -104,6 +104,14 @@ class SimpleController
 		}
 	}
 	
+	public static function onAlert(msg:Dynamic) {
+		try {
+			ExternalInterface.call( 'alert', msg );
+		} catch (e:Error) {
+		
+		}
+	}
+	
 	public static function onLog(msg:Dynamic) {
 		#if debug
 		trace( msg );

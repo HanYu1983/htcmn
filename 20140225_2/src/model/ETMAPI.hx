@@ -10,7 +10,6 @@ import haxe.Json;
  */
 class ETMAPI
 {
-	
 	/**
 	 * 
 	 * callback: Error, Json Object
