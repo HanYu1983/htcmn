@@ -14,7 +14,7 @@ import org.vic.utils.BasicUtils;
  */
 class TechCamera extends DefaultTechPage
 {
-	//var _mc_controller:MovieClip;
+	
 	var _mc_circleButton:MovieClip;
 	var _mc_dot:MovieClip;
 	var _mc_bar:MovieClip;
@@ -23,7 +23,6 @@ class TechCamera extends DefaultTechPage
 	var _mc_htc:DisplayObject;
 	var _mc_other:DisplayObject;	
 	var _mc_photo:DisplayObjectContainer;
-	var _btn_onTechCameraClick_skip:DisplayObject;
 	var mc_photoScale:DisplayObject;
 	var mc_photoOffset:DisplayObject;
 	var mc_photoMask:DisplayObject;
@@ -31,11 +30,6 @@ class TechCamera extends DefaultTechPage
 	public function new() 
 	{
 		super();
-	}
-	
-	override public function hideSkipButton() 
-	{
-		Tweener.addTween( _btn_onTechCameraClick_skip, { alpha:0, time:1 } );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -60,8 +54,6 @@ class TechCamera extends DefaultTechPage
 					_mc_other = obj;
 				case 'mc_photo':
 					_mc_photo = cast( obj, DisplayObjectContainer );
-				case 'btn_onTechCameraClick_skip':
-					_btn_onTechCameraClick_skip = obj;
 				case 'mc_photoScale':
 					mc_photoScale = obj;
 				case 'mc_photoOffset':

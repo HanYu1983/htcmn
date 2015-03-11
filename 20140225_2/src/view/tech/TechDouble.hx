@@ -43,10 +43,6 @@ class TechDouble extends DefaultTechPage
 		super();
 	}
 	
-	override public function hideSkipButton() {
-		Tweener.addTween( _btn_onTechDoubleBtnClick_skip, { alpha: 0, time: 1 } );
-	}
-	
 	public function changeSide( which ) {
 		
 		switch( which ) {
@@ -168,8 +164,6 @@ class TechDouble extends DefaultTechPage
 					mc_phoneBorder = obj;
 			}
 		});
-		
-		//trace( mc_phoneBorder );
 		
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		

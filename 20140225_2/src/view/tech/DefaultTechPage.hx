@@ -30,10 +30,6 @@ class DefaultTechPage extends DefaultPage
 		cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
 	}
 	
-	public function hideSkipButton() {
-		//over
-	}
-	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
@@ -60,7 +56,6 @@ class DefaultTechPage extends DefaultPage
 	
 	function forScript( e ) {
 		if ( _mc_controller != null ) _mc_controller.visible = true;
-		//hideSkipButton();
 		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 }
