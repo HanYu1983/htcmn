@@ -14,7 +14,7 @@ import org.vic.utils.BasicUtils;
  */
 class TechCamera extends DefaultTechPage
 {
-	//var _mc_controller:MovieClip;
+	
 	var _mc_circleButton:MovieClip;
 	var _mc_dot:MovieClip;
 	var _mc_bar:MovieClip;
@@ -23,7 +23,6 @@ class TechCamera extends DefaultTechPage
 	var _mc_htc:DisplayObject;
 	var _mc_other:DisplayObject;	
 	var _mc_photo:DisplayObjectContainer;
-	var _btn_onTechCameraClick_skip:DisplayObject;
 	var mc_photoScale:DisplayObject;
 	var mc_photoOffset:DisplayObject;
 	var mc_photoMask:DisplayObject;
@@ -31,11 +30,6 @@ class TechCamera extends DefaultTechPage
 	public function new() 
 	{
 		super();
-	}
-	
-	override public function hideSkipButton() 
-	{
-		Tweener.addTween( _btn_onTechCameraClick_skip, { alpha:0, time:1 } );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -60,8 +54,6 @@ class TechCamera extends DefaultTechPage
 					_mc_other = obj;
 				case 'mc_photo':
 					_mc_photo = cast( obj, DisplayObjectContainer );
-				case 'btn_onTechCameraClick_skip':
-					_btn_onTechCameraClick_skip = obj;
 				case 'mc_photoScale':
 					mc_photoScale = obj;
 				case 'mc_photoOffset':
@@ -73,7 +65,7 @@ class TechCamera extends DefaultTechPage
 		
 		_originDotX = _mc_dot.x;
 		animateForSmartPhone(taggleCircleButton());
-		scalePhoto( 0 );
+		//scalePhoto( 0 );
 		
 		_mc_bar.buttonMode = true;
 		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
@@ -108,7 +100,8 @@ class TechCamera extends DefaultTechPage
 	
 	function moveDot() {
 		var currPoint = new Point( stage.mouseX, stage.mouseY );
-		var per = (stage.mouseX - _mc_bar.x) / _mc_bar.width;
+		var local = _mc_item.globalToLocal( currPoint );
+		var per = (local.x - _mc_bar.x) / _mc_bar.width;
 		var currScale = per + 1;
 		var offsetScale = currScale - _scale;
 		scalePhoto( offsetScale );
@@ -145,33 +138,46 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function boundingPhotoOffset() {
-		var origin1 = new Point();
+		
+		// 有*2和/2的係數是因為在flash的階層中, mc_photoOffset的子層被放大的二倍, 而那層沒被計算到, 所以要乘回來
+		
+		// 錨點在圖片中間, 算出左上角的點的世界坐標
+		var origin1 = new Point( -mc_photoOffset.width/2 *2, -mc_photoOffset.height); // 乘2的係數, 之後省略不寫
 		var global1 = mc_photoOffset.localToGlobal( origin1 );
-		if ( global1.x > mc_photoMask.x + mc_photoMask.width/2 ) {
-			var local = mc_photoOffset.globalToLocal( new Point(mc_photoMask.x+ mc_photoMask.width/2, 0) );
+		
+		// 錨點在圖片左上角, 算出左上角的點的世界坐標
+		var globalMask1 = mc_photoMask.localToGlobal( new Point() );
+
+		if ( global1.x > globalMask1.x ) {
+			var local = mc_photoOffset.globalToLocal( new Point(globalMask1.x, 0) );
 			var offset = local.subtract( origin1 );
-			mc_photoOffset.x += offset.x / 2;
+			mc_photoOffset.x += offset.x / 2;	// 除2的係數
 		}
 		
-		if ( global1.y > mc_photoMask.y + mc_photoMask.height/2 ) {
-			var local = mc_photoOffset.globalToLocal( new Point(0, mc_photoMask.y+ mc_photoMask.height/2 ) );
+		if ( global1.y > globalMask1.y ) {
+			var local = mc_photoOffset.globalToLocal( new Point(0,globalMask1.y ) );
 			var offset = local.subtract( origin1 );
-			mc_photoOffset.y += offset.y / 2;
+			mc_photoOffset.y += offset.y / 2;	// 除2的係數
 		}
 		
+		// 錨點在圖片中間, 算出右下角的點的世界坐標
 		var origin2 = new Point(mc_photoOffset.width, mc_photoOffset.height);
 		var global2 = mc_photoOffset.localToGlobal( origin2 );
 		
-		if ( global2.x < mc_photoMask.x + mc_photoMask.width ) {
-			var local = mc_photoOffset.globalToLocal( new Point(mc_photoMask.x + mc_photoMask.width, 0) );
+		// 錨點在圖片左上角, 算出有下角的點的世界坐標
+		var globalMask2 = mc_photoMask.localToGlobal( new Point(mc_photoMask.width, mc_photoMask.height) );
+		
+		if ( global2.x < globalMask2.x ) {
+			var local = mc_photoOffset.globalToLocal( new Point(globalMask2.x, 0) );
 			var offset = local.subtract( origin2 );
-			mc_photoOffset.x += offset.x / 2;
+			mc_photoOffset.x += offset.x / 2;	// 除2的係數
 		}
-		if ( global2.y < mc_photoMask.y + mc_photoMask.height ) {
-			var local = mc_photoOffset.globalToLocal( new Point(0, mc_photoMask.y + mc_photoMask.height) );
+		if ( global2.y < globalMask2.y ) {
+			var local = mc_photoOffset.globalToLocal( new Point(0, globalMask2.y) );
 			var offset = local.subtract( origin2 );
-			mc_photoOffset.y += offset.y / 2;
+			mc_photoOffset.y += offset.y / 2;	// 除2的係數
 		}
+		
 	}
 	
 	function onMouseClickSlideBar( e:MouseEvent ) {

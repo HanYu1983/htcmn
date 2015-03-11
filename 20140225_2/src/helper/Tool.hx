@@ -38,16 +38,16 @@ class Tool
 		Lib.getURL(new URLRequest(url), target);
 	}
 	
-	public static function centerForce(obj:DisplayObject, tw:Int, th:Int, sx:Int, sy:Int, sw: Int, sh: Int, wf:Float = 0.5, hf:Float = 0.5) {
+	public static function centerForce(obj:DisplayObject, tw:Float, th:Float, sx:Float, sy:Float, sw: Float, sh: Float, wf:Float = 0.5, hf:Float = 0.5) {
 		centerForceX( obj, tw, sx, sw, wf );
 		centerForceY( obj, th, sy, sh, hf );
 	}
 	
-	public static function centerForceX(obj:DisplayObject, tw:Int, sx:Int, sw: Int, f: Float = 0.5) {
+	public static function centerForceX(obj:DisplayObject, tw:Float, sx:Float, sw: Float, f: Float = 0.5) {
 		obj.x = sx+ (sw - tw) * f;
 	}
 	
-	public static function centerForceY(obj:DisplayObject, th:Int, sy:Int, sh: Int, f: Float = 0.5) {
+	public static function centerForceY(obj:DisplayObject, th:Float, sy:Float, sh: Float, f: Float = 0.5) {
 		obj.y = sy+ (sh - th) * f;
 	}
 	

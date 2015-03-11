@@ -2,6 +2,7 @@ package control;
 
 import flash.errors.Error;
 import model.AppAPI;
+import model.Const;
 import model.ETMAPI;
 import org.han.Async;
 import org.vic.web.WebCommand;
@@ -17,6 +18,7 @@ import view.MessagePopup;
 class OnLuckyDrawBtnClick extends WebCommand
 {
 
+	
 	public function new(name:String=null) 
 	{
 		super(name);
@@ -70,7 +72,13 @@ class OnLuckyDrawBtnClick extends WebCommand
 					SimpleController.onHttpLoadindEnd();
 					
 					if ( err != null ) {
-						SimpleController.onError(err.message);
+						if ( err.message == 'isWritten' ) {
+							SimpleController.onAlert( Const.MSG_SUBMIT_DATA_ALREADY );
+							
+						} else {
+							SimpleController.onError(err.message);
+						}
+						
 						
 					} else {
 						AppAPI.openPage({ 
@@ -94,6 +102,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 				function handleNext( err:Error, ret:Dynamic ){
 					if ( err != null ) {
 						SimpleController.onError( err.message );
+						
 					} else {
 						
 					}

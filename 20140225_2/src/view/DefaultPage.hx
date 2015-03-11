@@ -52,18 +52,27 @@ class DefaultPage extends WebView implements IResize
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
 		SimpleController.onPageClose( getWebManager(), this );
-		super.onCloseEvent(cb);
-		
 		if ( _mc_item != null ) {
 			cast( _mc_item, MovieClip ).stop();
 		}
 		
 		SoundMixer.stopAll();
+		super.onCloseEvent(cb);
 	}
 	
 	public function onResize(x:Int, y: Int, w:Int, h:Int) {
-		if( _mc_item != null ){
-			Tool.centerForce( _mc_item, 1366, 768, x, y, w, h );
+		if ( _mc_item != null ) {
+			var fix_width = 1366.0;
+			var fix_height = 768.0;
+			
+			if ( w < fix_width ) {
+				var scale = Math.max(w, 1024.0) / fix_width;
+				_mc_item.scaleX = _mc_item.scaleY = scale;
+				Tool.centerForce( _mc_item, fix_width* scale, fix_height* scale, x, y, w, h );
+			} else {
+				_mc_item.scaleX = _mc_item.scaleY = 1;
+				Tool.centerForce( _mc_item, fix_width, fix_height, x, y, w, h );
+			}
 		}
 		if ( _mc_popup != null ) {
 			Tool.center(_mc_popup, x, y, w, h);

@@ -18,16 +18,11 @@ class TechUltra extends DefaultTechPage
 	var _mc_htc:DisplayObject;
 	var mc_txt_htc:DisplayObject;
 	var mc_txt_other:DisplayObject;
-	var _btn_onTechUltraBtnClick_skip:DisplayObject;
-	
+
 	
 	public function new() 
 	{
 		super();
-	}
-	
-	override public function hideSkipButton() {
-		Tweener.addTween( _btn_onTechUltraBtnClick_skip, { alpha: 0, time: 1 } );
 	}
 	
 	var _targetX:Float = 0;
@@ -87,8 +82,6 @@ class TechUltra extends DefaultTechPage
 					_mc_controller = cast( obj, MovieClip );
 				case 'mc_htc':
 					_mc_htc = obj;
-				case 'btn_onTechUltraBtnClick_skip':
-					_btn_onTechUltraBtnClick_skip = obj;
 				case 'mc_txt_htc':
 					mc_txt_htc = obj;
 				case 'mc_txt_other':
