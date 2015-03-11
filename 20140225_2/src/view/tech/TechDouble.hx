@@ -170,10 +170,14 @@ class TechDouble extends DefaultTechPage
 		_mc_currentBigPhone = _mc_phoneABig;
 		_mc_currentPhone = _mc_phoneA;
 		
+		_mc_phoneA.alpha = 0;
 		_mc_phoneB.alpha = 0;
 		_mc_phoneC.alpha = 0;
+		_mc_phoneABig.alpha = 0;
 		_mc_phoneBBig.alpha = 0;
 		_mc_phoneCBig.alpha = 0;
+		
+		changeColor( 'b' );
 		
 		setCircleVisible( false );
 		setCircleMaskVisible( false );

@@ -1,12 +1,13 @@
 package view ;
 
+import helper.Tool;
 import org.vic.web.WebView;
 
 /**
  * ...
  * @author vic
  */
-class ActivityPopup extends WebView
+class ActivityPopup extends DefaultPage
 {
 
 	public function new() 
@@ -15,13 +16,26 @@ class ActivityPopup extends WebView
 		
 		layerName = 'popup';
 	}
+	
+	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
+	{
+		if( _mc_popup != null ){
+			Tool.centerForce( _mc_popup, _mc_popup.width, 560, x, y, w, h );
+		}
+		
+		if ( _mc_back != null ) {
+			_mc_back.width = w;
+			_mc_back.height = h;
+		}
+	}
+	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'active', path:'src/active.swf' };
+		return {name:'ActivePage', path:'src/ActivePage.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'active', path:'Active' };
+		return {name:'ActivePage', path:'ActivePage' };
 	}
 }

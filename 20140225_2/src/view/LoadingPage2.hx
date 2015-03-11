@@ -1,5 +1,6 @@
 package view;
 import flash.display.DisplayObject;
+import flash.display.MovieClip;
 import flash.display.Stage;
 import flash.text.TextField;
 import org.vic.event.VicEvent;
@@ -13,7 +14,8 @@ import org.vic.web.WebView;
  */
 class LoadingPage2 extends WebView
 {
-
+	var mc_gold:MovieClip;
+	
 	public function new() 
 	{
 		super();
@@ -33,6 +35,8 @@ class LoadingPage2 extends WebView
 			switch( obj.name ){
 				case 'txt_per':
 					_txt_per = cast( obj, TextField );
+				case 'mc_gold':
+					mc_gold = cast( obj, MovieClip );
 			}
 		});
 	}
@@ -47,6 +51,7 @@ class LoadingPage2 extends WebView
 	
 	function onProgressLoading( e:VicEvent ) {
 		_txt_per.text = Math.floor( e.data ) + '%';
+		mc_gold.gotoAndStop( Math.floor( e.data ) );
 	}
 	
 	override function getSwfInfo():Dynamic 
