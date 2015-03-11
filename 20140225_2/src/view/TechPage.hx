@@ -56,18 +56,21 @@ class TechPage extends DefaultPage
 			if ( w < fix_width ) {
 				var scale = Math.max(w, 1024.0) / fix_width;
 				_mc_item.scaleX = _mc_item.scaleY = scale;
-				Tool.centerForce( _mc_item, fix_width* scale, fix_height* scale, x, y, w, h );
+				Tool.centerForce( _mc_item, fix_width * scale, fix_height * scale, x, y, w, h, .5, .6 );
+				_mc_item.y = 50;
 			} else {
 				_mc_item.scaleX = _mc_item.scaleY = 1;
-				Tool.centerForce( _mc_item, fix_width, fix_height, x, y, w, h );
+				Tool.centerForce( _mc_item, fix_width, fix_height, x, y, w, h, .5, .6 );
 			}
 		}
 		
 		if ( _mc_back != null ) {
-			_mc_back.x = w / 2 + 10;
-			_mc_back.y = h / 2 - 40;
-			_mc_back.width = w * 2;
-			_mc_back.height = h * 2;
+			//_mc_back.x = w / 2;
+			//_mc_back.y = h / 2;
+			//_mc_back.width = w * 2;
+			//_mc_back.height = h * 2;
+			_mc_back.width = w;
+			_mc_back.height = h;
 		}
 	}
 	
