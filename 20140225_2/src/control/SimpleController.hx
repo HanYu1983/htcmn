@@ -20,6 +20,7 @@ import view.LoadingPage;
 import view.LoadingPage2;
 import view.MoviePage;
 import view.ProductPage;
+import view.ProductPhotoPage;
 import view.RelativePage;
 import view.tech.DefaultTechPage;
 import view.tech.TechBlink;
@@ -41,6 +42,14 @@ using Lambda;
  */
 class SimpleController
 {
+	
+	public static function onProductPagePhotoBlockClick( page:ProductPage, name:String ) {
+		trace(name);
+		
+		var bitmap = page.getPhotoWithBlockName( name );
+		page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap } );
+	}
+	
 	
 	public static function onDefaultTechPageAnimationEnded( p:DefaultTechPage ) {
 		function setSkipButtonVisible( b:Bool ) {
@@ -93,36 +102,6 @@ class SimpleController
 	
 	public static function onHttpLoadindEnd() {
 		WebManager.inst.closePage( HttpLoadingPage );
-	}
-	
-	public static function onError(msg:Dynamic) {
-		try {
-			ExternalInterface.call( 'alert', msg );
-			ExternalInterface.call( 'console.log', msg );
-		} catch (e:Error) {
-			onLog(msg);
-		}
-	}
-	
-	public static function onAlert(msg:Dynamic) {
-		try {
-			ExternalInterface.call( 'alert', msg );
-		} catch (e:Error) {
-		
-		}
-	}
-	
-	public static function onLog(msg:Dynamic) {
-		#if debug
-		trace( msg );
-		try {
-			ExternalInterface.call( 'console.log', msg );
-		} catch (e:Error) {
-		
-		}
-		#else
-		
-		#end
 	}
 	
 	public static function onResize( mgr:WebManager ) {
@@ -244,6 +223,36 @@ class SimpleController
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
 		handleChangeHash();
 		handleSkipButtonVisible();
+	}
+	
+	public static function onError(msg:Dynamic) {
+		try {
+			ExternalInterface.call( 'alert', msg );
+			ExternalInterface.call( 'console.log', msg );
+		} catch (e:Error) {
+			onLog(msg);
+		}
+	}
+	
+	public static function onAlert(msg:Dynamic) {
+		try {
+			ExternalInterface.call( 'alert', msg );
+		} catch (e:Error) {
+		
+		}
+	}
+	
+	public static function onLog(msg:Dynamic) {
+		#if debug
+		trace( msg );
+		try {
+			ExternalInterface.call( 'console.log', msg );
+		} catch (e:Error) {
+		
+		}
+		#else
+		
+		#end
 	}
 	
 	
