@@ -27,10 +27,6 @@ class ProductPage extends DefaultPage
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		
-		function fetchPhoto( obj: { photo:String } ) {
-			return AppAPI.getImageFromURL( { url: obj.photo } );
-		}
-		
 		function fetchDone( err:Error, photoList:Dynamic ) {
 			if ( err != null ) {
 				SimpleController.onError( err.message );
@@ -41,13 +37,21 @@ class ProductPage extends DefaultPage
 			}
 		}
 		
+		function fetchPhoto( args: { data:Dynamic } ) {
+			return function( cb:Dynamic ) {
+				Async.map( 
+					args.data, 
+					function( obj: { photo:String } ) {
+						return AppAPI.getImageFromURL( { url: obj.photo } );
+					},
+					cb 
+				);
+			}
+		}
+		
 		Async.waterfall([
 			ETMAPI.getPhotoList,
-			function getImage( args: { data:Dynamic } ) {
-				return function( cb:Dynamic ) {
-					Async.map( args.data, fetchPhoto, cb );
-				}
-			}
+			fetchPhoto
 		], fetchDone, { } );
 		
 		super.onOpenEvent(param, cb);
