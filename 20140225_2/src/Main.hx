@@ -11,6 +11,7 @@ import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
+import control.OnProductBtnClick;
 import control.OnProductPhotoBtnClick;
 import control.OnTechDoubleBtnClick;
 import control.OnTechCameraClick;
@@ -129,6 +130,7 @@ class Main
 			WebManager.inst.addCommand( new OnTechUltraBtnClick("onTechUltraBtnClick") );
 			WebManager.inst.addCommand( new OnTechCameraClick("onTechCameraClick") );
 			WebManager.inst.addCommand( new OnProductPhotoBtnClick("onProductPhotoBtnClick") );
+			WebManager.inst.addCommand( new OnProductBtnClick("onProductBtnClick") );
 			
 			cb( null, null );
 		}

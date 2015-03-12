@@ -11,14 +11,23 @@ import haxe.Json;
 class ETMAPI
 {
 	
-	public static function getPhotoList( args: { } ):Dynamic {
+	public static function getPhotoList( args: { mobile: String } ):Dynamic {
 		return function( cb:Dynamic ) {
 			var http = new Http("http://rsclient.etmgup.com/htc_hima/getPhotoList.php");
+			
+			if ( args.mobile != null ) {
+				http.setParameter("mobile", args.mobile);
+			}
 			http.onData = function(data:String) {
 				SimpleController.onLog(data);
 				
 				var json = Json.parse( data );
-				cb( null, json );
+				if ( json.status == 1 ) {
+					cb( null, json );
+				} else {
+					cb( new Error('no this mobile:' + args.mobile), null );
+				}
+				
 			}
 			http.onError = function( err:String ) {
 				cb( new Error(err), null );

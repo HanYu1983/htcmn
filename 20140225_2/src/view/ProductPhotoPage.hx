@@ -13,6 +13,7 @@ import org.vic.utils.BasicUtils;
 class ProductPhotoPage extends DefaultPage
 {
 	var mc_photoContainer:DisplayObjectContainer;
+	var mc_imgmask: DisplayObject;
 	
 	public function new() {
 		super();
@@ -25,6 +26,8 @@ class ProductPhotoPage extends DefaultPage
 			switch( obj.name ) {
 				case 'mc_photoContainer':
 					mc_photoContainer = cast( obj, DisplayObjectContainer );
+				case 'mc_imgmask':
+					mc_imgmask = obj;
 			}
 		});
 		

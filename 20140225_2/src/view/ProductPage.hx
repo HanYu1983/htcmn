@@ -68,6 +68,7 @@ class ProductPage extends DefaultPage
 		onInputFocusOut(null);
 		
 		for ( block in photoBlocks ) {
+			cast( block, MovieClip ).buttonMode = true;
 			block.addEventListener( MouseEvent.CLICK, onPhotoBlockClick );
 		}
 		
@@ -97,6 +98,10 @@ class ProductPage extends DefaultPage
 	
 	public function getPhotoWithBlockName( name:String ):BitmapData {
 		return photoBelong.get(name);
+	}
+	
+	public function getInput():String {
+		return userInput;
 	}
 	
 	var userInput:String = "";
@@ -140,23 +145,7 @@ class ProductPage extends DefaultPage
 				
 			}
 		}
-		
-		function fetchPhoto( args: { data:Dynamic } ) {
-			return function( cb:Dynamic ) {
-				Async.map( 
-					args.data, 
-					function( obj: { photo:String } ) {
-						return AppAPI.getImageFromURL( { url: obj.photo } );
-					},
-					cb 
-				);
-			}
-		}
-		
-		Async.waterfall([
-			ETMAPI.getPhotoList,
-			fetchPhoto
-		], fetchDone, { } );
+		AppAPI.fetchPhoto( { mobile: null } ) (fetchDone);
 	}
 	
 	override function getSwfInfo():Dynamic 

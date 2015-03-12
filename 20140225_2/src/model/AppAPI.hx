@@ -92,6 +92,29 @@ class AppAPI
 		}
 	}
 	
+	public static function fetchPhoto( args:{ mobile:String } ) {
+		return function( cb:Dynamic ) {
+			
+			function fetchPhoto( args: { data:Dynamic } ) {
+				return function( cb:Dynamic ) {
+					Async.map( 
+						args.data, 
+						function( obj: { photo:String } ) {
+							return AppAPI.getImageFromURL( { url: obj.photo } );
+						},
+						cb 
+					);
+				}
+			}
+			
+			Async.waterfall([
+				ETMAPI.getPhotoList,
+				fetchPhoto
+			], cb, args );
+			
+		}
+	}
+	
 	public static function flow1( params: { mgr:WebManager } ) {
 		
 		return function( cb:Dynamic ) {
