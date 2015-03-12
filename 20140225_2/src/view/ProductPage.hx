@@ -1,6 +1,8 @@
 package view;
+import caurina.transitions.Tweener;
 import control.SimpleController;
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Loader;
@@ -28,7 +30,7 @@ import org.vic.web.WebView;
 class ProductPage extends DefaultPage
 {
 	var photoBlocks:Array<DisplayObjectContainer> = new Array<DisplayObjectContainer>();
-	var photoBelong:Map<String, Bitmap> = new Map<String, Bitmap>();
+	var photoBelong:Map<String, BitmapData> = new Map<String, BitmapData>();
 	var txt_input:TextField;
 	
 	public function new() 
@@ -93,7 +95,7 @@ class ProductPage extends DefaultPage
 		
 	}
 	
-	public function getPhotoWithBlockName( name:String ):Bitmap {
+	public function getPhotoWithBlockName( name:String ):BitmapData {
 		return photoBelong.get(name);
 	}
 	
@@ -125,11 +127,15 @@ class ProductPage extends DefaultPage
 					var photo = cast(photoList[i], Bitmap);
 					
 					var container = cast( photoBlocks[i].getChildByName("mc_photocontainer"), MovieClip);
-
+					photo.width = photoBlocks[i].width;
+					photo.height = photoBlocks[i].height;
 					container.mouseChildren = container.mouseEnabled = false;
 					container.addChild( photo );
 					
-					photoBelong.set( photoBlocks[i].name, photo );
+					container.alpha = 0;
+					Tweener.addTween( container, { alpha:1, time:1, delay: Math.random() * 2 } );
+					
+					photoBelong.set( photoBlocks[i].name, photo.bitmapData );
 				}
 				
 			}

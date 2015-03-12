@@ -1,5 +1,10 @@
 package view;
 import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import helper.Tool;
+import org.vic.utils.BasicUtils;
 
 /**
  * ...
@@ -7,20 +12,42 @@ import flash.display.Bitmap;
  */
 class ProductPhotoPage extends DefaultPage
 {
+	var mc_photoContainer:DisplayObjectContainer;
 	
 	public function new() {
 		super();
-		createDebugRoot("photo page");
-		createDebugButton("btn_onProductPhotoBtnClick_close");
 		layerName = "popup";
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		var photo = cast( param.photo, Bitmap );
-		
-		//getRoot().addChild( photo );
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_photoContainer':
+					mc_photoContainer = cast( obj, DisplayObjectContainer );
+			}
+		});
 		
 		super.onOpenEvent(param, cb);
+		
+		var photo = cast( param.photo, BitmapData );
+		mc_photoContainer.addChild( new Bitmap( photo ) );
+		
+	}
+	
+	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
+	{
+		if ( _mc_popup != null ) {
+			Tool.centerForce(_mc_popup, 829, 494, x, y, w, h );
+		}
+		if ( _mc_back != null ) {
+			_mc_back.width = w;
+			_mc_back.height = h;
+		}
+	}
+	
+	override function getRootInfo():Dynamic 
+	{
+		return {name:'Preload', path:'BigPhotoPopup' };
 	}
 }
