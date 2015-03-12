@@ -89,6 +89,7 @@ class TechDouble extends DefaultTechPage
 			case 'a':
 				_mc_currentPhone = _mc_phoneA;
 				_mc_currentBigPhone = _mc_phoneABig;
+				Reflect.field( getRoot(), 'playResponse' )();
 			case 'b':
 				_mc_currentPhone = _mc_phoneB;
 				_mc_currentBigPhone = _mc_phoneBBig;

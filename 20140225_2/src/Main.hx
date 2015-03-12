@@ -230,9 +230,9 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( IntroPage );
+			startWith( TechDouble );
 			#else
-			startWith( IntroPage );
+			startWith( TechDouble );
 			#end
 		}
 	}
