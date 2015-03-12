@@ -1,5 +1,14 @@
 package view;
+import control.SimpleController;
+import flash.display.Loader;
+import flash.errors.Error;
+import flash.events.Event;
+import flash.net.URLRequest;
+import flash.system.LoaderContext;
 import helper.Tool;
+import model.AppAPI;
+import model.ETMAPI;
+import org.han.Async;
 import org.vic.web.WebView;
 
 /**
@@ -14,6 +23,36 @@ class ProductPage extends DefaultPage
 		super();
 		layerName = 'page';
 	}
+	
+	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
+	{
+		
+		function fetchPhoto( obj: { photo:String } ) {
+			return AppAPI.getImageFromURL( { url: obj.photo } );
+		}
+		
+		function fetchDone( err:Error, photoList:Dynamic ) {
+			if ( err != null ) {
+				SimpleController.onError( err.message );
+				
+			} else {
+				trace(photoList);
+				
+			}
+		}
+		
+		Async.waterfall([
+			ETMAPI.getPhotoList,
+			function getImage( args: { data:Dynamic } ) {
+				return function( cb:Dynamic ) {
+					Async.map( args.data, fetchPhoto, cb );
+				}
+			}
+		], fetchDone, { } );
+		
+		super.onOpenEvent(param, cb);
+	}
+	
 	override function getSwfInfo():Dynamic 
 	{
 		return {name:'ProductPage', path:'src/ProductPage.swf' };

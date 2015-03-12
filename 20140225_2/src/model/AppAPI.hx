@@ -1,5 +1,7 @@
 package model;
+import flash.display.Bitmap;
 import flash.errors.Error;
+import flash.events.IOErrorEvent;
 import haxe.Json;
 import helper.Tool;
 import org.han.Async;
@@ -7,13 +9,30 @@ import org.vic.web.IWebView;
 import org.vic.web.WebManager;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
-
+import flash.display.Loader;
+import flash.errors.Error;
+import flash.events.Event;
+import flash.net.URLRequest;
+import flash.system.LoaderContext;
 /**
  * ...
  * @author han
  */
 class AppAPI
 {
+	public static function getImageFromURL( args: { url:String } ) {
+		return function( cb:Dynamic ) {
+			var loader = new Loader();
+			loader.contentLoaderInfo.addEventListener (Event.COMPLETE, function(e :Event) {
+				cb( null, loader.content );
+			});
+			loader.contentLoaderInfo.addEventListener (IOErrorEvent.IO_ERROR, function(e :IOErrorEvent) {
+				cb( new Error(e.toString()), null );
+			});
+			loader.load ( new URLRequest ( args.url ));
+		}
+	}
+	
 	public static function changePage( args: { mgr:WebManager, page:Class<IWebView>, params:Dynamic } ) {
 		return function( cb:Dynamic ) {
 			function closePage(page:Dynamic) {
