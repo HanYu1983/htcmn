@@ -6,6 +6,7 @@ import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import helper.Tool;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -138,46 +139,7 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function boundingPhotoOffset() {
-		
-		// 有*2和/2的係數是因為在flash的階層中, mc_photoOffset的子層被放大的二倍, 而那層沒被計算到, 所以要乘回來
-		
-		// 錨點在圖片中間, 算出左上角的點的世界坐標
-		var origin1 = new Point( -mc_photoOffset.width/2 *2, -mc_photoOffset.height); // 乘2的係數, 之後省略不寫
-		var global1 = mc_photoOffset.localToGlobal( origin1 );
-		
-		// 錨點在圖片左上角, 算出左上角的點的世界坐標
-		var globalMask1 = mc_photoMask.localToGlobal( new Point() );
-
-		if ( global1.x > globalMask1.x ) {
-			var local = mc_photoOffset.globalToLocal( new Point(globalMask1.x, 0) );
-			var offset = local.subtract( origin1 );
-			mc_photoOffset.x += offset.x / 2;	// 除2的係數
-		}
-		
-		if ( global1.y > globalMask1.y ) {
-			var local = mc_photoOffset.globalToLocal( new Point(0,globalMask1.y ) );
-			var offset = local.subtract( origin1 );
-			mc_photoOffset.y += offset.y / 2;	// 除2的係數
-		}
-		
-		// 錨點在圖片中間, 算出右下角的點的世界坐標
-		var origin2 = new Point(mc_photoOffset.width, mc_photoOffset.height);
-		var global2 = mc_photoOffset.localToGlobal( origin2 );
-		
-		// 錨點在圖片左上角, 算出有下角的點的世界坐標
-		var globalMask2 = mc_photoMask.localToGlobal( new Point(mc_photoMask.width, mc_photoMask.height) );
-		
-		if ( global2.x < globalMask2.x ) {
-			var local = mc_photoOffset.globalToLocal( new Point(globalMask2.x, 0) );
-			var offset = local.subtract( origin2 );
-			mc_photoOffset.x += offset.x / 2;	// 除2的係數
-		}
-		if ( global2.y < globalMask2.y ) {
-			var local = mc_photoOffset.globalToLocal( new Point(0, globalMask2.y) );
-			var offset = local.subtract( origin2 );
-			mc_photoOffset.y += offset.y / 2;	// 除2的係數
-		}
-		
+		Tool.regionBounding( mc_photoOffset, mc_photoMask, 2 );
 	}
 	
 	function onMouseClickSlideBar( e:MouseEvent ) {
