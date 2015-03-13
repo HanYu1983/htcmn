@@ -236,7 +236,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( ProductErrorPopup );
+			startWith( TechDouble );
 			#else
 			startWith( IntroPage );
 			#end

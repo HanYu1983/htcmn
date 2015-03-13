@@ -38,6 +38,10 @@ class TechDouble extends DefaultTechPage
 	var mc_phoneController:DisplayObject;
 	var mc_phoneBorder:DisplayObject;
 	
+	var btn_onTechDoubleClick_colorA:MovieClip;
+	var btn_onTechDoubleClick_colorB:MovieClip;
+	var btn_onTechDoubleClick_colorC:MovieClip;
+	
 	public function new() 
 	{
 		super();
@@ -87,13 +91,22 @@ class TechDouble extends DefaultTechPage
 		
 		switch( which ) {
 			case 'a':
+				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ));
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ), true);
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorC' ), true);
 				_mc_currentPhone = _mc_phoneA;
 				_mc_currentBigPhone = _mc_phoneABig;
 				Reflect.field( getRoot(), 'playResponse' )();
 			case 'b':
+				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ));
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ), true);
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorC' ), true);
 				_mc_currentPhone = _mc_phoneB;
 				_mc_currentBigPhone = _mc_phoneBBig;
 			case 'c':
+				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorC' ));
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ), true);
+				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ), true);
 				_mc_currentPhone = _mc_phoneC;
 				_mc_currentBigPhone = _mc_phoneCBig;
 		}
@@ -163,6 +176,12 @@ class TechDouble extends DefaultTechPage
 					mc_phoneController = obj;
 				case 'mc_phoneBorder':
 					mc_phoneBorder = obj;
+				case 'btn_onTechDoubleClick_colorA':
+					btn_onTechDoubleClick_colorA = cast( obj, MovieClip );
+				case 'btn_onTechDoubleClick_colorB':
+					btn_onTechDoubleClick_colorB = cast( obj, MovieClip );
+				case 'btn_onTechDoubleClick_colorC':
+					btn_onTechDoubleClick_colorC = cast( obj, MovieClip );
 			}
 		});
 		
