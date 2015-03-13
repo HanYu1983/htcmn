@@ -22,6 +22,7 @@ class HeaderUI extends DefaultPage
 	var _mc_overline:DisplayObject;
 	var barHeight:Int = 45;
 	var _btn_onHeaderBtnClick_skip: DisplayObject;
+	var _mc_mask:DisplayObject;
 	
 	public function new() 
 	{
@@ -48,7 +49,9 @@ class HeaderUI extends DefaultPage
 	public function animateShowBar(v:Bool) {
 		if ( _animateShowBar != v ) {
 			_animateShowBar = v;
-			Tweener.addTween(getRoot(), { y: v ? 0 : -barHeight, time: 1 } );
+			Tweener.addTween(_btns, { y: v ? 0 : -barHeight, time: 1 } );
+			Tweener.addTween(_bar, { y: v ? 0 : -barHeight, time: 1 } );
+			Tweener.addTween(_btn_extend, { y: v ? 0 : -barHeight, time: 1 } );
 		}
 	}
 	
@@ -56,6 +59,8 @@ class HeaderUI extends DefaultPage
 	{
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
+				case 'mc_mask':
+					_mc_mask = obj;
 				case 'mc_btns':
 					_btns = obj;
 				case 'mc_bar':
