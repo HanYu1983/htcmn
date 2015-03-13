@@ -47,6 +47,8 @@ class ProductPhotoPage extends DefaultPage
 		_originDot = _mc_dot.y;
 		
 		var photo = cast( param.photo, BitmapData );
+		
+		// 多加了一層並把錨點改到正中間是為了使用同一個演算法
 		var bitmap = new Bitmap( photo );
 		bitmap.x = -bitmap.width / 2;
 		bitmap.y = -bitmap.height / 2;
@@ -64,6 +66,8 @@ class ProductPhotoPage extends DefaultPage
 		sprite.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
 		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
+		
+		boundingPhotoOffset();
 		
 		super.onOpenEvent(param, cb);
 	}
