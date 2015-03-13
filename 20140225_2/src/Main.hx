@@ -12,6 +12,7 @@ import control.OnDetailFormBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
 import control.OnProductBtnClick;
+import control.OnProductErrorPopupClick;
 import control.OnProductPhotoBtnClick;
 import control.OnTechDoubleBtnClick;
 import control.OnTechCameraClick;
@@ -53,6 +54,7 @@ import view.LoadingPage2;
 import view.LuckyDrawPage;
 import view.MessagePopup;
 import view.MoviePage;
+import view.ProductErrorPopup;
 import view.ProductPage;
 import view.RelativePage;
 import view.TechPage;
@@ -131,7 +133,7 @@ class Main
 			WebManager.inst.addCommand( new OnTechCameraClick("onTechCameraClick") );
 			WebManager.inst.addCommand( new OnProductPhotoBtnClick("onProductPhotoBtnClick") );
 			WebManager.inst.addCommand( new OnProductBtnClick("onProductBtnClick") );
-			
+			WebManager.inst.addCommand( new OnProductErrorPopupClick("onProductErrorPopupClick") );
 			cb( null, null );
 		}
 		
@@ -234,7 +236,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDouble );
+			startWith( ProductErrorPopup );
 			#else
 			startWith( IntroPage );
 			#end

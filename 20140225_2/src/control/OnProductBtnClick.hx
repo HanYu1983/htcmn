@@ -5,6 +5,7 @@ import flash.errors.Error;
 import model.AppAPI;
 import model.ETMAPI;
 import org.vic.web.WebCommand;
+import view.ProductErrorPopup;
 import view.ProductPage;
 import view.ProductPhotoPage;
 
@@ -22,14 +23,14 @@ class OnProductBtnClick extends WebCommand
 				
 				function fetchDone( err:Error, ret:Dynamic ) {
 					if ( err != null ) {
-						SimpleController.onError( err );
+						getWebManager().openPage( ProductErrorPopup, null );
 						
 					} else {
 						if ( ret.length > 0 ) {
 							var bitmap = cast(ret[0], Bitmap);
 							getWebManager().openPage( ProductPhotoPage, { photo: bitmap.bitmapData } );
 						} else {
-							SimpleController.onError( 'no photo' );
+							getWebManager().openPage( ProductErrorPopup, null );
 							
 						}
 					}
