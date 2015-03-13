@@ -109,7 +109,8 @@ class ProductPage extends DefaultPage
 	
 	function onInputFocusOut( e:FocusEvent ) {
 		if ( userInput == "" ) {
-			txt_input.text = Const.MSG_INPUT_FOR_PRODUCT;
+			//txt_input.text = Const.MSG_INPUT_FOR_PRODUCT;
+			txt_input.text = getWebManager().getData( 'config' ).message.msg_input_for_product;
 		}
 	}
 	

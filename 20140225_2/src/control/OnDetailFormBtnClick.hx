@@ -84,7 +84,8 @@ class OnDetailFormBtnClick extends WebCommand
 						
 					} else {
 						if ( ret.success ) {
-							SimpleController.onAlert( Const.MSG_SUBMIT_DATA );
+							//SimpleController.onAlert( Const.MSG_SUBMIT_DATA );
+							SimpleController.onAlert( getWebManager().getData( 'config' ).message.msg_submit_data );
 							closeDetailPopop( null );
 							getWebManager().closePage(LuckyDrawPage);
 							
