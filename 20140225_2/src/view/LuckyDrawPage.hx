@@ -1,10 +1,11 @@
 package view;
+import helper.IPopup;
 
 /**
  * ...
  * @author han
  */
-class LuckyDrawPage extends DefaultPage
+class LuckyDrawPage extends DefaultPage implements IPopup
 {
 
 	public function new() 

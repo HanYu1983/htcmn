@@ -4,6 +4,7 @@ import flash.errors.Error;
 import flash.external.ExternalInterface;
 import flash.media.SoundMixer;
 import flash.sampler.NewObjectSample;
+import helper.IPopup;
 import helper.IResize;
 import helper.JSInterfaceHelper;
 import model.AppAPI;
@@ -126,8 +127,19 @@ class SimpleController
 		function closeAllTechPage() {
 			AppAPI.closeAllTechPage( { mgr:mgr } ) (null);
 		}
+		
+		function resumeTechPageAnimation() {
+			for ( p in page.getWebManager().getPages() ) {
+				if ( Std.is( p, DefaultTechPage ) ) {
+					cast(p , DefaultTechPage).resumeAllAnimation();
+				}
+			}
+		}
+		
 		SoundMixer.stopAll();
+		
 		when( thePageIs(page, TechFrame), closeAllTechPage );
+		when( thePageIs(page, IPopup), resumeTechPageAnimation );
 	}
 	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {
@@ -210,7 +222,7 @@ class SimpleController
 			}
 			
 			// 必須略過TechFrame, 不然它又呼叫setSkipButtonVisible( false ). 因為有時候TechFrame的open會在DefaultTechPage的open之後(!?)
-			if ( Std.is( page, TechFrame ) ) {
+			if ( Std.is( page, TechFrame ) || Std.is( page, IPopup ) ) {
 				// nothing
 			} else if ( Std.is( page, DefaultTechPage ) ) {
 				setSkipButtonVisible( true ) ();
@@ -219,10 +231,19 @@ class SimpleController
 			}
 		}
 		
+		function stopTechPageAnimation() {
+			for ( p in page.getWebManager().getPages() ) {
+				if ( Std.is( p, DefaultTechPage ) ) {
+					cast(p , DefaultTechPage).stopAllAnimation();
+				}
+			}
+		}
+		
 		handleHeaderAndFooterAnimation();
 		when( thePageIs(page, DefaultTechPage), handleRighterAnimation );
 		handleChangeHash();
 		handleSkipButtonVisible();
+		when( thePageIs(page, IPopup), stopTechPageAnimation );
 	}
 	
 	public static function onError(msg:Dynamic) {

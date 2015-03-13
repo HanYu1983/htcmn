@@ -25,6 +25,28 @@ class DefaultTechPage extends DefaultPage
 		useFakeLoading = true;
 	}
 	
+	public function stopAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).stop();
+			}
+		});
+		//cast( _mc_person, MovieClip ).stop();
+	}
+	
+	public function resumeAllAnimation() {
+		if ( cast( _mc_item, MovieClip ).currentLabel == 'forScript' ) {
+			return;
+		}
+		
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).play();
+			}
+		});
+		//cast( _mc_person, MovieClip ).play();
+	}
+	
 	public function skipAnimation() {
 		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
 		cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
