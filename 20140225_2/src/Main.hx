@@ -236,7 +236,7 @@ class Main
 			#if debug
 			startWith( ProductPage );
 			#else
-			startWith( TechDouble );
+			startWith( IntroPage );
 			#end
 		}
 	}
