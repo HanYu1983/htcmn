@@ -88,7 +88,6 @@ class TechDolby extends DefaultTechPage
 			video.gotoAndPlay( currframe );
 		}
 		
-		
 		flv_container.addChild( video );
 		currVideo = video;
 	}

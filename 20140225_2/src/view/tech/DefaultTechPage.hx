@@ -3,6 +3,7 @@ import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.media.SoundMixer;
 import haxe.remoting.FlashJsConnection;
 import helper.IResize;
 import helper.Tool;
@@ -31,6 +32,7 @@ class DefaultTechPage extends DefaultPage
 				cast( obj, MovieClip).stop();
 			}
 		});
+		SoundMixer.stopAll();
 		//cast( _mc_person, MovieClip ).stop();
 	}
 	
