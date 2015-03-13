@@ -258,6 +258,7 @@ class WebView extends Sprite implements IWebView
 		var mc:MovieClip;
 		mc = btn.getShape();
 		mc.buttonMode = false;
+		mc.gotoAndPlay( 'over' );
 		mc.removeEventListener(MouseEvent.CLICK, onClick );
 		mc.removeEventListener(MouseEvent.MOUSE_OVER, onOver );
 		mc.removeEventListener(MouseEvent.MOUSE_OUT, onOut );
