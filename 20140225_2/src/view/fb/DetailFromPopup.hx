@@ -30,7 +30,7 @@ class DetailFromPopup extends DefaultPage implements IPopup
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
+		
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
@@ -63,6 +63,8 @@ class DetailFromPopup extends DefaultPage implements IPopup
 			}
 		});
 		initDefaultData();
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	function initDefaultData() {

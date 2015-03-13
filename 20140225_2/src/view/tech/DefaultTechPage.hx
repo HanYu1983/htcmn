@@ -5,6 +5,7 @@ import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.media.SoundMixer;
 import haxe.remoting.FlashJsConnection;
+import helper.IHasAnimationShouldStop;
 import helper.IResize;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
@@ -14,7 +15,7 @@ import view.DefaultPage;
  * ...
  * @author han
  */
-class DefaultTechPage extends DefaultPage
+class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var _mc_person:DisplayObject;
 	var _mc_controller:MovieClip;
@@ -26,6 +27,7 @@ class DefaultTechPage extends DefaultPage
 		useFakeLoading = true;
 	}
 	
+
 	public function stopAllAnimation() {
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {

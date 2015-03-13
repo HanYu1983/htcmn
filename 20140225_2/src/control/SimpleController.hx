@@ -4,6 +4,7 @@ import flash.errors.Error;
 import flash.external.ExternalInterface;
 import flash.media.SoundMixer;
 import flash.sampler.NewObjectSample;
+import helper.IHasAnimationShouldStop;
 import helper.IPopup;
 import helper.IResize;
 import helper.JSInterfaceHelper;
@@ -128,8 +129,8 @@ class SimpleController
 		
 		function resumeTechPageAnimation() {
 			for ( p in page.getWebManager().getPages() ) {
-				if ( Std.is( p, DefaultTechPage ) ) {
-					cast(p , DefaultTechPage).resumeAllAnimation();
+				if ( Std.is( p, IHasAnimationShouldStop ) ) {
+					cast(p , IHasAnimationShouldStop).resumeAllAnimation();
 				}
 			}
 		}
@@ -149,6 +150,12 @@ class SimpleController
 				if ( hasSuggestion == null ) {
 					// nothing to do
 				}else {
+					// 特殊處理: 因為上移到回首頁按鈕時header未必呈打開狀態, 所以強制將它打開
+					if ( Std.is( page, IntroPage ) ) {
+						header.animateShowBar( true );
+						header.extendButtonVisible(false);
+					}
+					
 					header.autoBarEnable( hasSuggestion );
 					
 					var footerShouldAnimate = !hasSuggestion;
@@ -231,8 +238,8 @@ class SimpleController
 		
 		function stopTechPageAnimation() {
 			for ( p in page.getWebManager().getPages() ) {
-				if ( Std.is( p, DefaultTechPage ) ) {
-					cast(p , DefaultTechPage).stopAllAnimation();
+				if ( Std.is( p, IHasAnimationShouldStop ) ) {
+					cast(p , IHasAnimationShouldStop).stopAllAnimation();
 				}
 			}
 		}
