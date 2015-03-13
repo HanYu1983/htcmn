@@ -73,7 +73,8 @@ class OnLuckyDrawBtnClick extends WebCommand
 					
 					if ( err != null ) {
 						if ( err.message == 'isWritten' ) {
-							SimpleController.onAlert( Const.MSG_SUBMIT_DATA_ALREADY );
+							//SimpleController.onAlert( Const.MSG_SUBMIT_DATA_ALREADY );
+							SimpleController.onAlert( getWebManager().getData( 'config' ).message.msg_submit_data_already );
 							closePopop();
 							
 						} else {

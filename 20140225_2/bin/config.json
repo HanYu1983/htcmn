@@ -33,5 +33,10 @@
 				"img":"images/movie/003.jpg"
 			}
 		]
+	},
+	"message":{
+		"msg_input_for_product":"請輸入電話號碼即可查詢到您在體驗會現場所拍攝的照片",
+		"msg_submit_data":"謝謝，我們已收到您提供的資料",
+		"msg_submit_data_already":"謝謝參加，祝您幸運中獎！近期內還會有更多精彩體驗陸續開放，敬請期待！"
 	}
 }
