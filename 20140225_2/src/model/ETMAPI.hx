@@ -13,7 +13,7 @@ class ETMAPI
 	
 	public static function getPhotoList( args: { mobile: String } ):Dynamic {
 		return function( cb:Dynamic ) {
-			var http = new Http("http://rsclient.etmgup.com/htc_hima/getPhotoList.php");
+			var http = new Http("getPhotoList.php");
 			
 			if ( args.mobile != null ) {
 				http.setParameter("mobile", args.mobile);

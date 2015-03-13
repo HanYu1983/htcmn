@@ -45,8 +45,6 @@ class SimpleController
 {
 	
 	public static function onProductPagePhotoBlockClick( page:ProductPage, name:String ) {
-		trace(name);
-		
 		var bitmap = page.getPhotoWithBlockName( name );
 		page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap } );
 	}
