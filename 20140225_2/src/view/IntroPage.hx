@@ -1,14 +1,18 @@
 package view;
 
+import flash.display.DisplayObject;
+import flash.display.MovieClip;
 import flash.media.SoundMixer;
+import helper.IHasAnimationShouldStop;
 import helper.IResize;
+import org.vic.utils.BasicUtils;
 import org.vic.web.WebView;
 
 /**
  * ...
  * @author vic
  */
-class IntroPage extends DefaultPage
+class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 {
 
 	public function new() 
@@ -18,6 +22,22 @@ class IntroPage extends DefaultPage
 		layerName = 'page';
 	}
 	
+	public function stopAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).stop();
+			}
+		});
+		SoundMixer.stopAll();
+	}
+	
+	public function resumeAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).play();
+			}
+		});
+	}
 	
 	override function getSwfInfo():Dynamic 
 	{

@@ -51,7 +51,6 @@ class HeaderUI extends DefaultPage
 			_animateShowBar = v;
 			Tweener.addTween(_btns, { y: v ? 0 : -barHeight, time: 1 } );
 			Tweener.addTween(_bar, { y: v ? 0 : -barHeight, time: 1 } );
-			Tweener.addTween(_btn_extend, { y: v ? 0 : -barHeight, time: 1 } );
 		}
 	}
 	
@@ -67,14 +66,14 @@ class HeaderUI extends DefaultPage
 					_bar = obj;
 				case 'mc_extend':
 					_btn_extend = obj;
-					_btn_extend.alpha = 0;
+					
 				case 'mc_overline':
 					_mc_overline = obj;
 				case 'btn_onHeaderBtnClick_skip':
 					_btn_onHeaderBtnClick_skip = obj;
 			}
 		});
-		
+		extendButtonVisible( false );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		_btns.addEventListener( 'overline', moveOverLine );
 		_btn_onHeaderBtnClick_skip.alpha = 0;
