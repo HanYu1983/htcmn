@@ -37,8 +37,8 @@ class FooterUI extends DefaultPage
 		var barHeight:Int = 45;
 		if ( _animateShowBar != v ) {
 			_animateShowBar = v;
-			Tweener.addTween(_back, { y: v ? 0 : barHeight, time: 1 } );
-			Tweener.addTween(_mc_btns, { y: v ? 0 : barHeight, time: 1 } );
+			Tweener.addTween(_back, { y: v ? 0 : barHeight, alpha: v? 1 :0, time: 1 } );
+			Tweener.addTween(_mc_btns, { y: v ? 0 : barHeight, alpha: v? 1:0, time: 1 } );
 		}
 	}
 	
