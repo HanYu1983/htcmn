@@ -68,8 +68,10 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function showVideo( type: String ) {
+		var currframe = 1;
 		if ( currVideo != null ) {
 			SoundMixer.stopAll();
+			currframe = currVideo.currentFrame;
 			flv_container.removeChild( currVideo );
 			currVideo = null;
 		}
@@ -79,7 +81,13 @@ class TechDolby extends DefaultTechPage
 			case _:
 				cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
 		}
-		video.gotoAndPlay( 'play' );
+		
+		if ( currframe == 1 ) {
+			video.gotoAndPlay( 'play' );
+		} else {
+			video.gotoAndPlay( currframe );
+		}
+		
 		
 		flv_container.addChild( video );
 		currVideo = video;
@@ -113,7 +121,8 @@ class TechDolby extends DefaultTechPage
 		var target = toggleSwitch();
 		showVideo( target );
 		showPhoneWithType( target );
-		showTextWithType( target );
+		// 不需要消失
+		//showTextWithType( target );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
