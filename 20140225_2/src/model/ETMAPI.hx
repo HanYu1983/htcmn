@@ -20,13 +20,18 @@ class ETMAPI
 			}
 			http.onData = function(data:String) {
 				SimpleController.onLog(data);
-				
-				var json = Json.parse( data );
-				if ( json.status == 1 ) {
-					cb( null, json );
-				} else {
-					cb( new Error('no this mobile:' + args.mobile), null );
+				try {
+					var json = Json.parse( data );
+					if ( json.status == 1 ) {
+						cb( null, json );
+					} else {
+						cb( new Error('no this mobile:' + args.mobile), null );
+					}
+					
+				}catch (e:Error) {
+					cb( e, null );
 				}
+				
 				
 			}
 			http.onError = function( err:String ) {

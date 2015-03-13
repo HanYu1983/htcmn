@@ -16,10 +16,12 @@ class OnProductPhotoBtnClick extends WebCommand
 				getWebManager().closePage( ProductPhotoPage );
 			},
 			btn_onProductPhotoBtnClick_plus:function() {
-				
+				var page = cast(args[0], ProductPhotoPage);
+				page.scalePhoto( .2 );
 			},
 			btn_onProductPhotoBtnClick_sub:function() {
-				
+				var page = cast(args[0], ProductPhotoPage);
+				page.scalePhoto( -.2 );
 			}
 		}
 		var targetPage:String = args[1].name;
