@@ -3,6 +3,7 @@ import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.media.SoundMixer;
 import haxe.remoting.FlashJsConnection;
 import helper.IResize;
 import helper.Tool;
@@ -23,6 +24,29 @@ class DefaultTechPage extends DefaultPage
 		super();
 		layerName = 'techpage';
 		useFakeLoading = true;
+	}
+	
+	public function stopAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).stop();
+			}
+		});
+		SoundMixer.stopAll();
+		//cast( _mc_person, MovieClip ).stop();
+	}
+	
+	public function resumeAllAnimation() {
+		if ( cast( _mc_item, MovieClip ).currentLabel == 'forScript' ) {
+			return;
+		}
+		
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).play();
+			}
+		});
+		//cast( _mc_person, MovieClip ).play();
 	}
 	
 	public function skipAnimation() {

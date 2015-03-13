@@ -33,6 +33,34 @@ class TechCamera extends DefaultTechPage
 		super();
 	}
 	
+	override public function resumeAllAnimation() 
+	{
+		if ( cast( _mc_item, MovieClip ).currentLabel == 'forScript' ) {
+			return;
+		}
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( obj == _mc_circleButton )
+				return;
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).play();
+			}
+		});
+	}
+	
+	override public function stopAllAnimation() 
+	{
+		if ( cast( _mc_item, MovieClip ).currentLabel == 'forScript' ) {
+			return;
+		}
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( obj == _mc_circleButton )
+				return;
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).stop();
+			}
+		});
+	}
+	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {

@@ -1,5 +1,6 @@
 package view ;
 
+import helper.IPopup;
 import helper.Tool;
 import org.vic.web.WebView;
 
@@ -7,7 +8,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class ActivityPopup extends DefaultPage
+class ActivityPopup extends DefaultPage implements IPopup
 {
 
 	public function new() 

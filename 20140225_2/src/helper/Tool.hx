@@ -111,7 +111,7 @@ class Tool
 		
 		// 錨點在圖片左上角, 算出有下角的點的世界坐標
 		var globalMask2 = mc_photoMask.localToGlobal( new Point(mc_photoMask.width, mc_photoMask.height) );
-		
+
 		if ( global2.x < globalMask2.x ) {
 			var local = mc_photoOffset.globalToLocal( new Point(globalMask2.x, 0) );
 			var offset = local.subtract( origin2 );
@@ -122,6 +122,7 @@ class Tool
 			var offset = local.subtract( origin2 );
 			mc_photoOffset.y += offset.y / err;	// 除2的係數
 		}
+		
 		
 	}
 }

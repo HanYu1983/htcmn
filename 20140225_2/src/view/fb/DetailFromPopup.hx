@@ -2,6 +2,7 @@ package view.fb;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.text.TextField;
+import helper.IPopup;
 import org.vic.utils.BasicUtils;
 import view.DefaultPage;
 
@@ -9,7 +10,7 @@ import view.DefaultPage;
  * ...
  * @author han
  */
-class DetailFromPopup extends DefaultPage
+class DetailFromPopup extends DefaultPage implements IPopup
 {
 	var _mc_circle:DisplayObject;
 	var _txt_name:TextField;
