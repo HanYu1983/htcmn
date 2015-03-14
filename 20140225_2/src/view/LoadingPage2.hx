@@ -24,7 +24,7 @@ class LoadingPage2 extends WebView
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
+		
 		var stage: Stage = getWebManager().getLayer("page").stage;
 		var stageHeight:Int = stage.stageHeight;
 		var stageWidth:Int = stage.stageWidth;
@@ -39,6 +39,8 @@ class LoadingPage2 extends WebView
 					mc_gold = cast( obj, MovieClip );
 			}
 		});
+		trace( 'mc_gold==============================', mc_gold );
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

@@ -94,7 +94,10 @@ class BasicUtils
 	public static function playMovieClip( mc:DisplayObjectContainer ):Void {
 		revealObj( mc, function( disObj:DisplayObject ):Void {
 			if ( Std.is( disObj, MovieClip ) ) {
-				cast( disObj, MovieClip ).play();
+				var movieclip = cast( disObj, MovieClip );
+				if ( movieclip.currentFrame != 1 && movieclip.currentFrame != movieclip.totalFrames ) {
+					cast( disObj, MovieClip ).play();
+				}
 			}
 		});
 	}

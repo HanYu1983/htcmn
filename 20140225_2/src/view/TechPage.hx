@@ -28,15 +28,20 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
+		BasicUtils.stopMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				cast( obj, MovieClip).stop();
 			}
 		});
+		*/
 		SoundMixer.stopAll();
 	}
 	
 	public function resumeAllAnimation() {
+		BasicUtils.playMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				var mc = cast( obj, MovieClip );
@@ -46,6 +51,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 				mc.play();
 			}
 		});
+		*/
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -107,7 +113,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		if ( _mc_back != null ) {
 			_mc_back.width = w;
 			_mc_back.height = h;
-			_mc_back.visible = false;
 		}
 		
 		if ( mc_person != null ) {

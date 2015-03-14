@@ -23,15 +23,20 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
+		BasicUtils.stopMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				cast( obj, MovieClip).stop();
 			}
 		});
+		*/
 		SoundMixer.stopAll();
 	}
 	
 	public function resumeAllAnimation() {
+		BasicUtils.playMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				var mc = cast( obj, MovieClip );
@@ -41,6 +46,7 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 				mc.play();
 			}
 		});
+		*/
 	}
 	
 	override function getSwfInfo():Dynamic 
