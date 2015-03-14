@@ -4,6 +4,8 @@ import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.geom.Point;
+import flash.media.SoundMixer;
+import helper.IHasAnimationShouldStop;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
@@ -13,7 +15,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class TechPage extends DefaultPage
+class TechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var _btnF:Map<BasicButton, Point>;
 	var mc_person:MovieClip;
@@ -23,6 +25,27 @@ class TechPage extends DefaultPage
 		super();
 		layerName = 'page';
 		useFakeLoading = true;
+	}
+	
+	public function stopAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				cast( obj, MovieClip).stop();
+			}
+		});
+		SoundMixer.stopAll();
+	}
+	
+	public function resumeAllAnimation() {
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			if ( Std.is( obj, MovieClip ) ) {
+				var mc = cast( obj, MovieClip );
+				if ( mc.currentFrame > mc.totalFrames ) {
+					return;
+				}
+				mc.play();
+			}
+		});
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 

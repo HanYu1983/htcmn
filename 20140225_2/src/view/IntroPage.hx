@@ -34,7 +34,11 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 	public function resumeAllAnimation() {
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
-				cast( obj, MovieClip).play();
+				var mc = cast( obj, MovieClip );
+				if ( mc.currentFrame == mc.totalFrames ) {
+					return;
+				}
+				mc.play();
 			}
 		});
 	}
