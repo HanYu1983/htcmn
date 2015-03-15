@@ -150,21 +150,22 @@ class SimpleController
 		page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap } );
 	}
 	
-	
-	public static function onDefaultTechPageAnimationEnded( p:DefaultTechPage ) {
-		function setSkipButtonVisible( b:Bool ) {
-			return function() {
-				var header = cast(p.getWebManager().getPage(HeaderUI), HeaderUI);
-				if (header != null) {
-					header.setSkipButtonVisible( b );
-				}
+	static function setSkipButtonVisible( b:Bool ) {
+		return function() {
+			var header = cast( WebManager.inst.getPage(HeaderUI), HeaderUI);
+			if (header != null) {
+				header.setSkipButtonVisible( b );
 			}
 		}
-		
+	}
+	
+	public static function onDefaultTechPageAnimationEnded( p:DefaultTechPage ) {
 		setSkipButtonVisible( false )();
 	}
 	
 	public static function onHeaderSkipButtonClick() {
+		setSkipButtonVisible( false )();
+		
 		for ( page in WebManager.inst.getPages() ) {
 			if ( Std.is(page, DefaultTechPage) ) {
 				var p = cast(page, DefaultTechPage);
