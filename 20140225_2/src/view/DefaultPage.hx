@@ -18,9 +18,9 @@ import view.tech.TechFrame;
  */
 class DefaultPage extends WebView implements IResize
 {
-	var _mc_back:DisplayObject;
-	var _mc_item:DisplayObject;
-	var _mc_popup:DisplayObject;
+	var _mc_back:MovieClip;
+	var _mc_item:MovieClip;
+	var _mc_popup:MovieClip;
 	
 	public function new() {
 		super();
@@ -33,11 +33,11 @@ class DefaultPage extends WebView implements IResize
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_back':
-					_mc_back = obj;
+					_mc_back = cast(obj, MovieClip);
 				case 'mc_item':
-					_mc_item = obj;
+					_mc_item = cast(obj, MovieClip);
 				case 'mc_popup':
-					_mc_popup = obj;
+					_mc_popup = cast(obj, MovieClip);
 			}
 		});
 		super.onOpenEvent(param, cb);

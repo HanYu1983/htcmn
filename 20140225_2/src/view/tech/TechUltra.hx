@@ -125,6 +125,6 @@ class TechUltra extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechUltra', path:'extra.AnimationDirector' };
+		return {name:'TechUltra', path:'mc_anim' };
 	}
 }
