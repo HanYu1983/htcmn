@@ -155,6 +155,10 @@ class TechDolby extends DefaultTechPage
 		var target = toggleSwitch();
 		showVideo( target );
 		showPhoneWithType( target );
+		if ( target == 'dolby' ) {
+			_mc_person.onSkip();
+			getRoot().playRespond();
+		}
 		// 不需要消失
 		//showTextWithType( target );
 	}

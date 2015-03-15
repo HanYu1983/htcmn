@@ -194,6 +194,15 @@ class TechCamera extends DefaultTechPage
 		_scale = Math.max( 1, _scale );
 		Tweener.addTween( mc_photoScale, { scaleX: _scale, scaleY: _scale, time:.3, onUpdate: boundingPhotoOffset } );
 		setDotPosition( _scale );
+		
+		if ( _scale == 2 ) {
+			onMaxScale();
+		}
+	}
+	
+	function onMaxScale() {
+		if( _currphone == 'htc' )
+			getRoot().playRespond();
 	}
 	
 	function setHTCPhoneVisible( v:Bool ) {
@@ -206,6 +215,8 @@ class TechCamera extends DefaultTechPage
 		Tweener.addTween( _mc_ohterPhoto, { alpha: v? 1 : 0, time:.3 } );
 	}
 	
+	
+	var _currphone = '';
 	public function animateForSmartPhone( phone:String ) {
 		switch( phone ) {
 			case 'htc':
@@ -215,6 +226,7 @@ class TechCamera extends DefaultTechPage
 				setHTCPhoneVisible( false );
 				setOtherPhoneVisible( true );
 		}
+		_currphone = phone;
 	}
 	
 	public function taggleCircleButton(): String {
@@ -236,6 +248,6 @@ class TechCamera extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechCamera', path:'TechCamera' };
+		return {name:'TechCamera', path:'mc_anim' };
 	}
 }

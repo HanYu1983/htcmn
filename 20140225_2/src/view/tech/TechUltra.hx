@@ -32,7 +32,7 @@ class TechUltra extends DefaultTechPage
 			return;
 		if ( _mc_htc == null )
 			return;
-		var isEndAnimation = cast( _mc_item, MovieClip ).currentFrameLabel == 'forScript';
+		var isEndAnimation = cast( _mc_item, MovieClip ).currentLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
@@ -51,7 +51,14 @@ class TechUltra extends DefaultTechPage
 	function changeSide( side:String ) {
 		if ( _side != side ) {
 			_side = side;
-			showPhoneMark( side == 'left' ? 'htc' : 'other' );
+			onSideChange( _side );
+		}
+	}
+	
+	function onSideChange( side:String ) {
+		showPhoneMark( side == 'left' ? 'htc' : 'other' );
+		if ( side == 'left' ) {
+			getRoot().playRespond();
 		}
 	}
 	
@@ -106,6 +113,6 @@ class TechUltra extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechUltra', path:'TechUltra' };
+		return {name:'TechUltra', path:'mc_anim' };
 	}
 }
