@@ -5,6 +5,7 @@ import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.geom.Point;
+import flash.media.SoundMixer;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -25,6 +26,15 @@ class TechUltra extends DefaultTechPage
 		super();
 	}
 	
+	
+	var isEndAnimation = false;
+	
+	override function forScript(e) 
+	{
+		super.forScript(e);
+		isEndAnimation = true;
+	}
+	
 	var _targetX:Float = 0;
 	
 	function onEnterFrame(e: Event) {
@@ -32,7 +42,6 @@ class TechUltra extends DefaultTechPage
 			return;
 		if ( _mc_htc == null )
 			return;
-		var isEndAnimation = cast( _mc_item, MovieClip ).currentLabel == 'forScript';
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
@@ -58,6 +67,7 @@ class TechUltra extends DefaultTechPage
 	function onSideChange( side:String ) {
 		showPhoneMark( side == 'left' ? 'htc' : 'other' );
 		if ( side == 'left' ) {
+			SoundMixer.stopAll();
 			getRoot().playRespond();
 		}
 	}

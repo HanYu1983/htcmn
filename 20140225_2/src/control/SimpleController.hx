@@ -45,6 +45,106 @@ using Lambda;
 class SimpleController
 {
 	
+	public static function onFlvBRespondFinished( targetPage :String ) {
+		
+		function thenOpen(clz:Class<IWebView>) {
+			return function(err:Error, result:Dynamic) {
+				if ( err != null ) {
+					SimpleController.onError( err.message );
+					
+				} else {
+					AppAPI.changeTechPage( { mgr:WebManager.inst, page: clz, params: null } ) (null);
+				}
+			}
+		}
+		
+		var goto:Dynamic = {
+			btn_onHomeBtnClick_Double: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechDouble));
+			},
+			btn_onHomeBtnClick_Duby: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechDolby));
+			},
+			btn_onHomeBtnClick_Ultra: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechUltra));
+			},
+			btn_onHomeBtnClick_Camera: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechCamera));
+			},
+			btn_onHomeBtnClick_person: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechPerson));
+			},
+			btn_onHomeBtnClick_situ: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechSitu));
+			},
+			btn_onHomeBtnClick_blink: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechBlink));
+			},
+			btn_onHomeBtnClick_photo: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechPhoto));
+			},
+			btn_onHomeBtnClick_boom: function() {
+				AppAPI.changePage( 
+					{ 
+						mgr:WebManager.inst, 
+						page: TechFrame, 
+						params: { } 
+						
+					}) (thenOpen(TechBoom));
+			}
+		}
+		Reflect.field(goto, targetPage)();
+	}
+	
+	
 	public static function onProductPagePhotoBlockClick( page:ProductPage, name:String ) {
 		var bitmap = page.getPhotoWithBlockName( name );
 		page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap } );

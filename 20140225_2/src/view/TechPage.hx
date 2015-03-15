@@ -1,4 +1,5 @@
 package view;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -110,8 +111,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function on_flv_B_respond_finish( e ) {
-		//跳頁
-		trace( this.btnName );
+		SimpleController.onFlvBRespondFinished( this.btnName );
 	}
 	
 	function getBtnF():Map<BasicButton, Point> {

@@ -56,11 +56,8 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function skipAnimation() {
-		//cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
-		//cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
-		
-		cast( _mc_item, MovieClip ).onSkip();
 		cast( _mc_person, MovieClip ).onSkip();
+		cast( _mc_item, MovieClip ).onSkip();
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
@@ -80,11 +77,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 					_mc_controller = cast( obj, MovieClip );
 			}
 		});
-		
-		super.onOpenEvent(param, cb);
-		
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		getRoot().addEventListener( 'forScript', forScript );
+		
+		super.onOpenEvent(param, cb);
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		skipAnimation();
+		super.onCloseEvent(cb);
 	}
 	
 	function forScript( e ) {
