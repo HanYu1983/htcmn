@@ -6,7 +6,11 @@ import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.errors.Error;
 import flash.events.MouseEvent;
+import flash.media.Sound;
+import flash.media.SoundChannel;
 import flash.media.SoundMixer;
+import flash.media.SoundTransform;
+import flash.net.URLRequest;
 import helper.IResize;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
@@ -29,6 +33,10 @@ class TechDolby extends DefaultTechPage
 	var mc_dot:MovieClip;
 	var isNormal:Bool = true;
 	var currVideo:MovieClip;
+	var soundA:Sound;
+	var soundB:Sound;
+	var soundASoundChannel:SoundChannel;
+	var soundBSoundChannel:SoundChannel;
 
 	public function new() 
 	{
@@ -38,6 +46,15 @@ class TechDolby extends DefaultTechPage
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		super.onOpenEvent(param, cb);
+		
+		soundA = new Sound();
+		soundA.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.htc ));
+		
+		soundB = new Sound();
+		soundB.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.other ));
+		
+		_mc_item.addEventListener( 'step1', onStep1 );
+		_mc_item.addEventListener( 'step2', onStep2 );
 	}
 	
 	override function forScript(e) 
@@ -65,6 +82,24 @@ class TechDolby extends DefaultTechPage
 		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		
 		showVideo( 'dolby' );
+	}
+	
+	function onStep1(e) {
+		//soundASoundChannel = soundA.play();
+		//soundBSoundChannel = soundB.play();
+		
+		//changeVolumn( soundASoundChannel, 0 );
+	}
+	
+	function onStep2(e) {
+		//changeVolumn( soundASoundChannel, 1 );
+		//changeVolumn( soundBSoundChannel, 0 );
+	}
+	
+	function changeVolumn( soundChannel:SoundChannel, volumn ) {
+		var st = soundChannel.soundTransform;
+		st.volume = volumn;
+		soundChannel.soundTransform = st;
 	}
 	
 	function showVideo( type: String ) {
@@ -129,6 +164,20 @@ class TechDolby extends DefaultTechPage
 		if ( btn_Switch != null ) {
 			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		}
+		
+		try{
+			if ( soundA != null ) {
+				soundA.close();
+				soundASoundChannel.stop();
+			}
+			if ( soundB != null ) {
+				soundB.close();
+				soundBSoundChannel.stop();
+			}
+		}catch ( e:Error ) {
+			//sound還沒開始串流時，不能呼叫close，暫時不知道怎麼檢查，先用例外把它處理掉
+		}
+		
 		super.onCloseEvent(cb);
 	}
 	
@@ -139,6 +188,6 @@ class TechDolby extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechDolby', path:'TechDolby' };
+		return {name:'TechDolby', path:'mc_anim' };
 	}
 }

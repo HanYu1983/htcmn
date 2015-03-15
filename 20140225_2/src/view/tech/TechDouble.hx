@@ -277,6 +277,6 @@ class TechDouble extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechDouble', path:'TechDouble' };
+		return {name:'TechDouble', path:'mc_anim' };
 	}
 }
