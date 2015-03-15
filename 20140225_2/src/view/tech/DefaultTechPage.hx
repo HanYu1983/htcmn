@@ -3,8 +3,12 @@ import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.Lib;
 import flash.media.SoundMixer;
+import flash.net.drm.DRMURLDownloadContext;
+import flash.utils.SetIntervalTimer;
 import haxe.remoting.FlashJsConnection;
+import haxe.Timer;
 import helper.IHasAnimationShouldStop;
 import helper.IResize;
 import helper.Tool;
@@ -30,10 +34,12 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	public function stopAllAnimation() {
 		BasicUtils.stopMovieClip( getRoot() );
 		SoundMixer.stopAll();
+		scriptEnable = false;
 	}
 	
 	public function resumeAllAnimation() {
 		BasicUtils.playMovieClip( getRoot() );
+		scriptEnable = true;
 	}
 	
 	public function skipAnimation() {
@@ -49,6 +55,17 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 	}
 	
+	var timer: Timer = null;	
+	public function requestWaitAnimation() {
+		if ( timer != null ) {
+			timer.stop();
+			timer = null;
+		}
+		timer = Timer.delay( function() {
+			getRoot().playWait();
+		}, 1000* 20 );
+	}
+	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
@@ -58,7 +75,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 				case 'mc_controller':
 					_mc_controller = cast( obj, MovieClip );
 			}
-		});
+		});	
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
 	}
@@ -72,8 +89,13 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	var scriptEnable = false;
 	
+	public function isScriptEanbled():Bool {
+		return scriptEnable;
+	}
+	
 	function forScript( e ) {
 		scriptEnable = true;
 		SimpleController.onDefaultTechPageAnimationEnded( this );
+		requestWaitAnimation();
 	}
 }

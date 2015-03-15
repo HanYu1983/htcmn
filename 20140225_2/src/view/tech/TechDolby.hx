@@ -158,6 +158,7 @@ class TechDolby extends DefaultTechPage
 		if ( target == 'dolby' ) {
 			_mc_person.onSkip();
 			getRoot().playRespond();
+			requestWaitAnimation();
 		}
 		// 不需要消失
 		//showTextWithType( target );

@@ -21,30 +21,51 @@ class OnTechDoubleBtnClick extends WebCommand
 		var goto:Dynamic = {
 			btn_onTechDoubleClick_colorA: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeColor( 'a' );
 			},
 			btn_onTechDoubleClick_colorB: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeColor( 'b' );
 			},
 			btn_onTechDoubleClick_colorC: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeColor( 'c' );
 			},
 			btn_onTechDoubleClick_sideA: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeSide( 'a' );
 			},
 			btn_onTechDoubleClick_sideB: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeSide( 'b' );
 			},
 			btn_onTechDoubleClick_sideC: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.changeSide( 'c' );
 			},
 			btn_onTechDoubleClick_skip:function() {
 				var page = cast( getWebManager().getPage(TechDouble), TechDouble);
+				if ( !page.isScriptEanbled() ) {
+					return;
+				}
 				page.skipAnimation();
 			}
 		}
