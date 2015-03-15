@@ -215,6 +215,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 		var btns = disableBtnNames.map( getButton );
 		Lambda.foreach( btns, enable( false ) );
-		Lambda.foreach( btns, alpha( 0.8 ) );
+		Lambda.foreach( btns, alpha( 0.5 ) );
 	}
 }
