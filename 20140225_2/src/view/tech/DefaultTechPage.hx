@@ -77,7 +77,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 					_mc_controller = cast( obj, MovieClip );
 			}
 		});
-		if( _mc_controller != null ) _mc_controller.visible = false;
+		//if( _mc_controller != null ) _mc_controller.visible = false;
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
 	}
@@ -90,7 +90,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function forScript( e ) {
-		if ( _mc_controller != null ) _mc_controller.visible = true;
+		//if ( _mc_controller != null ) _mc_controller.visible = true;
 		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 }
