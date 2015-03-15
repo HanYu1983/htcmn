@@ -35,6 +35,18 @@ class TechUltra extends DefaultTechPage
 		isEndAnimation = true;
 	}
 	
+	override public function stopAllAnimation() 
+	{
+		isEndAnimation = false;
+		super.stopAllAnimation();
+	}
+	
+	override public function resumeAllAnimation() 
+	{
+		isEndAnimation = true;
+		super.resumeAllAnimation();
+	}
+	
 	var _targetX:Float = 0;
 	
 	function onEnterFrame(e: Event) {
@@ -88,8 +100,6 @@ class TechUltra extends DefaultTechPage
 		targetX = Math.max( targetX, min );
 		_mc_controller.mc_slider.x += ((targetX - 20) - _mc_controller.mc_slider.x) * .2;
 		_mc_controller.mc_mask.x += (targetX - _mc_controller.mc_mask.x) * .2;
-		
-		trace( _mc_controller.mc_slider.x );
 		return _mc_controller.mc_mask.x;
 	}
 	

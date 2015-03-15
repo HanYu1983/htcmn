@@ -27,32 +27,13 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		useFakeLoading = true;
 	}
 	
-
 	public function stopAllAnimation() {
-		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
-			if ( Std.is( obj, MovieClip ) ) {
-				cast( obj, MovieClip).stop();
-			}
-		});
+		BasicUtils.stopMovieClip( getRoot() );
 		SoundMixer.stopAll();
-		//cast( _mc_person, MovieClip ).stop();
 	}
 	
 	public function resumeAllAnimation() {
-		if ( cast( _mc_item, MovieClip ).currentLabel == 'forScript' ) {
-			return;
-		}
-		
-		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
-			if ( Std.is( obj, MovieClip ) ) {
-				var mc = cast( obj, MovieClip );
-				if ( mc.currentFrame == mc.totalFrames ) {
-					return;
-				}
-				mc.play();
-			}
-		});
-		//cast( _mc_person, MovieClip ).play();
+		BasicUtils.playMovieClip( getRoot() );
 	}
 	
 	public function skipAnimation() {
@@ -63,7 +44,9 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
-			Tool.centerForceY( _mc_person, 768, y, h, .6 );
+			//Tool.centerForceY( _mc_person, 768, y, h, .6 );
+			_mc_person.x = 0;
+			_mc_person.y = h - 650;
 		}
 	}
 	

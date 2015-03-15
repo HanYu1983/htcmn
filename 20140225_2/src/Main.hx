@@ -151,7 +151,9 @@ class Main
 		
 		function loadSwf( cb:Dynamic ) {
 			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:'src/Preload.swf' }, false, function() {
-				cb( null, null );
+				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:'src/ActivePage.swf' }, false, function() {
+					cb( null, null );
+				});
 			});
 		}
 		
