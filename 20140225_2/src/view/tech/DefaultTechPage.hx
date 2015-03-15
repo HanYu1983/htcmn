@@ -39,7 +39,6 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	public function skipAnimation() {
 		cast( _mc_person, MovieClip ).onSkip();
 		cast( _mc_item, MovieClip ).onSkip();
-		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
