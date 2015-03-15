@@ -79,12 +79,11 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		});
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		getRoot().addEventListener( 'forScript', forScript );
-		
 		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
+	{		
 		skipAnimation();
 		super.onCloseEvent(cb);
 	}

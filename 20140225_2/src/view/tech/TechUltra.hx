@@ -88,6 +88,8 @@ class TechUltra extends DefaultTechPage
 		targetX = Math.max( targetX, min );
 		_mc_controller.mc_slider.x += ((targetX - 20) - _mc_controller.mc_slider.x) * .2;
 		_mc_controller.mc_mask.x += (targetX - _mc_controller.mc_mask.x) * .2;
+		
+		trace( _mc_controller.mc_slider.x );
 		return _mc_controller.mc_mask.x;
 	}
 	
@@ -123,6 +125,6 @@ class TechUltra extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechUltra', path:'mc_anim' };
+		return {name:'TechUltra', path:'extra.AnimationDirector' };
 	}
 }
