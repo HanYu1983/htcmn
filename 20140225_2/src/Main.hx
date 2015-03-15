@@ -113,6 +113,7 @@ class Main
 			WebManager.inst.addLayer( 'page' );
 			WebManager.inst.addLayer( 'techpage' );
 			WebManager.inst.addLayer( 'techui' );
+			WebManager.inst.addLayer( 'footerui' );
 			WebManager.inst.addLayer( 'ui' );
 			WebManager.inst.addLayer( 'popup' );
 			WebManager.inst.addLayer( 'loading' );
