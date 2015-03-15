@@ -238,7 +238,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechCamera );
+			startWith( TechDolby );
 			#else
 			startWith( IntroPage );
 			#end
