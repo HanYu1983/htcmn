@@ -2,6 +2,7 @@ package view;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
+import flash.events.Event;
 import flash.geom.Point;
 import flash.media.SoundMixer;
 import helper.IHasAnimationShouldStop;
@@ -17,6 +18,7 @@ import org.vic.web.WebView;
 class TechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var _btnF:Map<BasicButton, Point>;
+	var mc_person:MovieClip;
 	
 	public function new() 
 	{
@@ -26,15 +28,20 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
+		BasicUtils.stopMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				cast( obj, MovieClip).stop();
 			}
 		});
+		*/
 		SoundMixer.stopAll();
 	}
 	
 	public function resumeAllAnimation() {
+		BasicUtils.playMovieClip( getRoot() );
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			if ( Std.is( obj, MovieClip ) ) {
 				var mc = cast( obj, MovieClip );
@@ -44,13 +51,26 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 				mc.play();
 			}
 		});
+		*/
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_person':
+					mc_person = cast( obj, MovieClip );
+			}
+		});
+		
 		super.onOpenEvent(param, cb);
 		_btnF = getBtnF();
 		disableUnavailableButton();
+		
+		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
+		getRoot().addEventListener( 'on_flv_B_respond_02_finish', on_flv_B_respond_finish );
+		getRoot().addEventListener( 'on_flv_B_respond_03_finish', on_flv_B_respond_finish );
+		getRoot().addEventListener( 'on_flv_B_respond_04_finish', on_flv_B_respond_finish );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -91,13 +111,25 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 		
 		if ( _mc_back != null ) {
-			//_mc_back.x = w / 2;
-			//_mc_back.y = h / 2;
-			//_mc_back.width = w * 2;
-			//_mc_back.height = h * 2;
 			_mc_back.width = w;
 			_mc_back.height = h;
 		}
+		
+		if ( mc_person != null ) {
+			Tool.center( mc_person, x, y, w, h, .5, .6 );
+		}
+		
+	}
+	
+	var btnName = '';
+	public function onBtnEnterClick( btnName:String ):Void {
+		this.btnName = btnName;
+		getRoot().dispatchEvent( new Event( btnName ));
+	}
+	
+	function on_flv_B_respond_finish( e ) {
+		//跳頁
+		trace( this.btnName );
 	}
 	
 	function getBtnF():Map<BasicButton, Point> {

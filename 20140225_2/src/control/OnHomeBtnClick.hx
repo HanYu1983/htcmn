@@ -15,6 +15,7 @@ import view.tech.TechPerson;
 import view.tech.TechPhoto;
 import view.tech.TechSitu;
 import view.tech.TechUltra;
+import view.TechPage;
 
 /**
  * ...
@@ -46,6 +47,8 @@ class OnHomeBtnClick extends WebCommand
 		
 		var goto:Dynamic = {
 			btn_onHomeBtnClick_Double: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_Double' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -53,8 +56,11 @@ class OnHomeBtnClick extends WebCommand
 						params: { } 
 						
 					}) (thenOpen(TechDouble));
+					*/
 			},
 			btn_onHomeBtnClick_Duby: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_Duby' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -62,8 +68,11 @@ class OnHomeBtnClick extends WebCommand
 						params: { } 
 						
 					}) (thenOpen(TechDolby));
+					*/
 			},
 			btn_onHomeBtnClick_Ultra: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_Ultra' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -71,15 +80,18 @@ class OnHomeBtnClick extends WebCommand
 						params: { } 
 						
 					}) (thenOpen(TechUltra));
+					*/
 			},
 			btn_onHomeBtnClick_Camera: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_Camera' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechCamera));
+					}) (thenOpen(TechCamera));*/
 			},
 			btn_onHomeBtnClick_person: function() {
 				AppAPI.changePage( 
