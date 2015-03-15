@@ -37,12 +37,14 @@ class SwfParser
 		var ary_name:Array<String> = name.split( "_" );
 		var type:String = ary_name[0];
 		
-		if ( Std.is( container, MovieClip ) ) {
-			var commandName:String = ary_name[1];
-			var symbol:String = ary_name[2];
-			if ( commandName != null ) {
-				cast( container, MovieClip ).commandName = commandName;
-				cast( container, MovieClip ).symbol = symbol;
+		if( ary_name.length == 3 ){
+			if ( Std.is( container, MovieClip ) ) {
+				var commandName:String = ary_name[1];
+				var symbol:String = ary_name[2];
+				if ( commandName != null ) {
+					cast( container, MovieClip ).commandName = commandName;
+					cast( container, MovieClip ).symbol = symbol;
+				}
 			}
 		}
 		

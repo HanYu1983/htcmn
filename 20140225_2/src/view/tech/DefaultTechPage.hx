@@ -81,13 +81,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			}
 		});
 		
-		super.onOpenEvent(param, cb);
+		
 		
 		if( _mc_controller != null ) _mc_controller.visible = false;
 		getRoot().addEventListener( 'forScript', forScript );
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	function forScript( e ) {
+		trace( 'forScript' );
 		if ( _mc_controller != null ) _mc_controller.visible = true;
 		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
