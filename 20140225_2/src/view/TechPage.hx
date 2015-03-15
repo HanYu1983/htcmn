@@ -46,7 +46,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			}
 		});
 		
-		super.onOpenEvent(param, cb);
 		_btnF = getBtnF();
 		disableUnavailableButton();
 		
@@ -54,6 +53,8 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		getRoot().addEventListener( 'on_flv_B_respond_02_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_03_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_04_finish', on_flv_B_respond_finish );
+		
+		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -90,6 +91,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			} else {
 				_mc_item.scaleX = _mc_item.scaleY = 1;
 				Tool.centerForce( _mc_item, fix_width, fix_height, x, y, w, h, .5, .6 );
+				_mc_item.y = 50;
 			}
 		}
 		

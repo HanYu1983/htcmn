@@ -24,7 +24,7 @@ class FooterUI extends DefaultPage
 	{
 		super();
 		needLoading = false;
-		layerName = 'ui';
+		layerName = 'footerui';
 	}
 	
 	public function switchMusic() {

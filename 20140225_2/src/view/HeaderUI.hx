@@ -103,6 +103,7 @@ class HeaderUI extends DefaultPage
 		_btns.x = w - _btns.width;
 		_bar.width = w;
 		_sw = w;
+		_btn_onHeaderBtnClick_skip.y = h - 30;
 	}
 	
 	var _enableAutoBar :Bool = false;

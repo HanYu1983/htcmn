@@ -39,12 +39,12 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	public function skipAnimation() {
 		cast( _mc_person, MovieClip ).onSkip();
 		cast( _mc_item, MovieClip ).onSkip();
+		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
-			//Tool.centerForceY( _mc_person, 768, y, h, .6 );
 			_mc_person.x = 0;
 			_mc_person.y = h - 650;
 		}
@@ -60,7 +60,6 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 					_mc_controller = cast( obj, MovieClip );
 			}
 		});
-		//if( _mc_controller != null ) _mc_controller.visible = false;
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
 	}
@@ -72,8 +71,10 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		super.onCloseEvent(cb);
 	}
 	
+	var scriptEnable = false;
+	
 	function forScript( e ) {
-		//if ( _mc_controller != null ) _mc_controller.visible = true;
+		scriptEnable = true;
 		SimpleController.onDefaultTechPageAnimationEnded( this );
 	}
 }
