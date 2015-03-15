@@ -39,7 +39,6 @@ class LoadingPage2 extends WebView
 					mc_gold = cast( obj, MovieClip );
 			}
 		});
-		trace( 'mc_gold==============================', mc_gold );
 		super.onOpenEvent(param, cb);
 	}
 	
