@@ -17,7 +17,7 @@ import view.DefaultPage;
  */
 class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 {
-	var _mc_person:DisplayObject;
+	var _mc_person:MovieClip;
 	var _mc_controller:MovieClip;
 	
 	public function new() 
@@ -56,8 +56,11 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function skipAnimation() {
-		cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
-		cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
+		//cast( _mc_item, MovieClip ).gotoAndPlay('forScript');
+		//cast( _mc_person, MovieClip ).gotoAndPlay( cast( _mc_person, MovieClip ).totalFrames );
+		
+		cast( _mc_item, MovieClip ).onSkip();
+		cast( _mc_person, MovieClip ).onSkip();
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
@@ -72,7 +75,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
-					_mc_person = obj;
+					_mc_person = cast( obj, MovieClip );
 				case 'mc_controller':
 					_mc_controller = cast( obj, MovieClip );
 			}
@@ -81,7 +84,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		super.onOpenEvent(param, cb);
 		
 		if( _mc_controller != null ) _mc_controller.visible = false;
-		_mc_item.addEventListener( 'forScript', forScript );
+		getRoot().addEventListener( 'forScript', forScript );
 	}
 	
 	function forScript( e ) {

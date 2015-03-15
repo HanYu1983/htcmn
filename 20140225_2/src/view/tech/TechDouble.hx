@@ -96,7 +96,7 @@ class TechDouble extends DefaultTechPage
 				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorC' ), true);
 				_mc_currentPhone = _mc_phoneA;
 				_mc_currentBigPhone = _mc_phoneABig;
-				Reflect.field( getRoot(), 'playResponse' )();
+				getRoot().playRespond();
 			case 'b':
 				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ));
 				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ), true);
@@ -277,6 +277,6 @@ class TechDouble extends DefaultTechPage
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechDouble', path:'TechDouble' };
+		return {name:'TechDouble', path:'mc_anim' };
 	}
 }
