@@ -67,8 +67,10 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 		timer = Timer.delay( function() {
 			getRoot().playWait();
-		}, 1000* 20 );
+		}, 1000* 19 );
 	}
+	
+	var requestAnimationTimer: Timer;
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
@@ -81,13 +83,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 				case 'mc_bubble':
 					mc_bubble = cast( obj, MovieClip );
 			}
-		});	
+		});
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
-	{		
+	{	
+		if ( requestAnimationTimer != null) {
+			requestAnimationTimer.stop();
+		}
 		_mc_item.onClose();
 		_mc_person.onClose();
 		super.onCloseEvent(cb);
@@ -99,8 +104,18 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		return scriptEnable;
 	}
 	
+	function requestWaitAnimationInterval() {
+		if ( requestAnimationTimer != null ) {
+			requestAnimationTimer.stop();
+			requestAnimationTimer = null;
+		}
+		requestWaitAnimation();
+		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * 20 );
+	}
+	
 	function forScript( e ) {
 		scriptEnable = true;
+		requestWaitAnimationInterval();
 		SimpleController.onDefaultTechPageAnimationEnded( this );
 		requestWaitAnimation();
 	}

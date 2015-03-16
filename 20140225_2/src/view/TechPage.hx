@@ -62,6 +62,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
+		mc_person.onClose();
 		super.onCloseEvent(cb);
 	}
 	
