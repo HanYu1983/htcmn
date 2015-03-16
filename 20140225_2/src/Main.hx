@@ -239,7 +239,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDolby );
+			startWith( TechPage );
 			#else
 			startWith( IntroPage );
 			#end
