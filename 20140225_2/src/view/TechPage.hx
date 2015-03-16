@@ -20,6 +20,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var _btnF:Map<BasicButton, Point>;
 	var mc_person:MovieClip;
+	var mc_bubble:DisplayObject;
 	
 	public function new() 
 	{
@@ -43,6 +44,8 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			switch( obj.name ) {
 				case 'mc_person':
 					mc_person = cast( obj, MovieClip );
+				case 'mc_bubble2':
+					mc_bubble = obj;
 			}
 		});
 		
@@ -101,9 +104,13 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 		
 		if ( mc_person != null ) {
-			Tool.centerForce( mc_person, 1374, 654, x, y, w, h, .5, .6 );
+			Tool.centerForce( mc_person, 428, 640, x, y, w, h, .53, .6 );
 		}
 		
+		
+		if ( mc_bubble != null ) {
+			Tool.centerForce( mc_bubble, 1366, 768, x, y, w, h, .4, .7 );
+		}
 	}
 	
 	var btnName = '';

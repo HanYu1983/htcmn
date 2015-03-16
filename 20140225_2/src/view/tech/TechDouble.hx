@@ -112,7 +112,6 @@ class TechDouble extends DefaultTechPage
 				_mc_currentPhone = _mc_phoneC;
 				_mc_currentBigPhone = _mc_phoneCBig;
 		}
-		
 		Tweener.addTween( _mc_currentPhone, {alpha:1, time:.5 } );
 		Tweener.addTween( _mc_currentBigPhone, {alpha:1, time:.5 } );
 	}
