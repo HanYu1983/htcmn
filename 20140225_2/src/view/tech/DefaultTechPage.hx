@@ -59,18 +59,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 	}
 	
-	var timer: Timer = null;	
-	public function requestWaitAnimation() {
-		if ( timer != null ) {
-			timer.stop();
-			timer = null;
-		}
-		timer = Timer.delay( function() {
-			getRoot().playWait();
-		}, 1000* 19 );
-	}
 	
-	var requestAnimationTimer: Timer;
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
@@ -90,9 +79,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{	
-		if ( requestAnimationTimer != null) {
-			requestAnimationTimer.stop();
-		}
+		closeRequestAnimationTimer();
 		_mc_item.onClose();
 		_mc_person.onClose();
 		super.onCloseEvent(cb);
@@ -104,6 +91,30 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		return scriptEnable;
 	}
 	
+	function forScript( e ) {
+		scriptEnable = true;
+		openRequestAnimationTimer();
+		SimpleController.onDefaultTechPageAnimationEnded( this );
+		requestWaitAnimation();
+	}
+	
+	// ============ Request Wait Animation Timer ==================//
+	
+	var delayStart:Timer;
+	
+	function openRequestAnimationTimer( delay: Int = 0 ) {
+		delayStart = Timer.delay( requestWaitAnimationInterval, delay );
+	}
+	
+	function closeRequestAnimationTimer() {
+		delayStart.stop();
+		if ( requestAnimationTimer != null) {
+			requestAnimationTimer.stop();
+		}
+	}
+	
+	var requestAnimationTimer: Timer;
+	
 	function requestWaitAnimationInterval() {
 		if ( requestAnimationTimer != null ) {
 			requestAnimationTimer.stop();
@@ -113,10 +124,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * 20 );
 	}
 	
-	function forScript( e ) {
-		scriptEnable = true;
-		requestWaitAnimationInterval();
-		SimpleController.onDefaultTechPageAnimationEnded( this );
-		requestWaitAnimation();
+	var timer: Timer = null;	
+	public function requestWaitAnimation() {
+		if ( timer != null ) {
+			timer.stop();
+			timer = null;
+		}
+		timer = Timer.delay( function() {
+			getRoot().playWait();
+		}, 1000* 19 );
 	}
+	
+	
 }

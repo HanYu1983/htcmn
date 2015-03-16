@@ -6,6 +6,7 @@ import flash.display.MovieClip;
 import flash.events.Event;
 import flash.geom.Point;
 import flash.media.SoundMixer;
+import haxe.Timer;
 import helper.IHasAnimationShouldStop;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
@@ -18,7 +19,6 @@ import org.vic.web.WebView;
  */
 class TechPage extends DefaultPage implements IHasAnimationShouldStop
 {
-	var _btnF:Map<BasicButton, Point>;
 	var mc_person:MovieClip;
 	var mc_bubble:DisplayObject;
 	
@@ -49,7 +49,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			}
 		});
 		
-		_btnF = getBtnF();
 		disableUnavailableButton();
 		
 		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
@@ -57,11 +56,14 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		getRoot().addEventListener( 'on_flv_B_respond_03_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_04_finish', on_flv_B_respond_finish );
 		
+		openRequestAnimationTimer(30* 1000);
+		
 		super.onOpenEvent(param, cb);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
+		closeRequestAnimationTimer();
 		mc_person.onClose();
 		super.onCloseEvent(cb);
 	}
@@ -108,7 +110,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			Tool.centerForce( mc_person, 428, 640, x, y, w, h, .53, .6 );
 		}
 		
-		
 		if ( mc_bubble != null ) {
 			Tool.centerForce( mc_bubble, 1366, 768, x, y, w, h, .4, .7 );
 		}
@@ -122,77 +123,6 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	function on_flv_B_respond_finish( e ) {
 		SimpleController.onFlvBRespondFinished( this.btnName );
-	}
-	
-	function getBtnF():Map<BasicButton, Point> {
-		var x = getRoot().x;
-		var y = getRoot().y;
-		var w = getRoot().width;
-		var h = getRoot().height;
-		
-		var disableBtnNames:Array<String> = [
-			"btn_onHomeBtnClick_Double",
-			"btn_onHomeBtnClick_Duby",
-			"btn_onHomeBtnClick_Ultra",
-			"btn_onHomeBtnClick_Camera",
-			"btn_onHomeBtnClick_blink",
-			"btn_onHomeBtnClick_boom",
-			"btn_onHomeBtnClick_person",
-			"btn_onHomeBtnClick_photo",
-			"btn_onHomeBtnClick_situ"
-		];
-		
-		function getButton(name:String):BasicButton {
-			return this.getButtonsByName(name);
-		}
-		
-		var btnF = Lambda.fold( 
-			disableBtnNames.map( getButton ), 
-			function( btn:BasicButton, ops:Map<BasicButton, Point> ):Map<BasicButton, Point> {
-				ops.set( btn, new Point( (btn.getShape().x -x) / cast(w, Float), (btn.getShape().y - y) / cast(h, Float)));
-				return ops;
-			}, 
-			new Map<BasicButton, Point>() 
-		);
-		
-		return btnF;
-	}
-	
-	function centerButton(x:Int, y:Int, w:Int, h:Int) {
-		if ( _btnF == null )
-			return;
-		
-		var disableBtnNames:Array<String> = [
-			"btn_onHomeBtnClick_Double",
-			"btn_onHomeBtnClick_Duby",
-			"btn_onHomeBtnClick_Ultra",
-			"btn_onHomeBtnClick_Camera",
-			"btn_onHomeBtnClick_blink",
-			"btn_onHomeBtnClick_boom",
-			"btn_onHomeBtnClick_person",
-			"btn_onHomeBtnClick_photo",
-			"btn_onHomeBtnClick_situ"
-		];
-		
-		function getButton(name:String):BasicButton {
-			return this.getButtonsByName(name);
-		}
-		
-		function interplot():Dynamic{
-			return function(btn:BasicButton) {
-				if (!_btnF.exists(btn)) {
-					return true;
-				}
-				var f = _btnF.get(btn);
-				btn.getShape().x = x + w * f.x;
-				btn.getShape().y = y + h * f.y;
-				
-				return true;
-			}
-		}
-		
-		Lambda.foreach( disableBtnNames.map( getButton ), interplot() );
-		
 	}
 	
 	function disableUnavailableButton() {
@@ -224,5 +154,42 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		var btns = disableBtnNames.map( getButton );
 		Lambda.foreach( btns, enable( false ) );
 		Lambda.foreach( btns, alpha( 0.5 ) );
+	}
+	
+	
+	// ============ Request Wait Animation Timer ==================//
+	var delayStart:Timer;
+	
+	function openRequestAnimationTimer( delay: Int = 0 ) {
+		delayStart = Timer.delay( requestWaitAnimationInterval, delay );
+	}
+	
+	function closeRequestAnimationTimer() {
+		delayStart.stop();
+		if ( requestAnimationTimer != null) {
+			requestAnimationTimer.stop();
+		}
+	}
+	
+	var requestAnimationTimer: Timer;
+	
+	function requestWaitAnimationInterval() {
+		if ( requestAnimationTimer != null ) {
+			requestAnimationTimer.stop();
+			requestAnimationTimer = null;
+		}
+		requestWaitAnimation();
+		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * 20 );
+	}
+	
+	var timer: Timer = null;	
+	public function requestWaitAnimation() {
+		if ( timer != null ) {
+			timer.stop();
+			timer = null;
+		}
+		timer = Timer.delay( function() {
+			getRoot().playWait();
+		}, 1000* 19 );
 	}
 }
