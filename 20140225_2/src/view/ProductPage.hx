@@ -92,8 +92,7 @@ class ProductPage extends DefaultPage
 	}
 	
 	function onPhotoBlockClick( e:Event ) {
-		SimpleController.onProductPagePhotoBlockClick( this, e.target.name );
-		
+		SimpleController.onProductPagePhotoBlockClick( this, e.currentTarget.name );
 	}
 	
 	public function getPhotoWithBlockName( name:String ):BitmapData {
