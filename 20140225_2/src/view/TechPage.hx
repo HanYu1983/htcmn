@@ -106,10 +106,10 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		if ( mc_person != null ) {
 			Tool.centerForce( mc_person, 428, 640, x, y, w, h, .5, .6 );
 		}
-		
+		/*
 		if ( mc_bubble != null ) {
 			Tool.centerForce( mc_bubble, 428, 500, x, y, w, h, .5, .7 );
-		}
+		}*/
 	}
 	
 	var btnName = '';
