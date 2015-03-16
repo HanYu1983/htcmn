@@ -165,9 +165,17 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function closeRequestAnimationTimer() {
-		delayStart.stop();
+		if ( delayStart != null) {
+			delayStart.stop();
+			delayStart = null;
+		}
 		if ( requestAnimationTimer != null) {
 			requestAnimationTimer.stop();
+			requestAnimationTimer = null;
+		}
+		if ( timer != null ) {
+			timer.stop();
+			timer = null;
 		}
 	}
 	

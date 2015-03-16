@@ -95,7 +95,6 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		scriptEnable = true;
 		openRequestAnimationTimer();
 		SimpleController.onDefaultTechPageAnimationEnded( this );
-		requestWaitAnimation();
 	}
 	
 	// ============ Request Wait Animation Timer ==================//
@@ -107,9 +106,17 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function closeRequestAnimationTimer() {
-		delayStart.stop();
+		if ( delayStart != null) {
+			delayStart.stop();
+			delayStart = null;
+		}
 		if ( requestAnimationTimer != null) {
 			requestAnimationTimer.stop();
+			requestAnimationTimer = null;
+		}
+		if ( timer != null ) {
+			timer.stop();
+			timer = null;
 		}
 	}
 	

@@ -80,11 +80,25 @@ class FBAPI
 				SimpleController.onLog(info);
 				
 				var err = Reflect.field(info, "0");
-				var success = Reflect.field(info, "1");
+				var info = Reflect.field(info, "1");
+				
 				if ( err != null ) {
 					cb( new Error( err ), {} );
 				} else {
-					cb( null, {} );
+					if ( info != null ) {
+						cb( null, { postId: Reflect.field( info, "post_id" ) } );
+						
+					} else {
+						cb( new Error("cancel"), { } );
+						
+					}
+					
+					/*if ( Reflect.field(info, "post_id") != null ) {
+						cb( null, { postId: Reflect.field( info, "post_id" ) } );
+						
+					} else {
+						cb( new Error("cancel"), {} );
+					}*/
 				}
 			});
 			

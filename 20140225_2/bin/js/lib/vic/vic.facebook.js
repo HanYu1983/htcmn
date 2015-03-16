@@ -23,6 +23,7 @@ vic.facebook = vic.facebook || {};
 		}(document, 'script', 'facebook-jssdk'));
 	}
 	
+	// 成功的話會回傳post_id
 	function postMessageToMyboard( options ){
 		login( function( response ){
 			FB.ui({
