@@ -23,6 +23,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var _mc_person:MovieClip;
 	var _mc_controller:MovieClip;
+	var mc_bubble:MovieClip;
 	
 	public function new() 
 	{
@@ -53,6 +54,9 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			_mc_person.x = 0;
 			_mc_person.y = h - 650;
 		}
+		if ( mc_bubble != null ) {
+			mc_bubble.y = _mc_person.y;
+		}
 	}
 	
 	var timer: Timer = null;	
@@ -74,6 +78,8 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 					_mc_person = cast( obj, MovieClip );
 				case 'mc_controller':
 					_mc_controller = cast( obj, MovieClip );
+				case 'mc_bubble':
+					mc_bubble = cast( obj, MovieClip );
 			}
 		});	
 		getRoot().addEventListener( 'forScript', forScript );
