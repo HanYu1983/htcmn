@@ -48,7 +48,7 @@ class OnHeaderBtnClick extends WebCommand
 				AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_ExpInfo: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: ExpInfoPage, params:{} } ) (null);
+				Tool.getURL("http://rsclient.etmgup.com/htc_one_m9_event/");
 			},
 			// 銷售通路
 			btn_onHeaderBtnClick_Sell: function() {
