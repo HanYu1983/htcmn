@@ -173,8 +173,10 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function onMaxScale() {
-		if( _currphone == 'htc' )
+		if( _currphone == 'htc' ){
 			getRoot().playRespond();
+			requestWaitAnimation();
+		}
 	}
 	
 	function setHTCPhoneVisible( v:Bool ) {

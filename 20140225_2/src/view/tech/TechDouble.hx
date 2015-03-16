@@ -97,6 +97,8 @@ class TechDouble extends DefaultTechPage
 				_mc_currentPhone = _mc_phoneA;
 				_mc_currentBigPhone = _mc_phoneABig;
 				getRoot().playRespond();
+				requestWaitAnimation();
+				
 			case 'b':
 				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ));
 				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ), true);

@@ -81,6 +81,7 @@ class TechUltra extends DefaultTechPage
 		if ( side == 'left' ) {
 			SoundMixer.stopAll();
 			getRoot().playRespond();
+			requestWaitAnimation();
 		}
 	}
 	
