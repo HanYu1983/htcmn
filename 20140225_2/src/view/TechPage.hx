@@ -112,6 +112,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		
 		if ( mc_bubble != null ) {
 			Tool.centerForce( mc_bubble, 1366, 768, x, y, w, h, .4, .7 );
+			mc_bubble.y += 75;
 		}
 	}
 	
