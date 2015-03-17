@@ -9,6 +9,7 @@ import flash.media.SoundMixer;
 import haxe.Timer;
 import helper.IHasAnimationShouldStop;
 import helper.Tool;
+import model.Const;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 import org.vic.web.WebView;
@@ -30,11 +31,13 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
+		closeRequestAnimationTimer();
 		BasicUtils.stopMovieClip( getRoot() );
 		SoundMixer.stopAll();
 	}
 	
 	public function resumeAllAnimation() {
+		openRequestAnimationTimer();
 		BasicUtils.playMovieClip( getRoot() );
 	}
 	
@@ -188,7 +191,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			requestAnimationTimer = null;
 		}
 		requestWaitAnimation();
-		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * 20 );
+		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * Const.PEOPLE_PLAY_WAIT_DURATION_SECONDS );
 	}
 	
 	var timer: Timer = null;	

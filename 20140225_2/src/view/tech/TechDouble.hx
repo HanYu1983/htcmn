@@ -30,6 +30,9 @@ class TechDouble extends DefaultTechPage
 	var _mc_phoneABig:MovieClip;
 	var _mc_phoneBBig:MovieClip;
 	var _mc_phoneCBig:MovieClip;
+	var mc_descA:DisplayObject;
+	var mc_descB:DisplayObject;
+	var mc_descC:DisplayObject;
 	var _mc_currentPhone:MovieClip;
 	var _mc_currentBigPhone:MovieClip;
 	var _ary_dotPos:Array<Float>;
@@ -57,6 +60,9 @@ class TechDouble extends DefaultTechPage
 				_mc_phoneABig.gotoAndStop( 1 );
 				_mc_phoneBBig.gotoAndStop( 1 );
 				_mc_phoneCBig.gotoAndStop( 1 );
+				Tweener.addTween( mc_descA, { alpha:1, time:.5 } );
+				Tweener.addTween( mc_descB, { alpha:0, time:.5 } );
+				Tweener.addTween( mc_descC, { alpha:0, time:.5 } );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[0] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[0] - _mc_dot.width / 2 - 380, time:.5 } );
 			case 'b':
@@ -66,6 +72,9 @@ class TechDouble extends DefaultTechPage
 				_mc_phoneABig.gotoAndStop( 2 );
 				_mc_phoneBBig.gotoAndStop( 2 );
 				_mc_phoneCBig.gotoAndStop( 2 );
+				Tweener.addTween( mc_descA, { alpha:0, time:.5 } );
+				Tweener.addTween( mc_descB, { alpha:1, time:.5 } );
+				Tweener.addTween( mc_descC, { alpha:0, time:.5 } );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[1] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[1] - _mc_dot.width / 2 - 380, time:.5 } );
 			case 'c':
@@ -75,6 +84,9 @@ class TechDouble extends DefaultTechPage
 				_mc_phoneABig.gotoAndStop( 3 );
 				_mc_phoneBBig.gotoAndStop( 3 );
 				_mc_phoneCBig.gotoAndStop( 3 );
+				Tweener.addTween( mc_descA, { alpha:0, time:.5 } );
+				Tweener.addTween( mc_descB, { alpha:0, time:.5 } );
+				Tweener.addTween( mc_descC, { alpha:1, time:.5 } );
 				Tweener.addTween( _mc_dot, {x:_ary_dotPos[2] - _mc_dot.width / 2, time:.5 } );
 				Tweener.addTween( _mc_mask, {x:_ary_dotPos[2] - _mc_dot.width / 2 - 380, time:.5 } );
 		}
@@ -183,6 +195,12 @@ class TechDouble extends DefaultTechPage
 					btn_onTechDoubleClick_colorB = cast( obj, MovieClip );
 				case 'btn_onTechDoubleClick_colorC':
 					btn_onTechDoubleClick_colorC = cast( obj, MovieClip );
+				case 'mc_desc1':
+					mc_descA = obj;
+				case 'mc_desc2':
+					mc_descB = obj;
+				case 'mc_desc3':
+					mc_descC = obj;
 			}
 		});
 		
@@ -197,8 +215,12 @@ class TechDouble extends DefaultTechPage
 		_mc_phoneABig.alpha = 0;
 		_mc_phoneBBig.alpha = 0;
 		_mc_phoneCBig.alpha = 0;
+		mc_descA.alpha = 0;
+		mc_descB.alpha = 0;
+		mc_descC.alpha = 0;
 		
 		changeColor( 'b' );
+		changeSide( 'a' );
 		
 		setCircleVisible( false );
 		setCircleMaskVisible( false );
@@ -243,6 +265,9 @@ class TechDouble extends DefaultTechPage
 	}
 	
 	function onEnterFrame(e: Event) {
+		if ( !isScriptEanbled() ) {
+			return;
+		}
 		if (_mc_circleMask == null)
 			return;
 		var isEnterRegion = mc_phoneBorder.hitTestPoint( stage.mouseX, stage.mouseY );

@@ -2,6 +2,7 @@ package view ;
 
 import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
+import flash.display.MovieClip;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.sampler.NewObjectSample;
@@ -33,6 +34,8 @@ class HeaderUI extends DefaultPage
 	
 	public function setSkipButtonVisible(b:Bool) {
 		Tweener.addTween( _btn_onHeaderBtnClick_skip, { alpha: b? 1: 0, time: 1 } );
+		cast( _btn_onHeaderBtnClick_skip, MovieClip ).mouseEnabled = b;
+		cast( _btn_onHeaderBtnClick_skip, MovieClip ).mouseChildren = b;
 	}
 	
 	private var _extendButtonVisible:Bool = true;

@@ -64,6 +64,8 @@ class TechUltra extends DefaultTechPage
 			var currX = moveMask( hitRect.left, hitRect.right, _targetX );
 			var side = currX - hitRect.left < hitRect.width / 2 ? 'left' : 'right';
 			changeSide( side );
+			
+			onMostLeftSide( currX - hitRect.left < 50 );
 		}
 	}
 	
@@ -72,16 +74,19 @@ class TechUltra extends DefaultTechPage
 	function changeSide( side:String ) {
 		if ( _side != side ) {
 			_side = side;
-			onSideChange( _side );
 		}
 	}
 	
-	function onSideChange( side:String ) {
-		showPhoneMark( side == 'left' ? 'htc' : 'other' );
-		if ( side == 'left' ) {
-			SoundMixer.stopAll();
-			getRoot().playRespond();
-			requestWaitAnimation();
+	var _onMostLeftSide = false;
+	
+	function onMostLeftSide( b:Bool ) {
+		if ( _onMostLeftSide != b ) {
+			_onMostLeftSide = b;
+			if ( _onMostLeftSide ) {
+				SoundMixer.stopAll();
+				getRoot().playRespond();
+				requestWaitAnimation();
+			}
 		}
 	}
 	

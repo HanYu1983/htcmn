@@ -91,6 +91,10 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function onEnterFrame( e:Event ) {
+		if ( !isScriptEanbled() ) {
+			return;
+		}
+		
 		if ( isDragOffset ) {
 			movePhotoOffset();
 		}
