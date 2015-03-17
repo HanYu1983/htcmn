@@ -12,6 +12,7 @@ import haxe.Timer;
 import helper.IHasAnimationShouldStop;
 import helper.IResize;
 import helper.Tool;
+import model.Const;
 import org.vic.utils.BasicUtils;
 import view.DefaultPage;
 
@@ -33,12 +34,14 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
+		closeRequestAnimationTimer();
 		BasicUtils.stopMovieClip( getRoot() );
 		SoundMixer.stopAll();
 		scriptEnable = false;
 	}
 	
 	public function resumeAllAnimation() {
+		openRequestAnimationTimer();
 		BasicUtils.playMovieClip( getRoot() );
 		scriptEnable = true;
 	}
@@ -128,7 +131,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			requestAnimationTimer = null;
 		}
 		requestWaitAnimation();
-		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * 20 );
+		requestAnimationTimer = Timer.delay( requestWaitAnimationInterval, 1000 * Const.PEOPLE_PLAY_WAIT_DURATION_SECONDS );
 	}
 	
 	var timer: Timer = null;	

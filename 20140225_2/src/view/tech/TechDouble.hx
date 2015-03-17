@@ -243,6 +243,9 @@ class TechDouble extends DefaultTechPage
 	}
 	
 	function onEnterFrame(e: Event) {
+		if ( !isScriptEanbled() ) {
+			return;
+		}
 		if (_mc_circleMask == null)
 			return;
 		var isEnterRegion = mc_phoneBorder.hitTestPoint( stage.mouseX, stage.mouseY );
