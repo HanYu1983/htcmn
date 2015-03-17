@@ -5,7 +5,9 @@ import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.errors.Error;
+import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.geom.Point;
 import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.media.SoundMixer;
@@ -95,8 +97,10 @@ class TechDolby extends DefaultTechPage
 		
 		closeAllSound();
 		
-		Tweener.addTween( flv_container, { alpha:1, time:1 } );
-		showPanelWith( btn_play );
+		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
+		//showPanel();
+		
+		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
 		
 		btn_Switch.buttonMode = true;
 		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
@@ -110,9 +114,29 @@ class TechDolby extends DefaultTechPage
 		//btn_stop.buttonMode = true;
 		//btn_play.buttonMode = true;
 		//showVideo( 'dolby' );
+		onBtnPlayClick(null);
+		
+		addEventListener( Event.ENTER_FRAME, checkOverPanel );
 	}
 	
-	function showPanelWith( btn ) {
+	function checkOverPanel( e ) {
+		if ( mc_panel.visible == false )	return;
+		if ( mc_panel.alpha != 1 )	return;
+		var local = getRoot().globalToLocal( new Point(stage.mouseX, stage.mouseY) );
+		var hitRect = mc_panel.getRect( getRoot() );
+		var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom &&
+							local.x > hitRect.left && local.x < hitRect.right );
+		if ( !isHitRegion ) {
+			closePanel();
+		}
+	}
+	
+	function onMovieOver( e ) {
+		mc_panel.visible = true;
+		showPanel();
+	}
+	
+	function showPanel() {
 		if ( isPlay ) {
 			btn_stop.getShape().visible = true;
 			btn_play.getShape().visible = false;
@@ -120,37 +144,45 @@ class TechDolby extends DefaultTechPage
 			btn_stop.getShape().visible = false;
 			btn_play.getShape().visible = true;
 		}
-		Tweener.addTween( mc_panel, { alpha:1, time:1 } );
+		Tweener.addTween( mc_panel, { alpha:1, time:.5 } );
+	}
+	
+	function closePanel() {
+		Tweener.addTween( mc_panel, { alpha:0, time:.5, onComplete:function() {
+			mc_panel.visible = false;
+		}});
 	}
 	
 	function onBtnPlayClick( e ) {
-		flv_container.gotoAndPlay( 2 );
 		isPlay = true;
-		Tweener.addTween( mc_panel, { alpha:0, time:1 } );
-		
-		if ( soundASoundChannel == null ) {
-			onSoundAStart( null );
-		}else {
-			changeSoundToNormal();
-		}
+		flv_container.gotoAndPlay( 2 );
+		currSwitchLabel == 'dolby' ? onSoundBStart( null ) : onSoundAStart( null );
+		showPhoneWithType( currSwitchLabel );
+		closePanel();
 	}
 	
 	function onBtnStopClick( e ) {
-		flv_container.stop();
 		isPlay = false;
-		Tweener.addTween( mc_panel, { alpha:0, time:1 } );
+		flv_container.gotoAndStop( 1 );
+		showPhoneWithType( 'normal' );
+		closeAllSound();
+		closePanel();
 	}
 	
-	
 	function onSoundAStart(e) {
-		soundASoundChannel = soundA.play();
-		soundBSoundChannel = soundB.play();
-		
-		changeSoundToNormal();
+		soundStartAndThen( changeSoundToNormal );
 	}
 	
 	function onSoundBStart(e) {
-		changeSoundToDolby();
+		soundStartAndThen( changeSoundToDolby );
+	}
+	
+	function soundStartAndThen( cb ) {
+		//if( soundASoundChannel == null ){
+			soundASoundChannel = soundA.play();
+			soundBSoundChannel = soundB.play();
+		//}
+		cb();
 	}
 	
 	function onSoundBStop( e ) {
@@ -177,12 +209,16 @@ class TechDolby extends DefaultTechPage
 	
 	function showVideo( type: String ) {
 		trace( type );
+		
 		switch( type ) {
 			case 'dolby':
 				changeSoundToDolby(); 
-			case 'normal':
+			case _:
 				changeSoundToNormal();
 		}
+		
+		flv_container.gotoAndPlay( 2 );
+		
 		/*
 		var currframe = 1;
 		if ( currVideo != null ) {
@@ -234,14 +270,25 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onBtnSwitchClick( e ) {
+		
 		var target = toggleSwitch();
-		showVideo( target );
+		if ( !isPlay )	return;
+		
 		showPhoneWithType( target );
+		
 		if ( target == 'dolby' ) {
 			_mc_person.onSkip();
-			//getRoot().playRespond();
-			//requestWaitAnimation();
+			getRoot().playRespond();
+			requestWaitAnimation();
 		}
+		
+		closeAllSound();
+		
+		soundASoundChannel = soundA.play();
+		soundBSoundChannel = soundB.play();
+		
+		showVideo( target );
+		
 		// 不需要消失
 		//showTextWithType( target );
 	}
@@ -257,6 +304,7 @@ class TechDolby extends DefaultTechPage
 				soundBSoundChannel.stop();
 			}
 		}catch ( e:Error ) {
+			SoundMixer.stopAll();
 			//sound還沒開始串流時，不能呼叫close，暫時不知道怎麼檢查，先用例外把它處理掉
 		}
 	}
