@@ -1,4 +1,5 @@
 package view.tech;
+import caurina.transitions.Tweener;
 import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
@@ -55,7 +56,8 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		super.onResize(x, y, w, h );
 		if ( _mc_person != null ) {
 			_mc_person.x = 0;
-			_mc_person.y = h - 650;
+			Tool.centerForceY( _mc_person, 600, y, h );
+			//_mc_person.y = h - 650;
 		}
 		if ( mc_bubble != null ) {
 			mc_bubble.y = _mc_person.y;
@@ -98,6 +100,11 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		scriptEnable = true;
 		openRequestAnimationTimer();
 		SimpleController.onDefaultTechPageAnimationEnded( this );
+		/*
+		if ( _mc_controller != null ) {
+			_mc_controller.alpha = 0;
+			Tweener.addTween( _mc_controller, {alpha:1, time:1 } );
+		}*/
 	}
 	
 	// ============ Request Wait Animation Timer ==================//
