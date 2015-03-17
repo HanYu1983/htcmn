@@ -3,6 +3,7 @@ import flash.display.DisplayObject;
 import flash.display.MovieClip;
 import flash.display.Stage;
 import flash.text.TextField;
+import helper.IResize;
 import org.vic.event.VicEvent;
 import org.vic.flash.loader.LoaderManager;
 import org.vic.utils.BasicUtils;
@@ -12,7 +13,7 @@ import org.vic.web.WebView;
  * ...
  * @author han
  */
-class LoadingPage2 extends WebView
+class LoadingPage2 extends WebView implements IResize
 {
 	var mc_gold:MovieClip;
 	
