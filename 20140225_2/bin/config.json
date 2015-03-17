@@ -44,5 +44,14 @@
 			"htc":"sound/dolby.mp3",
 			"other":"sound/other.mp3"
 		}
+	},
+	"url":{
+		"spec": "http://www.htc.com/tw/smartphones/htc-one-m9/",
+		"expinfo": "http://rsclient.etmgup.com/htc_one_m9_event/",
+		"sell": "http://www.htc.com/tw/go/buy/",
+		"use": "http://www.htc.com/tw/terms/terms-of-use/",
+		"privacy": "http://www.htc.com/tw/terms/privacy/",
+		"htc": "http://www.htc.com/tw/",
+		"fance": "https://www.facebook.com/HTCTaiwan"
 	}
 }

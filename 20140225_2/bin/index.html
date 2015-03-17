@@ -200,8 +200,9 @@
 			picture: '',
 			caption: 'caption',
 			description: 'description',
-			callback:function(){
-				cb( null, true );
+			callback:function( res ){
+				console.log( res )
+				cb( null, res );
 			},
 			error:function( error ){
 				cb(error, false);

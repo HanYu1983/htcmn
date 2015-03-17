@@ -42,17 +42,20 @@ class OnHeaderBtnClick extends WebCommand
 			},
 			// 詳細規格
 			btn_onHeaderBtnClick_Spec: function() {
-				Tool.getURL("http://www.htc.com/tw/smartphones/htc-one-m9/");
+				var url = getWebManager().getData( 'config' ).url.spec;
+				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_Relative: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
 			},
-			btn_onHeaderBtnClick_ExpInfo: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: ExpInfoPage, params:{} } ) (null);
+			btn_onHeaderBtnClick_ExpInfo: function() {
+				var url = getWebManager().getData( 'config' ).url.expinfo;
+				Tool.getURL(url);
 			},
 			// 銷售通路
 			btn_onHeaderBtnClick_Sell: function() {
-				Tool.getURL("http://www.htc.com/tw/go/buy/");
+				var url = getWebManager().getData( 'config' ).url.sell;
+				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_Product: function(){
 				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);

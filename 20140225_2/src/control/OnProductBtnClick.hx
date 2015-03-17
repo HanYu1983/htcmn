@@ -22,6 +22,8 @@ class OnProductBtnClick extends WebCommand
 			btn_onProductBtnClick_search: function() {
 				
 				function fetchDone( err:Error, ret:Dynamic ) {
+					SimpleController.onHttpLoadindEnd();
+					
 					if ( err != null ) {
 						getWebManager().openPage( ProductErrorPopup, null );
 						
@@ -39,6 +41,7 @@ class OnProductBtnClick extends WebCommand
 				var page:ProductPage = cast( getWebManager().getPage( ProductPage ), ProductPage );
 				var searchKey = page.getInput();
 				if ( searchKey.length > 0 ) {
+					SimpleController.onHttpLoadingStart();
 					AppAPI.fetchPhoto( { mobile: searchKey } ) (fetchDone);
 				}
 			}

@@ -31,16 +31,20 @@ class OnFooterBtnClick extends WebCommand
 		
 		var goto:Dynamic = {
 			btn_onFooterBtnClick_use: function() {
-				Tool.getURL("http://www.htc.com/tw/terms/terms-of-use/");
+				var url = getWebManager().getData( 'config' ).url.use;
+				Tool.getURL(url);
 			},
-			btn_onFooterBtnClick_private: function(){
-				Tool.getURL("http://www.htc.com/tw/terms/privacy/");
+			btn_onFooterBtnClick_private: function() {
+				var url = getWebManager().getData( 'config' ).url.privacy;
+				Tool.getURL(url);
 			},
-			btn_onFooterBtnClick_htc: function(){
-				Tool.getURL("http://www.htc.com/tw/");
+			btn_onFooterBtnClick_htc: function() {
+				var url = getWebManager().getData( 'config' ).url.htc;
+				Tool.getURL(url);
 			},
 			btn_onFooterBtnClick_fance: function() {
-				Tool.getURL("https://www.facebook.com/HTCTaiwan");
+				var url = getWebManager().getData( 'config' ).url.fance;
+				Tool.getURL(url);
 			},
 			btn_onFooterBtnClick_music: function(){
 				var page:FooterUI = cast( getWebManager().getPage( FooterUI ), FooterUI );
