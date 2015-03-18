@@ -80,6 +80,8 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		});
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
+		
+		SoundMixer.stopAll();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
