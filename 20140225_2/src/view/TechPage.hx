@@ -32,13 +32,13 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	public function stopAllAnimation() {
 		closeRequestAnimationTimer();
-		BasicUtils.stopMovieClip( getRoot() );
+		SimpleController.stagePause( getRoot().stage );
 		SoundMixer.stopAll();
 	}
 	
 	public function resumeAllAnimation() {
 		openRequestAnimationTimer();
-		BasicUtils.playMovieClip( getRoot() );
+		SimpleController.stageStart();
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -73,7 +73,8 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'TechFront', path:'src/TechFront.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'TechFront', path:config.swfPath.tech[ config.swfPath.tech.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

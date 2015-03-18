@@ -115,6 +115,7 @@ class Main
 			WebManager.inst.addLayer( 'techui' );
 			WebManager.inst.addLayer( 'footerui' );
 			WebManager.inst.addLayer( 'ui' );
+			WebManager.inst.addLayer( 'fakeStop' );
 			WebManager.inst.addLayer( 'popup' );
 			WebManager.inst.addLayer( 'loading' );
 			
@@ -239,7 +240,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDolby );
+			startWith( IntroPage );
 			#else
 			startWith( IntroPage );
 			#end

@@ -36,14 +36,13 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	public function stopAllAnimation() {
 		closeRequestAnimationTimer();
-		BasicUtils.stopMovieClip( getRoot() );
-		SoundMixer.stopAll();
+		SimpleController.stagePause( getRoot().stage );
 		scriptEnable = false;
 	}
 	
 	public function resumeAllAnimation() {
 		openRequestAnimationTimer();
-		BasicUtils.playMovieClip( getRoot() );
+		SimpleController.stageStart();
 		scriptEnable = true;
 	}
 	

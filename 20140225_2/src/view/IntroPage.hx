@@ -1,5 +1,6 @@
 package view;
 
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.MovieClip;
 import flash.media.SoundMixer;
@@ -23,17 +24,17 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function stopAllAnimation() {
-		BasicUtils.stopMovieClip( getRoot() );
-		SoundMixer.stopAll();
+		SimpleController.stagePause( getRoot().stage );
 	}
 	
 	public function resumeAllAnimation() {
-		BasicUtils.playMovieClip( getRoot() );
+		SimpleController.stageStart();
 	}
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'Intro', path:'src/Intro.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'Intro', path:config.swfPath.intro[ config.swfPath.intro.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

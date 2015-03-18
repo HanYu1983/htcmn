@@ -188,7 +188,8 @@ class WebView extends Sprite implements IWebView
 	}
 	
 	function createDebugRoot( name:String = '', width:Float = 500, height:Float = 500 ):Void {
-		_root = new FakeMovieClip( name, width, height );
+		//_root = new FakeMovieClip( name, width, height );
+		_root = new MovieClip();
 	}
 	
 	public function update():Void {
