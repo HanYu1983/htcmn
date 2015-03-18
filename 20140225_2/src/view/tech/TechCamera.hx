@@ -145,9 +145,11 @@ class TechCamera extends DefaultTechPage
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
 		getRoot().removeEventListener( Event.ENTER_FRAME, onEnterFrame );
-		mc_photoOffset.removeEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
+		if( mc_photoOffset != null )
+			mc_photoOffset.removeEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
 		getRoot().removeEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
-		_mc_bar.removeEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
+		if( _mc_bar != null )
+			_mc_bar.removeEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
 		super.onCloseEvent(cb);
 	}
 	
@@ -282,7 +284,6 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function changeDesc( target ) {
-		trace( 'changeDescchangeDescchangeDesc' );
 		if ( target == 'htc' ) {
 			Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
 			Tweener.addTween( mc_otherTxt, {alpha:0, time:1 } );
