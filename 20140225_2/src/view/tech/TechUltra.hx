@@ -32,9 +32,6 @@ class TechUltra extends DefaultTechPage
 	
 	override function forScript(e) 
 	{
-		super.forScript(e);
-		isEndAnimation = true;
-		
 		BasicUtils.revealObj( _mc_item, function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_htcTxt':
@@ -43,8 +40,8 @@ class TechUltra extends DefaultTechPage
 					mc_otherTxt = obj;
 			}
 		});
-		
-		//mc_otherTxt.alpha = 1;
+		super.forScript(e);
+		isEndAnimation = true;
 	}
 	
 	override public function stopAllAnimation() 
@@ -59,7 +56,7 @@ class TechUltra extends DefaultTechPage
 		super.resumeAllAnimation();
 	}
 	
-	var _targetX:Float = 0;
+	var _targetX:Float = 1366;
 	
 	function onEnterFrame(e: Event) {
 		if (_mc_controller == null)
