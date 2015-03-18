@@ -93,9 +93,13 @@ class TechUltra extends DefaultTechPage
 		if ( _side == 'left' ) {
 			Tweener.addTween( mc_htcTxt, { alpha:1, time:1  } );
 			Tweener.addTween( mc_otherTxt, { alpha:0, time:1  } );
+			Tweener.addTween( mc_txt_htc, { alpha: 1, time: .5 } );
+			Tweener.addTween( mc_txt_other, { alpha: 0, time: .5 } );
 		}else {
 			Tweener.addTween( mc_htcTxt, { alpha:0, time:1  } );
 			Tweener.addTween( mc_otherTxt, { alpha:1, time:1  } );
+			Tweener.addTween( mc_txt_htc, { alpha: 0, time: .5 } );
+			Tweener.addTween( mc_txt_other, { alpha: 1, time: .5 } );
 		}
 	}
 	
@@ -111,7 +115,7 @@ class TechUltra extends DefaultTechPage
 			}
 		}
 	}
-	
+	/*
 	function showPhoneMark( type: String ) {
 		switch(type) {
 			case 'htc':
@@ -122,7 +126,7 @@ class TechUltra extends DefaultTechPage
 				Tweener.addTween( mc_txt_other, { alpha: 1, time: .5 } );
 		}
 	}
-	
+	*/
 	function moveMask(min:Float, max:Float, targetX:Float): Float {
 		targetX = Math.min( targetX, max );
 		targetX = Math.max( targetX, min );

@@ -4,6 +4,7 @@ import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.FrameLabel;
 import flash.display.Graphics;
+import flash.display.IBitmapDrawable;
 import flash.display.Loader;
 import flash.display.MovieClip;
 import flash.display.Sprite;
@@ -100,6 +101,12 @@ class BasicUtils
 				}
 			}
 		});
+	}
+	
+	public static function drawDisplayObject( obj:DisplayObject ):Dynamic {
+		var img = new BitmapData( cast( obj.width, Int ), cast( obj.height, Int ), false );
+		img.draw( obj );
+		return { img:img, x:obj.x, y:obj.y };
 	}
 	
 	public static function getCurveYUsing3Point( ary_pos:Array<Point> ):Array<Float> {

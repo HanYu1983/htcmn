@@ -14,6 +14,7 @@ import org.vic.web.IWebView;
 import org.vic.web.WebManager;
 import view.DefaultPage;
 import view.ExpInfoPage;
+import view.FakeStopPage;
 import view.FooterUI;
 import view.HeaderUI;
 import view.HttpLoadingPage;
@@ -380,6 +381,15 @@ class SimpleController
 		#else
 		
 		#end
+	}
+	
+	public static function stagePause( stage:Stage ) {
+		SoundMixer.stopAll();
+		WebManager.inst.openPage( FakeStopPage, BasicUtils.drawDisplayObject( stage ) );
+	}
+	
+	public static function stageStart() {
+		WebManager.inst.closePage( FakeStopPage );
 	}
 	
 	
