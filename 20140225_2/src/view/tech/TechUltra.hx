@@ -19,7 +19,8 @@ class TechUltra extends DefaultTechPage
 	var _mc_htc:DisplayObject;
 	var mc_txt_htc:DisplayObject;
 	var mc_txt_other:DisplayObject;
-
+	var mc_htcTxt:DisplayObject;
+	var mc_otherTxt:DisplayObject;
 	
 	public function new() 
 	{
@@ -33,6 +34,17 @@ class TechUltra extends DefaultTechPage
 	{
 		super.forScript(e);
 		isEndAnimation = true;
+		
+		BasicUtils.revealObj( _mc_item, function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_htcTxt':
+					mc_htcTxt = obj;
+				case 'mc_otherTxt':
+					mc_otherTxt = obj;
+			}
+		});
+		
+		//mc_otherTxt.alpha = 1;
 	}
 	
 	override public function stopAllAnimation() 
@@ -64,7 +76,7 @@ class TechUltra extends DefaultTechPage
 			var currX = moveMask( hitRect.left, hitRect.right, _targetX );
 			var side = currX - hitRect.left < hitRect.width / 2 ? 'left' : 'right';
 			changeSide( side );
-			
+			chagenDesc();
 			onMostLeftSide( currX - hitRect.left < 50 );
 		}
 	}
@@ -74,6 +86,16 @@ class TechUltra extends DefaultTechPage
 	function changeSide( side:String ) {
 		if ( _side != side ) {
 			_side = side;
+		}
+	}
+	
+	function chagenDesc() {
+		if ( _side == 'left' ) {
+			Tweener.addTween( mc_htcTxt, { alpha:1, time:1  } );
+			Tweener.addTween( mc_otherTxt, { alpha:0, time:1  } );
+		}else {
+			Tweener.addTween( mc_htcTxt, { alpha:0, time:1  } );
+			Tweener.addTween( mc_otherTxt, { alpha:1, time:1  } );
 		}
 	}
 	

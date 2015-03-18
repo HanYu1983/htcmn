@@ -38,6 +38,8 @@ class TechDolby extends DefaultTechPage
 	var mc_panel:DisplayObject;
 	var btn_play:BasicButton;
 	var btn_stop:BasicButton;
+	var mc_dolbyTxt:DisplayObject;
+	var mc_otherTxt:DisplayObject;
 	var isNormal:Bool = true;
 	var isPlay:Bool = false;
 	var currVideo:MovieClip;
@@ -92,12 +94,17 @@ class TechDolby extends DefaultTechPage
 					btn_play = new BasicButton( cast( obj, MovieClip ));
 				case 'btn_stop':
 					btn_stop = new BasicButton( cast( obj, MovieClip ));
+				case 'mc_otherTxt':
+					mc_otherTxt = obj;
+				case 'mc_dolbyTxt':
+					mc_dolbyTxt = obj;
 			}
 		});
 		
 		closeAllSound();
 		
 		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
+		showDescWithType( currSwitchLabel );
 		//showPanel();
 		
 		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
@@ -158,6 +165,7 @@ class TechDolby extends DefaultTechPage
 		flv_container.gotoAndPlay( 2 );
 		currSwitchLabel == 'dolby' ? onSoundBStart( null ) : onSoundAStart( null );
 		showPhoneWithType( currSwitchLabel );
+		showDescWithType( currSwitchLabel );
 		closePanel();
 	}
 	
@@ -218,31 +226,6 @@ class TechDolby extends DefaultTechPage
 		}
 		
 		flv_container.gotoAndPlay( 2 );
-		
-		/*
-		var currframe = 1;
-		if ( currVideo != null ) {
-			SoundMixer.stopAll();
-			currframe = currVideo.currentFrame;
-			flv_container.removeChild( currVideo );
-			currVideo = null;
-		}
-		var video = switch( type ) {
-			case 'dolby':
-				cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
-			case _:
-				cast( getWebManager().getLoaderManager().getTask( 'TechDolby' ).getObject( 'flv_videoA' ), MovieClip );
-		}
-		
-		if ( currframe == 1 ) {
-			video.gotoAndPlay( 'play' );
-		} else {
-			video.gotoAndPlay( currframe );
-		}
-		
-		flv_container.addChild( video );
-		currVideo = video;
-		*/
 	}
 	
 	var currSwitchLabel = 'normal';
@@ -258,6 +241,16 @@ class TechDolby extends DefaultTechPage
 		mc_phone.gotoAndPlay( type );
 	}
 	
+	function showDescWithType( type:String ){
+		if ( type == 'dolby' ) {
+			Tweener.addTween( mc_otherTxt, { alpha:0, time:.5 } );
+			Tweener.addTween( mc_dolbyTxt, { alpha:1, time:.5 } );
+		}else {
+			Tweener.addTween( mc_otherTxt, { alpha:1, time:.5 } );
+			Tweener.addTween( mc_dolbyTxt, { alpha:0, time:.5 } );
+		}
+	}
+	
 	function showTextWithType( type:String ) {
 		switch( type ) {
 			case 'dolby':
@@ -270,8 +263,8 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onBtnSwitchClick( e ) {
-		
 		var target = toggleSwitch();
+		showDescWithType( target );
 		if ( !isPlay )	return;
 		
 		showPhoneWithType( target );
@@ -304,9 +297,13 @@ class TechDolby extends DefaultTechPage
 				soundBSoundChannel.stop();
 			}
 		}catch ( e:Error ) {
-			SoundMixer.stopAll();
+			
 			//sound還沒開始串流時，不能呼叫close，暫時不知道怎麼檢查，先用例外把它處理掉
 		}
+		trace("DGGG");
+		soundASoundChannel.stop();
+		soundBSoundChannel.stop();
+		SoundMixer.stopAll();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

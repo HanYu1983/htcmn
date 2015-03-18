@@ -27,14 +27,72 @@ class TechCamera extends DefaultTechPage
 	var mc_photoScale:DisplayObject;
 	var mc_photoOffset:DisplayObject;
 	var mc_photoMask:DisplayObject;
+	var mc_htcTxt:DisplayObject;
+	var mc_otherTxt:DisplayObject;
 	
 	public function new() 
 	{
 		super();
 	}
 	
+	override function forScript(e) 
+	{
+		super.forScript(e);
+		
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_controller':
+					_mc_controller = cast( obj, MovieClip );
+				case 'mc_circleButton':
+					_mc_circleButton = cast( obj, MovieClip );
+				case 'mc_htc':
+					_mc_htc = obj;
+				case 'mc_dot':
+					_mc_dot = cast( obj, MovieClip );
+				case 'mc_bar':
+					_mc_bar = cast( obj, MovieClip );
+				case 'mc_htcPhoto':
+					_mc_htcPhoto = obj;
+				case 'mc_otherPhoto':
+					_mc_ohterPhoto = obj;
+				case 'mc_other':
+					_mc_other = obj;
+				case 'mc_photo':
+					_mc_photo = cast( obj, DisplayObjectContainer );
+				case 'mc_photoScale':
+					mc_photoScale = obj;
+				case 'mc_photoOffset':
+					mc_photoOffset = obj;
+				case 'mc_photoMask':
+					mc_photoMask = obj;
+				case 'mc_htcTxt':
+					mc_htcTxt = obj;
+				case 'mc_otherTxt':
+					mc_otherTxt = obj;
+			}
+		});
+		
+		_originDotX = _mc_dot.x;
+		
+		animateForSmartPhone(taggleCircleButton());
+		//scalePhoto( 0 );
+		
+		_mc_bar.buttonMode = true;
+		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
+		
+		_mc_dot.buttonMode = true;
+		_mc_dot.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownDot );
+		
+		mc_photoOffset.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
+		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
+		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
+		
+		Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
+	}
+	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		/*
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -65,6 +123,7 @@ class TechCamera extends DefaultTechPage
 		});
 		
 		_originDotX = _mc_dot.x;
+		
 		animateForSmartPhone(taggleCircleButton());
 		//scalePhoto( 0 );
 		
@@ -78,6 +137,8 @@ class TechCamera extends DefaultTechPage
 		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
 		
+		super.onOpenEvent(param, cb);
+		*/
 		super.onOpenEvent(param, cb);
 	}
 	
@@ -211,12 +272,24 @@ class TechCamera extends DefaultTechPage
 		var curr = _mc_circleButton.currentLabel;
 		getWebManager().log(curr);
 		var target = switch( curr ) {
-			case 'htc': 'other';
-			case 'other': 'htc';
+			case 'htc':'other';
+			case 'other':'htc';
 			case _ : 'htc';
 		}
+		changeDesc( target );
 		_mc_circleButton.gotoAndPlay( target );
 		return target;
+	}
+	
+	function changeDesc( target ) {
+		trace( 'changeDescchangeDescchangeDesc' );
+		if ( target == 'htc' ) {
+			Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
+			Tweener.addTween( mc_otherTxt, {alpha:0, time:1 } );
+		}else {
+			Tweener.addTween( mc_htcTxt, { alpha:0, time:1 } );
+			Tweener.addTween( mc_otherTxt, { alpha:1, time:1 } );
+		}
 	}
 	
 	override function getSwfInfo():Dynamic 
