@@ -96,6 +96,7 @@ class Main
 				// 沒有這行Tweener會出現例外
 				Tweener.autoOverwrite = false;
 				WebManager.inst.init( stage );
+				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
 				cb( null, null );
 				
 			}catch (err:Error) {
@@ -153,7 +154,9 @@ class Main
 		function loadSwf( cb:Dynamic ) {
 			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:'src/Preload.swf' }, false, function() {
 				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:'src/ActivePage.swf' }, false, function() {
-					cb( null, null );
+					BasicUtils.loadSwf( WebManager.inst, { name:'loading', path:'src/loading.swf' }, false, function() {
+						cb( null, null );
+					});
 				});
 			});
 		}
@@ -165,7 +168,6 @@ class Main
 				
 			} else {
 				WebManager.inst.log("startApp");
-				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
 			}
 		}
 		
