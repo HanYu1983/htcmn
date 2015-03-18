@@ -57,10 +57,13 @@ class DolbySoundMediator
 		return stopWithType( currtype );
 	}
 	
-	public function toggle() {
+	public function toggle(autoPlay:Bool = true):Float {
 		var pos = stop();
 		currtype = currtype == SoundType.HTC ? SoundType.Normal : SoundType.HTC;
-		play( pos );
+		if ( autoPlay ) {
+			play( pos );
+		}
+		return pos;
 	}
 	
 	function playWithType( type:SoundType, time:Float = -1 ) {

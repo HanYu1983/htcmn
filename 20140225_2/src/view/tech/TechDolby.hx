@@ -15,6 +15,7 @@ import flash.media.SoundTransform;
 import flash.net.URLRequest;
 import helper.IResize;
 import helper.Tool;
+import model.DolbySoundMediator;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 import view.DefaultPage;
@@ -43,10 +44,7 @@ class TechDolby extends DefaultTechPage
 	var isNormal:Bool = true;
 	var isPlay:Bool = false;
 	var currVideo:MovieClip;
-	var soundA:Sound;
-	var soundB:Sound;
-	var soundASoundChannel:SoundChannel;
-	var soundBSoundChannel:SoundChannel;
+	var dolbyMediator:DolbySoundMediator = new DolbySoundMediator( SoundType.Normal );
 
 	public function new() 
 	{
@@ -70,24 +68,19 @@ class TechDolby extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		var onComplete = onMp3LoadComplete( this, param, cb );
-		
-		soundA = new Sound();
-		soundA.addEventListener( Event.COMPLETE, onComplete );
-		soundA.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.htc ));
-		
-		soundB = new Sound();
-		soundB.addEventListener( Event.COMPLETE, onComplete );
-		soundB.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.other ));
-		
-		
+		var that = this;
+		dolbyMediator.load( 
+			{ 
+				htc:getWebManager().getData( 'config' ).sound.techDolby.htc,
+				other:getWebManager().getData( 'config' ).sound.techDolby.other
+			}, function() {
+				that.helpCallSuperOnOpenEvent(param, cb);
+			});
 		
 	}
 	
 	override function forScript(e) 
 	{
-		super.forScript(e);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'btn_Switch':
@@ -96,7 +89,7 @@ class TechDolby extends DefaultTechPage
 					mc_txtA = obj;
 				case 'mc_txtB':
 					mc_txtB = obj;
-				case 'mc_phone':
+				case 'mc_phone2':
 					mc_phone = cast( obj, MovieClip );
 				case 'flv_container':
 					flv_container = cast( obj, MovieClip );
@@ -118,12 +111,10 @@ class TechDolby extends DefaultTechPage
 		});
 		mc_elec.visible = true;
 		mc_elec.alpha = 1;
-		closeAllSound();
-		
+	
 		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
 		showDescWithType( currSwitchLabel );
-		//showPanel();
-		
+
 		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
 		
 		btn_Switch.buttonMode = true;
@@ -148,6 +139,11 @@ class TechDolby extends DefaultTechPage
 		//showDescWithType( currSwitchLabel );
 		
 		addEventListener( Event.ENTER_FRAME, checkOverPanel );
+		
+		
+		super.forScript(e);
+		
+		dolbyMediator.play();
 	}
 	
 	function checkOverPanel( e ) {
@@ -186,7 +182,9 @@ class TechDolby extends DefaultTechPage
 	
 	function onBtnPlayClick( e ) {
 		isPlay = true;
-		flv_container.gotoAndPlay( 2 );
+		trace( currtime );
+		dolbyMediator.play( currtime );
+		//flv_container.gotoAndPlay( 2 );
 		showPhoneWithType( currSwitchLabel );
 		if( currSwitchLabel == 'dolby' )	mc_elec.gotoAndPlay( 'loop' );
 		showDescWithType( currSwitchLabel );
@@ -195,52 +193,24 @@ class TechDolby extends DefaultTechPage
 	
 	function onBtnStopClick( e ) {
 		isPlay = false;
-		flv_container.gotoAndStop( 1 );
+		currtime = dolbyMediator.stop();
+		//flv_container.gotoAndStop( 1 );
 		showPhoneWithType( 'normal' );
-		closeAllSound();
+		//closeAllSound();
 		closePanel();
 		mc_elec.gotoAndPlay( 'stand' );
 	}
 	
 	function onSoundAStart(e) {
-		soundStartAndThen( changeSoundToNormal );
+		//dolbyMediator.play();
 	}
 	
 	function onSoundBStart(e) {
-		soundStartAndThen( changeSoundToDolby );
-	}
-	
-	function soundStartAndThen( cb ) {
-		if ( soundASoundChannel != null ) {
-			changeVolumn( soundASoundChannel, 0 );
-			soundASoundChannel.stop();
-			soundASoundChannel = null;
-		}
-		if ( soundBSoundChannel != null ) {
-			changeVolumn( soundBSoundChannel, 0 );
-			soundBSoundChannel.stop();
-			soundBSoundChannel = null;
-		}
-		if( soundASoundChannel == null ){
-			soundASoundChannel = soundA.play();
-			soundBSoundChannel = soundB.play();
-		}
-		cb();
+		//dolbyMediator.toggle();
 	}
 	
 	function onSoundBStop( e ) {
-		changeVolumn( soundASoundChannel, 0 );
-		changeVolumn( soundBSoundChannel, 0 );
-	}
-	
-	function changeSoundToDolby() {
-		changeVolumn( soundASoundChannel, 1 );
-		changeVolumn( soundBSoundChannel, 0 );
-	}
-	
-	function changeSoundToNormal() {
-		changeVolumn( soundASoundChannel, 0 );
-		changeVolumn( soundBSoundChannel, 1 );
+		//dolbyMediator.stop();
 	}
 	
 	function changeVolumn( soundChannel:SoundChannel, volumn ) {
@@ -251,14 +221,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function showVideo( type: String ) {
-		switch( type ) {
-			case 'dolby':
-				changeSoundToDolby(); 
-			case _:
-				changeSoundToNormal();
-		}
-		
-		flv_container.gotoAndPlay( 2 );
+		//flv_container.gotoAndPlay( 2 );
 	}
 	
 	var currSwitchLabel = 'normal';
@@ -271,7 +234,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function showPhoneWithType( type:String ) {
-		mc_phone.gotoAndPlay( type );
+		//mc_phone.gotoAndPlay( type );
 	}
 	
 	function showDescWithType( type:String ){
@@ -298,66 +261,21 @@ class TechDolby extends DefaultTechPage
 		}
 	}
 	
+	var currtime = -1.0;
+	
 	function onBtnSwitchClick( e ) {
 		var target = toggleSwitch();
 		showDescWithType( target );
-		if ( !isPlay )	return;
-		
 		showPhoneWithType( target );
 		
 		if ( target == 'dolby' ) {
-			_mc_person.onSkip();
-			getRoot().playRespond();
+			//getRoot().playRespond();
 			requestWaitAnimation();
 		}
 		
-		closeAllSound();
+		dolbyMediator.toggle( isPlay );
 		
-		if ( soundASoundChannel != null ) {
-			changeVolumn( soundASoundChannel, 0 );
-			soundASoundChannel.stop();
-			soundASoundChannel = null;
-		}
-		if ( soundBSoundChannel != null ) {
-			changeVolumn( soundBSoundChannel, 0 );
-			soundBSoundChannel.stop();
-			soundBSoundChannel = null;
-		}
-		
-		soundASoundChannel = soundA.play();
-		soundBSoundChannel = soundB.play();
-		
-		showVideo( target );
-		
-		// 不需要消失
-		//showTextWithType( target );
-	}
-	
-	function closeAllSound() {
-		if ( soundASoundChannel != null ) {
-			changeVolumn( soundASoundChannel, 0 );
-			soundASoundChannel.stop();
-			soundASoundChannel = null;
-		}
-		if ( soundBSoundChannel != null ) {
-			changeVolumn( soundBSoundChannel, 0 );
-			soundBSoundChannel.stop();
-			soundBSoundChannel = null;
-		}
-		/*
-		try{
-			if ( soundA != null ) {
-				soundA.close();
-			}
-			if ( soundB != null ) {
-				soundB.close();
-			}
-		}catch ( e:Error ) {
-			
-			//sound還沒開始串流時，不能呼叫close，暫時不知道怎麼檢查，先用例外把它處理掉
-		}
-		*/
-		SoundMixer.stopAll();
+		//showVideo( target );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -366,7 +284,7 @@ class TechDolby extends DefaultTechPage
 			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		}
 		
-		closeAllSound();
+		dolbyMediator.stop();
 		
 		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
