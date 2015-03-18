@@ -11,10 +11,12 @@ import flash.display.Sprite;
 import flash.errors.Error;
 import flash.events.Event;
 import flash.events.FocusEvent;
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.net.URLRequest;
 import flash.system.LoaderContext;
 import flash.text.TextField;
+import flash.ui.Keyboard;
 import helper.Tool;
 import model.AppAPI;
 import model.Const;
@@ -76,6 +78,8 @@ class ProductPage extends DefaultPage
 		txt_input.addEventListener( FocusEvent.FOCUS_OUT, onInputFocusOut );
 		txt_input.addEventListener( Event.CHANGE, onInputChange );
 		
+		txt_input.addEventListener( KeyboardEvent.KEY_UP, onInputKeyUp );
+		
 		super.onOpenEvent(param, cb);
 	}
 	
@@ -84,7 +88,7 @@ class ProductPage extends DefaultPage
 		for ( block in photoBlocks ) {
 			block.removeEventListener( MouseEvent.CLICK, onPhotoBlockClick );
 		}
-		
+		txt_input.removeEventListener( KeyboardEvent.KEY_UP, onInputKeyUp );
 		txt_input.removeEventListener( FocusEvent.FOCUS_IN, onInputFocusIn );
 		txt_input.removeEventListener( FocusEvent.FOCUS_OUT, onInputFocusOut );
 		txt_input.removeEventListener( Event.CHANGE, onInputChange );
@@ -103,6 +107,12 @@ class ProductPage extends DefaultPage
 		return userInput;
 	}
 	
+	function onInputKeyUp( e:KeyboardEvent ) {
+		if ( e.keyCode == Keyboard.ENTER ) {
+			SimpleController.onProductPageSearch( this );
+		}
+	}
+	
 	var userInput:String = "";
 	
 	function onInputFocusIn( e:FocusEvent ) {
@@ -113,7 +123,6 @@ class ProductPage extends DefaultPage
 	
 	function onInputFocusOut( e:FocusEvent ) {
 		if ( userInput == "" ) {
-			//txt_input.text = Const.MSG_INPUT_FOR_PRODUCT;
 			txt_input.text = getWebManager().getData( 'config' ).message.msg_input_for_product;
 		}
 	}
