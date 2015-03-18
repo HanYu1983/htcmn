@@ -51,19 +51,37 @@ class TechDolby extends DefaultTechPage
 		super();
 	}
 	
+	// 為了onMp3LoadComplete可以叫用super的方法而建立
+	// 這個方法只用來呼叫super的onOpenEvent沒有其它功能.
+	public function helpCallSuperOnOpenEvent(param:Dynamic, cb:Void->Void) {
+		super.onOpenEvent( param, cb );
+	}
+	
+	function onMp3LoadComplete( that, param, cb ) {
+		var count = 0;
+		return function( e:Event ) {
+			if ( ++count == 2 ) {
+				that.helpCallSuperOnOpenEvent( param, cb );
+			}
+		}
+	}
+	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
+		var onComplete = onMp3LoadComplete( this, param, cb );
 		
 		soundA = new Sound();
+		soundA.addEventListener( Event.COMPLETE, onComplete );
 		soundA.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.htc ));
 		
 		soundB = new Sound();
+		soundB.addEventListener( Event.COMPLETE, onComplete );
 		soundB.load( new URLRequest( getWebManager().getData( 'config' ).sound.techDolby.other ));
 		
 		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
 		getRoot().addEventListener( 'onSoundBStop', onSoundBStop );
+		
 	}
 	
 	override function forScript(e) 
@@ -178,6 +196,17 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function soundStartAndThen( cb ) {
+		if ( soundASoundChannel != null ) {
+			changeVolumn( soundASoundChannel, 0 );
+			soundASoundChannel.stop();
+			soundASoundChannel = null;
+		}
+		if ( soundBSoundChannel != null ) {
+			changeVolumn( soundBSoundChannel, 0 );
+			soundBSoundChannel.stop();
+			soundBSoundChannel = null;
+		}
+		
 		//if( soundASoundChannel == null ){
 			soundASoundChannel = soundA.play();
 			soundBSoundChannel = soundB.play();
@@ -284,6 +313,16 @@ class TechDolby extends DefaultTechPage
 		
 		closeAllSound();
 		
+		if ( soundASoundChannel != null ) {
+			changeVolumn( soundASoundChannel, 0 );
+			soundASoundChannel.stop();
+			soundASoundChannel = null;
+		}
+		if ( soundBSoundChannel != null ) {
+			changeVolumn( soundBSoundChannel, 0 );
+			soundBSoundChannel.stop();
+			soundBSoundChannel = null;
+		}
 		soundASoundChannel = soundA.play();
 		soundBSoundChannel = soundB.play();
 		
@@ -294,19 +333,30 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function closeAllSound() {
+		if ( soundASoundChannel != null ) {
+			changeVolumn( soundASoundChannel, 0 );
+			soundASoundChannel.stop();
+			soundASoundChannel = null;
+		}
+		if ( soundBSoundChannel != null ) {
+			changeVolumn( soundBSoundChannel, 0 );
+			soundBSoundChannel.stop();
+			soundBSoundChannel = null;
+		}
+		/*
 		try{
 			if ( soundA != null ) {
 				soundA.close();
-				soundASoundChannel.stop();
 			}
 			if ( soundB != null ) {
 				soundB.close();
-				soundBSoundChannel.stop();
 			}
 		}catch ( e:Error ) {
 			SoundMixer.stopAll();
 			//sound還沒開始串流時，不能呼叫close，暫時不知道怎麼檢查，先用例外把它處理掉
 		}
+		*/
+		//SoundMixer.stopAll();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
