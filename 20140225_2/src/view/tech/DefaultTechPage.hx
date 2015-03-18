@@ -48,8 +48,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	public function skipAnimation() {
-		cast( _mc_person, MovieClip ).onSkip();
-		cast( _mc_item, MovieClip ).onSkip();
+		getRoot().skipAllAnimation();
 	}
 	
 	override public function onResize(x:Int, y: Int, w:Int, h:Int) {
@@ -87,8 +86,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{	
 		closeRequestAnimationTimer();
-		_mc_item.onClose();
-		_mc_person.onClose();
+		getRoot().closeAllAnimation();
 		super.onCloseEvent(cb);
 	}
 	
