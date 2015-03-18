@@ -12,10 +12,11 @@ class OnTechUltraBtnClick extends WebCommand
 		
 		super.execute(args);
 		var goto:Dynamic = {
+			/*
 			btn_onTechUltraBtnClick_skip: function() {
 				var page = cast( getWebManager().getPage(TechUltra), TechUltra);
 				page.skipAnimation();
-			}
+			}*/
 		}
 		var targetPage:String = args[1].name;
 		Reflect.field(goto, targetPage)();

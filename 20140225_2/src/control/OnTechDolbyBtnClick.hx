@@ -18,10 +18,11 @@ class OnTechDolbyBtnClick extends WebCommand
 	
 	override public function execute(?args:Dynamic):Void {
 		var goto:Dynamic = {
+			/*
 			btn_onTechDoubleClick_skip:function() {
 				var page = cast( getWebManager().getPage(TechDolby), TechDolby);
 				page.skipAnimation();
-			}
+			}*/
 		}
 		var targetPage:String = args[1].name;
 		Reflect.field(goto, targetPage)();
