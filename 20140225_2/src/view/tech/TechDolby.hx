@@ -15,11 +15,13 @@ import flash.media.SoundTransform;
 import flash.net.URLRequest;
 import helper.IResize;
 import helper.Tool;
+import model.AppAPI;
 import model.DolbySoundMediator;
 import model.SoundManager;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 import view.DefaultPage;
+import view.MoviePage;
 
 /**
  * ...
@@ -47,6 +49,7 @@ class TechDolby extends DefaultTechPage
 	var currVideo:MovieClip;
 	var dolbyMediator = new DolbySoundMediator( SoundType.Normal );
 	var soundManager:SoundManager;
+	var btn_onTechDolbyClick_movie:MovieClip;
 	
 	public function new() 
 	{
@@ -132,6 +135,8 @@ class TechDolby extends DefaultTechPage
 					mc_otherTxt = obj;
 				case 'mc_dolbyTxt':
 					mc_dolbyTxt = obj;
+				case 'btn_onTechDolbyClick_movie':
+					btn_onTechDolbyClick_movie = cast(obj, MovieClip);
 			}
 		});
 		
@@ -139,6 +144,9 @@ class TechDolby extends DefaultTechPage
 		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
 		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
 		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
+		
+		btn_onTechDolbyClick_movie.buttonMode = true;
+		btn_onTechDolbyClick_movie.addEventListener( MouseEvent.CLICK, onTechDolbyMovieClick );
 		
 		flv_container.addFrameScript( flv_container.totalFrames - 1, function() {
 			showPlayButton();
@@ -168,6 +176,9 @@ class TechDolby extends DefaultTechPage
 		getRoot().removeEventListener( 'onFlvRespond01', onFlvRespond01 );
 		getRoot().removeEventListener( 'onFlvEnter01', onFlvEnter01 );
 		
+		btn_onTechDolbyClick_movie.removeEventListener( MouseEvent.CLICK, onTechDolbyMovieClick );
+		
+		
 		super.onCloseEvent(cb);
 	}
 	
@@ -183,6 +194,10 @@ class TechDolby extends DefaultTechPage
 	
 	function onFlvEnter01( e ) {
 		speech("D_enter_01_1");
+	}
+	
+	function onTechDolbyMovieClick( e ) {
+		AppAPI.changePage( { mgr:getWebManager(), page: MoviePage, params: null } )( null );
 	}
 	
 	function onInitControl() {
