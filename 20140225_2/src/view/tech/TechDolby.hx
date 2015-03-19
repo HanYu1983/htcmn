@@ -68,6 +68,10 @@ class TechDolby extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
+		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
+		getRoot().addEventListener( 'onSoundBStop', onSoundBStop );
+		
 		var that = this;
 		dolbyMediator.load( 
 			{ 
@@ -109,12 +113,9 @@ class TechDolby extends DefaultTechPage
 					mc_dolbyTxt = obj;
 			}
 		});
-		mc_elec.visible = true;
-		mc_elec.alpha = 1;
-	
-		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
-		showDescWithType( currSwitchLabel );
-
+		
+		initView();
+		
 		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
 		
 		btn_Switch.buttonMode = true;
@@ -125,26 +126,16 @@ class TechDolby extends DefaultTechPage
 		
 		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
 		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
-		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
-		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
-		getRoot().addEventListener( 'onSoundBStop', onSoundBStop );
-		
-		//btn_stop.buttonMode = true;
-		//btn_play.buttonMode = true;
-		//showVideo( 'dolby' );
-		
-		onBtnPlayClick(null);
-		//flv_container.gotoAndPlay( 2 );
-		//showPhoneWithType( currSwitchLabel );
-		//showDescWithType( currSwitchLabel );
 		
 		addEventListener( Event.ENTER_FRAME, checkOverPanel );
 		
-		
 		super.forScript(e);
 		
-		dolbyMediator.play();
+		playMovie();
+		closePanel();
 	}
+	
+	// ======================== Control ===============================//
 	
 	function checkOverPanel( e ) {
 		if ( mc_panel.visible == false )	return;
@@ -161,6 +152,47 @@ class TechDolby extends DefaultTechPage
 	function onMovieOver( e ) {
 		mc_panel.visible = true;
 		showPanel();
+	}
+	
+	function onBtnSwitchClick( e ) {
+		var target = toggleSwitch();
+		showDescWithType( target );
+		showPhoneWithType( target );
+		changeElecEffectWithType( target );
+		dolbyMediator.toggle( isPlay );
+	}
+	
+	function onBtnPlayClick( e ) {
+		playMovie();
+		closePanel();
+	}
+	
+	function onBtnStopClick( e ) {
+		stopMovie();
+		closePanel();
+	}
+	
+	function onSoundAStart(e) {
+		dolbyMediator.play();
+	}
+	
+	function onSoundBStart(e) {
+		dolbyMediator.toggle();
+	}
+	
+	function onSoundBStop( e ) {
+		dolbyMediator.stop();
+		dolbyMediator.toggle(); // toggle到Normal的聲道
+	}
+	
+	// ======================= View =============================//
+	
+	function initView() {
+		mc_elec.visible = true;
+		mc_elec.alpha = 1;
+	
+		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
+		showDescWithType( currSwitchLabel );
 	}
 	
 	function showPanel() {
@@ -180,47 +212,29 @@ class TechDolby extends DefaultTechPage
 		}});
 	}
 	
-	function onBtnPlayClick( e ) {
+	var currtime = 0.0;
+	
+	function playMovie() {
 		isPlay = true;
-		dolbyMediator.play( currtime );
-		//flv_container.gotoAndPlay( 2 );
-		showPhoneWithType( currSwitchLabel );
-		if( currSwitchLabel == 'dolby' )	mc_elec.gotoAndPlay( 'loop' );
-		showDescWithType( currSwitchLabel );
-		closePanel();
+		
+		if ( flv_container.currentFrame == 1 ) {
+			flv_container.gotoAndPlay( 2 );
+			dolbyMediator.play( currtime );
+			
+		} else if ( flv_container.currentFrame == flv_container.totalFrames ) {
+			flv_container.gotoAndPlay( 2 );
+			currtime = 0;
+			dolbyMediator.play( currtime );
+			
+		} else {
+			flv_container.play();
+		}
 	}
 	
-	function onBtnStopClick( e ) {
+	function stopMovie() {
 		isPlay = false;
 		currtime = dolbyMediator.stop();
-		//flv_container.gotoAndStop( 1 );
-		showPhoneWithType( 'normal' );
-		//closeAllSound();
-		closePanel();
-		mc_elec.gotoAndPlay( 'stand' );
-	}
-	
-	function onSoundAStart(e) {
-		//dolbyMediator.play();
-	}
-	
-	function onSoundBStart(e) {
-		//dolbyMediator.toggle();
-	}
-	
-	function onSoundBStop( e ) {
-		//dolbyMediator.stop();
-	}
-	
-	function changeVolumn( soundChannel:SoundChannel, volumn ) {
-		if ( soundChannel == null )	return;
-		var st = soundChannel.soundTransform;
-		st.volume = volumn;
-		soundChannel.soundTransform = st;
-	}
-	
-	function showVideo( type: String ) {
-		//flv_container.gotoAndPlay( 2 );
+		flv_container.stop();
 	}
 	
 	var currSwitchLabel = 'normal';
@@ -233,7 +247,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function showPhoneWithType( type:String ) {
-		//mc_phone.gotoAndPlay( type );
+		mc_phone.gotoAndPlay( type );
 	}
 	
 	function showDescWithType( type:String ){
@@ -260,21 +274,8 @@ class TechDolby extends DefaultTechPage
 		}
 	}
 	
-	var currtime = -1.0;
-	
-	function onBtnSwitchClick( e ) {
-		var target = toggleSwitch();
-		showDescWithType( target );
-		showPhoneWithType( target );
-		
-		if ( target == 'dolby' ) {
-			//getRoot().playRespond();
-			requestWaitAnimation();
-		}
-		
-		dolbyMediator.toggle( isPlay );
-		
-		//showVideo( target );
+	function changeElecEffectWithType( type:String ) {
+		mc_elec.gotoAndPlay( type == 'dolby' ? 'loop' : 'stand' );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
