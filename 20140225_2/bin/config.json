@@ -4,12 +4,12 @@
 		"intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
 			"local":"src/Intro.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"tech":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"cdn"
+			"which":"local"
 		}
 	},
 	"moviePage":{

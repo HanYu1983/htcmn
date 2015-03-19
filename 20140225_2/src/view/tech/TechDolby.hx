@@ -135,7 +135,8 @@ class TechDolby extends DefaultTechPage
 		
 		dolbyMediator.stop();
 		
-		flv_container.addFrameScript( flv_container.totalFrames - 1, null );
+		if( flv_container != null )
+			flv_container.addFrameScript( flv_container.totalFrames - 1, null );
 		
 		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
