@@ -21,6 +21,6 @@ class WebCommand implements IWebCommand
 	}
 	
 	public function execute( ?args:Dynamic ):Void {
-		//trace( 'execute command: ' + getName() );
+		getWebManager().log( 'execute command: ' + getName() );
 	}
 }

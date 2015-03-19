@@ -66,6 +66,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		getWebManager().log( 'dddAAAAA' );
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
@@ -78,7 +79,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		});
 		getRoot().addEventListener( 'forScript', forScript );
 		super.onOpenEvent(param, cb);
-		
+		getWebManager().log( 'BBBB' );
 		SoundMixer.stopAll();
 	}
 	

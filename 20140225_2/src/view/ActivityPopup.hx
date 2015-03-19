@@ -32,7 +32,8 @@ class ActivityPopup extends DefaultPage implements IPopup
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'ActivePage', path:'src/ActivePage.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'Intro', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

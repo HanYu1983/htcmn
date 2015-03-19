@@ -88,7 +88,8 @@ class MoviePage extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'MoviePage', path:'src/MoviePage.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'MoviePage', path:config.swfPath.MoviePage[ config.swfPath.MoviePage.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

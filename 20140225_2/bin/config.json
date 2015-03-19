@@ -1,14 +1,84 @@
 {
 	"version":"20150309",
 	"swfPath":{
-		"intro":{
+		"Intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
 			"local":"src/Intro.swf",
 			"which":"cdn"
 		},
-		"tech":{
+		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
+			"which":"cdn"
+		},
+		"ActivePage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ActivePage.swf",
+			"local":"src/ActivePage.swf",
+			"which":"cdn"
+		},
+		"Footer":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Footer.swf",
+			"local":"src/Footer.swf",
+			"which":"cdn"
+		},
+		"Header":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Header.swf",
+			"local":"src/Header.swf",
+			"which":"cdn"
+		},
+		"loading":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/loading.swf",
+			"local":"src/loading.swf",
+			"which":"cdn"
+		},
+		"MoviePage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/MoviePage.swf",
+			"local":"src/MoviePage.swf",
+			"which":"cdn"
+		},
+		"Preload":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Preload.swf",
+			"local":"src/Preload.swf",
+			"which":"cdn"
+		},
+		"ProductPage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ProductPage.swf",
+			"local":"src/ProductPage.swf",
+			"which":"cdn"
+		},
+		"Righter":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
+			"local":"src/Righter.swf",
+			"which":"cdn"
+		},
+		"TechAssist":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
+			"local":"src/TechAssist.swf",
+			"which":"cdn"
+		},
+		"TechCamera":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechCamera.swf",
+			"local":"src/TechCamera.swf",
+			"which":"cdn"
+		},
+		"TechDolby":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDolby.swf",
+			"local":"src/TechDolby.swf",
+			"which":"cdn"
+		},
+		"TechDouble":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDouble.swf",
+			"local":"src/TechDouble.swf",
+			"which":"cdn"
+		},
+		"TechFront":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
+			"local":"src/TechFront.swf",
+			"which":"cdn"
+		},
+		"TechUltra":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechUltra.swf",
+			"local":"src/TechUltra.swf",
 			"which":"cdn"
 		}
 	},

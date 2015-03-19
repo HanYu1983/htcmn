@@ -1,12 +1,16 @@
 package org.vic.flash.loader;
 import flash.display.Loader;
+import flash.errors.Error;
 import flash.events.Event;
 import flash.events.ProgressEvent;
 import flash.globalization.DateTimeFormatter;
 import flash.Lib;
 import flash.net.URLRequest;
 import flash.system.ApplicationDomain;
+import flash.system.LoaderContext;
+import flash.system.SecurityDomain;
 import org.vic.event.VicEvent;
+import org.vic.web.WebManager;
 
 /**
  * ...
@@ -19,27 +23,41 @@ class LoaderTask
 	private var _path:String;
 	private var _needLoading:Bool;
 	private var _cb:LoaderTask->Void;
-	
+	private var _loaderContext:LoaderContext = new LoaderContext( true );
 	public var mediator:LoaderManager;
-
+	
 	public function new( path:String, cb:LoaderTask -> Void = null, needLoading:Bool = true ) 
 	{
 		_path = path;
 		_cb = cb;
 		_needLoading = needLoading;
+		
+		_loaderContext.applicationDomain = ApplicationDomain.currentDomain;
+		_loaderContext.securityDomain = SecurityDomain.currentDomain;
 	}
-	
+			
 	public function load() {
 		if( _needLoading )	mediator.dispatchEvent( new VicEvent( LoaderManager.START_LOADING ));
 		_loader = new Loader();
-		_loader.load( new URLRequest( getPath() ));
+		try{
+			_loader.load( new URLRequest( getPath() ), _loaderContext);
+		}catch ( e:Error ) {
+			_loader.load( new URLRequest( getPath() ));
+		}
 		_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e) {
+			WebManager.inst.log( 'Event.COMPLETE' );
 			_applicationDomain = _loader.contentLoaderInfo.applicationDomain;
 			_loader.unloadAndStop();
 			_loader = null;
+			WebManager.inst.log( 'cb:' + _cb );
 			if ( _cb != null ) {
-				_cb( this );
-				if( _needLoading )	mediator.dispatchEvent( new VicEvent( LoaderManager.STOP_LOADING ));
+				try{
+					_cb( this );
+					WebManager.inst.log( 'Event.COMPLETE, dispatch' );
+					if ( _needLoading )	mediator.dispatchEvent( new VicEvent( LoaderManager.STOP_LOADING ));
+				}catch ( e:Error ) {
+					WebManager.inst.log( 'error: ' + e.getStackTrace() );
+				}
 			}
 		});
 		
