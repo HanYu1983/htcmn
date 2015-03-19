@@ -114,44 +114,23 @@ class TechDolby extends DefaultTechPage
 			}
 		});
 		
-		initView();
-		
-		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
-		
 		btn_Switch.buttonMode = true;
 		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
-		
-		wakeUpButton( btn_play, false );
-		wakeUpButton( btn_stop, false );
-		
 		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
 		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
 		
-		addEventListener( Event.ENTER_FRAME, checkOverPanel );
-		
 		super.forScript(e);
-		
-		playMovie();
-		closePanel();
+		onInitControl();
 	}
+	
+	
 	
 	// ======================== Control ===============================//
 	
-	function checkOverPanel( e ) {
-		if ( mc_panel.visible == false )	return;
-		if ( mc_panel.alpha != 1 )	return;
-		var local = getRoot().globalToLocal( new Point(stage.mouseX, stage.mouseY) );
-		var hitRect = mc_panel.getRect( getRoot() );
-		var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom &&
-							local.x > hitRect.left && local.x < hitRect.right );
-		if ( !isHitRegion ) {
-			closePanel();
-		}
-	}
-	
-	function onMovieOver( e ) {
-		mc_panel.visible = true;
-		showPanel();
+	function onInitControl() {
+		initView();
+		playMovie();
+		showStopButton();
 	}
 	
 	function onBtnSwitchClick( e ) {
@@ -168,12 +147,12 @@ class TechDolby extends DefaultTechPage
 	
 	function onBtnPlayClick( e ) {
 		playMovie();
-		closePanel();
+		showStopButton();
 	}
 	
 	function onBtnStopClick( e ) {
 		stopMovie();
-		closePanel();
+		showPlayButton();
 	}
 	
 	function onSoundAStart(e) {
@@ -199,23 +178,27 @@ class TechDolby extends DefaultTechPage
 		showDescWithType( currSwitchLabel );
 	}
 	
-	function showPanel() {
-		if ( isPlay ) {
-			btn_stop.getShape().visible = true;
-			btn_play.getShape().visible = false;
-		}else {
-			btn_stop.getShape().visible = false;
-			btn_play.getShape().visible = true;
-		}
-		Tweener.addTween( mc_panel, { alpha:1, time:.5 } );
+	function showPlayButton() {
+		sleepButton( btn_stop );
+		btn_stop.enable( false );
+		
+		wakeUpButton( btn_play, false );
+		btn_play.enable( true );
+		
+		Tweener.addTween( btn_play.getShape(), { alpha: 1, time: 0.3 } );
+		Tweener.addTween( btn_stop.getShape(), { alpha: 0, time: 0.3 } );
 	}
 	
-	function closePanel() {
-		Tweener.addTween( mc_panel, { alpha:0, time:.5, onComplete:function() {
-			mc_panel.visible = false;
-		}});
+	function showStopButton() {
+		sleepButton( btn_play );
+		btn_play.enable( false );
+		
+		wakeUpButton( btn_stop, false );
+		btn_stop.enable( true );
+		Tweener.addTween( btn_stop.getShape(), { alpha: 1, time: 0.3 } );
+		Tweener.addTween( btn_play.getShape(), { alpha: 0, time: 0.3 } );
 	}
-	
+
 	var currtime = 0.0;
 	
 	function playMovie() {
@@ -223,16 +206,17 @@ class TechDolby extends DefaultTechPage
 		
 		if ( flv_container.currentFrame == 1 ) {
 			flv_container.gotoAndPlay( 2 );
-			dolbyMediator.play( currtime );
-			
+
 		} else if ( flv_container.currentFrame == flv_container.totalFrames ) {
 			flv_container.gotoAndPlay( 2 );
 			currtime = 0;
-			dolbyMediator.play( currtime );
-			
+
 		} else {
 			flv_container.play();
+			
 		}
+		
+		dolbyMediator.play( currtime );
 	}
 	
 	function stopMovie() {
