@@ -64,7 +64,7 @@
 		"TechDolby":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDolby.swf",
 			"local":"src/TechDolby.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechDouble":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDouble.swf",

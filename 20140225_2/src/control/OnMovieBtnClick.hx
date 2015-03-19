@@ -34,6 +34,9 @@ class OnMovieBtnClick extends WebCommand
 			},
 			btn_onMovieBtnClick_share: function() {
 				getWebManager().openPage( LuckyDrawPage, null );
+			},
+			btn_onMovieBtnClick_movie: function() {
+				trace("DFF");
 			}
 		}
 		var targetPage:String = args[1].name;
