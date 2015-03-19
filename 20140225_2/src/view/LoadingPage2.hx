@@ -58,7 +58,8 @@ class LoadingPage2 extends WebView implements IResize
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'loading', path:'src/loading.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'loading', path:config.swfPath.loading[ config.swfPath.loading.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

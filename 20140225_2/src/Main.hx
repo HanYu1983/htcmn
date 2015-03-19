@@ -78,7 +78,6 @@ class Main
 	
 	static function main() 
 	{
-		
 		function log(msg:Dynamic) {
 			SimpleController.onLog( msg );
 		}
@@ -107,7 +106,6 @@ class Main
 		}
 		
 		function setupWebManager( cb:Dynamic ) {
-			
 			WebManager.inst.log = log;
 			WebManager.inst.setData( 'loadingClass', LoadingPage2 );
 			
@@ -152,10 +150,12 @@ class Main
 			http.request();
 		}
 		
+		
 		function loadSwf( cb:Dynamic ) {
-			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:'src/Preload.swf' }, false, function() {
-				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:'src/ActivePage.swf' }, false, function() {
-					BasicUtils.loadSwf( WebManager.inst, { name:'loading', path:'src/loading.swf' }, false, function() {
+			var config:Dynamic = WebManager.inst.getData( 'config' );
+			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:config.swfPath.Preload[ config.swfPath.Preload.which ] }, false, function() {
+				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ]}, false, function() {
+					BasicUtils.loadSwf( WebManager.inst, { name:'loading', path:config.swfPath.loading[ config.swfPath.loading.which ]}, false, function() {
 						cb( null, null );
 					});
 				});

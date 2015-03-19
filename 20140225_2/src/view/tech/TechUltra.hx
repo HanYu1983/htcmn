@@ -162,7 +162,8 @@ class TechUltra extends DefaultTechPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'TechUltra', path:'src/TechUltra.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'TechUltra', path:config.swfPath.TechUltra[ config.swfPath.TechUltra.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

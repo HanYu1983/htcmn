@@ -146,7 +146,8 @@ class TechFrame extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'Righter', path:'src/Righter.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'Righter', path:config.swfPath.Righter[ config.swfPath.Righter.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

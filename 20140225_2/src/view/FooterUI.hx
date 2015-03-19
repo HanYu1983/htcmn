@@ -63,7 +63,8 @@ class FooterUI extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'Footer', path:'src/Footer.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'Footer', path:config.swfPath.Footer[ config.swfPath.Footer.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

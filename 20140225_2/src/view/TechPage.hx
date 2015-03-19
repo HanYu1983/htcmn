@@ -51,9 +51,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 					mc_bubble = obj;
 			}
 		});
-		
 		disableUnavailableButton();
-		
 		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_02_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_03_finish', on_flv_B_respond_finish );
@@ -74,7 +72,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
-		return {name:'TechFront', path:config.swfPath.tech[ config.swfPath.tech.which ] };
+		return {name:'TechFront', path:config.swfPath.TechFront[ config.swfPath.TechFront.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 
@@ -187,6 +185,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	var requestAnimationTimer: Timer;
 	
 	function requestWaitAnimationInterval() {
+		getWebManager().log( 'requestWaitAnimationInterval' );
 		if ( requestAnimationTimer != null ) {
 			requestAnimationTimer.stop();
 			requestAnimationTimer = null;

@@ -92,12 +92,13 @@ class HeaderUI extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'header', path:'src/Header.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'Header', path:config.swfPath.Header[ config.swfPath.Header.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'header', path:'Header' };
+		return {name:'Header', path:'Header' };
 	}
 	
 	var _sw:Int = 1024;

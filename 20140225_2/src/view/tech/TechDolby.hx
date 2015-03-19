@@ -294,7 +294,8 @@ class TechDolby extends DefaultTechPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'TechDolby', path:'src/TechDolby.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'TechDolby', path:config.swfPath.TechDolby[ config.swfPath.TechDolby.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 
