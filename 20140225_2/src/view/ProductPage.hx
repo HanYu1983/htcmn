@@ -159,7 +159,8 @@ class ProductPage extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'ProductPage', path:'src/ProductPage.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'ProductPage', path:config.swfPath.ProductPage[ config.swfPath.ProductPage.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

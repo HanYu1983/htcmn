@@ -299,7 +299,8 @@ class TechCamera extends DefaultTechPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'TechCamera', path:'src/TechCamera.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'TechCamera', path:config.swfPath.TechCamera[ config.swfPath.TechCamera.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

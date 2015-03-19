@@ -1,55 +1,125 @@
 {
 	"version":"20150309",
 	"swfPath":{
-		"intro":{
+		"Intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
 			"local":"src/Intro.swf",
 			"which":"local"
 		},
-		"tech":{
+		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"local"
+			"which":"cdn"
+		},
+		"ActivePage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ActivePage.swf",
+			"local":"src/ActivePage.swf",
+			"which":"cdn"
+		},
+		"Footer":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Footer.swf",
+			"local":"src/Footer.swf",
+			"which":"cdn"
+		},
+		"Header":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Header.swf",
+			"local":"src/Header.swf",
+			"which":"cdn"
+		},
+		"loading":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/loading.swf",
+			"local":"src/loading.swf",
+			"which":"cdn"
+		},
+		"MoviePage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/MoviePage.swf",
+			"local":"src/MoviePage.swf",
+			"which":"cdn"
+		},
+		"Preload":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Preload.swf",
+			"local":"src/Preload.swf",
+			"which":"cdn"
+		},
+		"ProductPage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ProductPage.swf",
+			"local":"src/ProductPage.swf",
+			"which":"cdn"
+		},
+		"Righter":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
+			"local":"src/Righter.swf",
+			"which":"cdn"
+		},
+		"TechAssist":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
+			"local":"src/TechAssist.swf",
+			"which":"cdn"
+		},
+		"TechCamera":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechCamera.swf",
+			"local":"src/TechCamera.swf",
+			"which":"cdn"
+		},
+		"TechDolby":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDolby.swf",
+			"local":"src/TechDolby.swf",
+			"which":"cdn"
+		},
+		"TechDouble":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDouble.swf",
+			"local":"src/TechDouble.swf",
+			"which":"cdn"
+		},
+		"TechFront":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
+			"local":"src/TechFront.swf",
+			"which":"cdn"
+		},
+		"TechUltra":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechUltra.swf",
+			"local":"src/TechUltra.swf",
+			"which":"cdn"
 		}
 	},
 	"moviePage":{
 		"list":[
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片1",
+				"name":"測試影�1",
 				"img":"images/movie/003.jpg"
 			},
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片2",
+				"name":"測試影�2",
 				"img":"images/movie/004.jpg"
 			},
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片3",
+				"name":"測試影�3",
 				"img":"images/movie/005.jpg"
 			},
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片1",
+				"name":"測試影�1",
 				"img":"images/movie/006.jpg"
 			},
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片2",
+				"name":"測試影�2",
 				"img":"images/movie/007.jpg"
 			},
 			{
 				"id":"29odTRdULfI",
-				"name":"測試影片3",
+				"name":"測試影�3",
 				"img":"images/movie/003.jpg"
 			}
 		]
 	},
 	"message":{
-		"msg_input_for_product":"請輸入電話號碼即可查詢到您在體驗會現場所拍攝的照片",
-		"msg_submit_data":"謝謝，我們已收到您提供的資料",
-		"msg_submit_data_already":"謝謝參加，祝您幸運中獎！近期內還會有更多精彩體驗陸續開放，敬請期待！"
+		"msg_input_for_product":"請輸�電話�碼即�查詢到�在體�現���照,
+		"msg_submit_data":"謝�，�已�到��供�資�",
+		"msg_submit_data_already":"謝��，�幸�中��近����精彩體��放，敬請�待�"
 	},
 	"sound":{
 		"techDolby":{

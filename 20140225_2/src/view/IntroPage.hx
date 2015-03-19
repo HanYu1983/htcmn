@@ -34,7 +34,7 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
-		return {name:'Intro', path:config.swfPath.intro[ config.swfPath.intro.which ] };
+		return {name:'Intro', path:config.swfPath.Intro[ config.swfPath.Intro.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

@@ -298,9 +298,12 @@ class WebView extends Sprite implements IWebView
 	}
 	
 	function onClick( e:MouseEvent ):Void {
+		
 		var mc:MovieClip = cast( e.currentTarget, MovieClip );
 		var commandName:String = mc.commandName;
 		WebManager.inst.execute( commandName, [ this, mc ] );
+		
+		getWebManager().log( 'onClick: ' + commandName );
 	}
 	
 	function onTxtFocusIn( e:FocusEvent ):Void {

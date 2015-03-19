@@ -79,7 +79,6 @@ class Main
 	
 	static function main() 
 	{
-		
 		function log(msg:Dynamic) {
 			SimpleController.onLog( msg );
 		}
@@ -94,7 +93,7 @@ class Main
 				var stage = Lib.current.stage;
 				stage.scaleMode = StageScaleMode.NO_SCALE;
 				//stage.align = StageAlign.TOP_LEFT;
-				// 沒有這行Tweener會出現例外
+				// 沒��Tweener�出���
 				Tweener.autoOverwrite = false;
 				WebManager.inst.init( stage );
 				cb( null, null );
@@ -108,7 +107,7 @@ class Main
 		
 		function setupWebManager( cb:Dynamic ) {
 			WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
-				
+			
 			WebManager.inst.log = log;
 			WebManager.inst.setData( 'loadingClass', LoadingPage2 );
 			
@@ -153,10 +152,12 @@ class Main
 			http.request();
 		}
 		
+		
 		function loadSwf( cb:Dynamic ) {
-			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:'src/Preload.swf' }, false, function() {
-				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:'src/ActivePage.swf' }, false, function() {
-					BasicUtils.loadSwf( WebManager.inst, { name:'loading', path:'src/loading.swf' }, false, function() {
+			var config:Dynamic = WebManager.inst.getData( 'config' );
+			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:config.swfPath.Preload[ config.swfPath.Preload.which ] }, false, function() {
+				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ]}, false, function() {
+					BasicUtils.loadSwf( WebManager.inst, { name:'loading', path:config.swfPath.loading[ config.swfPath.loading.which ]}, false, function() {
 						cb( null, null );
 					});
 				});
@@ -215,9 +216,9 @@ class Main
 					loadMp3,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
-					// 這頁要放在HeaderUI, FooterUI後面, 因為會操控它們上升或下沉
+					// ��要放�HeaderUI, FooterUI後面, �為�����下�
 					OpenTechFrameIfNeeded(),
-					// 只有這頁needLoading=true, 必須要放在最後一個. 因為會動態切換loadingClass, 會導致不會關閉打開的loadingPage
+					// ���needLoading=true, 必�要放��後� �為���loadingClass, ������loadingPage
 					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } )
 				]
 				, startApp );

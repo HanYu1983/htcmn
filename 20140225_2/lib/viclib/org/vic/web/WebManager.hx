@@ -72,6 +72,7 @@ class WebManager
 	}
 	
 	public function closeLoading():Void {
+		log( 'closeLoading' );
 		if ( _extra.get( 'loadingClass' ) == null )	return;
 		closePage( _extra.get( 'loadingClass' ) );
 	}
@@ -110,6 +111,7 @@ class WebManager
 	}
 	
 	public function openPage( c:Class<Dynamic>, param:Dynamic, ?cb:Void->Void ):Void {
+		log( 'openPage: ' + c );
 		var n:String = Type.getClassName( c );
 		if ( _ary_page.exists( n ))	return;
 		var p:IWebView = Type.createInstance( c, [] );
@@ -122,6 +124,7 @@ class WebManager
 	}
 	
 	public function closePage( c:Class<Dynamic>, ?cb:Void->Void ):Void {
+		log( 'closePage: ' + c );
 		var n:String = Type.getClassName( c );
 		if ( !_ary_page.exists( n ))	return;
 		var p:IWebView = _ary_page.get( n );
