@@ -32,6 +32,7 @@ class LoaderTask
 		_cb = cb;
 		_needLoading = needLoading;
 		
+		//這行打開不影響本地端的所有東西，但是丟在線上環境時，它會影響所有我的取的linkage 物件的方法
 		//_loaderContext.applicationDomain = ApplicationDomain.currentDomain;
 		_loaderContext.securityDomain = SecurityDomain.currentDomain;
 	}
