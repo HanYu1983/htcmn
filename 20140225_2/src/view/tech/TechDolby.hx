@@ -176,7 +176,8 @@ class TechDolby extends DefaultTechPage
 		getRoot().removeEventListener( 'onFlvRespond01', onFlvRespond01 );
 		getRoot().removeEventListener( 'onFlvEnter01', onFlvEnter01 );
 		
-		btn_onTechDolbyClick_movie.removeEventListener( MouseEvent.CLICK, onTechDolbyMovieClick );
+		if( btn_onTechDolbyClick_movie != null )
+			btn_onTechDolbyClick_movie.removeEventListener( MouseEvent.CLICK, onTechDolbyMovieClick );
 		
 		
 		super.onCloseEvent(cb);
