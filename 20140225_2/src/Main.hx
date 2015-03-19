@@ -35,6 +35,7 @@ import model.ETMAPI;
 import helper.JSInterfaceHelper;
 import control.SimpleController;
 import helper.Tool;
+import model.SoundManager;
 import org.han.Async;
 import org.vic.flash.loader.LoaderTask;
 import org.vic.utils.BasicUtils;
@@ -96,7 +97,6 @@ class Main
 				// 沒有這行Tweener會出現例外
 				Tweener.autoOverwrite = false;
 				WebManager.inst.init( stage );
-				WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
 				cb( null, null );
 				
 			}catch (err:Error) {
@@ -107,7 +107,8 @@ class Main
 		}
 		
 		function setupWebManager( cb:Dynamic ) {
-			
+			WebManager.inst.getStage().addEventListener( Event.RESIZE, onResize );
+				
 			WebManager.inst.log = log;
 			WebManager.inst.setData( 'loadingClass', LoadingPage2 );
 			
@@ -162,6 +163,15 @@ class Main
 			});
 		}
 		
+		function loadMp3( cb:Dynamic ) {
+			var mgr = new SoundManager();
+			mgr.load( [
+				{ key:"D_respond_01", path:"sound/D_respond _01.mp3" },
+				{ key:"intro_02_1", path:"sound/intro_02_1.mp3" },
+				{ key:"D_enter_01_1", path:"sound/D_enter_01_1.mp3" }
+			], cb );
+			WebManager.inst.setData("SoundManager", mgr);
+		}
 			
 		function startApp( err:Error, result:Dynamic ) {
 			if ( err != null ) {
@@ -202,6 +212,7 @@ class Main
 					setupWebManager,
 					loadConfig,
 					loadSwf,
+					loadMp3,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
 					// 這頁要放在HeaderUI, FooterUI後面, 因為會操控它們上升或下沉
@@ -242,7 +253,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( IntroPage );
+			startWith( TechDolby );
 			#else
 			startWith( IntroPage );
 			#end
