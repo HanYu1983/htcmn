@@ -154,8 +154,8 @@ class Main
 		function loadSwf( cb:Dynamic ) {
 			var config:Dynamic = WebManager.inst.getData( 'config' );
 			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:config.swfPath.Preload[ config.swfPath.Preload.which ] }, false, function() {
+				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ]}, false, function() {
 					cb( null, null );
-
 				});
 			});
 		}

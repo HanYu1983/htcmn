@@ -32,7 +32,7 @@ class LoaderTask
 		_cb = cb;
 		_needLoading = needLoading;
 		
-		_loaderContext.applicationDomain = ApplicationDomain.currentDomain;
+		//_loaderContext.applicationDomain = ApplicationDomain.currentDomain;
 		_loaderContext.securityDomain = SecurityDomain.currentDomain;
 	}
 			
@@ -45,19 +45,12 @@ class LoaderTask
 			_loader.load( new URLRequest( getPath() ));
 		}
 		_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e) {
-			WebManager.inst.log( 'Event.COMPLETE' );
 			_applicationDomain = _loader.contentLoaderInfo.applicationDomain;
 			_loader.unloadAndStop();
 			_loader = null;
-			WebManager.inst.log( 'cb:' + _cb );
 			if ( _cb != null ) {
-				try{
-					_cb( this );
-					WebManager.inst.log( 'Event.COMPLETE, dispatch' );
-					if ( _needLoading )	mediator.dispatchEvent( new VicEvent( LoaderManager.STOP_LOADING ));
-				}catch ( e:Error ) {
-					WebManager.inst.log( 'error: ' + e.getStackTrace() );
-				}
+				_cb( this );
+				if ( _needLoading )	mediator.dispatchEvent( new VicEvent( LoaderManager.STOP_LOADING ));
 			}
 		});
 		

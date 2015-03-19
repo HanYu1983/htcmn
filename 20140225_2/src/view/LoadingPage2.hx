@@ -56,7 +56,7 @@ class LoadingPage2 extends WebView implements IResize
 		mc_gold.gotoAndStop( Math.floor( e.data ) );
 	}
 	
-		return {name:'loading', path:config.swfPath.loading[ config.swfPath.loading.which ] };
+		
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Preload', path:'LoadingPeople' };
