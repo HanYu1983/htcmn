@@ -59,6 +59,9 @@ class TechUltra extends DefaultTechPage
 	var _targetX:Float = 1366;
 	
 	function onEnterFrame(e: Event) {
+		if ( !isScriptEanbled() ) {
+			return;
+		}
 		if (_mc_controller == null)
 			return;
 		if ( _mc_htc == null )
@@ -66,7 +69,7 @@ class TechUltra extends DefaultTechPage
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
-			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom );
+			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom ) && local.x > hitRect.left;
 			if ( isHitRegion ) {
 				_targetX = local.x;
 			}

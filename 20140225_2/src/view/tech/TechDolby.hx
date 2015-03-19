@@ -182,7 +182,6 @@ class TechDolby extends DefaultTechPage
 	
 	function onBtnPlayClick( e ) {
 		isPlay = true;
-		trace( currtime );
 		dolbyMediator.play( currtime );
 		//flv_container.gotoAndPlay( 2 );
 		showPhoneWithType( currSwitchLabel );
