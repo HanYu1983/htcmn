@@ -68,6 +68,10 @@ class TechDolby extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
+		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
+		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
+		getRoot().addEventListener( 'onSoundBStop', onSoundBStop );
+		
 		var that = this;
 		dolbyMediator.load( 
 			{ 
@@ -109,118 +113,135 @@ class TechDolby extends DefaultTechPage
 					mc_dolbyTxt = obj;
 			}
 		});
+		
+		btn_Switch.buttonMode = true;
+		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
+		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
+		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
+		
+		flv_container.addFrameScript( flv_container.totalFrames - 1, function() {
+			showPlayButton();
+		} );
+		
+		super.forScript(e);
+		onInitControl();
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		if ( btn_Switch != null ) {
+			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
+		}
+		
+		dolbyMediator.stop();
+		
+		flv_container.addFrameScript( flv_container.totalFrames - 1, null );
+		
+		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
+		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
+		getRoot().removeEventListener( 'onSoundBStop', onSoundBStop );
+		
+		super.onCloseEvent(cb);
+	}
+	
+	// ======================== Control ===============================//
+	
+	function onInitControl() {
+		initView();
+		playMovie();
+		showStopButton();
+	}
+	
+	function onBtnSwitchClick( e ) {
+		var target = toggleSwitch();
+		showDescWithType( target );
+		showPhoneWithType( target );
+		changeElecEffectWithType( target );
+		dolbyMediator.toggle( isPlay );
+		if ( target == 'dolby' ) {
+			// 播人物互動的話dolby聲音會不見
+			//getRoot().playRespond();
+		}
+	}
+	
+	function onBtnPlayClick( e ) {
+		playMovie();
+		showStopButton();
+	}
+	
+	function onBtnStopClick( e ) {
+		stopMovie();
+		showPlayButton();
+	}
+	
+	function onSoundAStart(e) {
+		dolbyMediator.play();
+	}
+	
+	function onSoundBStart(e) {
+		dolbyMediator.toggle();
+	}
+	
+	function onSoundBStop( e ) {
+		dolbyMediator.stop();
+		dolbyMediator.toggle(); // toggle到Normal的聲道
+	}
+	
+	// ======================= View =============================//
+	
+	function initView() {
 		mc_elec.visible = true;
 		mc_elec.alpha = 1;
 	
 		Tweener.addTween( flv_container, { alpha:1, time:.5 } );
 		showDescWithType( currSwitchLabel );
-
-		flv_container.addEventListener( MouseEvent.MOUSE_OVER, onMovieOver );
-		
-		btn_Switch.buttonMode = true;
-		btn_Switch.addEventListener( MouseEvent.CLICK, onBtnSwitchClick );
+	}
+	
+	function showPlayButton() {
+		sleepButton( btn_stop );
+		btn_stop.enable( false );
 		
 		wakeUpButton( btn_play, false );
+		btn_play.enable( true );
+		
+		Tweener.addTween( btn_play.getShape(), { alpha: 1, time: 0.3 } );
+		Tweener.addTween( btn_stop.getShape(), { alpha: 0, time: 0.3 } );
+	}
+	
+	function showStopButton() {
+		sleepButton( btn_play );
+		btn_play.enable( false );
+		
 		wakeUpButton( btn_stop, false );
-		
-		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
-		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
-		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
-		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
-		getRoot().addEventListener( 'onSoundBStop', onSoundBStop );
-		
-		//btn_stop.buttonMode = true;
-		//btn_play.buttonMode = true;
-		//showVideo( 'dolby' );
-		
-		onBtnPlayClick(null);
-		//flv_container.gotoAndPlay( 2 );
-		//showPhoneWithType( currSwitchLabel );
-		//showDescWithType( currSwitchLabel );
-		
-		addEventListener( Event.ENTER_FRAME, checkOverPanel );
-		
-		
-		super.forScript(e);
-		
-		dolbyMediator.play();
+		btn_stop.enable( true );
+		Tweener.addTween( btn_stop.getShape(), { alpha: 1, time: 0.3 } );
+		Tweener.addTween( btn_play.getShape(), { alpha: 0, time: 0.3 } );
 	}
+
+	var currtime = 0.0;
 	
-	function checkOverPanel( e ) {
-		if ( mc_panel.visible == false )	return;
-		if ( mc_panel.alpha != 1 )	return;
-		var local = getRoot().globalToLocal( new Point(stage.mouseX, stage.mouseY) );
-		var hitRect = mc_panel.getRect( getRoot() );
-		var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom &&
-							local.x > hitRect.left && local.x < hitRect.right );
-		if ( !isHitRegion ) {
-			closePanel();
-		}
-	}
-	
-	function onMovieOver( e ) {
-		mc_panel.visible = true;
-		showPanel();
-	}
-	
-	function showPanel() {
-		if ( isPlay ) {
-			btn_stop.getShape().visible = true;
-			btn_play.getShape().visible = false;
-		}else {
-			btn_stop.getShape().visible = false;
-			btn_play.getShape().visible = true;
-		}
-		Tweener.addTween( mc_panel, { alpha:1, time:.5 } );
-	}
-	
-	function closePanel() {
-		Tweener.addTween( mc_panel, { alpha:0, time:.5, onComplete:function() {
-			mc_panel.visible = false;
-		}});
-	}
-	
-	function onBtnPlayClick( e ) {
+	function playMovie() {
 		isPlay = true;
+		
+		if ( flv_container.currentFrame == 1 ) {
+			flv_container.gotoAndPlay( 2 );
+
+		} else if ( flv_container.currentFrame == flv_container.totalFrames ) {
+			flv_container.gotoAndPlay( 2 );
+			currtime = 0;
+
+		} else {
+			flv_container.play();
+			
+		}
+		
 		dolbyMediator.play( currtime );
-		//flv_container.gotoAndPlay( 2 );
-		showPhoneWithType( currSwitchLabel );
-		if( currSwitchLabel == 'dolby' )	mc_elec.gotoAndPlay( 'loop' );
-		showDescWithType( currSwitchLabel );
-		closePanel();
 	}
 	
-	function onBtnStopClick( e ) {
+	function stopMovie() {
 		isPlay = false;
 		currtime = dolbyMediator.stop();
-		//flv_container.gotoAndStop( 1 );
-		showPhoneWithType( 'normal' );
-		//closeAllSound();
-		closePanel();
-		mc_elec.gotoAndPlay( 'stand' );
-	}
-	
-	function onSoundAStart(e) {
-		//dolbyMediator.play();
-	}
-	
-	function onSoundBStart(e) {
-		//dolbyMediator.toggle();
-	}
-	
-	function onSoundBStop( e ) {
-		//dolbyMediator.stop();
-	}
-	
-	function changeVolumn( soundChannel:SoundChannel, volumn ) {
-		if ( soundChannel == null )	return;
-		var st = soundChannel.soundTransform;
-		st.volume = volumn;
-		soundChannel.soundTransform = st;
-	}
-	
-	function showVideo( type: String ) {
-		//flv_container.gotoAndPlay( 2 );
+		flv_container.stop();
 	}
 	
 	var currSwitchLabel = 'normal';
@@ -233,7 +254,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function showPhoneWithType( type:String ) {
-		//mc_phone.gotoAndPlay( type );
+		mc_phone.gotoAndPlay( type );
 	}
 	
 	function showDescWithType( type:String ){
@@ -260,36 +281,8 @@ class TechDolby extends DefaultTechPage
 		}
 	}
 	
-	var currtime = -1.0;
-	
-	function onBtnSwitchClick( e ) {
-		var target = toggleSwitch();
-		showDescWithType( target );
-		showPhoneWithType( target );
-		
-		if ( target == 'dolby' ) {
-			//getRoot().playRespond();
-			requestWaitAnimation();
-		}
-		
-		dolbyMediator.toggle( isPlay );
-		
-		//showVideo( target );
-	}
-	
-	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
-		if ( btn_Switch != null ) {
-			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
-		}
-		
-		dolbyMediator.stop();
-		
-		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
-		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
-		getRoot().removeEventListener( 'onSoundBStop', onSoundBStop );
-		
-		super.onCloseEvent(cb);
+	function changeElecEffectWithType( type:String ) {
+		mc_elec.gotoAndPlay( type == 'dolby' ? 'loop' : 'stand' );
 	}
 	
 	override function getSwfInfo():Dynamic 
