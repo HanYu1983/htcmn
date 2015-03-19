@@ -119,11 +119,30 @@ class TechDolby extends DefaultTechPage
 		btn_play.getShape().addEventListener( MouseEvent.CLICK, onBtnPlayClick );
 		btn_stop.getShape().addEventListener( MouseEvent.CLICK, onBtnStopClick );
 		
+		flv_container.addFrameScript( flv_container.totalFrames - 1, function() {
+			showPlayButton();
+		} );
+		
 		super.forScript(e);
 		onInitControl();
 	}
 	
-	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		if ( btn_Switch != null ) {
+			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
+		}
+		
+		dolbyMediator.stop();
+		
+		flv_container.addFrameScript( flv_container.totalFrames - 1, null );
+		
+		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
+		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
+		getRoot().removeEventListener( 'onSoundBStop', onSoundBStop );
+		
+		super.onCloseEvent(cb);
+	}
 	
 	// ======================== Control ===============================//
 	
@@ -264,21 +283,6 @@ class TechDolby extends DefaultTechPage
 	
 	function changeElecEffectWithType( type:String ) {
 		mc_elec.gotoAndPlay( type == 'dolby' ? 'loop' : 'stand' );
-	}
-	
-	override function onCloseEvent(cb:Void->Void = null):Void 
-	{
-		if ( btn_Switch != null ) {
-			btn_Switch.removeEventListener( MouseEvent.CLICK, onBtnSwitchClick );
-		}
-		
-		dolbyMediator.stop();
-		
-		getRoot().removeEventListener( 'onSoundAStart', onSoundAStart );
-		getRoot().removeEventListener( 'onSoundBStart', onSoundBStart );
-		getRoot().removeEventListener( 'onSoundBStop', onSoundBStop );
-		
-		super.onCloseEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
