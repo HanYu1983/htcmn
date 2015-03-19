@@ -198,7 +198,8 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onTechDolbyMovieClick( e ) {
-		AppAPI.changePage( { mgr:getWebManager(), page: MoviePage, params: null } )( null );
+		var config = getWebManager().getData( 'config' );
+		Tool.getURL( config.url.techDolby );
 	}
 	
 	function onInitControl() {
