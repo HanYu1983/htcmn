@@ -32,9 +32,6 @@ class TechUltra extends DefaultTechPage
 	
 	override function forScript(e) 
 	{
-		super.forScript(e);
-		isEndAnimation = true;
-		
 		BasicUtils.revealObj( _mc_item, function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_htcTxt':
@@ -43,8 +40,8 @@ class TechUltra extends DefaultTechPage
 					mc_otherTxt = obj;
 			}
 		});
-		
-		//mc_otherTxt.alpha = 1;
+		super.forScript(e);
+		isEndAnimation = true;
 	}
 	
 	override public function stopAllAnimation() 
@@ -59,9 +56,12 @@ class TechUltra extends DefaultTechPage
 		super.resumeAllAnimation();
 	}
 	
-	var _targetX:Float = 0;
+	var _targetX:Float = 1366;
 	
 	function onEnterFrame(e: Event) {
+		if ( !isScriptEanbled() ) {
+			return;
+		}
 		if (_mc_controller == null)
 			return;
 		if ( _mc_htc == null )
@@ -69,7 +69,7 @@ class TechUltra extends DefaultTechPage
 		if ( isEndAnimation ) {
 			var local = _mc_controller.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 			var hitRect = _mc_htc.getRect( _mc_controller );
-			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom );
+			var isHitRegion = ( local.y > hitRect.top && local.y < hitRect.bottom ) && local.x > hitRect.left;
 			if ( isHitRegion ) {
 				_targetX = local.x;
 			}

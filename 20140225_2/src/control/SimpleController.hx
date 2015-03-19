@@ -46,6 +46,11 @@ using Lambda;
 class SimpleController
 {
 	
+	public static function onProductPageSearch( page:ProductPage ) {
+		OnProductBtnClick.fetchPhotoAndOpenProductPhotoPage( page.getWebManager(), page.getInput() );
+		
+	}
+	
 	public static function onFlvBRespondFinished( targetPage :String ) {
 		
 		function thenOpen(clz:Class<IWebView>) {

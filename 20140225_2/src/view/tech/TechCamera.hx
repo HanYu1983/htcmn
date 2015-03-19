@@ -37,8 +37,6 @@ class TechCamera extends DefaultTechPage
 	
 	override function forScript(e) 
 	{
-		super.forScript(e);
-		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -74,8 +72,7 @@ class TechCamera extends DefaultTechPage
 		
 		_originDotX = _mc_dot.x;
 		
-		animateForSmartPhone(taggleCircleButton());
-		//scalePhoto( 0 );
+		
 		
 		_mc_bar.buttonMode = true;
 		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
@@ -88,6 +85,10 @@ class TechCamera extends DefaultTechPage
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
 		
 		Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
+		super.forScript(e);
+		
+		animateForSmartPhone(taggleCircleButton());
+		//scalePhoto( 0 );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -271,6 +272,9 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	public function taggleCircleButton(): String {
+		if ( !isScriptEanbled() ) {
+			return 'htc';
+		}
 		var curr = _mc_circleButton.currentLabel;
 		getWebManager().log(curr);
 		var target = switch( curr ) {
