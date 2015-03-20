@@ -45,7 +45,7 @@ class OnFbLoginClick extends WebCommand
 					}
 				}
 				
-				AppAPI.flow2( { mgr:getWebManager() } ) (openNextPage);
+				AppAPI.flow2( { mgr:getWebManager(), shareInfo: { name:"", link:"", picture:"", caption:"", description:"" } } ) (openNextPage);
 				
 			},
 			btn_onFbLoginClick_no: function(){

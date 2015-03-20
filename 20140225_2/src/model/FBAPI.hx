@@ -73,10 +73,16 @@ class FBAPI
 		}
 	}
 	
-	
-	public static function callFBShare( params:{} ) {
+	/**
+	 * name: 'name',
+			link: 'http://rsclient.etmgup.com/htchima/',
+			picture: '',
+			caption: 'caption',
+			description: 'description',
+	 */
+	public static function callFBShare( params:{name:String, link:String, picture:String, caption:String, description:String} ) {
 		return function( cb:Dynamic ) {
-			var isWeb = JSInterfaceHelper.callJs( 'shareFB', [], function(info:Dynamic) {
+			var isWeb = JSInterfaceHelper.callJs( 'shareFB', [params.name, params.link, params.picture, params.caption, params.description], function(info:Dynamic) {
 				SimpleController.onLog(info);
 				
 				var err = Reflect.field(info, "0");

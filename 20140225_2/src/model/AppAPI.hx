@@ -14,12 +14,25 @@ import flash.errors.Error;
 import flash.events.Event;
 import flash.net.URLRequest;
 import flash.system.LoaderContext;
+import view.tech.DefaultTechPage;
 /**
  * ...
  * @author han
  */
 class AppAPI
 {
+	
+	public static function whichTechPageIsOpen( mgr:WebManager ):Null<IWebView> {
+		var tech = Lambda.filter( mgr.getPages(), function( page ) {
+			return Std.is( page, DefaultTechPage );
+		} );
+		if ( tech.length > 0 ) {
+			return tech.first();
+		} else {
+			return null;
+		}
+	}
+
 	public static function getImageFromURL( args: { url:String } ) {
 		return function( cb:Dynamic ) {
 			var loader = new Loader();
@@ -127,7 +140,7 @@ class AppAPI
 						if ( args.isLogin ) {
 							params.mgr.setData('fbid', args.fbid);
 							params.mgr.setData('accessToken', args.accessToken);
-							FBAPI.callFBShare( {  } ) (cb);
+							FBAPI.callFBShare( { name:"sadfas", link:"ddd", picture:"", caption:"dd", description:"ddd" } ) (cb);
 						} else {
 							cb( new Error("not login"), null );
 						}
@@ -167,7 +180,7 @@ class AppAPI
 	
 	
 	
-	public static function flow2( params: { mgr:WebManager } ) {
+	public static function flow2( params: { mgr:WebManager, shareInfo: { name:String, link:String, picture:String, caption:String, description:String } } ) {
 		
 		return function( cb:Dynamic ) {
 			
@@ -178,7 +191,7 @@ class AppAPI
 					return function( cb:Dynamic ) {
 						params.mgr.setData('fbid', args.fbid);
 						params.mgr.setData('accessToken', args.accessToken);
-						FBAPI.callFBShare( { } ) (cb);
+						FBAPI.callFBShare( params.shareInfo ) (cb);
 					}
 				},
 				

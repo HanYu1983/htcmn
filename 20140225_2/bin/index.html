@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8"/>
-	<title>HTC</title>
-	<meta name="description" content="" />
+	<title>HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！ </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="HTC, HTC One M9, HTC專賣店,體驗會,宏達電,早鳥優惠,好禮,Hima,林佳陵">
+	<meta name="description" content="HTC One M9 登峰造極 萬中選一!馬上來參加體驗分享活動就有機會拿好禮喔！"> 
+		
+	<!-- Facebook meta -->
+	<meta property="og:title" content="HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！" /> 
+	<meta property="og:description" content="HTC One M9 登峰造極 萬中選一!馬上來參加體驗分享活動就有機會拿好禮喔！" />
+	
 	<script src="js/lib/jquery/jquery-1.9.min.js"></script>
 	<script src="js/lib/underscore/underscore.js"></script>
 	<script src="js/lib/backbone/backbone.js"></script>
@@ -12,10 +18,10 @@
 	<script>
 	(function(d, s, id) {
 		//local test
-		var appid = '1059025554112783'
+		//var appid = '1059025554112783'
 		
 		//real test
-		//var appid = '772221816202407'
+		var appid = '772221816202407'
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
@@ -193,14 +199,14 @@
 		
 	}
 	
-	externalObject.shareFB = function( cb ){
+	externalObject.shareFB = function( name, link, picture, caption, description, cb ){
 		console.log('shareFB');
 		vic.facebook.postMessageToMyboard( {
-			name: 'name',
-			link: 'http://rsclient.etmgup.com/htchima/',
-			picture: '',
-			caption: 'caption',
-			description: 'description',
+			name: name,
+			link: link,
+			picture: picture,
+			caption: caption,
+			description: description,
 			callback:function( res ){
 				console.log( res )
 				cb( null, res );

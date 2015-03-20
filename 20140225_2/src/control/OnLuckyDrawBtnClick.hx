@@ -73,7 +73,6 @@ class OnLuckyDrawBtnClick extends WebCommand
 					
 					if ( err != null ) {
 						if ( err.message == 'isWritten' ) {
-							//SimpleController.onAlert( Const.MSG_SUBMIT_DATA_ALREADY );
 							SimpleController.onAlert( getWebManager().getData( 'config' ).message.msg_submit_data_already );
 							closePopop();
 							
@@ -91,7 +90,10 @@ class OnLuckyDrawBtnClick extends WebCommand
 					}
 				}
 				
-				AppAPI.flow2( { mgr:getWebManager() } ) (openNextPage);
+				AppAPI.flow2( { 
+					mgr:getWebManager(), 
+					shareInfo: Const.getShareInfoWithPage( AppAPI.whichTechPageIsOpen(getWebManager())) 
+				} ) (openNextPage);
 				
 				
 			},
