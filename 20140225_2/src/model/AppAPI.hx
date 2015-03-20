@@ -112,11 +112,18 @@ class AppAPI
 				return function( cb:Dynamic ) {
 					Async.map( 
 						args.data, 
-						function( obj: { photo:String, thumb:String } ) {
+						function( obj: Dynamic ) {
 							return function( cb:Dynamic ) {
-								AppAPI.getImageFromURL( { url: obj.thumb } )( function( err:Error, bitmap:Bitmap ) {
-									cb( null, { thumb: bitmap, photo: obj.photo } ); 
-								});	
+								if ( Reflect.field( obj, "thumb" ) != null ) {
+									AppAPI.getImageFromURL( { url: Reflect.field( obj, "thumb" ) } )( function( err:Error, bitmap:Bitmap ) {
+										cb( err, { thumb: bitmap, photo: Reflect.field( obj, "photo" ) } ); 
+									});	
+								} else {
+									AppAPI.getImageFromURL( { url: Reflect.field( obj, "photo" ) } )( function( err:Error, bitmap:Bitmap ) {
+										cb( err, { thumb: bitmap, photo: null } ); 
+									});	
+								}
+								
 							}
 						},
 						cb 

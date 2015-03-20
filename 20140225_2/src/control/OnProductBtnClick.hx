@@ -67,7 +67,6 @@ class OnProductBtnClick extends WebCommand
 					mgr.openPage( ProductPhotoPage, { photo: bitmap.bitmapData } );
 				} else {
 					mgr.openPage( ProductErrorPopup, null );
-					
 				}
 			}
 		}
