@@ -112,8 +112,12 @@ class AppAPI
 				return function( cb:Dynamic ) {
 					Async.map( 
 						args.data, 
-						function( obj: { photo:String } ) {
-							return AppAPI.getImageFromURL( { url: obj.photo } );
+						function( obj: { photo:String, thumb:String } ) {
+							return function( cb:Dynamic ) {
+								AppAPI.getImageFromURL( { url: obj.thumb } )( function( err:Error, bitmap:Bitmap ) {
+									cb( null, { thumb: bitmap, photo: obj.photo } ); 
+								});	
+							}
 						},
 						cb 
 					);

@@ -1,4 +1,5 @@
 package control;
+import flash.display.Bitmap;
 import flash.display.Stage;
 import flash.errors.Error;
 import flash.external.ExternalInterface;
@@ -152,8 +153,14 @@ class SimpleController
 	
 	
 	public static function onProductPagePhotoBlockClick( page:ProductPage, name:String ) {
-		var bitmap = page.getPhotoWithBlockName( name );
-		page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap } );
+		var url = page.getPhotoWithBlockName( name );
+		if ( url == null )
+			return;
+		onHttpLoadingStart();
+		AppAPI.getImageFromURL( { url: url } )( function( err:Error, bitmap:Bitmap ) {
+			SimpleController.onHttpLoadindEnd();
+			page.getWebManager().openPage( ProductPhotoPage, { photo: bitmap.bitmapData } );
+		} );
 	}
 	
 	static function setSkipButtonVisible( b:Bool ) {

@@ -9,6 +9,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import haxe.Timer;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
 
@@ -70,6 +71,11 @@ class ProductPhotoPage extends DefaultPage
 		boundingPhotoOffset();
 		
 		super.onOpenEvent(param, cb);
+		
+		// 不知為什麼要delay, 不delay的話, UI全部跑掉. 偷懶解法
+		Timer.delay( function() {
+			scalePhoto( -1 );
+		}, 1000);
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -153,7 +159,7 @@ class ProductPhotoPage extends DefaultPage
 		_scale = Math.min( _scale, 2 );
 		_scale = Math.max( 1, _scale );
 		
-		var newscale = (_scale - 1) * 1 + 1; // 1 ~ 2
+		var newscale = (_scale - 1) * 0.7 + 0.3; // 0.3 ~ 1
 		Tweener.addTween( mc_photoContainer, { scaleX: newscale, scaleY: newscale, time:.3, onUpdate: boundingPhotoOffset } );
 		setDotPosition( _scale );
 	}

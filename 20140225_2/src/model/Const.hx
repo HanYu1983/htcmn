@@ -19,7 +19,7 @@ class Const
 			return { 
 				name:"", 
 				link:"http://rsclient.etmgup.com/htc_hima/#TechDouble", 
-				picture:"", 
+				picture:"http://rsclient.etmgup.com/htc_hima/images/share/01.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
 				description:"HTC One M9擁有精湛雙色調金屬工藝的經典設計，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
 		}
@@ -28,7 +28,7 @@ class Const
 			return { 
 				name:"", 
 				link:"http://rsclient.etmgup.com/htc_hima/#TechUltra", 
-				picture:"", 
+				picture:"http://rsclient.etmgup.com/htc_hima/images/share/02.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
 				description:"HTC One M9擁有HTC UltraPixel™前置相機的低光源下完美自拍功能，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
 		}
@@ -37,7 +37,7 @@ class Const
 			return { 
 				name:"", 
 				link:"http://rsclient.etmgup.com/htc_hima/#TechDolby", 
-				picture:"", 
+				picture:"http://rsclient.etmgup.com/htc_hima/images/share/03.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
 				description:"HTC One M9擁有支援Dolby Audio™的HTC BoomSound™頂級音響，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
 		}
@@ -46,7 +46,7 @@ class Const
 			return { 
 				name:"", 
 				link:"http://rsclient.etmgup.com/htc_hima/#TechCamera", 
-				picture:"", 
+				picture:"http://rsclient.etmgup.com/htc_hima/images/share/04.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
 				description:"HTC One M9擁有2000萬畫素的絕佳主鏡頭絕佳鏡頭，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
 		}
