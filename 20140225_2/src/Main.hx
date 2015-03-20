@@ -28,6 +28,7 @@ import flash.Lib;
 import flash.media.SoundMixer;
 import flash.net.URLLoader;
 import flash.sampler.NewObjectSample;
+import flash.system.Security;
 import haxe.Http;
 import haxe.Json;
 import model.AppAPI;
@@ -79,6 +80,8 @@ class Main
 	
 	static function main() 
 	{
+		Security.allowDomain('*' );
+		
 		function log(msg:Dynamic) {
 			SimpleController.onLog( msg );
 		}
