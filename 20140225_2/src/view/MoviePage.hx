@@ -72,6 +72,11 @@ class MoviePage extends DefaultPage
 			}
 		});
 		
+		if ( _list.length <= 5 ) {
+			getButtonsByName( 'btn_onMovieBtnClick_up' ).enable( false ).alpha = .5;
+			getButtonsByName( 'btn_onMovieBtnClick_down' ).enable( false ).alpha = .5;
+		}
+		
 		_youtubePlayer = new YouTube();
 		_youtubePlayer.addEventListener( Event.INIT, onYoutubeReady );
 		
