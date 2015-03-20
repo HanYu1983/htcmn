@@ -25,9 +25,10 @@ class BasicButton
 		return _shape;
 	}
 	
-	public function enable( e:Bool ):Void {
+	public function enable( e:Bool ):MovieClip {
 		getShape().mouseEnabled = e;
 		getShape().mouseChildren = e;
 		getShape().enabled = e;
+		return getShape();
 	}
 }
