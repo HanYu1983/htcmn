@@ -81,8 +81,10 @@ class MoviePage extends DefaultPage
 			getButtonsByName( 'btn_onMovieBtnClick_down' ).enable( false ).alpha = .5;
 		}
 		
+		var targetid = param == null ? "" : param.id;
+		
 		var target = _list.filter( function(info) {
-			return info.id == param.id;
+			return info.id == targetid;
 		} );
 		var rownum = 
 			if ( target.length > 0 )

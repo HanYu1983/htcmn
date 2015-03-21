@@ -191,7 +191,7 @@ class Main
 			}
 		}
 		
-		function startWith( p:Class<IWebView> ) {
+		function startWith( p:Class<IWebView>, params:Dynamic ) {
 			
 			function OpenTechFrameIfNeeded() {
 				return switch( p ) {
@@ -227,14 +227,20 @@ class Main
 					// 這頁要放在HeaderUI, FooterUI後面, 因為會操控它們上升或下沉
 					OpenTechFrameIfNeeded(),
 					// 只有這頁needLoading=true, 必須要放在最後一個. 因為會動態切換loadingClass, 會導致不會關閉打開的loadingPage
-					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: null } )
+					AppAPI.openPage( { mgr:WebManager.inst, page:p, params: params } )
 				]
 				, startApp );
 		}
 		
 		try {
-			ExternalInterface.addCallback( 'router', function(val) {
-				var page : Class<IWebView> = switch( val ) {
+			ExternalInterface.addCallback( 'router', function(val:Dynamic) {
+				var pageStr = Std.is( val, String ) ? val : Reflect.field( val, "page" );
+				var params = Std.is( val, String ) ? null : Reflect.field( val, "params" );
+				
+				SimpleController.onLog(pageStr);
+				SimpleController.onLog(params);
+				
+				var page : Class<IWebView> = switch( pageStr ) {
 					case 'TechPage': TechPage;
 					case 'TechBlink': TechBlink;
 					case 'TechBoom': TechBoom;
@@ -254,7 +260,7 @@ class Main
 					
 					case _: IntroPage;
 				}
-				startWith( page );
+				startWith( page, params );
 			});
 			
 			ExternalInterface.call( 'flashReady', null );
@@ -265,9 +271,9 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDolby );
+			startWith( MoviePage, null );
 			#else
-			startWith( IntroPage );
+			startWith( IntroPage, null );
 			#end
 		}
 	}
