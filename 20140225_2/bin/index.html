@@ -74,7 +74,6 @@
 			TechPhoto: 'TechPhoto',
 			TechSitu: 'TechSitu',
 			TechUltra: 'TechUltra',
-			
 			MoviePage: 'MoviePage',
 			"MoviePage/id=:id": "MoviePageWithId",
 			RelativePage: 'RelativePage',
@@ -171,6 +170,7 @@
 	var externalObject = {}
 	
 	externalObject.changeHash = function( hash, cb ){
+		_gaPV( hash );
 		window.__router.navigate( hash, { trigger: false } )
 		cb( null, null );
 	}
@@ -221,6 +221,14 @@
 			console.log( val );
 			cb(null, val);
 		});
+	}
+	
+	externalObject.tracking = function( type, name, cb ){
+		if( type == 'page' )
+			_gaPV( name );
+		else
+			_gaCK( name );
+		cb( null, null );
 	}
 	
 	/*
