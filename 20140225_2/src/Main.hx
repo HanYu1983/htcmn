@@ -236,10 +236,6 @@ class Main
 			ExternalInterface.addCallback( 'router', function(val:Dynamic) {
 				var pageStr = Std.is( val, String ) ? val : Reflect.field( val, "page" );
 				var params = Std.is( val, String ) ? null : Reflect.field( val, "params" );
-				
-				SimpleController.onLog(pageStr);
-				SimpleController.onLog(params);
-				
 				var page : Class<IWebView> = switch( pageStr ) {
 					case 'TechPage': TechPage;
 					case 'TechBlink': TechBlink;
