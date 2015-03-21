@@ -47,6 +47,10 @@ using Lambda;
 class SimpleController
 {
 	
+	public static function onYoutubeLoaded( id:String ) {
+		JSInterfaceHelper.callJs( 'changeHash', ["MoviePage/id="+id], function(info:Dynamic) {});
+	}
+	
 	public static function onProductPageSearch( page:ProductPage ) {
 		OnProductBtnClick.fetchPhotoAndOpenProductPhotoPage( page.getWebManager(), page.getInput() );
 		

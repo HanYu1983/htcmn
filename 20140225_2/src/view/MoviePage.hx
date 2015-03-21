@@ -1,6 +1,7 @@
 package view ;
 
 import caurina.transitions.Tweener;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.Loader;
@@ -55,6 +56,7 @@ class MoviePage extends DefaultPage
 		if ( _youtubePlayer != null ) {
 			_currentLoadedYoutubeId = _list[id].id;
 			_youtubePlayer.loadVideoById( _currentLoadedYoutubeId, auto );
+			SimpleController.onYoutubeLoaded( _currentLoadedYoutubeId );
 		}
 	}
 	
