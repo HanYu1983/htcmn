@@ -1,5 +1,6 @@
 package model;
 import org.vic.web.IWebView;
+import view.MoviePage;
 import view.tech.TechCamera;
 import view.tech.TechDolby;
 import view.tech.TechDouble;
@@ -49,6 +50,18 @@ class Const
 				picture:"http://rsclient.etmgup.com/htc_hima/images/share/04.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
 				description:"HTC One M9擁有2000萬畫素的絕佳主鏡頭絕佳鏡頭，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
+		}
+		
+		if ( Std.is( page, MoviePage ) ) {
+			var moviePage = cast( page, MoviePage);
+			var id = moviePage.getCurrentLoadedYoutubeId();
+			return { 
+				name:"", 
+				link:"http://rsclient.etmgup.com/htc_hima/#MoviePage/id="+id, 
+				picture:"http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg", 
+				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
+				description:"馬上來觀賞精彩影片並分享相關訊息就有機會抽大獎喔！"}
+			
 		}
 		
 		return {

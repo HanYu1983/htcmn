@@ -26,6 +26,7 @@ class MoviePage extends DefaultPage
 	var _list:Array<Dynamic>;
 	var _labelName = 'movieLable_';
 	var _step:Int = 0;
+	var _currentLoadedYoutubeId:String;
 
 	public function new() 
 	{
@@ -52,14 +53,17 @@ class MoviePage extends DefaultPage
 	
 	public function loadVideo( id, auto = true ) {
 		if ( _youtubePlayer != null ) {
-			_youtubePlayer.loadVideoById( _list[id].id, auto );
+			_currentLoadedYoutubeId = _list[id].id;
+			_youtubePlayer.loadVideoById( _currentLoadedYoutubeId, auto );
 		}
+	}
+	
+	public function getCurrentLoadedYoutubeId():String {
+		return _currentLoadedYoutubeId;
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		super.onOpenEvent(param, cb);
-		
 		_list = getWebManager().getData( 'config' ).moviePage.list;
 		
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
@@ -77,11 +81,24 @@ class MoviePage extends DefaultPage
 			getButtonsByName( 'btn_onMovieBtnClick_down' ).enable( false ).alpha = .5;
 		}
 		
+		var target = _list.filter( function(info) {
+			return info.id == param.id;
+		} );
+		var rownum = 
+			if ( target.length > 0 )
+				_list.indexOf( target[0] )
+			else 
+				0;
+		
 		_youtubePlayer = new YouTube();
-		_youtubePlayer.addEventListener( Event.INIT, onYoutubeReady );
+		_youtubePlayer.addEventListener( Event.INIT, onYoutubeReady = addToStageAndLoadVideo(rownum) );
 		
 		genLabel();
+		
+		super.onOpenEvent(param, cb);
 	}
+	
+	var onYoutubeReady:Dynamic->Void;
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
@@ -161,10 +178,13 @@ class MoviePage extends DefaultPage
 		singleLabel.gotoAndPlay( 'out' );
 	}
 	
-	
-	function onYoutubeReady( e ) {
-		_mc_container.addChild( _youtubePlayer.getPlayer() );
-		_youtubePlayer.setSize( 512, 286 );
-		loadVideo( 0, false );
+	function addToStageAndLoadVideo( rownum:Int ) {
+		return function onYoutubeReady( e ) {
+			_mc_container.addChild( _youtubePlayer.getPlayer() );
+			_youtubePlayer.setSize( 512, 286 );
+			loadVideo( rownum, false );
+		}
 	}
+	
+	
 }

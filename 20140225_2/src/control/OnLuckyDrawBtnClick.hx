@@ -5,11 +5,13 @@ import model.AppAPI;
 import model.Const;
 import model.ETMAPI;
 import org.han.Async;
+import org.vic.web.IWebView;
 import org.vic.web.WebCommand;
 import view.fb.FBLoginPopup;
 import view.fb.DetailFromPopup;
 import view.LuckyDrawPage;
 import view.MessagePopup;
+import view.MoviePage;
 
 /**
  * ...
@@ -90,12 +92,15 @@ class OnLuckyDrawBtnClick extends WebCommand
 					}
 				}
 				
+				var page = AppAPI.whichTechPageIsOpen(getWebManager());
+				// 如果不是從科技頁來的, 就代表是從影片頁來的
+				if ( page == null ) {
+					page = getWebManager().getPage( MoviePage );
+				}
 				AppAPI.flow2( { 
 					mgr:getWebManager(), 
-					shareInfo: Const.getShareInfoWithPage( AppAPI.whichTechPageIsOpen(getWebManager())) 
+					shareInfo: Const.getShareInfoWithPage( page ) 
 				} ) (openNextPage);
-				
-				
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
 				// 不打開多餘的這頁. 這行先留著, 可能後來又會改

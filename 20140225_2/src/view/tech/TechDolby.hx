@@ -224,13 +224,13 @@ class TechDolby extends DefaultTechPage
 	function onBtnPlayClick( e ) {
 		playMovie();
 		showStopButton();
-		requestWaitAnimation();
+		closeRequestAnimationTimer();
 	}
 	
 	function onBtnStopClick( e ) {
 		stopMovie();
 		showPlayButton();
-		requestWaitAnimation();
+		openRequestAnimationTimer();
 	}
 	
 	function onSoundAStart(e) {
