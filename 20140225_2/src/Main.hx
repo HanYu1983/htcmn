@@ -23,6 +23,8 @@ import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.errors.Error;
 import flash.events.Event;
+import flash.events.FocusEvent;
+import flash.events.MouseEvent;
 import flash.external.ExternalInterface;
 import flash.Lib;
 import flash.media.SoundMixer;
@@ -94,6 +96,11 @@ class Main
 					// ignore
 				}
 				var stage = Lib.current.stage;
+				/*
+				stage.addEventListener(Event.MOUSE_LEAVE, function(e ) {
+					SoundMixer.stopAll();
+				});
+				*/
 				stage.scaleMode = StageScaleMode.NO_SCALE;
 				//stage.align = StageAlign.TOP_LEFT;
 				// 沒有這行Tweener會出現例外
@@ -251,6 +258,9 @@ class Main
 			});
 			
 			ExternalInterface.call( 'flashReady', null );
+			ExternalInterface.addCallback( 'onWindowBlur', function() {
+				SoundMixer.stopAll();
+			});
 			
 		}catch ( e:Error ) { 
 			// means not in web
