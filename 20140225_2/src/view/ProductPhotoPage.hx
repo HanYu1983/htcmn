@@ -19,11 +19,16 @@ import org.vic.utils.BasicUtils;
  */
 class ProductPhotoPage extends DefaultPage
 {
+	static var resizeFeatureOn = false;
+	
 	var mc_photoContainer:DisplayObjectContainer;
 	var mc_imgmask: DisplayObject;
 	var sprite:Sprite = new Sprite();
 	var _mc_dot:MovieClip;
 	var _mc_bar:MovieClip;
+	var btn_onProductPhotoBtnClick_plus: DisplayObject;
+	var btn_onProductPhotoBtnClick_sub: DisplayObject;
+	
 	
 	public function new() {
 		super();
@@ -42,27 +47,26 @@ class ProductPhotoPage extends DefaultPage
 					_mc_dot = cast( obj, MovieClip );
 				case 'mc_bar':
 					_mc_bar = cast( obj, MovieClip );
+				case 'btn_onProductPhotoBtnClick_plus':
+					btn_onProductPhotoBtnClick_plus = obj;
+				case 'btn_onProductPhotoBtnClick_sub':
+					btn_onProductPhotoBtnClick_sub = obj;
 			}
 		});
 		
 		_originDot = _mc_dot.y;
 		
-		var photo = cast( param.photo, BitmapData );
+		if ( param != null ) {
+			var photo = cast( param.photo, BitmapData );
+			// 多加了一層並把錨點改到正中間是為了使用同一個演算法
+			var bitmap = new Bitmap( photo );
+			bitmap.x = -bitmap.width / 2;
+			bitmap.y = -bitmap.height / 2;
+			
+			sprite.addChild(bitmap);	
+		}
 		
-		// 多加了一層並把錨點改到正中間是為了使用同一個演算法
-		var bitmap = new Bitmap( photo );
-		bitmap.x = -bitmap.width / 2;
-		bitmap.y = -bitmap.height / 2;
-		
-		sprite.addChild(bitmap);
-				
 		mc_photoContainer.addChild( sprite );
-		
-		_mc_bar.buttonMode = true;
-		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
-		
-		_mc_dot.buttonMode = true;
-		_mc_dot.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownDot );
 		
 		sprite.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
 		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
@@ -72,10 +76,25 @@ class ProductPhotoPage extends DefaultPage
 		
 		super.onOpenEvent(param, cb);
 		
-		// 不知為什麼要delay, 不delay的話, UI全部跑掉. 偷懶解法
-		Timer.delay( function() {
-			scalePhoto( -1 );
-		}, 1000);
+		if ( resizeFeatureOn ) {
+			_mc_bar.buttonMode = true;
+			_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
+			
+			_mc_dot.buttonMode = true;
+			_mc_dot.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownDot );
+		
+			// 不知為什麼要delay, 不delay的話, UI全部跑掉. 偷懶解法
+			Timer.delay( function() {
+				scalePhoto( -1 );
+			}, 1000);
+			
+		} else {
+			_mc_bar.visible = false;
+			_mc_dot.visible = false;
+			btn_onProductPhotoBtnClick_plus.visible = false;
+			btn_onProductPhotoBtnClick_sub.visible = false;
+			
+		}
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
