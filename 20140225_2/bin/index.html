@@ -2,14 +2,14 @@
 <html lang="en" class=" js no-touch cssanimations csstransitions">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>HTC One M9 µn®p³y·¥ ¸U¤¤¿ï¤@ ¥ş²y­ºµo¡A§Y¤é°_¦b¥ş¥xHTC±M½æ©±²±¤j¶}½æ¡I </title>
+	<title>HTC One M9 ç™»å³°é€ æ¥µ è¬ä¸­é¸ä¸€ å…¨çƒé¦–ç™¼ï¼Œå³æ—¥èµ·åœ¨å…¨å°HTCå°ˆè³£åº—ç››å¤§é–‹è³£ï¼ </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="HTC, HTC One M9, HTC±M½æ©±,ÅéÅç·|,§»¹F¹q,¦­³¾Àu´f,¦nÂ§,Hima,ªL¨Î³®">
-	<meta name="description" content="HTC One M9 µn®p³y·¥ ¸U¤¤¿ï¤@!°¨¤W¨Ó°Ñ¥[ÅéÅç¤À¨É¬¡°Ê´N¦³¾÷·|®³¦nÂ§³á¡I"> 
+	<meta name="keywords" content="HTC, HTC One M9, HTCå°ˆè³£åº—,é«”é©—æœƒ,å®é”é›»,æ—©é³¥å„ªæƒ ,å¥½ç¦®,Hima,æ—ä½³é™µ">
+	<meta name="description" content="HTC One M9 ç™»å³°é€ æ¥µ è¬ä¸­é¸ä¸€!é¦¬ä¸Šä¾†åƒåŠ é«”é©—åˆ†äº«æ´»å‹•å°±æœ‰æ©Ÿæœƒæ‹¿å¥½ç¦®å–”ï¼"> 
 		
 	<!-- Facebook meta -->
-	<meta property="og:title" content="HTC One M9 µn®p³y·¥ ¸U¤¤¿ï¤@ ¥ş²y­ºµo¡A§Y¤é°_¦b¥ş¥xHTC±M½æ©±²±¤j¶}½æ¡I" /> 
-	<meta property="og:description" content="HTC One M9 µn®p³y·¥ ¸U¤¤¿ï¤@!°¨¤W¨Ó°Ñ¥[ÅéÅç¤À¨É¬¡°Ê´N¦³¾÷·|®³¦nÂ§³á¡I" />
+	<meta property="og:title" content="HTC One M9 ç™»å³°é€ æ¥µ è¬ä¸­é¸ä¸€ å…¨çƒé¦–ç™¼ï¼Œå³æ—¥èµ·åœ¨å…¨å°HTCå°ˆè³£åº—ç››å¤§é–‹è³£ï¼" /> 
+	<meta property="og:description" content="HTC One M9 ç™»å³°é€ æ¥µ è¬ä¸­é¸ä¸€!é¦¬ä¸Šä¾†åƒåŠ é«”é©—åˆ†äº«æ´»å‹•å°±æœ‰æ©Ÿæœƒæ‹¿å¥½ç¦®å–”ï¼" />
 	
 	<script src="js/lib/jquery/jquery-1.9.min.js"></script>
 	<script src="js/lib/underscore/underscore.js"></script>
@@ -179,9 +179,6 @@
 	
 	function callFlashMethod( methodName, val )
 	{
-		//thisMovie("HTC").jsCallFlash( 'jshaha' );
-		console.log( thisMovie("HTC") );
-		console.log( thisMovie("HTC")[ methodName ] );
 		thisMovie("HTC")[ methodName ]( val );
 	}
 	
@@ -202,10 +199,8 @@
 	}
 	
 	externalObject.getMe = function( cb ){
-		console.log('getMe');
 		vic.facebook.getMyData(
 			function( res ){
-				console.log(res);
 				cb( null, res );
 			},
 			function( err ){
@@ -250,6 +245,16 @@
 			cb(null, val);
 		});
 	}
+	
+	/*
+	window.onfocus = function(e){
+		alert( 'onfocus' );
+	};
+	*/
+	
+	$(window).blur(function() {
+		callFlashMethod( 'onWindowBlur' );
+	});
 	
 	</script>
 	
