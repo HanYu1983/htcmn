@@ -72,6 +72,7 @@ import view.tech.TechPerson;
 import view.tech.TechPhoto;
 import view.tech.TechSitu;
 import view.tech.TechUltra;
+import view.TutorialMask;
 /**
  * ...
  * @author vic
@@ -267,7 +268,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( MoviePage, null );
+			startWith( TutorialMask, null );
 			#else
 			startWith( IntroPage, null );
 			#end

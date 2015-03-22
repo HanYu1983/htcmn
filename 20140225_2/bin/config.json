@@ -85,34 +85,29 @@
 	"moviePage":{
 		"list":[
 			{
-				"id":"29odTRdULfI",
-				"name":"測試影片1",
+				"id":"dZNIQDtUQP0",
+				"name":"HTC One M9登峰造極萬中選一 ",
 				"img":"images/movie/003.jpg"
 			},
 			{
-				"id":"29odTRdULfI",
-				"name":"測試影片2",
+				"id":"bZtG3cZfbyI",
+				"name":"HTC One M9締造世界之最淬鍊傳奇之美",
 				"img":"images/movie/004.jpg"
 			},
 			{
-				"id":"29odTRdULfI",
-				"name":"測試影片3",
+				"id":"jIuysOdCktk",
+				"name":"HTC One M9獨步全球率先登台",
 				"img":"images/movie/005.jpg"
 			},
 			{
-				"id":"29odTRdULfI",
-				"name":"測試影片1",
+				"id":"ltJnQLbIvTk",
+				"name":"HTC One M9讓您隨心自訂專屬個人化主題",
 				"img":"images/movie/006.jpg"
 			},
 			{
-				"id":"29odTRdULfI",
-				"name":"測試影片2",
+				"id":"Ej9wuyyUagw",
+				"name":"HTC One M9 + Dolby Audio環繞音效給你無比震撼的聽覺享受 ",
 				"img":"images/movie/007.jpg"
-			},
-			{
-				"id":"29odTRdULfI",
-				"name":"測試影片3",
-				"img":"images/movie/003.jpg"
 			}
 		]
 	},
