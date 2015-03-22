@@ -1,4 +1,5 @@
 package helper;
+import control.SimpleController;
 import flash.errors.Error;
 import flash.external.ExternalInterface;
 import org.vic.web.WebManager;
@@ -30,6 +31,7 @@ class JSInterfaceHelper
 			ExternalInterface.call( 'callFromFlash', { id:randomId, method: method, params:params } );
 			return true;
 		}catch ( e:Error ) {
+			SimpleController.onLog( e.message );
 			return false;
 		}
 	}
