@@ -7,7 +7,7 @@ import view.tech.TechCamera;
  * ...
  * @author han
  */
-class OnTechCameraClick extends WebCommand
+class OnTechCameraClick extends DefaultCommand
 {
 	override public function execute(?args:Dynamic):Void {
 		super.execute(args);

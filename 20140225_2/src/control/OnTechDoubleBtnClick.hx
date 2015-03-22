@@ -7,7 +7,7 @@ import view.tech.TechDouble;
  * ...
  * @author vic
  */
-class OnTechDoubleBtnClick extends WebCommand
+class OnTechDoubleBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 
@@ -18,6 +18,7 @@ class OnTechDoubleBtnClick extends WebCommand
 	
 	override public function execute(?args:Dynamic):Void 
 	{
+		super.execute( args );
 		var goto:Dynamic = {
 			btn_onTechDoubleClick_colorA: function() {
 				var page:TechDouble = cast( getWebManager().getPage( TechDouble ), TechDouble );

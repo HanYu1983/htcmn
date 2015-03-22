@@ -14,7 +14,7 @@ import view.TechPage;
  * ...
  * @author vic
  */
-class OnHeaderBtnClick extends WebCommand
+class OnHeaderBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

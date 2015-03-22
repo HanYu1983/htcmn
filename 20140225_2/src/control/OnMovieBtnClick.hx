@@ -9,7 +9,7 @@ import view.MoviePage;
  * ...
  * @author vic
  */
-class OnMovieBtnClick extends WebCommand
+class OnMovieBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

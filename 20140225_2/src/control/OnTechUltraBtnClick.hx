@@ -6,7 +6,7 @@ import view.tech.TechUltra;
  * ...
  * @author han
  */
-class OnTechUltraBtnClick extends WebCommand
+class OnTechUltraBtnClick extends DefaultCommand
 {
 	override public function execute(?args:Dynamic):Void {
 		

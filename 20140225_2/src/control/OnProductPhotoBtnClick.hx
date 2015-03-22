@@ -7,10 +7,11 @@ import view.ProductPhotoPage;
  * ...
  * @author han
  */
-class OnProductPhotoBtnClick extends WebCommand
+class OnProductPhotoBtnClick extends DefaultCommand
 {
 
 	override public function execute(?args:Dynamic):Void {
+		super.execute( args );
 		var goto:Dynamic = {
 			btn_onProductPhotoBtnClick_close:function() {
 				getWebManager().closePage( ProductPhotoPage );

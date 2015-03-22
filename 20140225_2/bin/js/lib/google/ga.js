@@ -9,9 +9,11 @@ _gaq.push(['_trackPageview']);
 })();
 
 function _gaCK(inv){
+	console.log("_gaCK:"+type+":"+name);
 	_gaq.push(['_trackEvent', 'btn', 'btn/' + inv]);
 }
 
-function _gaPV(inv){ 	
+function _gaPV(inv){ 
+	console.log("_gaPV:"+type+":"+name);
 	_gaq.push(['_trackPageview', inv]);
 }

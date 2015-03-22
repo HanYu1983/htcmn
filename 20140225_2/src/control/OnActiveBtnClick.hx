@@ -8,7 +8,7 @@ import view.ActivityPopup;
  * ...
  * @author vic
  */
-class OnActiveBtnClick extends WebCommand
+class OnActiveBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

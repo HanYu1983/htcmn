@@ -157,7 +157,6 @@ class TechDouble extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		getWebManager().log( 'AAAAAAAAAAAAA' );
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_controller':
@@ -204,23 +203,19 @@ class TechDouble extends DefaultTechPage
 					mc_descC = obj;
 			}
 		});
-		getWebManager().log( 'BBBBBBBBBBBBBB' );
 		_ary_dotPos = [ _mc_line.x, _mc_line.x + _mc_line.width / 2, _mc_line.x + _mc_line.width ];
 		
 		_mc_currentBigPhone = _mc_phoneABig;
 		_mc_currentPhone = _mc_phoneA;
-		getWebManager().log( 'BBBBBBBBBBBBBB!!!!!!!!!!!!!' );
 		_mc_phoneA.alpha = 0;
 		_mc_phoneB.alpha = 0;
 		_mc_phoneC.alpha = 0;
 		_mc_phoneABig.alpha = 0;
 		_mc_phoneBBig.alpha = 0;
 		_mc_phoneCBig.alpha = 0;
-		getWebManager().log( 'BBBBBBBBBBBBBBBBBBBBBBBBBDDDDDDDDDDDDDD' );
 		mc_descA.alpha = 0;
 		mc_descB.alpha = 0;
 		mc_descC.alpha = 0;
-		getWebManager().log( 'CCCCCCCCCCCCCCCCCCCC' );
 		changeColor( 'b' );
 		changeSide( 'a' );
 		
@@ -229,7 +224,6 @@ class TechDouble extends DefaultTechPage
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		
 		super.onOpenEvent(param, cb);
-		getWebManager().log( 'DDDDDDDDDDDDDDDDDDddd' );
 	}
 	
 	override function forScript(e) 

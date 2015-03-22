@@ -21,7 +21,7 @@ import view.TechPage;
  * ...
  * @author ...
  */
-class OnHomeBtnClick extends WebCommand
+class OnHomeBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

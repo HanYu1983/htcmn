@@ -1,5 +1,6 @@
 package control;
 import flash.display.Bitmap;
+import flash.display.DisplayObject;
 import flash.display.MovieClip;
 import flash.display.Stage;
 import flash.errors.Error;
@@ -48,6 +49,10 @@ using Lambda;
  */
 class SimpleController
 {
+	public static function onButtonInteract( mc:DisplayObject ) {
+		JSInterfaceHelper.callJs( "tracking", ["button", mc.name], function( data:Dynamic ){} );
+	}
+	
 	public static function onTechPageStartPerson( page:DefaultTechPage ) {
 		page.getWebManager().openPage(TutorialMask, null, function() {
 			var mv = cast( page.getWebManager().getPage(TutorialMask).getRoot(), MovieClip );

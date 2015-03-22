@@ -7,7 +7,7 @@ import view.tech.TechDolby;
  * ...
  * @author vic
  */
-class OnTechDolbyBtnClick extends WebCommand
+class OnTechDolbyBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 
@@ -17,6 +17,7 @@ class OnTechDolbyBtnClick extends WebCommand
 	}
 	
 	override public function execute(?args:Dynamic):Void {
+		super.execute( args );
 		var goto:Dynamic = {
 			/*
 			btn_onTechDoubleClick_skip:function() {

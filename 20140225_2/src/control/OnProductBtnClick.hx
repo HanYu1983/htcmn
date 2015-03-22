@@ -14,11 +14,11 @@ import view.ProductPhotoPage;
  * ...
  * @author han
  */
-class OnProductBtnClick extends WebCommand
+class OnProductBtnClick extends DefaultCommand
 {
 
 	override public function execute(?args:Dynamic):Void {
-		
+		super.execute( args );
 		var goto:Dynamic = {
 			btn_onProductBtnClick_search: function() {
 				/*

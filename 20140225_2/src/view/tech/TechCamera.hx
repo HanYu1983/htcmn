@@ -1,5 +1,6 @@
 package view.tech;
 import caurina.transitions.Tweener;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -88,58 +89,10 @@ class TechCamera extends DefaultTechPage
 		super.forScript(e);
 		
 		animateForSmartPhone(taggleCircleButton());
-		//scalePhoto( 0 );
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		/*
-		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
-			switch( obj.name ) {
-				case 'mc_controller':
-					_mc_controller = cast( obj, MovieClip );
-				case 'mc_circleButton':
-					_mc_circleButton = cast( obj, MovieClip );
-				case 'mc_htc':
-					_mc_htc = obj;
-				case 'mc_dot':
-					_mc_dot = cast( obj, MovieClip );
-				case 'mc_bar':
-					_mc_bar = cast( obj, MovieClip );
-				case 'mc_htcPhoto':
-					_mc_htcPhoto = obj;
-				case 'mc_otherPhoto':
-					_mc_ohterPhoto = obj;
-				case 'mc_other':
-					_mc_other = obj;
-				case 'mc_photo':
-					_mc_photo = cast( obj, DisplayObjectContainer );
-				case 'mc_photoScale':
-					mc_photoScale = obj;
-				case 'mc_photoOffset':
-					mc_photoOffset = obj;
-				case 'mc_photoMask':
-					mc_photoMask = obj;
-			}
-		});
-		
-		_originDotX = _mc_dot.x;
-		
-		animateForSmartPhone(taggleCircleButton());
-		//scalePhoto( 0 );
-		
-		_mc_bar.buttonMode = true;
-		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
-		
-		_mc_dot.buttonMode = true;
-		_mc_dot.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownDot );
-		
-		mc_photoOffset.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
-		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
-		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
-		
-		super.onOpenEvent(param, cb);
-		*/
 		super.onOpenEvent(param, cb);
 	}
 	
@@ -179,6 +132,7 @@ class TechCamera extends DefaultTechPage
 	var isDragDot = false;
 	
 	function onMouseDownDot( e:MouseEvent ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		isDragDot = true;
 	}
 	
@@ -187,11 +141,13 @@ class TechCamera extends DefaultTechPage
 	var dragOffset:Point = new Point();
 	
 	function onMouseDownMask( e:MouseEvent ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		isDragOffset = true;
 		dragOrigin = new Point( stage.mouseX, stage.mouseY );
 	}
 	
 	function onMouseUpMask( e:MouseEvent ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		isDragOffset = isDragDot = false;
 		dragOffset = new Point( mc_photoOffset.x, mc_photoOffset.y );
 	}
@@ -211,6 +167,7 @@ class TechCamera extends DefaultTechPage
 	}
 	
 	function onMouseClickSlideBar( e:MouseEvent ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		var local = _mc_bar.globalToLocal( new Point(stage.mouseX, stage.mouseY) );
 		var per = local.x / _mc_bar.width;
 		var currScale = per + 1;

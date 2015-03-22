@@ -8,11 +8,12 @@ import view.TechPage;
  * ...
  * @author han
  */
-class OnIntroBtnClick extends WebCommand
+class OnIntroBtnClick extends DefaultCommand
 {
 
 	override public function execute(?args:Dynamic):Void 
 	{
+		super.execute(args);
 		var goto:Dynamic = {
 			btn_onIntroBtnClick_enter: function() {
 				AppAPI.changePage( 

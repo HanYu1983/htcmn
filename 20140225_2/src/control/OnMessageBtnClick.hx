@@ -13,7 +13,7 @@ import view.MessagePopup;
  * ...
  * @author han
  */
-class OnMessageBtnClick extends WebCommand
+class OnMessageBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

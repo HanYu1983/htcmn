@@ -16,7 +16,7 @@ import view.tech.TechUltra;
  * ...
  * @author ...
  */
-class OnTechFrameBtnClick extends WebCommand
+class OnTechFrameBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 

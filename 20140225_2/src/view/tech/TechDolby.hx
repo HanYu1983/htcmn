@@ -1,6 +1,7 @@
 package view.tech;
 
 import caurina.transitions.Tweener;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
@@ -198,6 +199,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onTechDolbyMovieClick( e ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		var config = getWebManager().getData( 'config' );
 		Tool.getURL( config.url.techDolby );
 	}
@@ -209,6 +211,7 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onBtnSwitchClick( e ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		var target = toggleSwitch();
 		showDescWithType( target );
 		showPhoneWithType( target );
@@ -222,12 +225,14 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onBtnPlayClick( e ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		playMovie();
 		showStopButton();
 		closeRequestAnimationTimer();
 	}
 	
 	function onBtnStopClick( e ) {
+		SimpleController.onButtonInteract( e.currentTarget );
 		stopMovie();
 		showPlayButton();
 		openRequestAnimationTimer();

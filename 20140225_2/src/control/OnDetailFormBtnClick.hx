@@ -15,7 +15,7 @@ import view.MessagePopup;
  * ...
  * @author han
  */
-class OnDetailFormBtnClick extends WebCommand
+class OnDetailFormBtnClick extends DefaultCommand
 {
 
 	public function new(name:String=null) 
