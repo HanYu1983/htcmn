@@ -1,4 +1,5 @@
 package org.vic.web;
+import flash.display.MovieClip;
 
 /**
  * @author vic
@@ -16,4 +17,5 @@ interface IWebView
 	function addSlider( s:BasicSlider ):Void;
 	function update():Void;
 	function execute( n:String, ?org:Dynamic  ):Void;
+	function getRoot():MovieClip;
 }

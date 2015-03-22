@@ -9,6 +9,7 @@ import control.OnHomeBtnClick;
 import control.OnIntroBtnClick;
 import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
+import control.OnMaskBtnClick;
 import control.OnMessageBtnClick;
 import control.OnMovieBtnClick;
 import control.OnProductBtnClick;
@@ -148,6 +149,8 @@ class Main
 			WebManager.inst.addCommand( new OnProductPhotoBtnClick("onProductPhotoBtnClick") );
 			WebManager.inst.addCommand( new OnProductBtnClick("onProductBtnClick") );
 			WebManager.inst.addCommand( new OnProductErrorPopupClick("onProductErrorPopupClick") );
+			WebManager.inst.addCommand( new OnMaskBtnClick("onMaskBtnClick") );
+			
 			cb( null, null );
 		}
 		
@@ -268,7 +271,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TutorialMask, null );
+			startWith( TechDolby, null );
 			#else
 			startWith( IntroPage, null );
 			#end

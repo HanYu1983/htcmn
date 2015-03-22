@@ -372,7 +372,7 @@ class WebView extends Sprite implements IWebView
 		return null;
 	}
 	
-	private function getRoot():MovieClip {
+	public function getRoot():MovieClip {
 		if ( _root == null )	createDebugRoot();
 		return _root;
 	}

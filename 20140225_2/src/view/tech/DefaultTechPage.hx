@@ -66,7 +66,6 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		getWebManager().log( 'dddAAAAA' );
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_person':
@@ -78,16 +77,34 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			}
 		});
 		getRoot().addEventListener( 'forScript', forScript );
+		getRoot().addEventListener( 'startPerson', onStartPerson );
+		getRoot().addEventListener( 'startItem', onStartItem );
+		getRoot().addEventListener( 'startPlay', onStartPlay );
 		super.onOpenEvent(param, cb);
-		getWebManager().log( 'BBBB' );
 		SoundMixer.stopAll();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{	
+		getRoot().removeEventListener( 'forScript', forScript );
+		getRoot().removeEventListener( 'startPerson', onStartPerson );
+		getRoot().removeEventListener( 'startItem', onStartItem );
+		getRoot().removeEventListener( 'startPlay', onStartPlay );
 		closeRequestAnimationTimer();
 		getRoot().closeAllAnimation();
 		super.onCloseEvent(cb);
+	}
+	
+	function onStartPlay( e ) {
+		SimpleController.onTechPageStartPlay( this );
+	}
+	
+	function onStartPerson( e ) {
+		SimpleController.onTechPageStartPerson( this );
+	}
+	
+	function onStartItem( e ) {
+		SimpleController.onTechPageStartItem( this );
 	}
 	
 	var scriptEnable = false;

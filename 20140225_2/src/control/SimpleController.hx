@@ -1,5 +1,6 @@
 package control;
 import flash.display.Bitmap;
+import flash.display.MovieClip;
 import flash.display.Stage;
 import flash.errors.Error;
 import flash.external.ExternalInterface;
@@ -38,6 +39,7 @@ import view.tech.TechPhoto;
 import view.tech.TechSitu;
 import view.tech.TechUltra;
 import view.TechPage;
+import view.TutorialMask;
 using Lambda;
 
 /**
@@ -46,6 +48,21 @@ using Lambda;
  */
 class SimpleController
 {
+	public static function onTechPageStartPerson( page:DefaultTechPage ) {
+		page.getWebManager().openPage(TutorialMask, null, function() {
+			var mv = cast( page.getWebManager().getPage(TutorialMask).getRoot(), MovieClip );
+			mv.gotoAndPlay("focusPerson");
+		});
+	}
+	
+	public static function onTechPageStartItem( page:DefaultTechPage ) {
+		var mv = cast( page.getWebManager().getPage(TutorialMask).getRoot(), MovieClip );
+		mv.gotoAndPlay("focusItem");
+	}
+	
+	public static function onTechPageStartPlay( page:DefaultTechPage ) {	
+		page.getWebManager().closePage(TutorialMask);
+	}
 	
 	public static function onYoutubeLoaded( id:String ) {
 		JSInterfaceHelper.callJs( 'changeHash', ["MoviePage/id="+id], function(info:Dynamic) {});
@@ -253,10 +270,15 @@ class SimpleController
 			}
 		}
 		
+		function closeTutorialMask() {
+			page.getWebManager().closePage( TutorialMask );
+		}
+		
 		SoundMixer.stopAll();
 		
 		when( thePageIs(page, TechFrame), closeAllTechPage );
 		when( thePageIs(page, IPopup), resumeTechPageAnimation );
+		when( thePageIs(page, DefaultTechPage), closeTutorialMask );
 	}
 	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {

@@ -1,4 +1,5 @@
 package view;
+import helper.Tool;
 
 /**
  * ...
@@ -7,16 +8,19 @@ package view;
 class TutorialMask extends DefaultPage
 {
 	public function new() {
-		layerName = "popup";
+		super();
+		layerName = "techpage";
 	}
-	
-	override function getSwfInfo():Dynamic 
-	{
-		return {name:'TutorialMask', path:'src/Preload.swf' };
-	}
-	
+
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TutorialMask', path:'TutorialMask' };
-	}	
+		return {name:'Preload', path:'TutorialMask' };
+	}
+	
+	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
+	{
+		var fix_width = 1366.0;
+		var fix_height = 768.0;
+		Tool.centerForce( getRoot(), fix_width, fix_height, x, y, w, h );
+	}
 }
