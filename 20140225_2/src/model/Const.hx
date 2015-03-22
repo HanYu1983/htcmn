@@ -49,7 +49,7 @@ class Const
 				link:"http://rsclient.etmgup.com/htc_hima/#TechCamera", 
 				picture:"http://rsclient.etmgup.com/htc_hima/images/share/04.jpg", 
 				caption:"HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！", 
-				description:"HTC One M9擁有2000萬畫素的絕佳主鏡頭絕佳鏡頭，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
+				description:"HTC One M9擁有2000萬畫素的絕佳主鏡頭，馬上來體驗並分享產品特點就有機會抽大獎喔！"}
 		}
 		
 		if ( Std.is( page, MoviePage ) ) {

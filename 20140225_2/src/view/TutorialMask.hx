@@ -9,7 +9,7 @@ class TutorialMask extends DefaultPage
 {
 	public function new() {
 		super();
-		layerName = "techpage";
+		layerName = "techui";
 	}
 
 	override function getRootInfo():Dynamic 

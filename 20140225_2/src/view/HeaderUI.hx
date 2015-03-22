@@ -76,6 +76,11 @@ class HeaderUI extends DefaultPage
 					_btn_onHeaderBtnClick_skip = obj;
 			}
 		});
+		
+		_btn_onHeaderBtnClick_skip.visible = false;
+		cast( _btn_onHeaderBtnClick_skip, MovieClip ).mouseEnabled = false;
+		cast( _btn_onHeaderBtnClick_skip, MovieClip ).mouseChildren = false;
+		
 		extendButtonVisible( false );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		_btns.addEventListener( 'overline', moveOverLine );
