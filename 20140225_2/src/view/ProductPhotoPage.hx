@@ -9,6 +9,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Point;
+import flash.ui.Mouse;
 import haxe.Timer;
 import helper.Tool;
 import org.vic.utils.BasicUtils;
@@ -66,6 +67,7 @@ class ProductPhotoPage extends DefaultPage
 			sprite.addChild(bitmap);	
 		}
 		
+		
 		mc_photoContainer.addChild( sprite );
 		
 		sprite.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDownMask );
@@ -89,11 +91,12 @@ class ProductPhotoPage extends DefaultPage
 			}, 1000);
 			
 		} else {
+			sprite.visible = false;
+			
 			_mc_bar.visible = false;
 			_mc_dot.visible = false;
 			btn_onProductPhotoBtnClick_plus.visible = false;
 			btn_onProductPhotoBtnClick_sub.visible = false;
-			
 			
 			// 不知為什麼要delay, 不delay的話, UI全部跑掉. 偷懶解法
 			Timer.delay( function() {
@@ -106,15 +109,19 @@ class ProductPhotoPage extends DefaultPage
 						sprite.height/ mc_imgmask.height;
 				}
 				var newscale = 1 / scale;
-				
-				Tweener.addTween( mc_photoContainer, { scaleX: newscale, scaleY: newscale, time:.3, onUpdate: boundingPhotoOffset } );
-				Tweener.addTween( sprite, { x: sprite.width/2, y: sprite.height/2, time:.3 } );
+				mc_photoContainer.scaleX = mc_photoContainer.scaleY = newscale;
+				sprite.x = sprite.width / 2;
+				sprite.y = sprite.height / 2;
 				// 假裝將圖片drag到左上角為圖片(0,0). 為了符合原本的演算法. 不然drag圖片會算錯
 				dragOffset = new Point( sprite.width / 2, sprite.height / 2 );
+				sprite.visible = true;
+				
 			}, 1000);
 			
 		}
 	}
+	
+	var originCursor = Mouse.cursor;
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
@@ -131,6 +138,11 @@ class ProductPhotoPage extends DefaultPage
 		}
 		if ( isDragDot ) {
 			moveDot();
+		}
+		if (mc_imgmask.hitTestPoint( stage.mouseX, stage.mouseY )) {
+			Mouse.cursor = "hand";
+		} else {
+			Mouse.cursor = originCursor;
 		}
 	}
 	
