@@ -12,6 +12,8 @@ import view.tech.TechUltra;
  */
 class Const
 {
+	public static var LOCAL_ETMAPI = false;
+	
 	public static var PEOPLE_PLAY_WAIT_DURATION_SECONDS = 25;	// seconds
 	
 	

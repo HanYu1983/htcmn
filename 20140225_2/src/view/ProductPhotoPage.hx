@@ -94,6 +94,25 @@ class ProductPhotoPage extends DefaultPage
 			btn_onProductPhotoBtnClick_plus.visible = false;
 			btn_onProductPhotoBtnClick_sub.visible = false;
 			
+			
+			// 不知為什麼要delay, 不delay的話, UI全部跑掉. 偷懶解法
+			Timer.delay( function() {
+				// 以左上角為原點, 縮放到圖片短邊符合框框短邊
+				var which = Math.min( sprite.width, sprite.height ) == sprite.width ? "width" : "height";
+				var scale = switch( which ) {
+					case 'width':
+						sprite.width/ mc_imgmask.width;
+					case 'height' | _:
+						sprite.height/ mc_imgmask.height;
+				}
+				var newscale = 1 / scale;
+				
+				Tweener.addTween( mc_photoContainer, { scaleX: newscale, scaleY: newscale, time:.3, onUpdate: boundingPhotoOffset } );
+				Tweener.addTween( sprite, { x: sprite.width/2, y: sprite.height/2, time:.3 } );
+				// 假裝將圖片drag到左上角為圖片(0,0). 為了符合原本的演算法. 不然drag圖片會算錯
+				dragOffset = new Point( sprite.width / 2, sprite.height / 2 );
+			}, 1000);
+			
 		}
 	}
 	

@@ -10,10 +10,13 @@ import haxe.Json;
  */
 class ETMAPI
 {
+	static function getAPIPath( cmd:String ):String {
+		return Const.LOCAL_ETMAPI ? "http://rsclient.etmgup.com/htc_hima/" + cmd : cmd;
+	}
 	
 	public static function getPhotoList( args: { mobile: String } ):Dynamic {
 		return function( cb:Dynamic ) {
-			var http = new Http("getPhotoList.php");
+			var http = new Http(getAPIPath("getPhotoList.php"));
 			
 			if ( args.mobile != null ) {
 				http.setParameter("mobile", args.mobile);
