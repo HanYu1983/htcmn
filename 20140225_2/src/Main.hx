@@ -6,6 +6,7 @@ import control.OnFbLoginClick;
 import control.OnFooterBtnClick;
 import control.OnHeaderBtnClick;
 import control.OnHomeBtnClick;
+import control.OnHtcInBtnClick;
 import control.OnIntroBtnClick;
 import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
@@ -52,6 +53,7 @@ import view.fb.FBLoginPopup;
 import view.FooterUI;
 import view.HeaderUI;
 import org.vic.web.WebManager;
+import view.HtcInPage;
 import view.HttpLoadingPage;
 import view.IntroPage;
 import view.LoadingPage;
@@ -150,6 +152,7 @@ class Main
 			WebManager.inst.addCommand( new OnProductBtnClick("onProductBtnClick") );
 			WebManager.inst.addCommand( new OnProductErrorPopupClick("onProductErrorPopupClick") );
 			WebManager.inst.addCommand( new OnMaskBtnClick("onMaskBtnClick") );
+			WebManager.inst.addCommand( new OnHtcInBtnClick("onHtcInBtnClick") );
 			
 			cb( null, null );
 		}
@@ -271,7 +274,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDolby, null );
+			startWith( HtcInPage, null );
 			#else
 			startWith( IntroPage, null );
 			#end
