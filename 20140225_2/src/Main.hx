@@ -274,7 +274,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( HtcInPage, null );
+			startWith( IntroPage, null );
 			#else
 			startWith( IntroPage, null );
 			#end

@@ -60,8 +60,10 @@ class OnHeaderBtnClick extends DefaultCommand
 				var url = getWebManager().getData( 'config' ).url.sell;
 				Tool.getURL(url);
 			},
-			btn_onHeaderBtnClick_Product: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
+			btn_onHeaderBtnClick_Product: function() {
+				var url = getWebManager().getData( 'config' ).url.early;
+				Tool.getURL(url);
+				//AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_skip:function() {
 				SimpleController.onHeaderSkipButtonClick();
