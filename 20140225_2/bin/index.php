@@ -60,7 +60,10 @@ if (isMobile()) { header('Location:mobile/'); }
 	</script>
 	<style>
 		html, body { height:100%; overflow:hidden; }
-		body { margin:0; }
+		body {
+	margin: 0;
+	background-color: #000;
+}
 	</style>
 </head>
 <body>
@@ -147,6 +150,10 @@ if (isMobile()) { header('Location:mobile/'); }
 		Backbone.history.start();
 	}
 	
+	function preloadReady(){
+		closeFakeLoading();
+	}
+	
 	function thisMovie(movieName) 
 	{
 		if (navigator.appName.indexOf("Microsoft") != -1) 
@@ -167,6 +174,12 @@ if (isMobile()) { header('Location:mobile/'); }
 	function flashCallJs( val ){
 		console.log( 'from flash: ' + val );
 		callFlashMethod();
+	}
+	
+	function closeFakeLoading(){
+		$("#cover").fadeOut( 4000, function(){
+			$("#cover").remove();
+		});
 	}
 	</script>
 	
@@ -273,6 +286,8 @@ if (isMobile()) { header('Location:mobile/'); }
 		<h1>HTC</h1>
 		<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
 	</div>
-	
+	<div id="cover" style="position:absolute; left:0; top:0; width:100%; height:100%">
+			<img style="width:100%; height:100%" src="images/loading/loading.jpg"/>
+	</div>
 </body>
 </html>
