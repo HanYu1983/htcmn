@@ -2,6 +2,7 @@ package control;
 
 import flash.display.DisplayObject;
 import flash.errors.Error;
+import helper.Tool;
 import model.AppAPI;
 import model.Const;
 import model.ETMAPI;
@@ -115,6 +116,10 @@ class OnDetailFormBtnClick extends DefaultCommand
 			btn_onDetailFormBtnClick_okC: function() {
 				var form:DetailFromPopup = cast( getWebManager().getPage(DetailFromPopup), DetailFromPopup);
 				form.markTermInPosition(target.x, target.y);
+			},
+			btn_onDetailFormBtnClick_agree: function() {
+				var url = getWebManager().getData( 'config' ).url.agree;
+				Tool.getURL(url);
 			}
 		}
 		
