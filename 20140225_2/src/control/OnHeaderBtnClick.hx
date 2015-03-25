@@ -4,6 +4,7 @@ import model.AppAPI;
 import org.vic.web.WebCommand;
 import view.ActivityPopup;
 import view.ExpInfoPage;
+import view.HtcInPage;
 import view.IntroPage;
 import view.MoviePage;
 import view.ProductPage;
@@ -59,11 +60,16 @@ class OnHeaderBtnClick extends DefaultCommand
 				var url = getWebManager().getData( 'config' ).url.sell;
 				Tool.getURL(url);
 			},
-			btn_onHeaderBtnClick_Product: function(){
-				AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
+			btn_onHeaderBtnClick_Product: function() {
+				var url = getWebManager().getData( 'config' ).url.early;
+				Tool.getURL(url);
+				//AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_skip:function() {
 				SimpleController.onHeaderSkipButtonClick();
+			},
+			btn_onHeaderBtnClick_htcin:function() {
+				AppAPI.openPage( { mgr:this.getWebManager(), page: HtcInPage, params:{} } ) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

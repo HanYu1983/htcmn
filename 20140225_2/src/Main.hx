@@ -6,6 +6,7 @@ import control.OnFbLoginClick;
 import control.OnFooterBtnClick;
 import control.OnHeaderBtnClick;
 import control.OnHomeBtnClick;
+import control.OnHtcInBtnClick;
 import control.OnIntroBtnClick;
 import control.OnLuckyDrawBtnClick;
 import control.OnDetailFormBtnClick;
@@ -52,6 +53,7 @@ import view.fb.FBLoginPopup;
 import view.FooterUI;
 import view.HeaderUI;
 import org.vic.web.WebManager;
+import view.HtcInPage;
 import view.HttpLoadingPage;
 import view.IntroPage;
 import view.LoadingPage;
@@ -150,6 +152,7 @@ class Main
 			WebManager.inst.addCommand( new OnProductBtnClick("onProductBtnClick") );
 			WebManager.inst.addCommand( new OnProductErrorPopupClick("onProductErrorPopupClick") );
 			WebManager.inst.addCommand( new OnMaskBtnClick("onMaskBtnClick") );
+			WebManager.inst.addCommand( new OnHtcInBtnClick("onHtcInBtnClick") );
 			
 			cb( null, null );
 		}
@@ -170,7 +173,7 @@ class Main
 		function loadSwf( cb:Dynamic ) {
 			var config:Dynamic = WebManager.inst.getData( 'config' );
 			BasicUtils.loadSwf( WebManager.inst, { name:'Preload', path:config.swfPath.Preload[ config.swfPath.Preload.which ] }, false, function() {
-				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ]}, false, function() {
+				BasicUtils.loadSwf( WebManager.inst, { name:'ActivePage', path:config.swfPath.ActivePage[ config.swfPath.ActivePage.which ] }, false, function() {
 					cb( null, null );
 				});
 			});
@@ -184,6 +187,15 @@ class Main
 				{ key:"D_enter_01_1", path:"sound/D_enter_01_1.mp3" }
 			], cb );
 			WebManager.inst.setData("SoundManager", mgr);
+		}
+		
+		function dispatchPreloadReady( cb:Dynamic ) {
+			try{
+				ExternalInterface.call( 'preloadReady', null );
+				cb( null, null );
+			}catch ( e:Error ) {
+				
+			}
 		}
 			
 		function startApp( err:Error, result:Dynamic ) {
@@ -226,6 +238,7 @@ class Main
 					loadConfig,
 					loadSwf,
 					loadMp3,
+					dispatchPreloadReady,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
 					// 這頁要放在HeaderUI, FooterUI後面, 因為會操控它們上升或下沉
@@ -271,7 +284,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechDolby, null );
+			startWith( IntroPage, null );
 			#else
 			startWith( IntroPage, null );
 			#end
@@ -282,3 +295,4 @@ class Main
 		SimpleController.onResize( WebManager.inst );
 	}
 }
+

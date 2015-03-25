@@ -8,6 +8,7 @@ import view.ActivityPopup;
 import view.ExpInfoPage;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
+import view.HtcInPage;
 import view.IntroPage;
 import view.LuckyDrawPage;
 import view.MoviePage;
@@ -30,7 +31,7 @@ import view.tech.TechUltra;
  */
 class Tool
 {
-	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage];
+	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage, HtcInPage];
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	

@@ -1,3 +1,7 @@
+<?php
+require_once 'libs/utility.php';
+if (isMobile()) { header('Location:mobile/'); }
+?>
 <!DOCTYPE html>
 <html lang="en" class=" js no-touch cssanimations csstransitions">
 <head>
@@ -10,6 +14,8 @@
 	<!-- Facebook meta -->
 	<meta property="og:title" content="HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！" /> 
 	<meta property="og:description" content="HTC One M9 登峰造極 萬中選一!馬上來參加體驗分享活動就有機會拿好禮喔！" />
+    <!-- HTC fav and touch icons -->
+<link rel="shortcut icon" href="favicon.ico">
 	
 	<script src="js/lib/jquery/jquery-1.9.min.js"></script>
 	<script src="js/lib/underscore/underscore.js"></script>
@@ -140,6 +146,7 @@
 	window.__router = router;
 	
 	function flashReady(){
+		console.log( 'flashReady' );
 		Backbone.history.start();
 	}
 	
@@ -276,13 +283,11 @@
 	</script>
 	
 	<div id="altContent">
-	  <h1>HTC</h1>
+		<h1>HTC</h1>
 		<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
 	</div>
-	
 	<div id="cover" style="position:absolute; left:0; top:0; width:100%; height:100%">
-		<img style="width:100%; height:100%" src="images/loading/loading.jpg"/>
+			<img style="width:100%; height:100%" src="images/loading/loading.jpg"/>
 	</div>
-	
 </body>
 </html>
