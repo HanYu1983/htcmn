@@ -63,7 +63,7 @@ class OnProductBtnClick extends DefaultCommand
 				
 			} else {
 				if ( ret.length > 0 ) {
-					var bitmap = cast(ret[0], Bitmap);
+					var bitmap = cast(ret[0].thumb, Bitmap);
 					mgr.openPage( ProductPhotoPage, { photo: bitmap.bitmapData } );
 				} else {
 					mgr.openPage( ProductErrorPopup, null );
