@@ -62,9 +62,11 @@ class DetailFromPopup extends DefaultPage implements IPopup
 					_btn_onDetailFormBtnClick_okC = obj;
 			}
 		});
-		initDefaultData();
-		
 		super.onOpenEvent(param, cb);
+		
+		// 有些物件在super.onOpenEvent中取得, 所以除了取物件以外的操作行為都要放在super.onOpenEvent之後比較正確
+		initDefaultData();
+		markTermInPosition( _btn_onDetailFormBtnClick_okC.x, _btn_onDetailFormBtnClick_okC.y );
 	}
 	
 	function initDefaultData() {

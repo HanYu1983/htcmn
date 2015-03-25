@@ -194,7 +194,8 @@ class Main
 				ExternalInterface.call( 'preloadReady', null );
 				cb( null, null );
 			}catch ( e:Error ) {
-				
+				// for pc test
+				cb( null, null );
 			}
 		}
 			
@@ -284,7 +285,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( IntroPage, null );
+			startWith( DetailFromPopup, null );
 			#else
 			startWith( IntroPage, null );
 			#end
