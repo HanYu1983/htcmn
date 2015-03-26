@@ -1,5 +1,9 @@
 package model;
+import control.SimpleController;
+import flash.errors.Error;
+import flash.errors.IOError;
 import flash.events.Event;
+import flash.events.IOErrorEvent;
 import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.net.URLRequest;
@@ -26,23 +30,37 @@ class DolbySoundMediator
 		currtype = type;
 	}
 	
-	static function onLoadComplete( onLoad:Void->Void ) {
+	static function onLoadComplete( onLoad:Dynamic ) {
 		var count = 0;
 		return function( e:Event ) {
 			if ( ++count == 2 ) {
-				onLoad();
+				onLoad( null, null );
 			}
 		}
 	}
 		
-	public function load( path:Dynamic, onLoad:Void->Void ) {
+	public function load( path:Dynamic, onLoad:Dynamic ) {
 		var onComplete = onLoadComplete( onLoad );
 		var soundHTC = new Sound();
 		soundHTC.addEventListener( Event.COMPLETE, onComplete );
+		soundHTC.addEventListener( IOErrorEvent.IO_ERROR, function( e:IOErrorEvent ) {
+			SimpleController.onError( e );
+			if ( onLoad != null ) {
+				onLoad( new Error( e.toString() ), null );
+				onLoad = null;
+			}
+		});
 		soundHTC.load( new URLRequest( path.htc ));
 		
 		var soundNormal = new Sound();
 		soundNormal.addEventListener( Event.COMPLETE, onComplete );
+		soundNormal.addEventListener( IOErrorEvent.IO_ERROR, function( e:IOErrorEvent ) {
+			SimpleController.onError( e );
+			if ( onLoad != null ) {
+				onLoad( new Error( e.toString() ), null );
+				onLoad = null;
+			}
+		});
 		soundNormal.load( new URLRequest( path.other ));
 		
 		sound[SoundType.HTC] = soundHTC;

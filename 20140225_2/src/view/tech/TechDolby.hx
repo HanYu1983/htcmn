@@ -89,7 +89,10 @@ class TechDolby extends DefaultTechPage
 			{ 
 				htc:getWebManager().getData( 'config' ).sound.techDolby.htc,
 				other:getWebManager().getData( 'config' ).sound.techDolby.other
-			}, function() {
+			}, function( e:Error, result: Dynamic ) {
+				if ( e != null ) {
+					SimpleController.onError( e.message );
+				}
 				that.helpCallSuperOnOpenEvent(param, cb);
 			});
 	}
