@@ -12,6 +12,8 @@ import view.DefaultPage;
  */
 class DetailFromPopup extends DefaultPage implements IPopup
 {
+	public static var formType:String = "award";
+	
 	var _mc_circle:DisplayObject;
 	var _txt_name:TextField;
 	var _txt_phone:TextField;
@@ -157,6 +159,10 @@ class DetailFromPopup extends DefaultPage implements IPopup
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'Preload', path:'Detail' };
+		return switch(formType) {
+			case "award": { name:'Preload', path:'DetailAward' };
+			case _: { name:'Preload', path:'Detail' };
+		}
+		//return {name:'Preload', path:'Detail' };
 	}
 }

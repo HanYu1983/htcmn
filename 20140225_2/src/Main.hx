@@ -285,6 +285,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
+			DetailFromPopup.formType = "award";
 			startWith( DetailFromPopup, null );
 			#else
 			startWith( IntroPage, null );
