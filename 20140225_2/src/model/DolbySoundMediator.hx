@@ -38,6 +38,17 @@ class DolbySoundMediator
 			}
 		}
 	}
+	
+	public function getFromWebManager( mgr:WebManager, path: { htc:String, other:String } ) {
+		var parse = path.htc.split("/");
+		var soundHTC = cast( mgr.getLoaderManager().getTask(parse[0]).getObject(parse[1]), Sound );
+		
+		parse = path.other.split("/");
+		var soundNormal = cast( mgr.getLoaderManager().getTask(parse[0]).getObject(parse[1]), Sound );
+		
+		sound[SoundType.HTC] = soundHTC;
+		sound[SoundType.Normal] = soundNormal;
+	}
 		
 	public function load( path:Dynamic, onLoad:Dynamic ) {
 		var onComplete = onLoadComplete( onLoad );

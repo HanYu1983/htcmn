@@ -180,25 +180,6 @@ class Main
 			});
 		}
 		
-		function loadMp3( cb:Dynamic ) {
-			var mgr = new SoundManager();
-			mgr.load( [
-				{ key:"D_respond_01", path:"sound/D_respond _01.mp3" },
-				{ key:"intro_02_1", path:"sound/intro_02_1.mp3" },
-				{ key:"D_enter_01_1", path:"sound/D_enter_01_1.mp3" }
-			], cb );
-			WebManager.inst.setData("SoundManager", mgr);
-		}
-		
-		function loadDolbyMp3( cb:Dynamic ) {
-			var dolbyMediator = new DolbySoundMediator( SoundType.Normal );
-			dolbyMediator.load( { 
-				htc:WebManager.inst.getData( 'config' ).sound.techDolby.htc,
-				other:WebManager.inst.getData( 'config' ).sound.techDolby.other
-			}, cb );
-			WebManager.inst.setData("DolbySoundMediator", dolbyMediator);
-		}
-		
 		function dispatchPreloadReady( cb:Dynamic ) {
 			try{
 				ExternalInterface.call( 'preloadReady', null );
@@ -248,8 +229,6 @@ class Main
 					setupWebManager,
 					loadConfig,
 					loadSwf,
-					loadMp3,
-					loadDolbyMp3,
 					dispatchPreloadReady,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
@@ -296,8 +275,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			DetailFromPopup.formType = "award";
-			startWith( DetailFromPopup, null );
+			startWith( TechDolby, null );
 			#else
 			startWith( IntroPage, null );
 			#end

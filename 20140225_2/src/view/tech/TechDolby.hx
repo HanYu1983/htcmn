@@ -48,8 +48,8 @@ class TechDolby extends DefaultTechPage
 	var isNormal:Bool = true;
 	var isPlay:Bool = false;
 	var currVideo:MovieClip;
-	var dolbyMediator:DolbySoundMediator;
-	var soundManager:SoundManager;
+	var dolbyMediator:DolbySoundMediator = new DolbySoundMediator( SoundType.Normal );
+	var soundManager:SoundManager = new SoundManager();
 	var btn_onTechDolbyClick_movie:MovieClip;
 	
 	public function new() 
@@ -59,8 +59,15 @@ class TechDolby extends DefaultTechPage
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		soundManager = cast( getWebManager().getData("SoundManager"), SoundManager );
-		dolbyMediator = cast( getWebManager().getData('DolbySoundMediator'), DolbySoundMediator );
+		soundManager.getFromWebManager( getWebManager(), [
+			{ key:"D_respond_01", path:"TechDolby/D_respond _01_1.mp3" },
+			{ key:"intro_02_1", path:"TechDolby/intro_02_1_1.mp3" }
+		] );
+		
+		dolbyMediator.getFromWebManager( getWebManager(), {
+			htc: "TechDolby/dolby_1.mp3",
+			other: "TechDolby/other_1.mp3"
+		});
 		
 		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
@@ -174,7 +181,8 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onFlvEnter01( e ) {
-		speech("D_enter_01_1");
+		// 目前聲音還在影片上
+		//speech("D_enter_01_1");
 	}
 	
 	function onTechDolbyMovieClick( e ) {
