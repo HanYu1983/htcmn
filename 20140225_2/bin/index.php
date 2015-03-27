@@ -17,12 +17,12 @@ if (isMobile()) { header('Location:mobile/'); }
     <!-- HTC fav and touch icons -->
 <link rel="shortcut icon" href="favicon.ico">
 	
-	<script src="js/lib/jquery/jquery-1.9.min.js"></script>
-	<script src="js/lib/underscore/underscore.js"></script>
-	<script src="js/lib/backbone/backbone.js"></script>
-	<script src="js/lib/google/ga.js"></script>
-	<script src="js/lib/vic/vic.facebook.js"></script>
-	<script src="js/swfobject.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/lib/jquery/jquery-1.9.min.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/lib/underscore/underscore.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/lib/backbone/backbone.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/lib/google/ga.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/lib/vic/vic.facebook.js"></script>
+	<script src="http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/js/swfobject.js"></script>
 	<!-- facebook api -->
 	<script>
 	(function(d, s, id) {
@@ -177,9 +177,12 @@ if (isMobile()) { header('Location:mobile/'); }
 	}
 	
 	function closeFakeLoading(){
-		$("#cover").fadeOut( 4000, function(){
+		//for fakeloading
+	/*
+		$("#cover").fadeOut( 2500, function(){
 			$("#cover").remove();
 		});
+		*/
 	}
 	</script>
 	
@@ -283,11 +286,11 @@ if (isMobile()) { header('Location:mobile/'); }
 	</script>
 	
 	<div id="altContent">
-		<h1>HTC</h1>
+	  <h1>HTC</h1>
 		<p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
 	</div>
-	<div id="cover" style="position:absolute; left:0; top:0; width:100%; height:100%">
+		<!-- basic <div id="cover" style="position:absolute; left:0; top:0; width:100%; height:100%">
 			<img style="width:100%; height:100%" src="images/loading/loading.jpg"/>
-	</div>
+	</div>-->
 </body>
 </html>
