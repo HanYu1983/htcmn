@@ -36,6 +36,7 @@ import flash.system.Security;
 import haxe.Http;
 import haxe.Json;
 import model.AppAPI;
+import model.DolbySoundMediator;
 import model.ETMAPI;
 import helper.JSInterfaceHelper;
 import control.SimpleController;
@@ -189,6 +190,15 @@ class Main
 			WebManager.inst.setData("SoundManager", mgr);
 		}
 		
+		function loadDolbyMp3( cb:Dynamic ) {
+			var dolbyMediator = new DolbySoundMediator( SoundType.Normal );
+			dolbyMediator.load( { 
+				htc:WebManager.inst.getData( 'config' ).sound.techDolby.htc,
+				other:WebManager.inst.getData( 'config' ).sound.techDolby.other
+			}, cb );
+			WebManager.inst.setData("DolbySoundMediator", dolbyMediator);
+		}
+		
 		function dispatchPreloadReady( cb:Dynamic ) {
 			try{
 				ExternalInterface.call( 'preloadReady', null );
@@ -239,6 +249,7 @@ class Main
 					loadConfig,
 					loadSwf,
 					loadMp3,
+					loadDolbyMp3,
 					dispatchPreloadReady,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),

@@ -48,7 +48,7 @@ class TechDolby extends DefaultTechPage
 	var isNormal:Bool = true;
 	var isPlay:Bool = false;
 	var currVideo:MovieClip;
-	var dolbyMediator = new DolbySoundMediator( SoundType.Normal );
+	var dolbyMediator:DolbySoundMediator;
 	var soundManager:SoundManager;
 	var btn_onTechDolbyClick_movie:MovieClip;
 	
@@ -57,24 +57,10 @@ class TechDolby extends DefaultTechPage
 		super();
 	}
 	
-	// 為了onMp3LoadComplete可以叫用super的方法而建立
-	// 這個方法只用來呼叫super的onOpenEvent沒有其它功能.
-	public function helpCallSuperOnOpenEvent(param:Dynamic, cb:Void->Void) {
-		super.onOpenEvent( param, cb );
-	}
-	
-	function onMp3LoadComplete( that, param, cb ) {
-		var count = 0;
-		return function( e:Event ) {
-			if ( ++count == 2 ) {
-				that.helpCallSuperOnOpenEvent( param, cb );
-			}
-		}
-	}
-	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
 		soundManager = cast( getWebManager().getData("SoundManager"), SoundManager );
+		dolbyMediator = cast( getWebManager().getData('DolbySoundMediator'), DolbySoundMediator );
 		
 		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
@@ -83,18 +69,8 @@ class TechDolby extends DefaultTechPage
 		getRoot().addEventListener( 'onFlvIntro02', onFlvIntro02 );
 		getRoot().addEventListener( 'onFlvRespond01', onFlvRespond01 );
 		getRoot().addEventListener( 'onFlvEnter01', onFlvEnter01 );
-
-		var that = this;
-		dolbyMediator.load( 
-			{ 
-				htc:getWebManager().getData( 'config' ).sound.techDolby.htc,
-				other:getWebManager().getData( 'config' ).sound.techDolby.other
-			}, function( e:Error, result: Dynamic ) {
-				if ( e != null ) {
-					SimpleController.onError( e.message );
-				}
-				that.helpCallSuperOnOpenEvent(param, cb);
-			});
+		
+		super.onOpenEvent( param, cb );
 	}
 	
 	var ch: SoundChannel;
