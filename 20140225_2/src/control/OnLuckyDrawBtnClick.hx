@@ -84,6 +84,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 						
 						
 					} else {
+						DetailFromPopup.formType = "award";
 						AppAPI.openPage({ 
 								mgr: getWebManager(), 
 								page: DetailFromPopup, 
@@ -123,6 +124,7 @@ class OnLuckyDrawBtnClick extends WebCommand
 					function getData( args: { isWritten:Bool, token: String } ) {
 						return function( cb:Dynamic ) {
 							getWebManager().setData('etmToken', args.token);
+							DetailFromPopup.formType = "normal";
 							cb( null, { mgr:getWebManager(), page:DetailFromPopup, params:null } );
 						}
 					},

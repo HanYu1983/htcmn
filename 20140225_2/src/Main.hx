@@ -36,6 +36,7 @@ import flash.system.Security;
 import haxe.Http;
 import haxe.Json;
 import model.AppAPI;
+import model.DolbySoundMediator;
 import model.ETMAPI;
 import helper.JSInterfaceHelper;
 import control.SimpleController;
@@ -179,16 +180,6 @@ class Main
 			});
 		}
 		
-		function loadMp3( cb:Dynamic ) {
-			var mgr = new SoundManager();
-			mgr.load( [
-				{ key:"D_respond_01", path:"sound/D_respond _01.mp3" },
-				{ key:"intro_02_1", path:"sound/intro_02_1.mp3" },
-				{ key:"D_enter_01_1", path:"sound/D_enter_01_1.mp3" }
-			], cb );
-			WebManager.inst.setData("SoundManager", mgr);
-		}
-		
 		function dispatchPreloadReady( cb:Dynamic ) {
 			try{
 				ExternalInterface.call( 'preloadReady', null );
@@ -238,7 +229,6 @@ class Main
 					setupWebManager,
 					loadConfig,
 					loadSwf,
-					loadMp3,
 					dispatchPreloadReady,
 					AppAPI.openPage( { mgr:WebManager.inst, page:HeaderUI, params: null } ),
 					AppAPI.openPage( { mgr:WebManager.inst, page:FooterUI, params: null } ),
@@ -285,7 +275,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( DetailFromPopup, null );
+			startWith( TechBoom, null );
 			#else
 			startWith( IntroPage, null );
 			#end

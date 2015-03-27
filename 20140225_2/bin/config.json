@@ -80,6 +80,16 @@
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechUltra.swf",
 			"local":"src/TechUltra.swf",
 			"which":"local"
+		},
+		"TechPhoto":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechPhoto.swf",
+			"local":"src/TechPhoto.swf",
+			"which":"local"
+		},
+		"TechConnect":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechConnect.swf",
+			"local":"src/TechConnect.swf",
+			"which":"local"
 		}
 	},
 	"moviePage":{

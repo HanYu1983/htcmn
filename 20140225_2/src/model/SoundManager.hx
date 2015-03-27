@@ -6,6 +6,8 @@ import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 import flash.net.URLRequest;
+import org.vic.web.WebManager;
+import view.DefaultPage;
 
 /**
  * ...
@@ -15,6 +17,16 @@ class SoundManager
 {
 	private var sounds = new Map<String, Sound>();
 	private var chs = new Array<SoundChannel>();
+	
+	public function getFromWebManager( mgr:WebManager, list:Array<{key:String, path:String}> ) {
+		for ( info in list ) {
+			if ( sounds.exists(info.key) == false ) {
+				var parse = info.path.split("/");
+				var sound = cast( mgr.getLoaderManager().getTask(parse[0]).getObject(parse[1]), Sound );
+				sounds[info.key] = sound;
+			}
+		}
+	}
 	
 	public function load( list:Array<{key:String, path:String}>, cb:Dynamic ) {
 		var countTo = function( num:Int, cb:Dynamic ) {

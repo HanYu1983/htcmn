@@ -48,8 +48,8 @@ class TechDolby extends DefaultTechPage
 	var isNormal:Bool = true;
 	var isPlay:Bool = false;
 	var currVideo:MovieClip;
-	var dolbyMediator = new DolbySoundMediator( SoundType.Normal );
-	var soundManager:SoundManager;
+	var dolbyMediator:DolbySoundMediator = new DolbySoundMediator( SoundType.Normal );
+	var soundManager:SoundManager = new SoundManager();
 	var btn_onTechDolbyClick_movie:MovieClip;
 	
 	public function new() 
@@ -57,24 +57,17 @@ class TechDolby extends DefaultTechPage
 		super();
 	}
 	
-	// 為了onMp3LoadComplete可以叫用super的方法而建立
-	// 這個方法只用來呼叫super的onOpenEvent沒有其它功能.
-	public function helpCallSuperOnOpenEvent(param:Dynamic, cb:Void->Void) {
-		super.onOpenEvent( param, cb );
-	}
-	
-	function onMp3LoadComplete( that, param, cb ) {
-		var count = 0;
-		return function( e:Event ) {
-			if ( ++count == 2 ) {
-				that.helpCallSuperOnOpenEvent( param, cb );
-			}
-		}
-	}
-	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
-		soundManager = cast( getWebManager().getData("SoundManager"), SoundManager );
+		soundManager.getFromWebManager( getWebManager(), [
+			{ key:"D_respond_01", path:"TechDolby/D_respond _01_1.mp3" },
+			{ key:"intro_02_1", path:"TechDolby/intro_02_1_1.mp3" }
+		] );
+		
+		dolbyMediator.getFromWebManager( getWebManager(), {
+			htc: "TechDolby/dolby_1.mp3",
+			other: "TechDolby/other_1.mp3"
+		});
 		
 		getRoot().addEventListener( 'onSoundAStart', onSoundAStart );
 		getRoot().addEventListener( 'onSoundBStart', onSoundBStart );
@@ -83,15 +76,8 @@ class TechDolby extends DefaultTechPage
 		getRoot().addEventListener( 'onFlvIntro02', onFlvIntro02 );
 		getRoot().addEventListener( 'onFlvRespond01', onFlvRespond01 );
 		getRoot().addEventListener( 'onFlvEnter01', onFlvEnter01 );
-
-		var that = this;
-		dolbyMediator.load( 
-			{ 
-				htc:getWebManager().getData( 'config' ).sound.techDolby.htc,
-				other:getWebManager().getData( 'config' ).sound.techDolby.other
-			}, function() {
-				that.helpCallSuperOnOpenEvent(param, cb);
-			});
+		
+		super.onOpenEvent( param, cb );
 	}
 	
 	var ch: SoundChannel;
@@ -195,7 +181,8 @@ class TechDolby extends DefaultTechPage
 	}
 	
 	function onFlvEnter01( e ) {
-		speech("D_enter_01_1");
+		// 目前聲音還在影片上
+		//speech("D_enter_01_1");
 	}
 	
 	function onTechDolbyMovieClick( e ) {
