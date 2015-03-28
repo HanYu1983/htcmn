@@ -1,7 +1,12 @@
 package view.tech;
+import caurina.transitions.Tweener;
+import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.MovieClip;
+import flash.events.Event;
+import flash.events.MouseEvent;
 import org.vic.utils.BasicUtils;
+import org.vic.web.BasicButton;
 
 /**
  * ...
@@ -10,7 +15,7 @@ import org.vic.utils.BasicUtils;
 class TechPhoto extends DefaultTechPage
 {
 	var ary_effect:Array<MovieClip> = [];
-	var ary_btn:Array<MovieClip> = [];
+	var ary_btn:Array<BasicButton> = [];
 
 	public function new() 
 	{
@@ -28,14 +33,66 @@ class TechPhoto extends DefaultTechPage
 						ary_effect.push( cast( disobj, MovieClip ));
 				case 'btn_effect_01', 'btn_effect_02', 'btn_effect_03',
 					 'btn_effect_04', 'btn_effect_05', 'btn_effect_06':
-						ary_btn.push( cast( disobj, MovieClip ));
+						ary_btn.push( new BasicButton( cast( disobj, MovieClip )));
 			}
 		});
-		trace( ary_effect );
-		trace( ary_btn );
 		
+		Lambda.foreach( ary_btn, function( btn:BasicButton ) {
+			wakeUpButton( btn );
+			btn.getShape().addEventListener( MouseEvent.CLICK, onBtnClick );
+			return true;
+		} );
 	}
 	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		Lambda.foreach( ary_btn, function( btn:BasicButton ) {
+			sleepButton( btn );
+			btn.getShape().removeEventListener( MouseEvent.CLICK, onBtnClick );
+			return true;
+		} );
+		super.onCloseEvent(cb);
+	}
+	
+	function showEffect( id: String ) {
+		var effectId = "mc_effect_0" + id;
+		for ( effect in ary_effect ) {
+			if ( effect.name == effectId ) {
+				effect.gotoAndPlay( 2 );
+			}
+			Tweener.addTween( effect, { alpha: effect.name == effectId ? 1 : 0, time: 0.3 } );
+		}
+	}
+	
+	function onBtnClick( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, MovieClip );
+		var id = btn.name.charAt( btn.name.length - 1 );
+		if ( id == "1" ) {
+			getRoot().playRespond();
+		}
+		showEffect( id );
+		for ( basic in ary_btn ) {
+			if ( basic.getShape() == btn ) {
+				sleepButton( basic );
+			} else {
+				wakeUpButton( basic );
+				basic.getShape().gotoAndStop(1);
+			}
+		}
+		SimpleController.onButtonInteract( btn );
+		requestWaitAnimation();
+	}
+	/*
+	function onBtnRollOut( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, MovieClip );
+		btn.gotoAndPlay("out");
+	}
+	
+	function onBtnRollOver( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, MovieClip );
+		btn.gotoAndPlay("over");
+	}
+	*/
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
