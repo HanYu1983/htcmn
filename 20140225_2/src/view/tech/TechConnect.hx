@@ -97,7 +97,7 @@ class TechConnect extends DefaultTechPage
 		if ( oldPoint != null ) {
 			var velocity = newPoint.subtract( oldPoint );
 			velList.push( velocity );
-			if ( velList.length > 10 ) {
+			if ( velList.length > 5 ) {
 				velList.shift();
 			}
 		}
@@ -105,14 +105,13 @@ class TechConnect extends DefaultTechPage
 	}
 	
 	function checkIsMoveUp() {
-		if ( velList.length < 10 ) {
+		if ( velList.length < 5 ) {
 			return false;
 		}
-		
 		var sum = Lambda.fold( velList, function( vel:Point, sum:Point ) {
 			return vel.add(sum);
 		}, new Point() );
-		var average = new Point( sum.x / 10, sum.y / 10 );
+		var average = new Point( sum.x / 5, sum.y / 5 );
 		return average.y < -5 && Math.abs(average.y) / Math.abs( average.x ) > 10;
 	}
 	
