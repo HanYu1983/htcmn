@@ -3,13 +3,13 @@ import model.AppAPI;
 import org.vic.web.WebCommand;
 import view.LuckyDrawPage;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
 import view.tech.TechDolby;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.tech.TechUltra;
 
 /**
@@ -45,16 +45,16 @@ class OnTechFrameBtnClick extends DefaultCommand
 				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechBlink, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_boom: function() {
-				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechBoom, params: null } ) (null);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechConnect, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_person: function() {
-				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechPerson, params: null } ) (null);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechTheme, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_photo: function() {
 				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechPhoto, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_situ: function() {
-				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechSitu, params: null } ) (null);
+				AppAPI.changeTechPage( { mgr:getWebManager(), page: TechAssist, params: null } ) (null);
 			},
 			btn_onTechFrameBtnClick_share: function() {
 				AppAPI.openPage( {

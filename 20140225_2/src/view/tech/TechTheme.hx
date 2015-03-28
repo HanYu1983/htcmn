@@ -7,12 +7,11 @@ import org.vic.utils.BasicUtils;
  * ...
  * @author han
  */
-class TechSitu extends DefaultTechPage
+class TechTheme extends DefaultTechPage
 {
 	var ary_btn:Array<MovieClip> = [];
 	var ary_screen:Array<MovieClip> = [];
-	var ary_bg:Array<MovieClip> = [];
-	
+
 	public function new() 
 	{
 		super();
@@ -24,29 +23,25 @@ class TechSitu extends DefaultTechPage
 		
 		BasicUtils.revealObj( getRoot(), function( disobj:DisplayObject ) {
 			switch( disobj.name ) {
-				case 'btn_01', 'btn_02', 'btn_03':
+				case 'btn_01', 'btn_02', 'btn_more':
 					ary_btn.push( cast( disobj, MovieClip ) );
-				case 'mc_screen_01', 'mc_screen_02', 'mc_screen_03':
+				case 'mc_01', 'mc_02':
 					ary_screen.push( cast( disobj, MovieClip ) );
-				case 'mc_bg_01', 'mc_bg_02', 'mc_bg_03':
-					ary_bg.push( cast( disobj, MovieClip ) );
-					
 			}
 		});
 		
 		getWebManager().log( ary_btn );
 		getWebManager().log( ary_screen );
-		getWebManager().log( ary_bg );
 	}
 	
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
-		return {name:'TechAssist', path:config.swfPath.TechAssist[ config.swfPath.TechAssist.which ] };
+		return {name:'TechTheme', path:config.swfPath.TechTheme[ config.swfPath.TechTheme.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'TechAssist', path:'mc_anim' };
+		return {name:'TechTheme', path:'mc_anim' };
 	}
 }

@@ -15,11 +15,11 @@ import view.MoviePage;
 import view.ProductPage;
 import view.RelativePage;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechFrame;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.TechPage;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
@@ -32,7 +32,7 @@ import view.tech.TechUltra;
 class Tool
 {
 	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage, HtcInPage];
-	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechBoom, TechSitu, TechPerson, TechPhoto];
+	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechConnect, TechAssist, TechTheme, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	
 	public static function getURL(url:String, target:String = "_blank") {

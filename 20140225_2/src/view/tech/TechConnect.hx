@@ -6,7 +6,7 @@ import org.vic.utils.BasicUtils;
  * ...
  * @author han
  */
-class TechBoom extends DefaultTechPage
+class TechConnect extends DefaultTechPage
 {
 	var mc_phone:DisplayObject;
 	var mc_finger:DisplayObject;

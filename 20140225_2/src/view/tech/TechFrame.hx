@@ -62,13 +62,13 @@ class TechFrame extends DefaultPage
 				return "btn_onTechFrameBtnClick_Camera";
 			case TechBlink:
 				return "btn_onTechFrameBtnClick_blink";
-			case TechBoom:
+			case TechConnect:
 				return "btn_onTechFrameBtnClick_boom";
-			case TechPerson:
+			case TechTheme:
 				return "btn_onTechFrameBtnClick_person";
 			case TechPhoto:
 				return "btn_onTechFrameBtnClick_photo";
-			case TechSitu:
+			case TechAssist:
 				return "btn_onTechFrameBtnClick_situ";
 			default:
 				throw new Error("no this page");

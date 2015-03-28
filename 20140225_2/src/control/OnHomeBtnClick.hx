@@ -6,14 +6,14 @@ import model.AppAPI;
 import org.vic.web.IWebView;
 import org.vic.web.WebCommand;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
 import view.tech.TechDolby;
 import view.tech.TechFrame;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TechPage;
 
@@ -100,7 +100,7 @@ class OnHomeBtnClick extends DefaultCommand
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechPerson));
+					}) (thenOpen(TechTheme));
 			},
 			btn_onHomeBtnClick_situ: function() {
 				AppAPI.changePage( 
@@ -109,7 +109,7 @@ class OnHomeBtnClick extends DefaultCommand
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechSitu));
+					}) (thenOpen(TechAssist));
 			},
 			btn_onHomeBtnClick_blink: function() {
 				AppAPI.changePage( 
@@ -136,7 +136,7 @@ class OnHomeBtnClick extends DefaultCommand
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechBoom));
+					}) (thenOpen(TechConnect));
 			}
 		}
 		var targetPage:String = args[1].name;
