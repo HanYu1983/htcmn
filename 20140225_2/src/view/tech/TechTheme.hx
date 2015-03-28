@@ -37,8 +37,6 @@ class TechTheme extends DefaultTechPage
 			wakeUpButton( btn );
 			btn.getShape().addEventListener( MouseEvent.CLICK, onBtnClick );
 		}
-		getWebManager().log( ary_btn );
-		getWebManager().log( ary_screen );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
