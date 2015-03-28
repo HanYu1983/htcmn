@@ -5,6 +5,7 @@ import flash.errors.Error;
 import model.AppAPI;
 import helper.IResize;
 import helper.Tool;
+import model.Const;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 import org.vic.web.IWebView;
@@ -77,13 +78,17 @@ class TechFrame extends DefaultPage
 	
 	public function animateButtonByTechPage( pageClz:Dynamic ) {
 		
-		var disableBtnNames:Array<String> = [
-			"btn_onTechFrameBtnClick_blink",
-			"btn_onTechFrameBtnClick_boom",
-			"btn_onTechFrameBtnClick_person",
-			"btn_onTechFrameBtnClick_photo",
-			"btn_onTechFrameBtnClick_situ"
-		];
+		var disableBtnNames = if ( Const.OPEN_ALL_TECH_PAGE ) {
+				[ "btn_onTechFrameBtnClick_blink" ];
+			} else {
+				[
+					"btn_onTechFrameBtnClick_blink",
+					"btn_onTechFrameBtnClick_boom",
+					"btn_onTechFrameBtnClick_person",
+					"btn_onTechFrameBtnClick_photo",
+					"btn_onTechFrameBtnClick_situ"
+				];
+			}
 		
 		var btnNames:Array<String> = [
 			"btn_onTechFrameBtnClick_Double",

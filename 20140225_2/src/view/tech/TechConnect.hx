@@ -54,6 +54,7 @@ class TechConnect extends DefaultTechPage
 	var waveOpened = false;
 	
 	function openWave() {
+		requestWaitAnimation();
 		getRoot().playRespond();
 		Lambda.foreach( ary_wave, function( wave:DisplayObject ) {
 			wave.alpha = 1;
@@ -81,6 +82,7 @@ class TechConnect extends DefaultTechPage
 			recordVelocity();
 			if ( waveOpened == false && checkIsMoveUp() ) {
 				openWave();
+				visibleHand( false );
 			}
 			if ( waveOpened == false ) {
 				visibleHand( true );

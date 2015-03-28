@@ -129,13 +129,19 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function disableUnavailableButton() {
-		var disableBtnNames:Array<String> = [
-			"btn_onHomeBtnClick_blink",
-			"btn_onHomeBtnClick_boom",
-			"btn_onHomeBtnClick_person",
-			"btn_onHomeBtnClick_photo",
-			"btn_onHomeBtnClick_situ"
-		];
+
+		var disableBtnNames = 
+			if ( Const.OPEN_ALL_TECH_PAGE ) {
+				[ "btn_onHomeBtnClick_blink" ];
+			} else {
+				[
+					"btn_onHomeBtnClick_blink",
+					"btn_onHomeBtnClick_boom",
+					"btn_onHomeBtnClick_person",
+					"btn_onHomeBtnClick_photo",
+					"btn_onHomeBtnClick_situ"
+				];
+			}
 		
 		function getButton(name:String):BasicButton {
 			return this.getButtonsByName(name);
