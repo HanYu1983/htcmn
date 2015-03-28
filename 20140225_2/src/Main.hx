@@ -67,14 +67,14 @@ import view.ProductPage;
 import view.RelativePage;
 import view.TechPage;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
 import view.tech.TechDolby;
 import view.tech.TechFrame;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TutorialMask;
 /**
@@ -205,14 +205,14 @@ class Main
 				return switch( p ) {
 						case 
 							TechBlink |
-							TechBoom |
+							TechConnect |
 							TechCamera |
 							TechDouble |
 							TechDolby |
 							TechFrame |
-							TechPerson |
+							TechTheme |
 							TechPhoto |
-							TechSitu |
+							TechAssist |
 							TechUltra:
 							AppAPI.openPage( { mgr:WebManager.inst, page:TechFrame, params: null } );
 							
@@ -247,14 +247,14 @@ class Main
 				var page : Class<IWebView> = switch( pageStr ) {
 					case 'TechPage': TechPage;
 					case 'TechBlink': TechBlink;
-					case 'TechBoom': TechBoom;
+					case 'TechBoom': TechConnect;
 					case 'TechCamera': TechCamera;
 					case 'TechDouble': TechDouble;
 					case 'TechDolby': TechDolby;
 					case 'TechFrame': TechFrame;
-					case 'TechPerson': TechPerson;
+					case 'TechPerson': TechTheme;
 					case 'TechPhoto': TechPhoto;
-					case 'TechSitu': TechSitu;
+					case 'TechSitu': TechAssist;
 					case 'TechUltra': TechUltra;
 					
 					case 'MoviePage': MoviePage;
@@ -275,7 +275,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechBoom, null );
+			startWith( TechTheme, null );
 			#else
 			startWith( IntroPage, null );
 			#end
