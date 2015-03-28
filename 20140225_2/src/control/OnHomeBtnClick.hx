@@ -94,6 +94,8 @@ class OnHomeBtnClick extends DefaultCommand
 					}) (thenOpen(TechCamera));*/
 			},
 			btn_onHomeBtnClick_person: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_person' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -101,8 +103,11 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechTheme));
+					*/
 			},
 			btn_onHomeBtnClick_situ: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_situ' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -110,8 +115,11 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechAssist));
+					*/
 			},
 			btn_onHomeBtnClick_blink: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_blink' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -119,8 +127,11 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechBlink));
+					*/
 			},
 			btn_onHomeBtnClick_photo: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_photo' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -128,15 +139,18 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechPhoto));
+					*/
 			},
 			btn_onHomeBtnClick_boom: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_boom' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechConnect));
+					}) (thenOpen(TechConnect));*/
 			}
 		}
 		var targetPage:String = args[1].name;

@@ -121,7 +121,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	var btnName = '';
 	public function onBtnEnterClick( btnName:String ):Void {
 		this.btnName = btnName;
-		getRoot().dispatchEvent( new Event( btnName ));
+		getRoot().dispatchEvent( new Event( 'btn_onHomeBtnClick_Double' ));
 	}
 	
 	function on_flv_B_respond_finish( e ) {
