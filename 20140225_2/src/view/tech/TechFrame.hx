@@ -79,7 +79,7 @@ class TechFrame extends DefaultPage
 	public function animateButtonByTechPage( pageClz:Dynamic ) {
 		
 		var disableBtnNames = if ( Const.OPEN_ALL_TECH_PAGE ) {
-				[ "btn_onTechFrameBtnClick_blink" ];
+				[];
 			} else {
 				[
 					"btn_onTechFrameBtnClick_blink",

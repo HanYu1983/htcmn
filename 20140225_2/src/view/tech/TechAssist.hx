@@ -82,8 +82,8 @@ class TechAssist extends DefaultTechPage
 		var btn = cast( e.currentTarget, DisplayObject );
 		
 		switch( btn.name ) {
-			case "btn_01": getRoot().playRespond();
-			case "btn_02": getRoot().playRespond2();
+			case "btn_01": getRoot().playRespond2();
+			case "btn_02": getRoot().playRespond();
 			case "btn_03": getRoot().playRespond3();
 		}
 		

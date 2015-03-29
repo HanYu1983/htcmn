@@ -132,7 +132,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 
 		var disableBtnNames = 
 			if ( Const.OPEN_ALL_TECH_PAGE ) {
-				[ "btn_onHomeBtnClick_blink" ];
+				[];
 			} else {
 				[
 					"btn_onHomeBtnClick_blink",
