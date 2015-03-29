@@ -49,6 +49,10 @@ class OnFooterBtnClick extends DefaultCommand
 			btn_onFooterBtnClick_music: function(){
 				var page:FooterUI = cast( getWebManager().getPage( FooterUI ), FooterUI );
 				page.switchMusic();
+			},
+			btn_onFooterBtnClick_sell: function(){
+				var url = getWebManager().getData( 'config' ).url.sell;
+				Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;

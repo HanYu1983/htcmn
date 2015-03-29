@@ -31,7 +31,7 @@ class TechConnect extends DefaultTechPage
 				case 'mc_phone':
 					mc_phone = disobj;
 				case 'mc_wave_01', 'mc_wave_02', 'mc_wave_03', 'mc_wave_04', 'mc_wave_05',
-					 'mc_wave_06', 'mc_wave_07', 'mc_wave_08', 'mc_wave_09', 'mc_wave_10':
+					 'mc_wave_06', 'mc_wave_07', 'mc_wave_08', 'mc_wave_09', 'mc_wave_10', 'mc_txt1':
 						ary_wave.push( disobj );
 			}
 		});
@@ -72,7 +72,7 @@ class TechConnect extends DefaultTechPage
 	
 	function openWave() {
 		Lambda.foreach( ary_wave, function( wave:DisplayObject ) {
-			wave.alpha = 1;
+			Tweener.addTween( wave, { alpha:1, time:.5 } );
 			return true;
 		} );
 	}

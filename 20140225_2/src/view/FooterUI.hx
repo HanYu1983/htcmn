@@ -60,16 +60,16 @@ class FooterUI extends DefaultPage
 		_music.visible = false;
 		super.onOpenEvent(param, cb);
 	}
-	
+	/*
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
 		return {name:'Footer', path:config.swfPath.Footer[ config.swfPath.Footer.which ] };
 	}
-	
+	*/
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'Footer', path:'Footer' };
+		return {name:'Preload', path:'Footer' };
 	}
 	
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {

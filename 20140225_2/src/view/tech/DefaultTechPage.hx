@@ -26,6 +26,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 	var _mc_person:MovieClip;
 	var _mc_controller:MovieClip;
 	var mc_bubble:MovieClip;
+	var mc_hint:DisplayObject;
 	
 	public function new() 
 	{
@@ -80,6 +81,12 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		getRoot().addEventListener( 'startPerson', onStartPerson );
 		getRoot().addEventListener( 'startItem', onStartItem );
 		getRoot().addEventListener( 'startPlay', onStartPlay );
+		
+		if ( _mc_controller != null ) {
+			_mc_controller.mouseChildren = false;
+			_mc_controller.enabled = false;
+		}
+		
 		super.onOpenEvent(param, cb);
 		SoundMixer.stopAll();
 	}
@@ -93,6 +100,12 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		closeRequestAnimationTimer();
 		getRoot().closeAllAnimation();
 		super.onCloseEvent(cb);
+	}
+	
+	function closeHint() {
+		if ( mc_hint != null && mc_hint.alpha == 1 ) {
+			Tweener.addTween( mc_hint, { alpha:0, time:.5 } );
+		}
 	}
 	
 	function onStartPlay( e ) {
@@ -117,11 +130,18 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		scriptEnable = true;
 		openRequestAnimationTimer();
 		SimpleController.onDefaultTechPageAnimationEnded( this );
-		/*
-		if ( _mc_controller != null ) {
-			_mc_controller.alpha = 0;
-			Tweener.addTween( _mc_controller, {alpha:1, time:1 } );
-		}*/
+	
+		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
+			switch( obj.name ) {
+				case 'mc_hint':
+					mc_hint = obj;
+			}
+		});
+		
+		if( _mc_controller != null ){
+			_mc_controller.mouseChildren = true;
+			_mc_controller.enabled = true;
+		}
 	}
 	
 	// ============ Request Wait Animation Timer ==================//
