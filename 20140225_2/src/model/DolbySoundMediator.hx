@@ -22,21 +22,12 @@ enum SoundType{
  */
 class DolbySoundMediator
 {
-	var sound:Map<SoundType, Sound> = new Map<SoundType, Sound>();
-	var channel:Map<SoundType, SoundChannel> = new Map<SoundType, SoundChannel>();
-	var currtype:SoundType = SoundType.HTC;
+	var sound = new Map<SoundType, Sound>();
+	var channel = new Map<SoundType, SoundChannel>();
+	var currtype = SoundType.HTC;
 	
 	public function new( type:SoundType ) {
 		currtype = type;
-	}
-	
-	static function onLoadComplete( onLoad:Dynamic ) {
-		var count = 0;
-		return function( e:Event ) {
-			if ( ++count == 2 ) {
-				onLoad( null, null );
-			}
-		}
 	}
 	
 	public function getFromWebManager( mgr:WebManager, path: { htc:String, other:String } ) {
@@ -48,6 +39,15 @@ class DolbySoundMediator
 		
 		sound[SoundType.HTC] = soundHTC;
 		sound[SoundType.Normal] = soundNormal;
+	}
+	
+	static function onLoadComplete( onLoad:Dynamic ) {
+		var count = 0;
+		return function( e:Event ) {
+			if ( ++count == 2 ) {
+				onLoad( null, null );
+			}
+		}
 	}
 		
 	public function load( path:Dynamic, onLoad:Dynamic ) {
@@ -116,6 +116,11 @@ class DolbySoundMediator
 	function stopWithType( type: SoundType ):Float{
 		if ( channel.exists( type ) ) {
 			var ch = channel[type];
+			// 這行似乎不可能, 但不加會當掉, 因為ch為null!!!
+			if ( ch == null ) {
+				channel.remove( type );
+				return -1;
+			}
 			var pos = ch.position;
 			ch.stop();
 			channel.remove( type );

@@ -205,8 +205,10 @@ class TechDolby extends DefaultTechPage
 		changeElecEffectWithType( target );
 		dolbyMediator.toggle( isPlay );
 		if ( target == 'dolby' ) {
-			// 播人物互動的話dolby聲音會不見
 			getRoot().playRespond();
+		} else {
+			stopSpeech();
+			getRoot().playStop();
 		}
 		requestWaitAnimation();
 	}
