@@ -93,7 +93,7 @@ class TechDouble extends DefaultTechPage
 	}
 	
 	public function changeColor( which ) {
-		closeHint();
+		
 		_mc_phoneA.alpha = 0;
 		_mc_phoneB.alpha = 0;
 		_mc_phoneC.alpha = 0;

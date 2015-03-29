@@ -211,6 +211,7 @@ class TechDolby extends DefaultTechPage
 			getRoot().playStop();
 		}
 		requestWaitAnimation();
+		closeHint();
 	}
 	
 	function onBtnPlayClick( e ) {

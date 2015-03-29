@@ -158,7 +158,6 @@ class TechCamera extends DefaultTechPage
 		mc_photoOffset.y = offset.y/ _scale + dragOffset.y;
 	
 		boundingPhotoOffset();
-		closeHint();
 	}
 	
 	function boundingPhotoOffset() {
@@ -194,7 +193,6 @@ class TechCamera extends DefaultTechPage
 		if ( _scale == 2 ) {
 			onMaxScale();
 		}
-		closeHint();
 	}
 	
 	
