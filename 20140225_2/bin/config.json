@@ -105,29 +105,34 @@
 	"moviePage":{
 		"list":[
 			{
+				"id":"yRuZY-V9dKw",
+				"name":"HTC One M9全球首發 即日起在全台HTC專賣店盛大開賣",
+				"img":"images/movie/006.jpg"
+			},
+			{
 				"id":"dZNIQDtUQP0",
 				"name":"HTC One M9登峰造極萬中選一 ",
-				"img":"images/movie/003.jpg"
+				"img":"images/movie/001.jpg"
 			},
 			{
 				"id":"bZtG3cZfbyI",
 				"name":"HTC One M9締造世界之最淬鍊傳奇之美",
-				"img":"images/movie/004.jpg"
+				"img":"images/movie/002.jpg"
 			},
 			{
 				"id":"jIuysOdCktk",
 				"name":"HTC One M9獨步全球率先登台",
-				"img":"images/movie/005.jpg"
+				"img":"images/movie/003.jpg"
 			},
 			{
 				"id":"ltJnQLbIvTk",
 				"name":"HTC One M9讓您隨心自訂專屬個人化主題",
-				"img":"images/movie/006.jpg"
+				"img":"images/movie/004.jpg"
 			},
 			{
 				"id":"Ej9wuyyUagw",
 				"name":"HTC One M9 + Dolby Audio環繞音效給你無比震撼的聽覺享受 ",
-				"img":"images/movie/007.jpg"
+				"img":"images/movie/005.jpg"
 			}
 		]
 	},
