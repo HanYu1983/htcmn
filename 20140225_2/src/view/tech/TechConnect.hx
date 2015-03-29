@@ -4,6 +4,7 @@ import flash.display.DisplayObject;
 import flash.events.Event;
 import flash.geom.Point;
 import flash.ui.Mouse;
+import haxe.Timer;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -35,9 +36,6 @@ class TechConnect extends DefaultTechPage
 			}
 		});
 		
-		getWebManager().log( mc_phone );
-		getWebManager().log( ary_wave );
-		
 		addEventListener( Event.ENTER_FRAME, onEnterFrame );
 		
 		mc_finger = getLoaderManager().getTask( 'TechConnect' ).getObject( 'Finger' );
@@ -51,16 +49,32 @@ class TechConnect extends DefaultTechPage
 		super.onCloseEvent(cb);
 	}
 	
-	var waveOpened = false;
+	var triggered = false;
+	var reopenAfter = 10;
 	
-	function openWave() {
+	function onTrigger() {
+		openWave();
 		requestWaitAnimation();
 		getRoot().playRespond();
+		triggered = true;
+		Timer.delay( function() {
+			triggered = false;
+			closeWave();
+		}, reopenAfter* 1000);
+	}
+	
+	function closeWave() {
+		Lambda.foreach( ary_wave, function( wave:DisplayObject ) {
+			wave.alpha = 0;
+			return true;
+		} );
+	}
+	
+	function openWave() {
 		Lambda.foreach( ary_wave, function( wave:DisplayObject ) {
 			wave.alpha = 1;
 			return true;
 		} );
-		waveOpened = true;
 	}
 	
 	var oldPoint:Point;
@@ -79,12 +93,12 @@ class TechConnect extends DefaultTechPage
 		if ( mc_phone.hitTestPoint( stage.mouseX, stage.mouseY ) ) {
 			mc_finger.x = stage.mouseX - mc_finger.width/2;
 			mc_finger.y = stage.mouseY - mc_finger.height/2;
-			recordVelocity();
-			if ( waveOpened == false && checkIsMoveUp() ) {
-				openWave();
+			recordVelocity( 5 );
+			if ( triggered == false && checkIsMoveUp() ) {
+				onTrigger();
 				visibleHand( false );
 			}
-			if ( waveOpened == false ) {
+			if ( triggered == false ) {
 				visibleHand( true );
 			}
 		} else {
@@ -92,12 +106,12 @@ class TechConnect extends DefaultTechPage
 		}
 	}
 	
-	function recordVelocity() {
+	function recordVelocity(cut:Int) {
 		var newPoint = new Point( stage.mouseX, stage.mouseY );
 		if ( oldPoint != null ) {
 			var velocity = newPoint.subtract( oldPoint );
 			velList.push( velocity );
-			if ( velList.length > 5 ) {
+			if ( velList.length > cut ) {
 				velList.shift();
 			}
 		}
@@ -105,14 +119,11 @@ class TechConnect extends DefaultTechPage
 	}
 	
 	function checkIsMoveUp() {
-		if ( velList.length < 5 ) {
-			return false;
-		}
 		var sum = Lambda.fold( velList, function( vel:Point, sum:Point ) {
 			return vel.add(sum);
 		}, new Point() );
-		var average = new Point( sum.x / 5, sum.y / 5 );
-		return average.y < -5 && Math.abs(average.y) / Math.abs( average.x ) > 10;
+		var average = new Point( sum.x / velList.length, sum.y / velList.length );
+		return average.y < -2 && Math.abs(average.y) / Math.abs( average.x ) > 2;
 	}
 	
 	override function getSwfInfo():Dynamic 
