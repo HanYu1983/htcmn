@@ -64,13 +64,14 @@ class TechPhoto extends DefaultTechPage
 		}
 	}
 	
-	function onBtnClick( e:MouseEvent ) {
-		var btn = cast( e.currentTarget, MovieClip );
+	function personRespondForButton( btn:DisplayObject ) {
 		var id = btn.name.charAt( btn.name.length - 1 );
 		if ( id == "1" ) {
 			getRoot().playRespond();
 		}
-		showEffect( id );
+	}
+	
+	function handleButtonStateForButton( btn:DisplayObject ) {
 		for ( basic in ary_btn ) {
 			if ( basic.getShape() == btn ) {
 				sleepButton( basic );
@@ -79,6 +80,17 @@ class TechPhoto extends DefaultTechPage
 				basic.getShape().gotoAndStop(1);
 			}
 		}
+	}
+	
+	function onBtnClick( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, MovieClip );
+		personRespondForButton( btn );
+		handleButtonStateForButton( btn );
+		closeHint();
+		
+		var id = btn.name.charAt( btn.name.length - 1 );
+		showEffect( id );
+		
 		SimpleController.onButtonInteract( btn );
 		requestWaitAnimation();
 	}

@@ -53,10 +53,11 @@ class TechConnect extends DefaultTechPage
 	var reopenAfter = 10;
 	
 	function onTrigger() {
+		triggered = true;
 		openWave();
+		closeHint();
 		requestWaitAnimation();
 		getRoot().playRespond();
-		triggered = true;
 		Timer.delay( function() {
 			triggered = false;
 			closeWave();

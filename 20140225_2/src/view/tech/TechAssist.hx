@@ -89,17 +89,15 @@ class TechAssist extends DefaultTechPage
 		}
 	}
 	
-	function onBtnClick( e:MouseEvent ) {
-		var btn = cast( e.currentTarget, DisplayObject );
-		
+	function personRespondForButton( btn:DisplayObject ) {
 		switch( btn.name ) {
 			case "btn_01": getRoot().playRespond2();
 			case "btn_02": getRoot().playRespond();
 			case "btn_03": getRoot().playRespond3();
 		}
-		
-		var id = btn.name.charAt( btn.name.length - 1);
-		showScreen( id );
+	}
+	
+	function handleButtonStateForButton( btn:DisplayObject ) {
 		for ( basic in ary_btn ) {
 			if ( basic.getShape() == btn ) {
 				sleepButton( basic );
@@ -107,6 +105,17 @@ class TechAssist extends DefaultTechPage
 				wakeUpButton( basic, true );
 			}
 		}
+	}
+	
+	function onBtnClick( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, DisplayObject );
+		
+		closeHint();
+		personRespondForButton( btn );
+		handleButtonStateForButton( btn );
+		
+		var id = btn.name.charAt( btn.name.length - 1);
+		showScreen( id );
 		
 		SimpleController.onButtonInteract( btn );
 		requestWaitAnimation();
