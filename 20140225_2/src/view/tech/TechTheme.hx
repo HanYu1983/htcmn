@@ -62,6 +62,9 @@ class TechTheme extends DefaultTechPage
 	
 	function onBtnClick( e:MouseEvent ) {
 		var btn = cast( e.currentTarget, DisplayObject );
+		
+		closeHint();
+		
 		switch( btn.name ) {
 			case "btn_01" | "btn_02":
 				if ( btn.name == "btn_02" ) {
