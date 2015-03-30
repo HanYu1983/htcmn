@@ -19,6 +19,7 @@ class FooterUI extends DefaultPage
 	var _righter:DisplayObject;
 	var _music:MovieClip;
 	var _mc_btns:DisplayObject;
+	var mc_rightBtns:DisplayObject;
 
 	public function new() 
 	{
@@ -54,6 +55,8 @@ class FooterUI extends DefaultPage
 					_music = cast( obj, MovieClip );
 				case 'mc_btns':
 					_mc_btns = obj;
+				case 'mc_rightBtns':
+					mc_rightBtns = obj;
 					
 			}
 		});
@@ -79,6 +82,9 @@ class FooterUI extends DefaultPage
 		}
 		if ( _righter != null ) {
 			_righter.x = w - _righter.width;
+		}
+		if ( mc_rightBtns != null ) {
+			mc_rightBtns.x = w - mc_rightBtns.width + 90;
 		}
 	}
 

@@ -53,6 +53,30 @@ class OnFooterBtnClick extends DefaultCommand
 			btn_onFooterBtnClick_sell: function(){
 				var url = getWebManager().getData( 'config' ).url.sell;
 				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_htcSell:function() {
+				var url = getWebManager().getData( 'config' ).url.htcSell;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_chi:function() {
+				var url = getWebManager().getData( 'config' ).url.chi;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_far:function() {
+				var url = getWebManager().getData( 'config' ).url.far;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_taiwan:function() {
+				var url = getWebManager().getData( 'config' ).url.taiwan;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_a:function() {
+				var url = getWebManager().getData( 'config' ).url.a;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_star:function() {
+				var url = getWebManager().getData( 'config' ).url.star;
+				Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;
