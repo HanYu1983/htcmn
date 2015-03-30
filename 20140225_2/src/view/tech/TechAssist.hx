@@ -75,7 +75,7 @@ class TechAssist extends DefaultTechPage
 			if ( bg.name == bgid ) {
 				bg.gotoAndPlay(2);
 			} else {
-				bg.gotoAndPlay(1);
+				bg.gotoAndStop(1);
 			}
 		}
 		
