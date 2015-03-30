@@ -112,6 +112,7 @@ class TechUltra extends DefaultTechPage
 				SoundMixer.stopAll();
 				getRoot().playRespond();
 				requestWaitAnimation();
+				closeHint();
 			}
 		}
 	}

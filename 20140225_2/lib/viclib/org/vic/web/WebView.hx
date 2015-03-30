@@ -277,9 +277,13 @@ class WebView extends Sprite implements IWebView
 			}
 		}
 		if ( !mc.hasEventListener(MouseEvent.CLICK )) {
-			mc.addEventListener(MouseEvent.CLICK, onClick );
-			mc.addEventListener(MouseEvent.MOUSE_OVER, onOver );
-			mc.addEventListener(MouseEvent.MOUSE_OUT, onOut );
+			mc.addEventListener(MouseEvent.CLICK, onClick );	
+		}
+		if ( !mc.hasEventListener(MouseEvent.MOUSE_OVER )) {
+			mc.addEventListener(MouseEvent.MOUSE_OVER, onOver );	
+		}
+		if ( !mc.hasEventListener(MouseEvent.MOUSE_OUT )) {
+			mc.addEventListener(MouseEvent.MOUSE_OUT, onOut );	
 		}
 	}
 	

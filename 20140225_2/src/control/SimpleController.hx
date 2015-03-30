@@ -30,14 +30,14 @@ import view.ProductPhotoPage;
 import view.RelativePage;
 import view.tech.DefaultTechPage;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechCamera;
 import view.tech.TechDolby;
 import view.tech.TechDouble;
 import view.tech.TechFrame;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TechPage;
 import view.TutorialMask;
@@ -135,7 +135,7 @@ class SimpleController
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechPerson));
+					}) (thenOpen(TechTheme));
 			},
 			btn_onHomeBtnClick_situ: function() {
 				AppAPI.changePage( 
@@ -144,7 +144,7 @@ class SimpleController
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechSitu));
+					}) (thenOpen(TechAssist));
 			},
 			btn_onHomeBtnClick_blink: function() {
 				AppAPI.changePage( 
@@ -171,7 +171,7 @@ class SimpleController
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechBoom));
+					}) (thenOpen(TechConnect));
 			}
 		}
 		Reflect.field(goto, targetPage)();
@@ -327,7 +327,7 @@ class SimpleController
 					"TechPage";
 				} else if (Std.is(page, TechBlink)) {
 					"TechBlink";
-				} else if (Std.is(page, TechBoom)) {
+				} else if (Std.is(page, TechConnect)) {
 					"TechBoom";
 				} else if (Std.is(page, TechCamera)) {
 					"TechCamera";
@@ -335,11 +335,11 @@ class SimpleController
 					"TechDouble";
 				} else if (Std.is(page, TechDolby)) {
 					"TechDolby";
-				} else if (Std.is(page, TechPerson)) {
+				} else if (Std.is(page, TechTheme)) {
 					"TechPerson";
 				} else if (Std.is(page, TechPhoto)) {
 					"TechPhoto";
-				} else if (Std.is(page, TechSitu)) {
+				} else if (Std.is(page, TechAssist)) {
 					"TechSitu";
 				} else if (Std.is(page, TechUltra)) {
 					"TechUltra";

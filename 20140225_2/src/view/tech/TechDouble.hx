@@ -51,7 +51,7 @@ class TechDouble extends DefaultTechPage
 	}
 	
 	public function changeSide( which ) {
-		
+		closeHint();
 		switch( which ) {
 			case 'a':
 				gotoSideA( _mc_phoneA );

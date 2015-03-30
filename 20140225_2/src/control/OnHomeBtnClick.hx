@@ -6,14 +6,14 @@ import model.AppAPI;
 import org.vic.web.IWebView;
 import org.vic.web.WebCommand;
 import view.tech.TechBlink;
-import view.tech.TechBoom;
+import view.tech.TechConnect;
 import view.tech.TechCamera;
 import view.tech.TechDouble;
 import view.tech.TechDolby;
 import view.tech.TechFrame;
-import view.tech.TechPerson;
+import view.tech.TechTheme;
 import view.tech.TechPhoto;
-import view.tech.TechSitu;
+import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TechPage;
 
@@ -94,24 +94,32 @@ class OnHomeBtnClick extends DefaultCommand
 					}) (thenOpen(TechCamera));*/
 			},
 			btn_onHomeBtnClick_person: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_person' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechPerson));
+					}) (thenOpen(TechTheme));
+					*/
 			},
 			btn_onHomeBtnClick_situ: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_situ' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechSitu));
+					}) (thenOpen(TechAssist));
+					*/
 			},
 			btn_onHomeBtnClick_blink: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_blink' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -119,8 +127,11 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechBlink));
+					*/
 			},
 			btn_onHomeBtnClick_photo: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_photo' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
@@ -128,15 +139,18 @@ class OnHomeBtnClick extends DefaultCommand
 						params: { } 
 						
 					}) (thenOpen(TechPhoto));
+					*/
 			},
 			btn_onHomeBtnClick_boom: function() {
+				cast( getWebManager().getPage( TechPage ), TechPage ).onBtnEnterClick( 'btn_onHomeBtnClick_boom' );
+				/*
 				AppAPI.changePage( 
 					{ 
 						mgr:this.getWebManager(), 
 						page: TechFrame, 
 						params: { } 
 						
-					}) (thenOpen(TechBoom));
+					}) (thenOpen(TechConnect));*/
 			}
 		}
 		var targetPage:String = args[1].name;

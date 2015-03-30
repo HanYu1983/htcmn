@@ -73,8 +73,6 @@ class TechCamera extends DefaultTechPage
 		
 		_originDotX = _mc_dot.x;
 		
-		
-		
 		_mc_bar.buttonMode = true;
 		_mc_bar.addEventListener( MouseEvent.CLICK, onMouseClickSlideBar );
 		
@@ -88,7 +86,7 @@ class TechCamera extends DefaultTechPage
 		Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
 		super.forScript(e);
 		
-		animateForSmartPhone(taggleCircleButton());
+		animateForSmartPhone(taggleCircleButton( false ));
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
@@ -197,6 +195,7 @@ class TechCamera extends DefaultTechPage
 		}
 	}
 	
+	
 	function onMaxScale() {
 		if( _currphone == 'htc' ){
 			getRoot().playRespond();
@@ -228,7 +227,7 @@ class TechCamera extends DefaultTechPage
 		_currphone = phone;
 	}
 	
-	public function taggleCircleButton(): String {
+	public function taggleCircleButton( alsoCloseHint:Bool = true ): String {
 		if ( !isScriptEanbled() ) {
 			return 'htc';
 		}
@@ -241,6 +240,7 @@ class TechCamera extends DefaultTechPage
 		}
 		changeDesc( target );
 		_mc_circleButton.gotoAndPlay( target );
+		if( alsoCloseHint ) closeHint();
 		return target;
 	}
 	

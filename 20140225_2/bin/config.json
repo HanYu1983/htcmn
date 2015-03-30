@@ -90,6 +90,16 @@
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechConnect.swf",
 			"local":"src/TechConnect.swf",
 			"which":"local"
+		},
+		"TechTheme":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechTheme.swf",
+			"local":"src/TechTheme.swf",
+			"which":"local"
+		},
+		"TechBlink":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechBlink.swf",
+			"local":"src/TechBlink.swf",
+			"which":"local"
 		}
 	},
 	"moviePage":{

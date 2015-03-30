@@ -94,16 +94,16 @@ class HeaderUI extends DefaultPage
 		_btns.removeEventListener( 'overline', moveOverLine );
 		super.onCloseEvent(cb);
 	}
-	
+	/*
 	override function getSwfInfo():Dynamic 
 	{
 		var config:Dynamic = getWebManager().getData( 'config' );
-		return {name:'Header', path:config.swfPath.Header[ config.swfPath.Header.which ] };
+		return {name:'Preload', path:config.swfPath.Header[ config.swfPath.Header.which ] };
 	}
-	
+	*/
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'Header', path:'Header' };
+		return {name:'Preload', path:'Header' };
 	}
 	
 	var _sw:Int = 1024;
