@@ -16,6 +16,7 @@ class TechAssist extends DefaultTechPage
 	var ary_btn:Array<BasicButton> = [];
 	var ary_screen:Array<MovieClip> = [];
 	var ary_bg:Array<MovieClip> = [];
+	var ary_describe:Array<MovieClip> = [];
 	
 	public function new() 
 	{
@@ -34,7 +35,8 @@ class TechAssist extends DefaultTechPage
 					ary_screen.push( cast( disobj, MovieClip ) );
 				case 'mc_bg_01', 'mc_bg_02', 'mc_bg_03':	// gotoplay 2
 					ary_bg.push( cast( disobj, MovieClip ) );
-					
+				case 'mc_describe01', 'mc_describe02', 'mc_describe03':
+					ary_describe.push( cast( disobj, MovieClip ) );
 			}
 		});
 		
@@ -74,6 +76,15 @@ class TechAssist extends DefaultTechPage
 				bg.gotoAndPlay(2);
 			} else {
 				bg.gotoAndPlay(1);
+			}
+		}
+		
+		for ( describe in ary_describe ) {
+			var desid = "mc_describe0" + id;
+			if ( describe.name == desid ) {
+				Tweener.addTween( describe, { alpha: 1, time: .3 } );
+			} else {
+				Tweener.addTween( describe, { alpha: 0, time: .3 } );
 			}
 		}
 	}

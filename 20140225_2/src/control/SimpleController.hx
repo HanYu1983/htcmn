@@ -62,7 +62,13 @@ class SimpleController
 	
 	public static function onTechPageStartItem( page:DefaultTechPage ) {
 		var mv = cast( page.getWebManager().getPage(TutorialMask).getRoot(), MovieClip );
-		mv.gotoAndPlay("focusItem");
+		if ( mv == null ) {
+			// 錯誤處理. 竟然會為null, 不可思議
+			// 為null時, 就不要理它
+			SimpleController.onLog("TutorialMask 為 null 在 onTechPageStartItem");
+		} else {
+			mv.gotoAndPlay("focusItem");
+		}
 	}
 	
 	public static function onTechPageStartPlay( page:DefaultTechPage ) {	
