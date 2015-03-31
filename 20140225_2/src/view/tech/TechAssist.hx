@@ -16,6 +16,7 @@ class TechAssist extends DefaultTechPage
 	var ary_btn:Array<BasicButton> = [];
 	var ary_screen:Array<MovieClip> = [];
 	var ary_bg:Array<MovieClip> = [];
+	var ary_describe:Array<MovieClip> = [];
 	
 	public function new() 
 	{
@@ -34,7 +35,8 @@ class TechAssist extends DefaultTechPage
 					ary_screen.push( cast( disobj, MovieClip ) );
 				case 'mc_bg_01', 'mc_bg_02', 'mc_bg_03':	// gotoplay 2
 					ary_bg.push( cast( disobj, MovieClip ) );
-					
+				case 'mc_describe01', 'mc_describe02', 'mc_describe03':
+					ary_describe.push( cast( disobj, MovieClip ) );
 			}
 		});
 		
@@ -73,22 +75,29 @@ class TechAssist extends DefaultTechPage
 			if ( bg.name == bgid ) {
 				bg.gotoAndPlay(2);
 			} else {
-				bg.gotoAndPlay(1);
+				bg.gotoAndStop(1);
+			}
+		}
+		
+		for ( describe in ary_describe ) {
+			var desid = "mc_describe0" + id;
+			if ( describe.name == desid ) {
+				Tweener.addTween( describe, { alpha: 1, time: .3 } );
+			} else {
+				Tweener.addTween( describe, { alpha: 0, time: .3 } );
 			}
 		}
 	}
 	
-	function onBtnClick( e:MouseEvent ) {
-		var btn = cast( e.currentTarget, DisplayObject );
-		
+	function personRespondForButton( btn:DisplayObject ) {
 		switch( btn.name ) {
 			case "btn_01": getRoot().playRespond2();
 			case "btn_02": getRoot().playRespond();
 			case "btn_03": getRoot().playRespond3();
 		}
-		
-		var id = btn.name.charAt( btn.name.length - 1);
-		showScreen( id );
+	}
+	
+	function handleButtonStateForButton( btn:DisplayObject ) {
 		for ( basic in ary_btn ) {
 			if ( basic.getShape() == btn ) {
 				sleepButton( basic );
@@ -96,6 +105,17 @@ class TechAssist extends DefaultTechPage
 				wakeUpButton( basic, true );
 			}
 		}
+	}
+	
+	function onBtnClick( e:MouseEvent ) {
+		var btn = cast( e.currentTarget, DisplayObject );
+		
+		closeHint();
+		personRespondForButton( btn );
+		handleButtonStateForButton( btn );
+		
+		var id = btn.name.charAt( btn.name.length - 1);
+		showScreen( id );
 		
 		SimpleController.onButtonInteract( btn );
 		requestWaitAnimation();
