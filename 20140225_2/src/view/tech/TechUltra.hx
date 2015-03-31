@@ -106,6 +106,9 @@ class TechUltra extends DefaultTechPage
 	var _onMostLeftSide = false;
 	
 	function onMostLeftSide( b:Bool ) {
+		// 只能觸發一次
+		if ( _onMostLeftSide == true)
+			return;
 		if ( _onMostLeftSide != b ) {
 			_onMostLeftSide = b;
 			if ( _onMostLeftSide ) {
