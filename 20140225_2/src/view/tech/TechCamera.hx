@@ -86,7 +86,7 @@ class TechCamera extends DefaultTechPage
 		Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
 		super.forScript(e);
 		
-		animateForSmartPhone(taggleCircleButton( false ));
+		//animateForSmartPhone(taggleCircleButton( false ));
 	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
