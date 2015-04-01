@@ -18,6 +18,7 @@
     <class path="src" />
     <class path="lib\viclib" />
     <class path="lib\TweenerHX-1,33,74\TweenerHX" />
+    <class path="lib\printf-master\src" />
   </classpaths>
   <!-- Build options -->
   <build>

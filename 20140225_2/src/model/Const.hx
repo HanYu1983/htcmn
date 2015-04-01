@@ -1,9 +1,19 @@
 package model;
+import control.SimpleController;
+import de.polygonal.Printf;
+import flash.Lib;
 import org.vic.web.IWebView;
+import view.DefaultPage;
 import view.MoviePage;
+import view.tech.DefaultTechPage;
+import view.tech.TechAssist;
+import view.tech.TechBlink;
 import view.tech.TechCamera;
+import view.tech.TechConnect;
 import view.tech.TechDolby;
 import view.tech.TechDouble;
+import view.tech.TechPhoto;
+import view.tech.TechTheme;
 import view.tech.TechUltra;
 
 /**
@@ -24,6 +34,63 @@ class Const
 	
 	
 	public static function getShareInfoWithPage(page:IWebView): { name:String, link:String, picture:String, caption:String, description:String} {
+		var configRoot = cast( page, DefaultPage ).getWebManager().getData('config');
+		var name = 
+			if ( Std.is( page, TechDouble ) ) {
+				"TechDouble";
+			} else if ( Std.is( page, TechUltra ) ) {
+				"TechUltra";
+			} else if ( Std.is( page, TechDolby ) ) {
+				"TechDolby";
+			} else if ( Std.is( page, TechCamera ) ) {
+				"TechCamera";
+			} else if ( Std.is( page, TechAssist ) ) {
+				"TechAssist";
+			} else if ( Std.is( page, TechPhoto ) ) {
+				"TechPhoto";
+			} else if ( Std.is( page, TechConnect ) ) {
+				"TechConnect";
+			} else if ( Std.is( page, TechTheme ) ) {
+				"TechTheme";
+			} else if ( Std.is( page, TechBlink ) ) {
+				"TechBlink";
+			} else if ( Std.is( page, MoviePage ) ) {
+				"MoviePage";
+			} else {
+				null;
+			}
+			
+		if ( name == null ) {
+			SimpleController.onError('getShareInfoWithPage: ${name}');
+			return {
+				name: "name",
+				link: "",
+				picture: "",
+				caption: "caption",
+				description: "description"
+			}
+		}
+		var config = Reflect.field( configRoot.share, name );
+		
+		if ( name == 'MoviePage' ) {
+			var moviePage = cast( page, MoviePage);
+			var id = moviePage.getCurrentLoadedYoutubeId();
+			return { 
+				name: config.name, 
+				link: Printf.format( config.link, [id] ), 
+				picture:config.picture, 
+				caption:config.caption, 
+				description:config.description }
+		} else {
+			return { 
+				name: config.name, 
+				link: config.link, 
+				picture:config.picture, 
+				caption:config.caption, 
+				description:config.description }
+		}
+
+		/* // 改成讀取config.json
 		if ( Std.is( page, TechDouble ) ) {
 			return { 
 				name:"", 
@@ -79,5 +146,7 @@ class Const
 			caption: "caption",
 			description: "description"
 		}
+		
+		*/
 	}
 }
