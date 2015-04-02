@@ -61,7 +61,8 @@ class TechDolby extends DefaultTechPage
 	{
 		soundManager.getFromWebManager( getWebManager(), [
 			{ key:"D_respond_01", path:"TechDolby/D_respond _01_1.mp3" },
-			{ key:"intro_02_1", path:"TechDolby/intro_02_1_1.mp3" }
+			// 這段改為影片播
+			//{ key:"intro_02_1", path:"TechDolby/intro_02_1_1.mp3" }
 		] );
 		
 		dolbyMediator.getFromWebManager( getWebManager(), {
@@ -140,6 +141,9 @@ class TechDolby extends DefaultTechPage
 		} );
 		
 		super.forScript(e);
+		// Dolby頁不播Wait動作, 所以在super.forScript()之後, 將AnimationTimer關掉
+		// super.forScript()會openRequestAnimationTimer()
+		closeRequestAnimationTimer();
 		onInitControl();
 	}
 	
@@ -173,7 +177,8 @@ class TechDolby extends DefaultTechPage
 	// ======================== Control ===============================//
 	
 	function onFlvIntro02( e ) {
-		speech("intro_02_1");
+		// 這段改為影片播
+		//speech("intro_02_1");
 	}
 	
 	function onFlvRespond01( e ) {
@@ -205,12 +210,15 @@ class TechDolby extends DefaultTechPage
 		changeElecEffectWithType( target );
 		dolbyMediator.toggle( isPlay );
 		if ( target == 'dolby' ) {
-			getRoot().playRespond();
+			// 取消互動
+			//getRoot().playRespond();
 		} else {
 			stopSpeech();
-			getRoot().playStop();
+			// 取消互動後, STOP動作也不需要了
+			//getRoot().playStop();
 		}
-		requestWaitAnimation();
+		// 也不要Wait動作
+		// requestWaitAnimation();
 		closeHint();
 	}
 	

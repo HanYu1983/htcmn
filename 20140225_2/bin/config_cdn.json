@@ -105,6 +105,11 @@
 	"moviePage":{
 		"list":[
 			{
+				"id":"5SWjtaUq8Vw",
+				"name":"HTC One M9 奢華工藝之美 謎底揭曉",
+				"img":"images/movie/007.jpg"
+			},
+			{
 				"id":"yRuZY-V9dKw",
 				"name":"HTC One M9全球首發 即日起在全台HTC專賣店盛大開賣",
 				"img":"images/movie/006.jpg"
@@ -164,5 +169,77 @@
 		"taiwan":"http://www.htc.com/tw/go/buy/",
 		"a":"http://www.htc.com/tw/go/buy/",
 		"star":"http://www.htc.com/tw/go/buy/"
+	},
+	"share":{
+		"TechAssist":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"TechCamera":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！",
+			"description": "HTC One M9擁有2000萬畫素的絕佳主鏡頭，馬上來體驗並分享產品特點就有機會抽大獎喔！"
+		},
+		"TechDolby":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！",
+			"description": "HTC One M9擁有支援Dolby Audio™的HTC BoomSound™頂級音響，馬上來體驗並分享產品特點就有機會抽大獎喔！"
+		},
+		"TechDouble":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechDouble",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/01.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！",
+			"description": "HTC One M9擁有精湛雙色調金屬工藝的經典設計，馬上來體驗並分享產品特點就有機會抽大獎喔！"
+		},
+		"TechUltra":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechUltra",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/02.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！",
+			"description": "HTC One M9擁有HTC UltraPixel™前置相機的低光源下完美自拍功能，馬上來體驗並分享產品特點就有機會抽大獎喔！"
+		},
+		"TechPhoto":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechPhoto",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"TechConnect":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechConnect",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"TechTheme":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechTheme",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"TechBlink":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechBlink",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"MoviePage":{
+			"name": "",
+			"link": "http://rsclient.etmgup.com/htc_hima/#MoviePage/id=%s",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台HTC專賣店盛大開賣！",
+			"description": "馬上來觀賞精彩影片並分享相關訊息就有機會抽大獎喔！"
+		}
 	}
 }
