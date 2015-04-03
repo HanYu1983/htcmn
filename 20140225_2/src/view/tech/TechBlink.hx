@@ -1,6 +1,7 @@
 package view.tech;
 import flash.display.DisplayObject;
 import flash.display.MovieClip;
+import flash.events.MouseEvent;
 import org.vic.utils.BasicUtils;
 
 /**
@@ -29,9 +30,19 @@ class TechBlink extends DefaultTechPage
 					btn_screen = cast( disobj, MovieClip );
 			}
 		});
-		
-		getWebManager().log( mc_rest );
-		getWebManager().log( btn_screen );
+		btn_screen.buttonMode = true;
+		btn_screen.addEventListener( MouseEvent.CLICK, onScreenClick );
+	}
+	
+	function onScreenClick( e ) {
+		mc_rest.gotoAndPlay( 2 );
+		getRoot().playRespond();
+	}
+	
+	override function onCloseEvent(cb:Void->Void = null):Void 
+	{
+		btn_screen.removeEventListener( MouseEvent.CLICK, onScreenClick );
+		super.onCloseEvent(cb);
 	}
 	
 	override function getSwfInfo():Dynamic 
