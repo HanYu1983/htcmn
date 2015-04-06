@@ -41,7 +41,8 @@ class TechBlink extends DefaultTechPage
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
-		btn_screen.removeEventListener( MouseEvent.CLICK, onScreenClick );
+		if( btn_screen != null )
+			btn_screen.removeEventListener( MouseEvent.CLICK, onScreenClick );
 		super.onCloseEvent(cb);
 	}
 	

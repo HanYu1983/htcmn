@@ -66,7 +66,7 @@ class TechConnect extends DefaultTechPage
 	
 	function closeWave() {
 		Lambda.foreach( ary_wave, function( wave:DisplayObject ) {
-			wave.alpha = 0;
+			Tweener.addTween( wave, { alpha:0, time:.5 } );
 			return true;
 		} );
 	}
