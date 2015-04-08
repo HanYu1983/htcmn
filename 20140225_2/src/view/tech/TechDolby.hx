@@ -226,14 +226,15 @@ class TechDolby extends DefaultTechPage
 		SimpleController.onButtonInteract( e.currentTarget );
 		playMovie();
 		showStopButton();
-		closeRequestAnimationTimer();
+		//closeRequestAnimationTimer();
 	}
 	
 	function onBtnStopClick( e ) {
 		SimpleController.onButtonInteract( e.currentTarget );
 		stopMovie();
 		showPlayButton();
-		openRequestAnimationTimer();
+		// 不要Wait動作
+		//openRequestAnimationTimer();
 	}
 	
 	function onSoundAStart(e) {

@@ -1,7 +1,9 @@
 package view.tech;
 import caurina.transitions.Tweener;
 import flash.display.DisplayObject;
+import flash.display.MovieClip;
 import flash.events.Event;
+import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.ui.Mouse;
 import haxe.Timer;
@@ -13,8 +15,8 @@ import org.vic.utils.BasicUtils;
  */
 class TechConnect extends DefaultTechPage
 {
-	var mc_phone:DisplayObject;
-	var mc_finger:DisplayObject;
+	var mc_phone:MovieClip;
+	var mc_finger:MovieClip;
 	var ary_wave:Array<DisplayObject> = [];
 
 	public function new() 
@@ -29,7 +31,7 @@ class TechConnect extends DefaultTechPage
 		BasicUtils.revealObj( getRoot(), function( disobj:DisplayObject ) {
 			switch( disobj.name ) {
 				case 'mc_phone':
-					mc_phone = disobj;
+					mc_phone = cast(disobj, MovieClip);
 				case 'mc_wave_01', 'mc_wave_02', 'mc_wave_03', 'mc_wave_04', 'mc_wave_05',
 					 'mc_wave_06', 'mc_wave_07', 'mc_wave_08', 'mc_wave_09', 'mc_wave_10', 'mc_txt1':
 						ary_wave.push( disobj );
@@ -37,31 +39,52 @@ class TechConnect extends DefaultTechPage
 		});
 		
 		addEventListener( Event.ENTER_FRAME, onEnterFrame );
+		mc_phone.addEventListener( MouseEvent.CLICK, onPhoneClick );
+		mc_phone.buttonMode = true;
 		
-		mc_finger = getLoaderManager().getTask( 'TechConnect' ).getObject( 'Finger' );
+		mc_finger = cast( getLoaderManager().getTask( 'TechConnect' ).getObject( 'Finger' ), MovieClip );
 		mc_finger.alpha = 0;
+		mc_finger.mouseEnabled = false;
+		mc_finger.mouseChildren = false;
 		getRoot().addChild( mc_finger );
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
+		mc_phone.removeEventListener( MouseEvent.CLICK, onPhoneClick );
 		removeEventListener( Event.ENTER_FRAME, onEnterFrame );
 		super.onCloseEvent(cb);
+	}
+	
+	function onPhoneClick( e ) {
+		onTrigger();
 	}
 	
 	var triggered = false;
 	var reopenAfter = 10;
 	
 	function onTrigger() {
-		triggered = true;
-		openWave();
-		closeHint();
-		requestWaitAnimation();
-		getRoot().playRespond();
-		Timer.delay( function() {
-			triggered = false;
-			closeWave();
-		}, reopenAfter* 1000);
+		if ( triggered == false ) {
+			triggered = true;
+			openWave();
+			closeHint();
+			requestWaitAnimation();
+			getRoot().playRespond();
+			Timer.delay( function() {
+				triggered = false;
+				closeWave();
+			}, reopenAfter * 1000);
+			showHandUpMove();
+		}
+	}
+	
+	function showHandUpMove() {
+		var global = mc_phone.localToGlobal( new Point() );
+		mc_finger.x = global.x + 80;
+		mc_finger.y = global.y + 300;
+		visibleHand( true );
+		Tweener.addTween( mc_finger, { x: mc_finger.x+30, y: mc_finger.y-300, time: 2 } );
+		Timer.delay( function() { visibleHand( false ); }, 2000 );
 	}
 	
 	function closeWave() {
@@ -91,6 +114,11 @@ class TechConnect extends DefaultTechPage
 	}
 	
 	function onEnterFrame(e) {
+		// 不要向上滑動觸發了
+		//handleForCheckTopMove();
+	}
+	
+	function handleForCheckTopMove() {
 		if ( mc_phone.hitTestPoint( stage.mouseX, stage.mouseY ) ) {
 			mc_finger.x = stage.mouseX - mc_finger.width/2;
 			mc_finger.y = stage.mouseY - mc_finger.height/2;

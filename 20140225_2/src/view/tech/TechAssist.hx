@@ -25,8 +25,6 @@ class TechAssist extends DefaultTechPage
 	
 	override function forScript(e) 
 	{
-		super.forScript(e);
-		
 		BasicUtils.revealObj( getRoot(), function( disobj:DisplayObject ) {
 			switch( disobj.name ) {
 				case 'btn_01', 'btn_02', 'btn_03':	
@@ -45,9 +43,10 @@ class TechAssist extends DefaultTechPage
 			btn.getShape().addEventListener( MouseEvent.CLICK, onBtnClick );
 		}
 		
-		getWebManager().log( ary_btn );
-		getWebManager().log( ary_screen );
-		getWebManager().log( ary_bg );
+		super.forScript(e);
+		// Assist頁不播Wait動作, 所以在super.forScript()之後, 將AnimationTimer關掉
+		// super.forScript()會openRequestAnimationTimer()
+		closeRequestAnimationTimer();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
@@ -118,7 +117,8 @@ class TechAssist extends DefaultTechPage
 		showScreen( id );
 		
 		SimpleController.onButtonInteract( btn );
-		requestWaitAnimation();
+		// 不要Wait動作
+		//requestWaitAnimation();
 	}
 	
 	override function getSwfInfo():Dynamic 
