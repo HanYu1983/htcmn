@@ -150,6 +150,7 @@
 	"url":{
 		"spec": "http://www.htc.com/tw/smartphones/htc-one-m9/",
 		"expinfo": "http://rsclient.etmgup.com/htc_one_m9_event/",
+		"vip":"http://www.htc.com/tw/htc-one-m9-vip/",
 		"sell": "http://www.htc.com/tw/go/buy/",
 		"use": "http://www.htc.com/tw/terms/terms-of-use/",
 		"privacy": "http://www.htc.com/tw/terms/privacy/",
@@ -158,7 +159,7 @@
 		"techDolby":"https://www.youtube.com/watch?v=Ej9wuyyUagw&list=PLmBcyIjyVaKoiMYHH_zKymxTkC9ixS07b&index=3",
 		"early":"http://www.htc.com/tw/htc-one-m9-rules/",
 		"agree":"documents/20150325.pdf",
-		"htcSell":"http://www.htc.com/tw/go/buy/",
+		"htcSell":"http://www.htc.com/tw/vip/",
 		"chi":"http://www.htc.com/tw/go/buy/",
 		"far":"http://www.htc.com/tw/go/buy/",
 		"taiwan":"http://www.htc.com/tw/go/buy/",

@@ -52,7 +52,8 @@ class OnHeaderBtnClick extends DefaultCommand
 				//AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_ExpInfo: function() {
-				var url = getWebManager().getData( 'config' ).url.expinfo;
+				//var url = getWebManager().getData( 'config' ).url.expinfo;
+				var url = getWebManager().getData( 'config' ).url.vip;
 				Tool.getURL(url);
 			},
 			// 銷售通路

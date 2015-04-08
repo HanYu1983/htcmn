@@ -15,7 +15,7 @@ import org.vic.web.WebView;
  */
 class FooterUI extends DefaultPage
 {
-	var _back:DisplayObject;
+	var _back:MovieClip;
 	var _righter:DisplayObject;
 	var _music:MovieClip;
 	var _mc_btns:DisplayObject;
@@ -49,7 +49,7 @@ class FooterUI extends DefaultPage
 		BasicUtils.revealObj( getRoot(), function( obj:DisplayObject ) {
 			switch( obj.name ) {
 				case 'mc_footback':
-					_back = obj;
+					_back = cast( obj, MovieClip );
 				case 'mc_righter':
 					_righter = obj;
 				case 'mc_music':
@@ -61,6 +61,12 @@ class FooterUI extends DefaultPage
 					
 			}
 		});
+		
+		//getRoot().mouseChildren = false;
+		//getRoot().enabled = false;
+		//_back.enabled = false;
+		//_back.mouseChildren = false;
+		
 		_music.visible = false;
 		super.onOpenEvent(param, cb);
 	}
@@ -79,7 +85,8 @@ class FooterUI extends DefaultPage
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
 		if( _back != null ){
 			_back.width = w;
-			getRoot().y = h - _back.height;
+			//getRoot().y = h - _back.height;
+			getRoot().y = h - 110;
 		}
 		if ( _righter != null ) {
 			_righter.x = w - _righter.width;
