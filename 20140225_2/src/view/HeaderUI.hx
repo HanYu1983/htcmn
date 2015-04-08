@@ -69,7 +69,6 @@ class HeaderUI extends DefaultPage
 					_bar = obj;
 				case 'mc_extend':
 					_btn_extend = obj;
-					
 				case 'mc_overline':
 					_mc_overline = obj;
 				case 'btn_onHeaderBtnClick_skip':

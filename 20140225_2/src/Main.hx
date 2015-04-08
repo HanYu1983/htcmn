@@ -20,6 +20,7 @@ import control.OnTechDoubleBtnClick;
 import control.OnTechCameraClick;
 import control.OnTechFrameBtnClick;
 import control.OnTechUltraBtnClick;
+import control.OnYoutubePageBtnClick;
 import flash.accessibility.ISimpleTextSelection;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -77,6 +78,7 @@ import view.tech.TechPhoto;
 import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TutorialMask;
+import view.YoutubePage;
 /**
  * ...
  * @author vic
@@ -154,6 +156,7 @@ class Main
 			WebManager.inst.addCommand( new OnProductErrorPopupClick("onProductErrorPopupClick") );
 			WebManager.inst.addCommand( new OnMaskBtnClick("onMaskBtnClick") );
 			WebManager.inst.addCommand( new OnHtcInBtnClick("onHtcInBtnClick") );
+			WebManager.inst.addCommand( new OnYoutubePageBtnClick("onYoutubePageBtnClick") );
 			
 			cb( null, null );
 		}
@@ -275,7 +278,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechPhoto, null );
+			startWith( YoutubePage, null );
 			#else
 			startWith( IntroPage, null );
 			#end
