@@ -272,7 +272,7 @@ class Main
 			
 			ExternalInterface.call( 'flashReady', null );
 			ExternalInterface.addCallback( 'onWindowBlur', function() {
-				SoundMixer.stopAll();
+				//SoundMixer.stopAll();
 			});
 			
 		}catch ( e:Error ) { 
