@@ -3,6 +3,7 @@ package view;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.events.Event;
+import flash.net.SharedObject;
 import org.vic.utils.BasicUtils;
 import org.vic.web.WebView;
 import org.vic.web.youTube.events.VideoStateEvent;
@@ -20,6 +21,7 @@ class YoutubePage extends DefaultPage
 	public function new() 
 	{
 		super();
+		needLoading = false;
 		layerName = 'popup';
 	}
 	
@@ -59,7 +61,7 @@ class YoutubePage extends DefaultPage
 	function onYoutubeStateChange( e:VideoStateEvent ) {
 		switch( e.state ) {
 			case VideoStateEvent.ENDED:
-				//close page
+				getWebManager().closePage( YoutubePage );
 		}
 	}
 	
@@ -68,7 +70,6 @@ class YoutubePage extends DefaultPage
 			youtube.loadVideoById( '5SWjtaUq8Vw', auto );
 		}
 	}
-	
 	override function getRootInfo():Dynamic 
 	{
 		return {name:'Preload', path:'YoutubePage' };

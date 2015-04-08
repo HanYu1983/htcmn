@@ -6,18 +6,25 @@ import flash.display.DisplayObjectContainer;
 import flash.display.MovieClip;
 import flash.events.Event;
 import flash.geom.Point;
+import flash.sampler.NewObjectSample;
+import haxe.Timer;
+import helper.Cookie;
 import helper.IResize;
+import helper.IYoutubePageBelong;
 import helper.Tool;
 import org.vic.flash.display.FakeMovieClip;
 import org.vic.utils.BasicUtils;
+import org.vic.web.IWebView;
 import org.vic.web.WebView;
 import view.DefaultPage;
+import view.TechPage;
+import view.YoutubePage;
 
 /**
  * ...
  * @author ...
  */
-class TechDouble extends DefaultTechPage
+class TechDouble extends DefaultTechPage implements IYoutubePageBelong
 {
 	var _mc_mask:DisplayObject;
 	var _mc_dot:DisplayObject;
@@ -224,6 +231,28 @@ class TechDouble extends DefaultTechPage
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame);
 		
 		super.onOpenEvent(param, cb);
+		
+		if ( shouldOpenYoutubeAndWrite() ) {
+			getWebManager().openPage( YoutubePage, null );
+		} else {
+			Timer.delay( function() {
+				getRoot().playEnter();
+			}, 1500);
+		}
+	}
+	
+	public function onYoutubePageClose(page: IWebView) {
+		getRoot().playEnter();
+	}
+	
+	function shouldOpenYoutubeAndWrite():Bool {
+		var cookie = Cookie.load( { isDoubleYoutubeOpened: false } );
+		var shouldOpen = cookie.data.isDoubleYoutubeOpened == false;
+		#if release
+		cookie.data.isDoubleYoutubeOpened = true;
+		cookie.save();
+		#end
+		return shouldOpen;
 	}
 	
 	override function forScript(e) 

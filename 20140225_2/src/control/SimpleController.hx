@@ -10,6 +10,7 @@ import flash.sampler.NewObjectSample;
 import helper.IHasAnimationShouldStop;
 import helper.IPopup;
 import helper.IResize;
+import helper.IYoutubePageBelong;
 import helper.JSInterfaceHelper;
 import model.AppAPI;
 import org.vic.utils.BasicUtils;
@@ -41,6 +42,7 @@ import view.tech.TechAssist;
 import view.tech.TechUltra;
 import view.TechPage;
 import view.TutorialMask;
+import view.YoutubePage;
 using Lambda;
 
 /**
@@ -232,7 +234,7 @@ class SimpleController
 		}
 		
 		// 科技相關頁面都是艙門
-		when( or( [thePageIs( page, TechPage ), thePageIs( page, DefaultTechPage ) ] ), 
+		when( or( [thePageIs( page, TechPage ), thePageIs( page, DefaultTechPage ), thePageIs( page, YoutubePage ) ] ), 
 			// 艙門讀取頁
 			changeLoadingClass(LoadingPage) )
 			
@@ -285,11 +287,20 @@ class SimpleController
 			page.getWebManager().closePage( TutorialMask );
 		}
 		
+		function notifyYoutubePageCloseToBlong() {
+			for ( p in page.getWebManager().getPages() ) {
+				if ( Std.is( p, IYoutubePageBelong ) ) {
+					cast(p , IYoutubePageBelong).onYoutubePageClose( page );
+				}
+			}
+		}
+		
 		SoundMixer.stopAll();
 		
 		when( thePageIs(page, TechFrame), closeAllTechPage );
 		when( thePageIs(page, IPopup), resumeTechPageAnimation );
 		when( thePageIs(page, DefaultTechPage), closeTutorialMask );
+		when( thePageIs(page, YoutubePage), notifyYoutubePageCloseToBlong );
 	}
 	
 	public static function onPageOpen( mgr:WebManager, page: DefaultPage ) {
