@@ -4,6 +4,7 @@ import flash.display.Loader;
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.net.URLRequest;
+import org.vic.web.youTube.events.VideoStateEvent;
 /**
  * ...
  * @author VicYu
@@ -38,6 +39,7 @@ class YouTube extends EventDispatcher
 	public function clear() {
 		if ( _player != null ) {
 			_player.removeEventListener( 'onReady', onPlayerReady );
+			_player.removeEventListener( 'onStateChange', onPlayerStateChange );
 			_player.destroy();	
 			_player = null;
 		}
@@ -58,10 +60,28 @@ class YouTube extends EventDispatcher
 		_loader.contentLoaderInfo.removeEventListener(Event.INIT, onLoaderInit );
 		_player = _loader.content;
 		_player.addEventListener( 'onReady', onPlayerReady );
+		_player.addEventListener( 'onStateChange', onPlayerStateChange );
 	}
 	
 	function onPlayerReady( e ) {
 		_player.removeEventListener( 'onReady', onPlayerReady );
 		dispatchEvent( new Event( Event.INIT ));
+	}
+	
+	function onPlayerStateChange( e ) {
+		dispatchEvent(new VideoStateEvent(VideoStateEvent.STATE_CHANGE, getPlayerStateToString() ));				
+	}
+	
+	function getPlayerStateToString():String {			
+		var _playerState:Int = _player.getPlayerState();
+		switch (_playerState){
+			case-1:	return VideoStateEvent.UNSTARTED;
+			case 0:	return VideoStateEvent.ENDED;
+			case 1:	return VideoStateEvent.PLAYING;
+			case 2:	return VideoStateEvent.PAUSED;
+			case 3:	return VideoStateEvent.BUFFERING;
+			case 5:	return VideoStateEvent.VIDEO_CUED;
+		}			
+		return null;
 	}
 }

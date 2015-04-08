@@ -11,7 +11,7 @@ class VideoStateEvent extends Event {
 	public static var VIDEO_CUED	:String = "videoCued";
 	public static var STATE_CHANGE:String = "stateChange";		
 	public var state:String;
-	public function VideoStateEvent(pType:String, pState:String, pBubble:Bool = false) { 			
+	public function new(pType:String, pState:String, pBubble:Bool = false) { 			
 		super(pType, pBubble, false);			
 		state = pState;
 	} 
