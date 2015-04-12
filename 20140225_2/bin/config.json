@@ -49,7 +49,7 @@
 		"Righter":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
 			"local":"src/Righter.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechAssist":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
