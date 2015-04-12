@@ -22,6 +22,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 {
 	var mc_person:MovieClip;
 	var mc_bubble:DisplayObject;
+	var mc_wait:DisplayObject;
 	
 	public function new() 
 	{
@@ -49,8 +50,12 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 					mc_person = cast( obj, MovieClip );
 				case 'mc_bubble2':
 					mc_bubble = obj;
+				case 'mc_wait':
+					mc_wait = obj;
 			}
 		});
+		mc_wait.visible = !Const.OPEN_ALL_TECH_PAGE;
+		
 		disableUnavailableButton();
 		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
 		getRoot().addEventListener( 'on_flv_B_respond_02_finish', on_flv_B_respond_finish );
@@ -129,7 +134,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	}
 	
 	function disableUnavailableButton() {
-
+		
 		var disableBtnNames = 
 			if ( Const.OPEN_ALL_TECH_PAGE ) {
 				[];
