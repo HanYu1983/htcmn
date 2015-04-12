@@ -198,8 +198,10 @@ class TechCamera extends DefaultTechPage
 	
 	function onMaxScale() {
 		if( _currphone == 'htc' ){
-			getRoot().playRespond();
-			requestWaitAnimation();
+			//getRoot().playRespond();
+			if ( playRespondOnce() ) {
+				requestWaitAnimation();
+			}
 		}
 	}
 	

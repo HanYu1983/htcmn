@@ -35,8 +35,11 @@ class TechBlink extends DefaultTechPage
 	}
 	
 	function onScreenClick( e ) {
+		// 改為只會回應一次
+		//mc_rest.gotoAndPlay( 2 );
+		//getRoot().playRespond();
+		playRespondOnce();
 		mc_rest.gotoAndPlay( 2 );
-		getRoot().playRespond();
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

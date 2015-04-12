@@ -115,9 +115,12 @@ class TechDouble extends DefaultTechPage implements IYoutubePageBelong
 				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorC' ), true);
 				_mc_currentPhone = _mc_phoneA;
 				_mc_currentBigPhone = _mc_phoneABig;
-				getRoot().playRespond();
-				requestWaitAnimation();
-				
+				// 改為只會回應一次
+				//getRoot().playRespond();
+				//requestWaitAnimation();
+				if ( playRespondOnce() ) {
+					requestWaitAnimation();
+				}
 			case 'b':
 				sleepButton( getButtonsByName( 'btn_onTechDoubleClick_colorB' ));
 				wakeUpButton( getButtonsByName( 'btn_onTechDoubleClick_colorA' ), true);

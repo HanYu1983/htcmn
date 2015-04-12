@@ -68,7 +68,9 @@ class TechTheme extends DefaultTechPage
 		switch( btn.name ) {
 			case "btn_01" | "btn_02":
 				if ( btn.name == "btn_02" ) {
-					getRoot().playRespond();
+					// 改為只會回應一次
+					//getRoot().playRespond();
+					playRespondOnce();
 				}
 				var id = btn.name.charAt( btn.name.length - 1);
 				showScreen( id );

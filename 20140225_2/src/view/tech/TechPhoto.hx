@@ -67,7 +67,9 @@ class TechPhoto extends DefaultTechPage
 	function personRespondForButton( btn:DisplayObject ) {
 		var id = btn.name.charAt( btn.name.length - 1 );
 		if ( id == "1" ) {
-			getRoot().playRespond();
+			// 改為只會回應一次
+			//getRoot().playRespond();
+			playRespondOnce();
 		}
 	}
 	

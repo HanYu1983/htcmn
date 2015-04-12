@@ -112,9 +112,14 @@ class TechUltra extends DefaultTechPage
 		if ( _onMostLeftSide != b ) {
 			_onMostLeftSide = b;
 			if ( _onMostLeftSide ) {
-				SoundMixer.stopAll();
-				getRoot().playRespond();
-				requestWaitAnimation();
+				// 改為只會回應一次
+				//SoundMixer.stopAll();
+				//getRoot().playRespond();
+				//requestWaitAnimation();
+				if ( playRespondOnce() ) {
+					SoundMixer.stopAll();
+					requestWaitAnimation();
+				}
 				closeHint();
 			}
 		}

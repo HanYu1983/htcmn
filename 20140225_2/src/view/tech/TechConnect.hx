@@ -68,8 +68,12 @@ class TechConnect extends DefaultTechPage
 			triggered = true;
 			openWave();
 			closeHint();
-			requestWaitAnimation();
-			getRoot().playRespond();
+			// 改為只會回應一次
+			//requestWaitAnimation();
+			//getRoot().playRespond();
+			if ( playRespondOnce() ) {
+				requestWaitAnimation();
+			}
 			Timer.delay( function() {
 				triggered = false;
 				closeWave();

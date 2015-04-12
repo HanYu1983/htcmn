@@ -62,8 +62,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			mc_bubble.y = _mc_person.y;
 		}
 	}
-	
-	
+
+	var isRespond = false;
+	function playRespondOnce():Bool{
+		if ( isRespond == false ) {
+			isRespond = true;
+			getRoot().playRespond();
+			return true;
+		}
+		return false;
+	}
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
