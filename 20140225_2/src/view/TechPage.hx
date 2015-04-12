@@ -160,9 +160,18 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 				return true;
 			}
 		}
+		
+		function stopAnimation():Dynamic {
+			return function(btn:BasicButton) {
+				//btn.getShape()
+				BasicUtils.stopMovieClip( btn.getShape() );
+				return true;
+			}
+		}
 		var btns = disableBtnNames.map( getButton );
 		Lambda.foreach( btns, enable( false ) );
 		Lambda.foreach( btns, alpha( 0.5 ) );
+		Lambda.foreach( btns, stopAnimation() );
 	}
 	
 	

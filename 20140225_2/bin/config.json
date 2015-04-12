@@ -1,109 +1,114 @@
 {
-	"version":"20150326",
+	"version":"20150409",
 	"swfPath":{
 		"Intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
 			"local":"src/Intro.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"ActivePage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ActivePage.swf",
 			"local":"src/ActivePage.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"Footer":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Footer.swf",
 			"local":"src/Footer.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"Header":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Header.swf",
 			"local":"src/Header.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"loading":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/loading.swf",
 			"local":"src/loading.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"MoviePage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/MoviePage.swf",
 			"local":"src/MoviePage.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"Preload":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Preload.swf",
 			"local":"src/Preload.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"ProductPage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ProductPage.swf",
 			"local":"src/ProductPage.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"Righter":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
 			"local":"src/Righter.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechAssist":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
 			"local":"src/TechAssist.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechCamera":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechCamera.swf",
 			"local":"src/TechCamera.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechDolby":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDolby.swf",
 			"local":"src/TechDolby.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechDouble":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDouble.swf",
 			"local":"src/TechDouble.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechUltra":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechUltra.swf",
 			"local":"src/TechUltra.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechPhoto":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechPhoto.swf",
 			"local":"src/TechPhoto.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechConnect":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechConnect.swf",
 			"local":"src/TechConnect.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechTheme":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechTheme.swf",
 			"local":"src/TechTheme.swf",
-			"which":"local"
+			"which":"cdn"
 		},
 		"TechBlink":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechBlink.swf",
 			"local":"src/TechBlink.swf",
-			"which":"local"
+			"which":"cdn"
 		}
 	},
 	"moviePage":{
 		"list":[
+		    {
+				"id":"5SWjtaUq8Vw",
+				"name":"HTC One M9 奢華工藝之美 謎底揭曉",
+				"img":"images/movie/007.jpg"
+			},
 			{
 				"id":"yRuZY-V9dKw",
 				"name":"HTC One M9全球首發 即日起在全台HTC專賣店盛大開賣",
@@ -168,70 +173,70 @@
 	},
 	"share":{
 		"TechAssist":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
 			"picture": "",
 			"caption": "",
 			"description": ""
 		},
 		"TechCamera":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
-			"caption": "",
-			"description": "天啊～真想擁有一支HTC One M9！因為他有2000萬畫素的絕佳主鏡頭可以細緻生動的紀錄生活，寫下眾多豐富精彩的回憶！"
+			"caption": "天啊～真想擁有一支HTC One M9！",
+			"description": "因為他有2000萬畫素的絕佳主鏡頭可以細緻生動的紀錄生活，寫下眾多豐富精彩的回憶！"
 		},
 		"TechDolby":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
-			"caption": "",
-			"description": "身為一個電影愛好者，我真希望能剛隨時隨處都感受身歷其境的影音饗宴！有了HTC One M9支援Dolby Audio™的HTC BoomSound™音響，頂級劇院就在我身邊啦！"
+			"caption": "身為一個電影愛好者，我真希望能剛隨時隨處都感受身歷其境的影音饗宴！",
+			"description": "有了HTC One M9支援Dolby Audio™的HTC BoomSound™音響，頂級劇院就在我身邊啦！"
 		},
 		"TechDouble":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechDouble",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/01.jpg",
-			"caption": "",
-			"description": "剛剛走在路上有人跟我搭訕呢！羨慕嗎？快在手上拿隻擁有精湛雙色調金屬工藝設計的HTC One M9吧，目光焦點就是你！"
+			"caption": "剛剛走在路上有人跟我搭訕呢！羨慕嗎？",
+			"description": "快在手上拿隻擁有精湛雙色調金屬工藝設計的HTC One M9吧，目光焦點就是你！"
 		},
 		"TechUltra":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechUltra",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/02.jpg",
-			"caption": "",
-			"description": "昨晚約會去看夜景時留下了超完美的自拍合照，我的秘密武器就是HTC One M9!因為超強的HTC UltraPixel™前置相機，低光源下自拍也不怕！"
+			"caption": "昨晚約會去看夜景時留下了超完美的自拍合照!",
+			"description": "我的秘密武器就是HTC One M9!因為超強的HTC UltraPixel™前置相機，低光源下自拍也不怕！"
 		},
 		"TechPhoto":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechPhoto",
 			"picture": "",
 			"caption": "",
 			"description": ""
 		},
 		"TechConnect":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechConnect",
 			"picture": "",
 			"caption": "",
 			"description": ""
 		},
 		"TechTheme":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechTheme",
 			"picture": "",
 			"caption": "",
 			"description": ""
 		},
 		"TechBlink":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechBlink",
 			"picture": "",
 			"caption": "",
 			"description": ""
 		},
 		"MoviePage":{
-			"name": "",
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#MoviePage/id=%s",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg",
 			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
