@@ -248,10 +248,8 @@ class TechDouble extends DefaultTechPage implements IYoutubePageBelong
 	function shouldOpenYoutubeAndWrite():Bool {
 		var cookie = Cookie.load( { isDoubleYoutubeOpened: false } );
 		var shouldOpen = cookie.data.isDoubleYoutubeOpened == false;
-		#if release
 		cookie.data.isDoubleYoutubeOpened = true;
 		cookie.save();
-		#end
 		return shouldOpen;
 	}
 	
