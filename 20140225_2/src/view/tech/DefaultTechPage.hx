@@ -63,18 +63,7 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		}
 	}
 	
-	function makeRespondOnce(root:Dynamic) {
-		if ( Reflect.field( root, "playRespond" ) ) {
-			var oldFn = root.playRespond;
-			var played = false;
-			root.playRespond = function() {
-				if ( played == false ) {
-					played = true;
-					oldFn.call( root );
-				}
-			}
-		}
-	}
+	
 	
 	override function onOpenEvent(param:Dynamic, cb:Void->Void):Void 
 	{
@@ -98,7 +87,6 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 			_mc_controller.enabled = false;
 		}
 		
-		makeRespondOnce( getRoot() );
 		super.onOpenEvent(param, cb);
 		SoundMixer.stopAll();
 	}
