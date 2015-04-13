@@ -83,7 +83,7 @@ class TechCamera extends DefaultTechPage
 		getRoot().addEventListener( MouseEvent.MOUSE_UP, onMouseUpMask );
 		getRoot().addEventListener( Event.ENTER_FRAME, onEnterFrame );
 		
-		Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
+		//Tweener.addTween( mc_htcTxt, { alpha:1, time:1 } );
 		super.forScript(e);
 		
 		//animateForSmartPhone(taggleCircleButton( false ));

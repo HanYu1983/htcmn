@@ -35,6 +35,8 @@ class TechDolby extends DefaultTechPage
 	var mc_txtA:DisplayObject;
 	var mc_txtB:DisplayObject;
 	var mc_phone:MovieClip;
+	var mc_htc:DisplayObject;
+	var mc_other:DisplayObject;
 	var flv_videoA:MovieClip;
 	var flv_videoB:MovieClip;
 	var flv_container:MovieClip;
@@ -125,6 +127,10 @@ class TechDolby extends DefaultTechPage
 					mc_dolbyTxt = obj;
 				case 'btn_onTechDolbyClick_movie':
 					btn_onTechDolbyClick_movie = cast(obj, MovieClip);
+				case 'mc_htc':
+					mc_htc = obj;
+				case 'mc_other':
+					mc_other = obj;
 			}
 		});
 		
@@ -319,6 +325,14 @@ class TechDolby extends DefaultTechPage
 	
 	function showPhoneWithType( type:String ) {
 		mc_phone.gotoAndPlay( type );
+		
+		if ( type == 'dolby' ) {
+			Tweener.addTween( mc_other, { alpha:0, time:.5 } );
+			Tweener.addTween( mc_htc, { alpha:1, time:.5 } );
+		}else {
+			Tweener.addTween( mc_other, { alpha:1, time:.5 } );
+			Tweener.addTween( mc_htc, { alpha:0, time:.5 } );
+		}
 	}
 	
 	function showDescWithType( type:String ){
