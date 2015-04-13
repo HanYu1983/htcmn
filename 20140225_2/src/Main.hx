@@ -16,6 +16,7 @@ import control.OnMovieBtnClick;
 import control.OnProductBtnClick;
 import control.OnProductErrorPopupClick;
 import control.OnProductPhotoBtnClick;
+import control.OnSellMethodBtnClick;
 import control.OnTechDoubleBtnClick;
 import control.OnTechCameraClick;
 import control.OnTechFrameBtnClick;
@@ -157,6 +158,7 @@ class Main
 			WebManager.inst.addCommand( new OnMaskBtnClick("onMaskBtnClick") );
 			WebManager.inst.addCommand( new OnHtcInBtnClick("onHtcInBtnClick") );
 			WebManager.inst.addCommand( new OnYoutubePageBtnClick("onYoutubePageBtnClick") );
+			WebManager.inst.addCommand( new OnSellMethodBtnClick("onSellPageBtnClick") );
 			
 			cb( null, null );
 		}
