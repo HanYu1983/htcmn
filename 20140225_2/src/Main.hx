@@ -49,7 +49,7 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebCommand2;
 import org.vic.web.IWebView;
 import view.ActivityPopup;
-import view.ExpInfoPage;
+import view.SellMethod;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
 import view.FooterUI;
@@ -263,7 +263,7 @@ class Main
 					case 'MoviePage': MoviePage;
 					case 'RelativePage': RelativePage;
 					case 'ProductPage': ProductPage;
-					case 'ExpInfoPage': ExpInfoPage;
+					case 'ExpInfoPage': SellMethod;
 					
 					case _: IntroPage;
 				}
@@ -278,7 +278,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( TechAssist, null );
+			startWith( SellMethod, null );
 			#else
 			startWith( IntroPage, null );
 			#end

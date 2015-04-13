@@ -6,7 +6,7 @@ import org.vic.web.WebView;
  * ...
  * @author vic
  */
-class ExpInfoPage extends DefaultPage
+class SellMethod extends DefaultPage
 {
 
 	public function new() 
@@ -17,12 +17,12 @@ class ExpInfoPage extends DefaultPage
 	}
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'ExpInfo', path:'src/ExpInfo.swf' };
+		return {name:'SellMethod', path:'src/SellPage.swf' };
 	}
 	
 	override function getRootInfo():Dynamic 
 	{
-		return {name:'ExpInfo', path:'ExpInfo' };
+		return {name:'SellMethod', path:'SellPage' };
 	}
 	
 	override function suggestionEnableAutoBarWhenOpen():Null<Bool> 

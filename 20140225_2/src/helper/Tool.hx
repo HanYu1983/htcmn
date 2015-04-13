@@ -5,7 +5,7 @@ import flash.Lib;
 import flash.net.URLRequest;
 import org.vic.web.IWebView;
 import view.ActivityPopup;
-import view.ExpInfoPage;
+import view.SellMethod;
 import view.fb.DetailFromPopup;
 import view.fb.FBLoginPopup;
 import view.HtcInPage;
@@ -31,7 +31,7 @@ import view.tech.TechUltra;
  */
 class Tool
 {
-	public static var allPage:Array<Dynamic> = [IntroPage, ExpInfoPage, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage, HtcInPage];
+	public static var allPage:Array<Dynamic> = [IntroPage, SellMethod, MoviePage, ProductPage, RelativePage, TechPage, TechFrame, LuckyDrawPage, HtcInPage];
 	public static var allTechPage:Array<Dynamic> = [TechDouble, TechDolby, TechUltra, TechCamera, TechBlink, TechConnect, TechAssist, TechTheme, TechPhoto];
 	public static var allFBPage:Array<Dynamic> = [FBLoginPopup, DetailFromPopup];
 	

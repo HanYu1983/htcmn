@@ -4,7 +4,7 @@ import flash.net.URLRequest;
 import helper.Tool;
 import org.vic.web.WebCommand;
 import view.ActivityPopup;
-import view.ExpInfoPage;
+import view.SellMethod;
 import view.FooterUI;
 import view.IntroPage;
 import view.MoviePage;

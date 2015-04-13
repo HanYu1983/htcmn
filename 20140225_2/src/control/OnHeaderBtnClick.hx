@@ -3,7 +3,7 @@ import helper.Tool;
 import model.AppAPI;
 import org.vic.web.WebCommand;
 import view.ActivityPopup;
-import view.ExpInfoPage;
+import view.SellMethod;
 import view.HtcInPage;
 import view.IntroPage;
 import view.MoviePage;
@@ -71,6 +71,9 @@ class OnHeaderBtnClick extends DefaultCommand
 			},
 			btn_onHeaderBtnClick_htcin:function() {
 				AppAPI.openPage( { mgr:this.getWebManager(), page: HtcInPage, params:{} } ) (null);
+			},
+			btn_onHeaderBtnClick_SellMethod:function() {
+				AppAPI.openPage( { mgr:this.getWebManager(), page: SellMethod, params:{} } ) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

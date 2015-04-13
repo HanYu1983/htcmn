@@ -17,7 +17,7 @@ import org.vic.utils.BasicUtils;
 import org.vic.web.IWebView;
 import org.vic.web.WebManager;
 import view.DefaultPage;
-import view.ExpInfoPage;
+import view.SellMethod;
 import view.FakeStopPage;
 import view.FooterUI;
 import view.HeaderUI;
@@ -367,7 +367,7 @@ class SimpleController
 					"RelativePage";
 				} else if (Std.is(page, ProductPage)) {
 					"ProductPage";
-				} else if (Std.is(page, ExpInfoPage)) {
+				} else if (Std.is(page, SellMethod)) {
 					"ExpInfoPage";
 					
 				} else {
