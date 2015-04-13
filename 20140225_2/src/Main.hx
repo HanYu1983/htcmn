@@ -280,7 +280,7 @@ class Main
 		}catch ( e:Error ) { 
 			// means not in web
 			#if debug
-			startWith( SellMethod, null );
+			startWith( TechConnect, null );
 			#else
 			startWith( IntroPage, null );
 			#end

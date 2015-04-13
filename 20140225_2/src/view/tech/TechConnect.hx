@@ -51,7 +51,8 @@ class TechConnect extends DefaultTechPage
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 
 	{
-		mc_phone.removeEventListener( MouseEvent.CLICK, onPhoneClick );
+		if( mc_phone != null )
+			mc_phone.removeEventListener( MouseEvent.CLICK, onPhoneClick );
 		removeEventListener( Event.ENTER_FRAME, onEnterFrame );
 		super.onCloseEvent(cb);
 	}
@@ -87,8 +88,8 @@ class TechConnect extends DefaultTechPage
 		mc_finger.x = global.x + 80;
 		mc_finger.y = global.y + 300;
 		visibleHand( true );
-		Tweener.addTween( mc_finger, { x: mc_finger.x+30, y: mc_finger.y-300, time: 2 } );
-		Timer.delay( function() { visibleHand( false ); }, 2000 );
+		Tweener.addTween( mc_finger, { x: mc_finger.x+30, y: mc_finger.y-300, transition:'easeInQuint', time: .7 } );
+		Timer.delay( function() { visibleHand( false ); }, 700 );
 	}
 	
 	function closeWave() {
