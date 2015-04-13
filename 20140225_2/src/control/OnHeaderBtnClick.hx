@@ -70,10 +70,10 @@ class OnHeaderBtnClick extends DefaultCommand
 				SimpleController.onHeaderSkipButtonClick();
 			},
 			btn_onHeaderBtnClick_htcin:function() {
-				AppAPI.openPage( { mgr:this.getWebManager(), page: HtcInPage, params:{} } ) (null);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: HtcInPage, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_SellMethod:function() {
-				AppAPI.openPage( { mgr:this.getWebManager(), page: SellMethod, params:{} } ) (null);
+				AppAPI.changePage( { mgr:this.getWebManager(), page: SellMethod, params:{} } ) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

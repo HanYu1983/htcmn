@@ -54,7 +54,8 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 					mc_wait = obj;
 			}
 		});
-		mc_wait.visible = !Const.OPEN_ALL_TECH_PAGE;
+		if( mc_wait != null )
+			mc_wait.visible = !Const.OPEN_ALL_TECH_PAGE;
 		
 		disableUnavailableButton();
 		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
