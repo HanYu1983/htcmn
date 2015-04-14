@@ -4,6 +4,7 @@ import control.SimpleController;
 import flash.display.DisplayObject;
 import flash.display.MovieClip;
 import flash.events.MouseEvent;
+import helper.Tool;
 import org.vic.utils.BasicUtils;
 import org.vic.web.BasicButton;
 
@@ -75,7 +76,8 @@ class TechTheme extends DefaultTechPage
 				var id = btn.name.charAt( btn.name.length - 1);
 				showScreen( id );
 			case "btn_more":
-				0;
+				var url = getWebManager().getData( 'config' ).url.techThemeMore;
+				Tool.getURL(url);
 		}
 		for ( basic in ary_btn ) {
 			if ( basic.getShape() == btn ) {

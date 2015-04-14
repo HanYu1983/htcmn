@@ -169,7 +169,8 @@
 		"far":"http://www.fetnet.net/estore/phone/htc-one-m9",
 		"taiwan":"http://telecom.taiwanmobile.com/emyfone/action/phone.do?cateId=PHONE_TYPE_4G_PHONE&method=detail&handsetUid=10FED0FE55B4C113E05010ACA01637C5&fromSessionCheck=true#.VSPDt0eUe8A",
 		"asia":"http://www.htc.com/tw/go/buy/",
-		"star":"http://www.tstartel.com/CWS/mobile_shop/lte_products/htc_one_m9.htm"
+		"star":"http://www.tstartel.com/CWS/mobile_shop/lte_products/htc_one_m9.htm",
+		"techThemeMore":"http://themes.htc.com/#/landing"
 	},
 	"share":{
 		"TechAssist":{
