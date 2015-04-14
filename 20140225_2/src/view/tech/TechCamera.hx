@@ -215,16 +215,17 @@ class TechCamera extends DefaultTechPage
 		Tweener.addTween( _mc_ohterPhoto, { alpha: v? 1 : 0, time:.3 } );
 	}
 	
-	
 	var _currphone = '';
 	public function animateForSmartPhone( phone:String ) {
 		switch( phone ) {
 			case 'htc':
 				setHTCPhoneVisible( true );
 				setOtherPhoneVisible( false );
+				_mc_controller.gotoAndPlay( 'htc' );
 			case 'other':
 				setHTCPhoneVisible( false );
 				setOtherPhoneVisible( true );
+				_mc_controller.gotoAndPlay( 'other' );
 		}
 		_currphone = phone;
 	}

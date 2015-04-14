@@ -1,4 +1,5 @@
 package control;
+import flash.display.MovieClip;
 import flash.Lib;
 import flash.net.URLRequest;
 import helper.Tool;
@@ -76,6 +77,25 @@ class OnFooterBtnClick extends DefaultCommand
 			},
 			btn_onFooterBtnClick_star:function() {
 				var url = getWebManager().getData( 'config' ).url.star;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_horse:function() {
+				var btn:MovieClip = args[1];
+				var url:String = '';
+				switch( btn.cardId ) {
+					case '1':
+						url = getWebManager().getData( 'config' ).url.htcSell;
+					case '2':
+						url = getWebManager().getData( 'config' ).url.chinese;
+					case '3':
+						url = getWebManager().getData( 'config' ).url.taiwan;
+					case '4':
+						url = getWebManager().getData( 'config' ).url.far;
+					case '5':
+						url = getWebManager().getData( 'config' ).url.star;
+					case '6':
+						url = getWebManager().getData( 'config' ).url.asia;
+				}
 				Tool.getURL(url);
 			}
 		}
