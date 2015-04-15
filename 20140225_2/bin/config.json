@@ -182,32 +182,32 @@
 			"description": ""
 		},
 		"TechCamera":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "三天三夜不夠High?",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
-			"caption": "天啊～真想擁有一支HTC One M9！",
-			"description": "因為他有2000萬畫素的絕佳主鏡頭可以細緻生動的紀錄生活，寫下眾多豐富精彩的回憶！"
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "我用HTC One M9支援Dolby Audio™音效播放出來的音樂及影片，原音重現！"
 		},
 		"TechDolby":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "二手單眼求售！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
-			"caption": "身為一個電影愛好者，我真希望能剛隨時隨處都感受身歷其境的影音饗宴！",
-			"description": "有了HTC One M9支援Dolby Audio™的HTC BoomSound™音響，頂級劇院就在我身邊啦！"
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "因為我已經升級到超高2000萬畫素主鏡頭的HTC One M9手機啦！"
 		},
 		"TechDouble":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "走在路上被人搭訕也是一種美德呢！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechDouble",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/01.jpg",
-			"caption": "剛剛走在路上有人跟我搭訕呢！羨慕嗎？",
-			"description": "快在手上拿隻擁有精湛雙色調金屬工藝設計的HTC One M9吧，目光焦點就是你！"
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "其實我只是手上一直都拿著這支精湛雙色調金屬工藝的HTC One M9！"
 		},
 		"TechUltra":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "有人今晚要陪我去看夜景嗎？！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechUltra",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/02.jpg",
-			"caption": "昨晚約會去看夜景時留下了超完美的自拍合照!",
-			"description": "我的秘密武器就是HTC One M9!因為超強的HTC UltraPixel™前置相機，低光源下自拍也不怕！"
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "順便一起來見證傳說中HTC One M9的前置鏡頭在低光源下還能拍出完美照片的神奇自拍效果！"
 		},
 		"TechPhoto":{
 			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
@@ -238,11 +238,11 @@
 			"description": ""
 		},
 		"MoviePage":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "快來看精彩影片！跟我一起抽大獎",
 			"link": "http://rsclient.etmgup.com/htc_hima/#MoviePage/id=%s",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
-			"description": "馬上來觀賞精彩影片並分享相關訊息就有機會抽大獎喔！"
+			"caption": "全球首發，即日起在全台各大通路盛大開賣！",
+			"description": "HTC One M9 登峰造極 萬中選一"
 		}
 	}
 }
