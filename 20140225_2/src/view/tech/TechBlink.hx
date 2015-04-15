@@ -40,7 +40,9 @@ class TechBlink extends DefaultTechPage
 		//getRoot().playRespond();
 		playRespondOnce();
 		mc_rest.gotoAndPlay( 2 );
-		closeHint();
+		closeHint( function() {
+			BasicUtils.delayCall( 7000, openHint );
+		});
 	}
 	
 	override function onCloseEvent(cb:Void->Void = null):Void 

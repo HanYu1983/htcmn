@@ -94,9 +94,10 @@ class OnFooterBtnClick extends DefaultCommand
 					case '5':
 						url = getWebManager().getData( 'config' ).url.star;
 					case '6':
-						url = getWebManager().getData( 'config' ).url.asia;
+						SimpleController.onAlert( '敬請期待' );
+						//url = getWebManager().getData( 'config' ).url.asia;
 				}
-				Tool.getURL(url);
+				if( url != '' ) Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;

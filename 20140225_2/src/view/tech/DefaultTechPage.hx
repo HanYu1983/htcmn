@@ -110,10 +110,16 @@ class DefaultTechPage extends DefaultPage implements IHasAnimationShouldStop
 		super.onCloseEvent(cb);
 	}
 	
-	function closeHint() {
+	function closeHint( ?cb ) {
 		if ( mc_hint != null && mc_hint.alpha == 1 ) {
 			Tweener.addTween( mc_hint, { alpha:0, time:.5 } );
+			if ( cb != null ) cb();
 		}
+	}
+	
+	function openHint() {
+		if( mc_hint != null && mc_hint.alpha == 0 )
+			Tweener.addTween( mc_hint, { alpha:1, time:.5 } );
 	}
 	
 	function onStartPlay( e ) {

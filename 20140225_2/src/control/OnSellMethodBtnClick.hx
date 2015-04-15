@@ -40,8 +40,9 @@ class OnSellMethodBtnClick extends WebCommand
 				Tool.getURL(url);
 			},
 			btn_onSellPageBtnClick_m5:function() {
-				var url = getWebManager().getData( 'config' ).url.asia;
-				Tool.getURL(url);
+				//var url = getWebManager().getData( 'config' ).url.asia;
+				//Tool.getURL(url);
+				SimpleController.onAlert( '敬請期待' );
 			}
 		}
 		var targetPage:String = args[1].name;

@@ -47,9 +47,8 @@ class OnHeaderBtnClick extends DefaultCommand
 				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_Relative: function() {
-				// 先使用alert
-				SimpleController.onAlert("敬請期待");
-				//AppAPI.changePage( { mgr:this.getWebManager(), page: RelativePage, params:{} } ) (null);
+				var url = getWebManager().getData( 'config' ).url.relative;
+				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_ExpInfo: function() {
 				//var url = getWebManager().getData( 'config' ).url.expinfo;
