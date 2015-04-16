@@ -42,17 +42,17 @@ class Const
 		} else if ( Std.is( page, TechCamera ) ) {
 			{ type:"WEB", page:"04" };
 		} else if ( Std.is( page, TechAssist ) ) {
-			{ type:"WEB", page:"01" };
+			{ type:"WEB", page:"06" };
 		} else if ( Std.is( page, TechPhoto ) ) {
-			{ type:"WEB", page:"01" };
+			{ type:"WEB", page:"08" };
 		} else if ( Std.is( page, TechConnect ) ) {
-			{ type:"WEB", page:"01" };
+			{ type:"WEB", page:"09" };
 		} else if ( Std.is( page, TechTheme ) ) {
-			{ type:"WEB", page:"01" };
+			{ type:"WEB", page:"05" };
 		} else if ( Std.is( page, TechBlink ) ) {
-			{ type:"WEB", page:"01" };
+			{ type:"WEB", page:"07" };
 		} else if ( Std.is( page, MoviePage ) ) {
-			{ type:"VIDEO", page:"01" };
+			{ type:"VIDEO", page:"99" };
 		} else {
 			{ type:"UNKNOWN", page:"UNKNOWN" };
 		}
