@@ -32,6 +32,31 @@ class Const
 	
 	public static var PEOPLE_PLAY_WAIT_DURATION_SECONDS = 25;	// seconds
 	
+	public static function getLogInfoWithPage(page:IWebView): { type:String, page:String } { 
+		return if ( Std.is( page, TechDouble ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, TechUltra ) ) {
+			{ type:"WEB", page:"02" };
+		} else if ( Std.is( page, TechDolby ) ) {
+			{ type:"WEB", page:"03" };
+		} else if ( Std.is( page, TechCamera ) ) {
+			{ type:"WEB", page:"04" };
+		} else if ( Std.is( page, TechAssist ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, TechPhoto ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, TechConnect ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, TechTheme ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, TechBlink ) ) {
+			{ type:"WEB", page:"01" };
+		} else if ( Std.is( page, MoviePage ) ) {
+			{ type:"VIDEO", page:"01" };
+		} else {
+			{ type:"UNKNOWN", page:"UNKNOWN" };
+		}
+	}
 	
 	public static function getShareInfoWithPage(page:IWebView): { name:String, link:String, picture:String, caption:String, description:String} {
 		var configRoot = cast( page, DefaultPage ).getWebManager().getData('config');

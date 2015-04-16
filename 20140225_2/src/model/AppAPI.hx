@@ -156,9 +156,7 @@ class AppAPI
 							cb( new Error("not login"), null );
 						}
 					}
-				},
-				
-				FBAPI.callFBMe,
+				},		FBAPI.callFBMe,
 				
 				function checkIsEnterInfo( args: { name: String, email: String, gender: String} ):Dynamic {
 					return function( cb:Dynamic ) {
@@ -174,8 +172,10 @@ class AppAPI
 				},
 				
 				
-				function stopIfDidWritten( args: { isWritten: Bool, token: String } ) {
+				function sendShareAndStopIfDidWritten( args: { isWritten: Bool, token: String } ) {
 					return function( cb:Dynamic ) {
+						ETMAPI.shareLog( { token: args.token, type: null, page: null } ) (function(err, ret){});
+
 						if ( args.isWritten ) {
 							cb( new Error('isWritten'), null );
 						} else {
@@ -191,7 +191,11 @@ class AppAPI
 	
 	
 	
-	public static function flow2( params: { mgr:WebManager, shareInfo: { name:String, link:String, picture:String, caption:String, description:String } } ) {
+	public static function flow2( params: { 
+		mgr:WebManager,
+		shareInfo: { name:String, link:String, picture:String, caption:String, description:String },
+		logInfo: { type: String, page: String }
+		} ) {
 		
 		return function( cb:Dynamic ) {
 			
@@ -221,13 +225,13 @@ class AppAPI
 					}
 				},
 				
-				function stopIfDidWritten( args: { isWritten: Bool, token: String } ) {
+				function shareLogAndStopIfDidWritten( args: { isWritten: Bool, token: String } ) {
 					return function( cb:Dynamic ) {
 						if ( args.isWritten ) {
 							cb( new Error('isWritten'), null );
 						} else {
 							params.mgr.setData('etmToken', args.token);
-							cb( null, { } );
+							ETMAPI.shareLog( { token: args.token, type: params.logInfo.type, page: params.logInfo.page } ) (cb);
 						}
 					}
 				}

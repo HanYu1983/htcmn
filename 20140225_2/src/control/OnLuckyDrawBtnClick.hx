@@ -100,7 +100,8 @@ class OnLuckyDrawBtnClick extends WebCommand
 				}
 				AppAPI.flow2( { 
 					mgr:getWebManager(), 
-					shareInfo: Const.getShareInfoWithPage( page ) 
+					shareInfo: Const.getShareInfoWithPage( page ),
+					logInfo: Const.getLogInfoWithPage( page )
 				} ) (openNextPage);
 			},
 			btn_onLuckyDrawBtnClick_data: function() {
