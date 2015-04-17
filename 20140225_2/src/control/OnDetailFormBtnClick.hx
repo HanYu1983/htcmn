@@ -66,7 +66,7 @@ class OnDetailFormBtnClick extends DefaultCommand
 									name : getWebManager().getData("name"),
 									email : getWebManager().getData("email"),
 									gender : getWebManager().getData("gender"),
-									mobile : getWebManager().getData("mobile"),
+									mobile : getWebManager().getData("phone"),
 									is_read_policy : getWebManager().getData("is_read_policy"),
 									is_agree_personal_info : getWebManager().getData("is_agree_personal_info"),
 									is_accept_notice : getWebManager().getData("is_accept_notice")
