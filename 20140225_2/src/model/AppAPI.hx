@@ -138,7 +138,7 @@ class AppAPI
 			
 		}
 	}
-	
+	/*
 	public static function flow1( params: { mgr:WebManager } ) {
 		
 		return function( cb:Dynamic ) {
@@ -172,7 +172,7 @@ class AppAPI
 				},
 				
 				
-				function sendShareAndStopIfDidWritten( args: { isWritten: Bool, token: String } ) {
+				function shareLogAndStopIfDidWritten( args: { isWritten: Bool, token: String } ) {
 					return function( cb:Dynamic ) {
 						ETMAPI.shareLog( { token: args.token, type: null, page: null } ) (function(err, ret){});
 
@@ -188,7 +188,7 @@ class AppAPI
 		}
 		
 	}
-	
+	*/
 	
 	
 	public static function flow2( params: { 
