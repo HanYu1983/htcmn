@@ -227,11 +227,11 @@ class AppAPI
 				
 				function shareLogAndStopIfDidWritten( args: { isWritten: Bool, token: String } ) {
 					return function( cb:Dynamic ) {
+						ETMAPI.shareLog( { token: args.token, type: params.logInfo.type, page: params.logInfo.page } ) (cb);
 						if ( args.isWritten ) {
 							cb( new Error('isWritten'), null );
 						} else {
 							params.mgr.setData('etmToken', args.token);
-							ETMAPI.shareLog( { token: args.token, type: params.logInfo.type, page: params.logInfo.page } ) (cb);
 						}
 					}
 				}
