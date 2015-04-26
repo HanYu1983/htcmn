@@ -232,6 +232,7 @@ class AppAPI
 							cb( new Error('isWritten'), null );
 						} else {
 							params.mgr.setData('etmToken', args.token);
+							cb( null, { } );
 						}
 					}
 				}
