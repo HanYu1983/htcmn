@@ -28,7 +28,7 @@ class TechTheme extends DefaultTechPage
 		
 		BasicUtils.revealObj( getRoot(), function( disobj:DisplayObject ) {
 			switch( disobj.name ) {
-				case 'btn_01', 'btn_02', 'btn_more':
+				case 'btn_01', 'btn_02', 'btn_more', 'btn_coca':
 					ary_btn.push( new BasicButton( cast( disobj, MovieClip ) ) );
 				case 'mc_01', 'mc_02':	// gotoplay 2
 					ary_screen.push( cast( disobj, MovieClip ) );
@@ -76,6 +76,9 @@ class TechTheme extends DefaultTechPage
 				var id = btn.name.charAt( btn.name.length - 1);
 				showScreen( id );
 			case "btn_more":
+				var url = getWebManager().getData( 'config' ).url.techThemeMore;
+				Tool.getURL(url);
+			case "btn_coca":
 				var url = getWebManager().getData( 'config' ).url.techThemeMore;
 				Tool.getURL(url);
 		}
