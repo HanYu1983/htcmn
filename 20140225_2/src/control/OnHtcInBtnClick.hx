@@ -1,6 +1,7 @@
 package control;
 
 import flash.display.MovieClip;
+import helper.Tool;
 import org.vic.web.WebCommand;
 import view.LuckyDrawPage;
 import view.MoviePage;
@@ -25,7 +26,8 @@ class OnHtcInBtnClick extends DefaultCommand
 		
 		var goto:Dynamic = {
 			btn_onHtcInBtnClick_more: function() {
-				trace( 'btn_onHtcInBtnClick_more' );
+				var url = getWebManager().getData( 'config' ).url.htcEyeMore;
+				Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;

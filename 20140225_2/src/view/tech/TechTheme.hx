@@ -79,7 +79,7 @@ class TechTheme extends DefaultTechPage
 				var url = getWebManager().getData( 'config' ).url.techThemeMore;
 				Tool.getURL(url);
 			case "btn_coca":
-				var url = getWebManager().getData( 'config' ).url.techThemeMore;
+				var url = getWebManager().getData( 'config' ).url.techThemeCoca;
 				Tool.getURL(url);
 		}
 		for ( basic in ary_btn ) {

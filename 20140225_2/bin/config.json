@@ -9,97 +9,97 @@
 		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"ActivePage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ActivePage.swf",
 			"local":"src/ActivePage.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"Footer":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Footer.swf",
 			"local":"src/Footer.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"Header":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Header.swf",
 			"local":"src/Header.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"loading":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/loading.swf",
 			"local":"src/loading.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"MoviePage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/MoviePage.swf",
 			"local":"src/MoviePage.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"Preload":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Preload.swf",
 			"local":"src/Preload.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"ProductPage":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/ProductPage.swf",
 			"local":"src/ProductPage.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"Righter":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
 			"local":"src/Righter.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechAssist":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
 			"local":"src/TechAssist.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechCamera":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechCamera.swf",
 			"local":"src/TechCamera.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechDolby":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDolby.swf",
 			"local":"src/TechDolby.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechDouble":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechDouble.swf",
 			"local":"src/TechDouble.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechFront":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechFront.swf",
 			"local":"src/TechFront.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechUltra":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechUltra.swf",
 			"local":"src/TechUltra.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechPhoto":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechPhoto.swf",
 			"local":"src/TechPhoto.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechConnect":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechConnect.swf",
 			"local":"src/TechConnect.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechTheme":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechTheme.swf",
 			"local":"src/TechTheme.swf",
-			"which":"cdn"
+			"which":"local"
 		},
 		"TechBlink":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechBlink.swf",
 			"local":"src/TechBlink.swf",
-			"which":"cdn"
+			"which":"local"
 		}
 	},
 	"moviePage":{
@@ -144,7 +144,7 @@
 	"message":{
 		"msg_input_for_product":"請輸入電話號碼即可查詢到您在體驗會現場所拍攝的照片",
 		"msg_submit_data":"謝謝，我們已收到您提供的資料",
-		"msg_submit_data_already":"謝謝參加，祝您幸運中獎！其餘體驗艙將陸續開放，敬請期待"
+		"msg_submit_data_already":"謝謝參加，祝您幸運中獎！"
 	},
 	"sound":{
 		"techDolby":{
@@ -171,30 +171,11 @@
 		"taiwan":"http://telecom.taiwanmobile.com/emyfone/action/phone.do?cateId=PHONE_TYPE_4G_PHONE&method=detail&handsetUid=10FED0FE55B4C113E05010ACA01637C5&fromSessionCheck=true#.VSPDt0eUe8A",
 		"asia":"http://www.htc.com/tw/go/buy/",
 		"star":"http://www.tstartel.com/CWS/mobile_shop/lte_products/htc_one_m9.htm",
-		"techThemeMore":"http://themes.htc.com/#/landing"
+		"techThemeMore":"http://themes.htc.com/#/landing",
+		"techThemeCoca":"http://www.htc.com/tw/htcxcoke-theme/",
+		"htcEyeMore":"http://www.htc.com/tw/smartphones/htc-desire-eye/"
 	},
 	"share":{
-		"TechAssist":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
-			"picture": "",
-			"caption": "",
-			"description": ""
-		},
-		"TechCamera":{
-			"name": "三天三夜不夠High?",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "我用HTC One M9支援Dolby Audio™音效播放出來的音樂及影片，原音重現！"
-		},
-		"TechDolby":{
-			"name": "二手單眼求售！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "因為我已經升級到超高2000萬畫素主鏡頭的HTC One M9手機啦！"
-		},
 		"TechDouble":{
 			"name": "走在路上被人搭訕也是一種美德呢！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechDouble",
@@ -209,40 +190,61 @@
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "順便一起來見證傳說中HTC One M9的前置鏡頭在低光源下還能拍出完美照片的神奇自拍效果！"
 		},
-		"TechPhoto":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechPhoto",
-			"picture": "",
-			"caption": "",
-			"description": ""
+		"TechDolby":{
+			"name": "二手單眼求售！",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "因為我已經升級到超高2000萬畫素主鏡頭的HTC One M9手機啦！"
 		},
-		"TechConnect":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechConnect",
-			"picture": "",
-			"caption": "",
-			"description": ""
+		"TechCamera":{
+			"name": "三天三夜不夠High?",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "我用HTC One M9支援Dolby Audio™音效播放出來的音樂及影片，原音重現！"
 		},
 		"TechTheme":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "我每天都好像在用新手機！",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechTheme",
-			"picture": "",
-			"caption": "",
-			"description": ""
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/05.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "HTC One M9可以直接用相片製作主題，主題館APP還有超多主題可以免費下載！太讚了！"
+		},
+		"TechAssist":{
+			"name": "這實在太神奇了",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/06.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "HTC One M9知道我人在家裡、工作或外出中，主畫面總是會把我需要用到的APP放在首頁讓我一指召喚！"
 		},
 		"TechBlink":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"name": "午餐或是晚餐去哪吃?",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechBlink",
-			"picture": "",
-			"caption": "",
-			"description": ""
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/07.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "不用煩了，HTC One M9首頁會根據我所在位置推薦附近熱門餐廳資訊給我，是不是很讚？"
+		},
+		"TechPhoto":{
+			"name": "HTC One M9太強大了啊啊啊！",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechPhoto",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/08.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "美膚效果、雙重曝光、魔法變臉，這些超棒的相片美編工具通通都內建在手機裡 ！"
+		},
+		"TechConnect":{
+			"name": "爸愛聽爵士樂，娘要聽江大姐，我卻想聽西洋歌曲！",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechConnect",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/09.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "通通不要吵，讓我用我的HTC One M9 Connect™把不同音樂送到不同房間的無線喇叭去！"
 		},
 		"MoviePage":{
 			"name": "快來看精彩影片！跟我一起抽大獎",
 			"link": "http://rsclient.etmgup.com/htc_hima/#MoviePage/id=%s",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg",
-			"caption": "全球首發，即日起在全台各大通路盛大開賣！",
-			"description": "HTC One M9 登峰造極 萬中選一"
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "全球首發，即日起在全台各大通路盛大開賣！"
 		}
 	}
 }
