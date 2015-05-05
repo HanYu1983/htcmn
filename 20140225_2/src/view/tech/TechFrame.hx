@@ -83,10 +83,10 @@ class TechFrame extends DefaultPage
 			} else {
 				[
 					"btn_onTechFrameBtnClick_blink",
-					"btn_onTechFrameBtnClick_boom",
-					"btn_onTechFrameBtnClick_person",
-					"btn_onTechFrameBtnClick_photo",
-					"btn_onTechFrameBtnClick_situ"
+					//"btn_onTechFrameBtnClick_boom",
+					//"btn_onTechFrameBtnClick_person",
+					//"btn_onTechFrameBtnClick_photo",
+					//"btn_onTechFrameBtnClick_situ"
 				];
 			}
 		

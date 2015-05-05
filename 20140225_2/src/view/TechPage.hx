@@ -55,7 +55,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			}
 		});
 		if( mc_wait != null )
-			mc_wait.visible = !Const.OPEN_ALL_TECH_PAGE;
+			mc_wait.visible = false;
 		
 		disableUnavailableButton();
 		getRoot().addEventListener( 'on_flv_B_respond_01_finish', on_flv_B_respond_finish );
@@ -142,10 +142,10 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 			} else {
 				[
 					"btn_onHomeBtnClick_blink",
-					"btn_onHomeBtnClick_boom",
-					"btn_onHomeBtnClick_person",
-					"btn_onHomeBtnClick_photo",
-					"btn_onHomeBtnClick_situ"
+					//"btn_onHomeBtnClick_boom",
+					//"btn_onHomeBtnClick_person",
+					//"btn_onHomeBtnClick_photo",
+					//"btn_onHomeBtnClick_situ"
 				];
 			}
 		
