@@ -28,6 +28,10 @@ class OnHtcInBtnClick extends DefaultCommand
 			btn_onHtcInBtnClick_more: function() {
 				var url = getWebManager().getData( 'config' ).url.htcEyeMore;
 				Tool.getURL(url);
+			},
+			btn_onHtcInBtnClick_may: function() {
+				var url = getWebManager().getData( 'config' ).url.htcEyeMay;
+				Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;
