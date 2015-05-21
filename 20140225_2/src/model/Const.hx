@@ -27,7 +27,7 @@ class Const
 	#if debug
 	public static var OPEN_ALL_TECH_PAGE = true;
 	#else
-	public static var OPEN_ALL_TECH_PAGE = false;
+	public static var OPEN_ALL_TECH_PAGE = true;
 	#end
 	
 	public static var PEOPLE_PLAY_WAIT_DURATION_SECONDS = 25;	// seconds

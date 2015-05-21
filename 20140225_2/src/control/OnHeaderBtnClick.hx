@@ -46,7 +46,15 @@ class OnHeaderBtnClick extends DefaultCommand
 				var url = getWebManager().getData( 'config' ).url.spec;
 				Tool.getURL(url);
 			},
+			btn_onHeaderBtnClick_SpecP: function() {
+				var url = getWebManager().getData( 'config' ).url.spec;
+				Tool.getURL(url);
+			},
 			btn_onHeaderBtnClick_Relative: function() {
+				var url = getWebManager().getData( 'config' ).url.relative;
+				Tool.getURL(url);
+			},
+			btn_onHeaderBtnClick_RelativeP: function() {
 				var url = getWebManager().getData( 'config' ).url.relative;
 				Tool.getURL(url);
 			},
@@ -73,6 +81,11 @@ class OnHeaderBtnClick extends DefaultCommand
 			},
 			btn_onHeaderBtnClick_SellMethod:function() {
 				AppAPI.changePage( { mgr:this.getWebManager(), page: SellMethod, params:{} } ) (null);
+			},
+			btn_onHeaderBtnClick_vip: function() {
+				var url = getWebManager().getData( 'config' ).url.early;
+				Tool.getURL(url);
+				//AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
 			}
 		}
 		var targetPage:String = args[1].name;

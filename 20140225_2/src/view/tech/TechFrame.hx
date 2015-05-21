@@ -167,8 +167,8 @@ class TechFrame extends DefaultPage
 		}
 		
 		if ( mc_righterBottom != null ) {
-			mc_righterBottom.x =  w - mc_righterBottom.width - 30;
-			mc_righterBottom.y = h - 30;
+			mc_righterBottom.x =  w - mc_righterBottom.width - 22;
+			mc_righterBottom.y = h - 56;
 		}
 	}
 }

@@ -92,7 +92,7 @@ class FooterUI extends DefaultPage
 			_righter.x = w - _righter.width;
 		}
 		if ( mc_rightBtns != null ) {
-			mc_rightBtns.x = w - 720;
+			mc_rightBtns.x = w - 510;
 		}
 	}
 

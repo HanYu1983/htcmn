@@ -23,6 +23,7 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 	var mc_person:MovieClip;
 	var mc_bubble:DisplayObject;
 	var mc_wait:DisplayObject;
+	var mc_righterBottom:DisplayObject;
 	
 	public function new() 
 	{
@@ -52,6 +53,8 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 					mc_bubble = obj;
 				case 'mc_wait':
 					mc_wait = obj;
+				case 'mc_righterBottom':
+					mc_righterBottom = obj;
 			}
 		});
 		if( mc_wait != null )
@@ -121,6 +124,11 @@ class TechPage extends DefaultPage implements IHasAnimationShouldStop
 		if ( mc_bubble != null ) {
 			Tool.centerForce( mc_bubble, 1366, 768, x, y, w, h, .4, .7 );
 			mc_bubble.y += 75;
+		}
+		
+		if ( mc_righterBottom != null ) {
+			mc_righterBottom.x =  w - mc_righterBottom.width - 22;
+			mc_righterBottom.y = h - 56;
 		}
 	}
 	
