@@ -1,5 +1,5 @@
 {
-	"version":"20150409",
+	"version":"20150513",
 	"swfPath":{
 		"Intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
@@ -104,6 +104,61 @@
 	},
 	"moviePage":{
 		"list":[
+		 {
+				"id":"5V_RVQ8Eot4",
+				"name":"HTC One M9 全球首款雙色金屬極致工藝 現在起全台各大通路 盛大開賣",
+				"img":"images/movie/008.jpg"
+			},
+			{
+				"id":"AxHOJ-4ek94",
+				"name":"HTC One M9 低光源也能完美自拍 - 現在起全台各大通路 盛大開賣",
+				"img":"images/movie/009.jpg"
+			},
+			{
+				"id":"0eSlxjvnqOY",
+				"name":"Weare all...ONE ",
+				"img":"images/movie/010.jpg"
+			},
+			{
+				"id":"L3e-2jwofEs",
+				"name":"最神奇的魔幻相片編輯器 就在HTC One M9 輕鬆搞定相片特效",
+				"img":"images/movie/011.jpg"
+			},
+			{
+				"id":"dz9E-u16BgM",
+				"name":"讓HTC One M9的HTC Connect 輕鬆啟動你的影音新視界!",
+				"img":"images/movie/012.jpg"
+			},
+			{
+				"id":"f5Daf75FCpU",
+				"name":"HTC 主題:擁有個人化螢幕",
+				"img":"images/movie/013.jpg"
+			},
+			{
+				"id":"xUbb5rSZe4k",
+				"name":"HTC Sense 首頁:盡情發揮個人風格",
+				"img":"images/movie/014.jpg"
+			},
+					{
+				"id":"uyhuX6FeQzw",
+				"name":"HTC One M9 擁有神奇的相片編輯工具:使用相片特效盡情創作",
+				"img":"images/movie/015.jpg"
+			},
+			{
+				"id":"PwLqfh2VP3Y",
+				"name":"HTC Dot View:無須打開外蓋也能接聽來電",
+				"img":"images/movie/016.jpg"
+			},
+			{
+				"id":"6eO-p-_HCnE",
+				"name":"HTC Connect 無線撥放您的音樂與影片",
+				"img":"images/movie/017.jpg"
+			},
+			
+			
+			
+			
+			
 		    {
 				"id":"5SWjtaUq8Vw",
 				"name":"HTC One M9 奢華工藝之美 謎底揭曉",
@@ -177,54 +232,40 @@
 		"htcEyeMay":"http://www.htc-event.tw/HTC-RE-photo/mayday"
 	},
 	"share":{
+		"TechAssist":{
+			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechAssist",
+			"picture": "",
+			"caption": "",
+			"description": ""
+		},
+		"TechDolby":{
+			"name": "三天三夜不夠High?",
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechCamera",
+			"picture": "http://rsclient.etmgup.com/htc_one_m9/images/share/03.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "我用HTC One M9支援Dolby Audio™音效播放出來的音樂及影片，原音重現！"
+		},
+		"TechCamera":{
+			"name": "二手單眼求售！",
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechDolby",
+			"picture": "http://rsclient.etmgup.com/htc_one_m9/images/share/04.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "因為我已經升級到超高2000萬畫素主鏡頭的HTC One M9手機啦！"
+		},
 		"TechDouble":{
 			"name": "走在路上被人搭訕也是一種美德呢！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechDouble",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/01.jpg",
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechDouble",
+			"picture": "http://rsclient.etmgup.com/htc_one_m9/images/share/01.jpg",
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "其實我只是手上一直都拿著這支精湛雙色調金屬工藝的HTC One M9！"
 		},
 		"TechUltra":{
 			"name": "有人今晚要陪我去看夜景嗎？！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechUltra",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/02.jpg",
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechUltra",
+			"picture": "http://rsclient.etmgup.com/htc_one_m9/images/share/02.jpg",
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "順便一起來見證傳說中HTC One M9的前置鏡頭在低光源下還能拍出完美照片的神奇自拍效果！"
-		},
-		"TechDolby":{
-			"name": "二手單眼求售！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechDolby",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/03.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "因為我已經升級到超高2000萬畫素主鏡頭的HTC One M9手機啦！"
-		},
-		"TechCamera":{
-			"name": "三天三夜不夠High?",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechCamera",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/04.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "我用HTC One M9支援Dolby Audio™音效播放出來的音樂及影片，原音重現！"
-		},
-		"TechTheme":{
-			"name": "我每天都好像在用新手機！",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechTheme",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/05.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "HTC One M9可以直接用相片製作主題，主題館APP還有超多主題可以免費下載！太讚了！"
-		},
-		"TechAssist":{
-			"name": "這實在太神奇了",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/06.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "HTC One M9知道我人在家裡、工作或外出中，主畫面總是會把我需要用到的APP放在首頁讓我一指召喚！"
-		},
-		"TechBlink":{
-			"name": "午餐或是晚餐去哪吃?",
-			"link": "http://rsclient.etmgup.com/htc_hima/#TechBlink",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/07.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "不用煩了，HTC One M9首頁會根據我所在位置推薦附近熱門餐廳資訊給我，是不是很讚？"
 		},
 		"TechPhoto":{
 			"name": "HTC One M9太強大了啊啊啊！",
@@ -240,12 +281,34 @@
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "通通不要吵，讓我用我的HTC One M9 Connect™把不同音樂送到不同房間的無線喇叭去！"
 		},
+		"TechTheme":{
+			"name": "我每天都好像在用新手機！",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechTheme",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/05.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "HTC One M9可以直接用相片製作主題，主題館APP還有超多主題可以免費下載！太讚了！"
+		},
+		"TechBlink":{
+			"name": "午餐或是晚餐去哪吃?",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechBlink",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/07.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "不用煩了，HTC One M9首頁會根據我所在位置推薦附近熱門餐廳資訊給我，是不是很讚？"
+		},
+                "TechAssist":{
+			"name": "這實在太神奇了",
+			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
+			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/06.jpg",
+			"caption": "HTC One M9 登峰造極 萬中選一",
+			"description": "HTC One M9知道我人在家裡、工作或外出中，主畫面總是會把我需要用到的APP放在首頁讓我一指召喚！"
+		},
+
 		"MoviePage":{
 			"name": "快來看精彩影片！跟我一起抽大獎",
-			"link": "http://rsclient.etmgup.com/htc_hima/#MoviePage/id=%s",
-			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/video_share.jpg",
-			"caption": "HTC One M9 登峰造極 萬中選一",
-			"description": "全球首發，即日起在全台各大通路盛大開賣！"
+			"link": "http://rsclient.etmgup.com/htc_one_m9/#MoviePage/id=%s",
+			"picture": "http://rsclient.etmgup.com/htc_one_m9/images/share/video_share.jpg",
+			"caption": "全球首發，即日起在全台各大通路盛大開賣！",
+			"description": "HTC One M9 登峰造極 萬中選一"
 		}
 	}
 }
