@@ -1,5 +1,5 @@
 {
-	"version":"20150513",
+	"version":"2015052104",
 	"swfPath":{
 		"Intro":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Intro.swf",
@@ -50,6 +50,16 @@
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/Righter.swf",
 			"local":"src/Righter.swf",
 			"which":"local"
+		},
+		"HtcIn":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/HtcIn.swf",
+			"local":"src/HtcIn.swf",
+			"which":"cdn"
+		},
+		"SellPage":{
+			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/SellPage.swf",
+			"local":"src/SellPage.swf",
+			"which":"cdn"
 		},
 		"TechAssist":{
 			"cdn":"http://eda9962ce4da9c47c32c-6a163228e67308da9664e4f095f00920.r12.cf6.rackcdn.com/src/TechAssist.swf",
@@ -209,11 +219,13 @@
 	},
 	"url":{
 		"spec": "http://www.htc.com/tw/smartphones/htc-one-m9/",
+		"specP": " http://www.htc.com/tw/smartphones/htc-one-m9-plus/",
 		"expinfo": "http://rsclient.etmgup.com/htc_one_m9_event/",
 		"vip":"http://www.htc.com/tw/htc-one-m9-vip/",
 		"sell": "http://www.htc.com/tw/go/buy/",
 		"use": "http://www.htc.com/tw/terms/terms-of-use/",
 		"relative":"http://www.htc.com/tw/accessories/#!pid=htc-one-m9",
+		"relativeP":"http://www.htc.com/tw/accessories/#!pid=htc-one-m9-plus",
 		"privacy": "http://www.htc.com/tw/terms/privacy/",
 		"htc": "http://www.htc.com/tw/",
 		"fance": "https://www.facebook.com/HTCTaiwan",
@@ -229,16 +241,10 @@
 		"techThemeMore":"http://themes.htc.com/#/landing",
 		"techThemeCoca":"http://www.htc.com/tw/htcxcoke-theme/",
 		"htcEyeMore":"http://www.htc.com/tw/smartphones/htc-desire-eye/",
-		"htcEyeMay":"http://www.htc-event.tw/HTC-RE-photo/mayday"
+		"htcEyeMay":"http://www.htc-event.tw/HTC-RE-photo/mayday",
+		"headerVip":"http://www.htc.com/tw/htc-vip-family-rules/"
 	},
 	"share":{
-		"TechAssist":{
-			"name": "HTC One M9 登峰造極 萬中選一 全球首發，即日起在全台各大通路盛大開賣！",
-			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechAssist",
-			"picture": "",
-			"caption": "",
-			"description": ""
-		},
 		"TechDolby":{
 			"name": "三天三夜不夠High?",
 			"link": "http://rsclient.etmgup.com/htc_one_m9/#TechCamera",
@@ -295,14 +301,13 @@
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "不用煩了，HTC One M9首頁會根據我所在位置推薦附近熱門餐廳資訊給我，是不是很讚？"
 		},
-                "TechAssist":{
+        "TechAssist":{
 			"name": "這實在太神奇了",
 			"link": "http://rsclient.etmgup.com/htc_hima/#TechAssist",
 			"picture": "http://rsclient.etmgup.com/htc_hima/images/share/06.jpg",
 			"caption": "HTC One M9 登峰造極 萬中選一",
 			"description": "HTC One M9知道我人在家裡、工作或外出中，主畫面總是會把我需要用到的APP放在首頁讓我一指召喚！"
 		},
-
 		"MoviePage":{
 			"name": "快來看精彩影片！跟我一起抽大獎",
 			"link": "http://rsclient.etmgup.com/htc_one_m9/#MoviePage/id=%s",

@@ -17,7 +17,8 @@ class HtcInPage extends DefaultPage
 	
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'HtcInPage', path:'src/HtcIn.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'HtcInPage', path:config.swfPath.HtcIn[ config.swfPath.HtcIn.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

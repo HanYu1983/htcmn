@@ -47,7 +47,7 @@ class OnHeaderBtnClick extends DefaultCommand
 				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_SpecP: function() {
-				var url = getWebManager().getData( 'config' ).url.spec;
+				var url = getWebManager().getData( 'config' ).url.specP;
 				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_Relative: function() {
@@ -55,7 +55,7 @@ class OnHeaderBtnClick extends DefaultCommand
 				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_RelativeP: function() {
-				var url = getWebManager().getData( 'config' ).url.relative;
+				var url = getWebManager().getData( 'config' ).url.relativeP;
 				Tool.getURL(url);
 			},
 			btn_onHeaderBtnClick_ExpInfo: function() {
@@ -83,7 +83,7 @@ class OnHeaderBtnClick extends DefaultCommand
 				AppAPI.changePage( { mgr:this.getWebManager(), page: SellMethod, params:{} } ) (null);
 			},
 			btn_onHeaderBtnClick_vip: function() {
-				var url = getWebManager().getData( 'config' ).url.early;
+				var url = getWebManager().getData( 'config' ).url.headerVip;
 				Tool.getURL(url);
 				//AppAPI.changePage( { mgr:this.getWebManager(), page: ProductPage, params:{} } ) (null);
 			}

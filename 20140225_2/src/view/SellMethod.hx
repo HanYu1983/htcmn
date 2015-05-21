@@ -17,7 +17,8 @@ class SellMethod extends DefaultPage
 	}
 	override function getSwfInfo():Dynamic 
 	{
-		return {name:'SellMethod', path:'src/SellPage.swf' };
+		var config:Dynamic = getWebManager().getData( 'config' );
+		return {name:'SellMethod', path:config.swfPath.SellPage[ config.swfPath.SellPage.which ] };
 	}
 	
 	override function getRootInfo():Dynamic 

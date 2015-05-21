@@ -109,8 +109,6 @@ class HeaderUI extends DefaultPage
 	
 	override public function onResize(x: Int, y:Int, w:Int, h:Int):Void {
 		_btns.x = w - _btns.width;
-		//不知道為什麼flash裡是593而這邊取出718 
-		//_btns.x = w - 593;
 		_bar.width = w;
 		_sw = w;
 		_btn_onHeaderBtnClick_skip.y = h - 30;
