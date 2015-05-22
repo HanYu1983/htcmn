@@ -98,6 +98,14 @@ class OnFooterBtnClick extends DefaultCommand
 						//url = getWebManager().getData( 'config' ).url.asia;
 				}
 				if( url != '' ) Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_Relative: function() {
+				var url = getWebManager().getData( 'config' ).url.relative;
+				Tool.getURL(url);
+			},
+			btn_onFooterBtnClick_RelativeP: function() {
+				var url = getWebManager().getData( 'config' ).url.relativeP;
+				Tool.getURL(url);
 			}
 		}
 		var targetPage:String = args[1].name;
