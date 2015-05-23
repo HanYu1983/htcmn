@@ -48,27 +48,4 @@ class IntroPage extends DefaultPage implements IHasAnimationShouldStop
 		return false;
 	}
 	
-	override public function onResize(x:Int, y:Int, w:Int, h:Int) 
-	{
-		if ( _mc_item != null ) {
-			var fix_width = 1500.0;
-			var fix_height = 768.0;
-			
-			if ( w < fix_width ) {
-				var scale = Math.max(w, 1024.0) / fix_width;
-				_mc_item.scaleX = _mc_item.scaleY = scale;
-				Tool.centerForce( _mc_item, fix_width* scale, fix_height* scale, x, y, w, h );
-			} else {
-				_mc_item.scaleX = _mc_item.scaleY = 1;
-				Tool.centerForce( _mc_item, fix_width, fix_height, x, y, w, h );
-			}
-		}
-		if ( _mc_popup != null ) {
-			Tool.center(_mc_popup, x, y, w, h);
-		}
-		if ( _mc_back != null ) {
-			_mc_back.width = w;
-			_mc_back.height = h;
-		}
-	}
 }
