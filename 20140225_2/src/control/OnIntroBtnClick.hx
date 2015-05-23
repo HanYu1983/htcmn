@@ -25,7 +25,7 @@ class OnIntroBtnClick extends DefaultCommand
 					}) (null);
 			},
 			btn_onIntroBtnClick_early: function(){
-				var url = getWebManager().getData( 'config' ).url.early;
+				var url = getWebManager().getData( 'config' ).url.headerVip;
 				Tool.getURL(url);
 			}
 		}
