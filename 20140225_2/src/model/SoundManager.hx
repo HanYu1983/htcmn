@@ -18,6 +18,10 @@ class SoundManager
 	private var sounds = new Map<String, Sound>();
 	private var chs = new Array<SoundChannel>();
 	
+	public function new() {
+		
+	}
+	
 	public function getFromWebManager( mgr:WebManager, list:Array<{key:String, path:String}> ) {
 		for ( info in list ) {
 			if ( sounds.exists(info.key) == false ) {

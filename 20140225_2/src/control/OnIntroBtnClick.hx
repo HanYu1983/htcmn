@@ -24,6 +24,9 @@ class OnIntroBtnClick extends DefaultCommand
 						
 					}) (null);
 			},
+			btn_onIntroBtnClick_link:function() {
+				Tool.getURL( 'http://www.htc.com/tw/mayday2015/' );
+			},
 			btn_onIntroBtnClick_early: function(){
 				var url = getWebManager().getData( 'config' ).url.headerVip;
 				Tool.getURL(url);

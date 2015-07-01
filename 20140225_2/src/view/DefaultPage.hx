@@ -62,8 +62,8 @@ class DefaultPage extends WebView implements IResize
 	
 	public function onResize(x:Int, y: Int, w:Int, h:Int) {
 		if ( _mc_item != null ) {
-			//var fix_width = 1366.0;
-			var fix_width = 1500.0;
+			var fix_width = 1366.0;
+			//var fix_width = 1500.0;
 			var fix_height = 768.0;
 			
 			if ( w < fix_width ) {
